@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Bienvenido a la Bolsa de Trabajo, <%= @user.name %></h1>
+    <p>
+      Te acabas de registrar satisfactoriamente, a nuestra red, y queremos darte una grata bienvenida.
+      A continuacion te mostramos los datos que nos proporcionaste.
+      Tu nombre: <%= @user.name%>.<br>
+      Tu apellido <%=@user.last_name%>.<br>
+    </p>
+      Si es que cometiste algun error puedes arreglarlo en la parte de editar perfil
+    <p>
+      Gracias por ser parte de nuestra red y esperamos saques provecho de ella.
+       !Te esperamos!.
+    </p>
+    </body>
+</html>

@@ -5,5 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :password, format:{ with: /\A(?=.*[a-z])(?=.*[A-Z])./, message: "must contain at least one uppercase letter, one lowercase letter and some digit"}
-
+	after_create :send_admin_mail
+  def send_admin_mail
+    UserMailer.welcome_email(self).deliver_later
+  end
 end
