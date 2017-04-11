@@ -1,4 +1,5 @@
 
+
 <%if (@posts)%>
 	<% @posts.each do |post| %>
       <div class="container-body ">
@@ -18,3 +19,26 @@
       </div>
 	<% end %>
 <%end%>
+
+  <div class="col-md-6">
+    <%= form_for :post, url: new_post_path do |f| %>
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.text_area(:body, class: "form-control", placeholder: 'Como te sientes?', rows: 4) %>
+        <%=f.hidden_field :user_id, :value => current_user.id%>
+      </div>
+    </div>
+    <div class="row barra-enviar">
+      <div class="col-md-9 col-sm-8 col-xs-4">
+        <label for="post_image">
+            <span class="glyphicon glyphicon-camera btn btn-primary" aria-hidden="true"></span>
+        </label>
+      </div>
+      <div class="col-md-3  col-sm-4  col-xs-8 cont-btn-publicar">
+        <button type="submit" class="btn btn-primary">
+          Publicar <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <% end %>
+  </div>
