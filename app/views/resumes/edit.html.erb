@@ -26,17 +26,39 @@
 <% end %>
   <div class="container-body ">
     <h2>Formacion Academica </h2>
-    <% if@educations.size >0%>
-    <h5><%= @educations.each do |education| %></h5>
+    <% if @educations.size >0%>
+    <h5><% @educations.each do |education| %></h5>
             <div>
                 <p>
-                  <b><%=education.title%></b>
-                  <br>
+                  <h5><b><%=education.title%></b></h5>
                   <%=education.school_name%>&nbsp;
-                  <%=education.start_date%>&emsp; - &emsp; <%=education.end_date%>
+                  <%=education.start_date.year%>&emsp; - &emsp; <%=education.end_date.year%>
                 </p>
             </div>
         <%end%>
      <%end%>
-
   </div>
+<%= form_for :education, url: '/education/new' do |f| %>  
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title%>
+  </div>
+
+    <div class="field">
+    <%= f.label :school_name %>
+    <%= f.text_field :school_name%>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %>
+    <%= f.date_select :start_date %>
+  </div>
+    <div class="field">
+    <%= f.label :end_date %>
+    <%= f.date_select :end_date %>
+  </div>
+      <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+
+  <div class="actions">
+    <%= f.submit "Save" %>
+  </div>
+<% end %>

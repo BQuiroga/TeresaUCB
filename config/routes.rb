@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :posts
   get 'users/curriculum/edit' =>'resumes#edit'
   post 'personal/update' =>'personal_informations#update'
+  post 'education/new' => 'educations#create'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
