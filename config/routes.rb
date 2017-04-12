@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   root to: 'users#profile'
   post 'posts/new'=> 'posts#create'
   resources :posts
+  get 'users/curriculum/edit' =>'resumes#edit'
+  post 'personal/update' =>'personal_informations#update'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -1,3 +1,3 @@
 class Education < ActiveRecord::Base
-  belongs_to :degree
+  belongs_to :resume
 end

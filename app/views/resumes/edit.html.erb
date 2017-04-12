@@ -1,0 +1,42 @@
+<h2>Resume</h2>
+
+<%= form_for @personal_info, url: '/personal/update' do |f| %>	
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address%>
+  </div>
+  <div class="field">
+    <%= f.label :birthdate %><br />
+    <%= f.text_field :birthdate%>
+  </div>
+    <div class="field">
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :cellphone %>
+    <%= f.text_field :cellphone %>
+  </div>
+  <%=current_user.personal_information.id%>
+      <%= f.hidden_field :user_id, :value => current_user.id%>
+      <%=f.hidden_field :id, :value => current_user.personal_information.id%>
+  <div class="actions">
+    <%= f.submit "Save" %>
+  </div>
+<% end %>
+  <div class="container-body ">
+    <h2>Formacion Academica </h2>
+    <% if@educations.size >0%>
+    <h5><%= @educations.each do |education| %></h5>
+            <div>
+                <p>
+                  <b><%=education.title%></b>
+                  <br>
+                  <%=education.school_name%>&nbsp;
+                  <%=education.start_date%>&emsp; - &emsp; <%=education.end_date%>
+                </p>
+            </div>
+        <%end%>
+     <%end%>
+
+  </div>
