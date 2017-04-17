@@ -1,0 +1,40 @@
+<h2>Curriculum Vitae</h2>
+  <div class="container-body ">
+    <h2>Formacion Academica </h2>
+    <% if @educations.size >0%>
+    <h5><% @educations.each do |education| %></h5>
+            <div>
+                <p>
+                  <h5><b><%=education.title%></b></h5>
+                  <%=education.school_name%>&nbsp;
+                  <%=education.start_date.year%>&emsp; - &emsp; <%=education.end_date.year%>
+                </p>
+            </div>
+        <%end%>
+     <%end%>
+  </div>
+    <h2>Experiencia Profesional </h2>
+        <% if @experiences.size >0%>
+    <h5><% @experiences.each do |experience| %></h5>
+            <div>
+                <p>
+                  <h5><b><%=experience.company_name%></b></h5>
+                  <%=experience.job_title%><br>
+                  <%=experience.start_job_date%>&emsp; - &emsp;
+                  <%=experience.finish_job_date%>
+                </p>
+            </div>
+        <%end%>
+     <%end%>
+
+<h2>Cursos y Seminarios </h2>
+        <% if @courses.size >0%>
+    <h5><% @courses.each do |course| %></h5>
+            <div>
+                <p>
+                  <b><%=course.date.year%></b>&emsp;
+                  <%=course.name%><br>
+                </p>
+            </div>
+        <%end%>
+     <%end%>
