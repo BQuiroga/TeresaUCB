@@ -10,6 +10,6 @@ class EducationsController < ApplicationController
   		params.require(:education).permit(:start_date,:resume_id,:end_date,:school_name,:title,:description)
   	end
   	def educations_params_for_edit
-  		params.require(:education).permit(:id,:address,:phone,:cellphone,:birthdate)
+  		params.require(:education).permit(:id,:school_name,:title,:description,:end_date,:start_date)
   	end
 end

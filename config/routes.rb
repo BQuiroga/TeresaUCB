@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'users/curriculum/edit' =>'resumes#edit'
   post 'personal/update' =>'personal_informations#update'
   post 'education/new' => 'educations#create'
+  post 'experience/new' => 'experiences#create'
+  post 'course/new' => 'courses#create'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

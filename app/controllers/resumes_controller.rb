@@ -5,7 +5,7 @@ class ResumesController < ApplicationController
   	@personal_info=current_user.personal_information
   	@educations=@resume.educations
   	@experiences=@resume.experiences
-
+  	@courses = @resume.courses
   end
   def update
   end

@@ -62,3 +62,70 @@
     <%= f.submit "Save" %>
   </div>
 <% end %>
+    <h2>Experiencia Profesional </h2>
+        <% if @experiences.size >0%>
+    <h5><% @experiences.each do |experience| %></h5>
+            <div>
+                <p>
+                  <h5><b><%=experience.company_name%></b></h5>
+                  <%=experience.job_title%><br>
+                  <%=experience.start_job_date%>&emsp; - &emsp;
+                  <%=experience.finish_job_date%>
+                </p>
+            </div>
+        <%end%>
+     <%end%>
+<%= form_for :experience, url: '/experience/new' do |f| %>  
+  <div class="field">
+    <%= f.label :job_title %><br />
+    <%= f.text_field :job_title%>
+  </div>
+
+    <div class="field">
+    <%= f.label :company_name %>
+    <%= f.text_field :company_name%>
+  </div>
+  <div class="field">
+    <%= f.label :job_description %><br />
+    <%= f.text_field :job_description%>
+  </div>-
+  <div class="field">
+    <%= f.label :start_date %>
+    <%= f.date_select :start_date %>
+  </div>
+    <div class="field">
+    <%= f.label :end_date %>
+    <%= f.date_select :end_date %>
+  </div>
+      <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+
+  <div class="actions">
+    <%= f.submit "Save" %>
+  </div>
+<% end %>
+<h2>Cursos y Seminarios </h2>
+        <% if @courses.size >0%>
+    <h5><% @courses.each do |course| %></h5>
+            <div>
+                <p>
+                  <b><%=course.date.year%></b>&emsp;
+                  <%=course.name%><br>
+                </p>
+            </div>
+        <%end%>
+     <%end%>
+<%= form_for :course, url: '/course/new' do |f| %>  
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name%>
+  </div>
+  <div class="field">
+    <%= f.label :date %>
+    <%= f.date_select :date %>
+  </div>
+      <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+
+  <div class="actions">
+    <%= f.submit "Save" %>
+  </div>
+<% end %>
