@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 	after_create :send_admin_mail
   after_create :create_dependencies
   def send_admin_mail
-    UserMailer.welcome_email(self).deliver_later
+    UserMailer.welcome_email(self).deliver_now
   end
   def create_dependencies
     Resume.create(:user_id => self.id)
