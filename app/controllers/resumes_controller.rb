@@ -10,7 +10,8 @@ class ResumesController < ApplicationController
   def update
   end
   def show
-  	  	@resume=current_user.resume
+  	@resume=current_user.resume
+    @user=@resume.user
   	@personal_info=current_user.personal_information
   	@educations=@resume.educations
   	@experiences=@resume.experiences

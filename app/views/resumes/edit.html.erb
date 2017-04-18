@@ -15,21 +15,21 @@
   </div>
 <%= form_for :education, url: '/education/new' do |f| %>  
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :Titulo_academico %><br />
     <%= f.text_field :title%>
   </div>
 
     <div class="field">
-    <%= f.label :school_name %>
+    <%= f.label :Universidad %>
     <%= f.text_field :school_name%>
   </div>
   <div class="field">
-    <%= f.label :start_date %>
-    <%= f.date_select :start_date %>
+    <%= f.label :Fecha_ingreso %>
+    <%= f.date_select :start_date,:start_year  =>1990, :end_year=>Time.now.year %>
   </div>
     <div class="field">
-    <%= f.label :end_date %>
-    <%= f.date_select :end_date %>
+    <%= f.label :fecha_egreso %>
+    <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year%>
   </div>
       <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
 
@@ -52,25 +52,25 @@
      <%end%>
 <%= form_for :experience, url: '/experience/new' do |f| %>  
   <div class="field">
-    <%= f.label :job_title %><br />
+    <%= f.label :cargo_profesional %><br />
     <%= f.text_field :job_title%>
   </div>
 
     <div class="field">
-    <%= f.label :company_name %>
+    <%= f.label :empresa %>
     <%= f.text_field :company_name%>
   </div>
   <div class="field">
-    <%= f.label :job_description %><br />
+    <%= f.label :descripcion %><br />
     <%= f.text_field :job_description%>
   </div>-
   <div class="field">
-    <%= f.label :start_date %>
-    <%= f.date_select :start_date %>
+    <%= f.label :Fecha_ingreso %>
+    <%= f.date_select :start_date ,:start_year  =>1990, :end_year=>Time.now.year%>
   </div>
     <div class="field">
-    <%= f.label :end_date %>
-    <%= f.date_select :end_date %>
+    <%= f.label :fecha_salida %>
+    <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year%>
   </div>
       <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
 
@@ -91,12 +91,12 @@
      <%end%>
 <%= form_for :course, url: '/course/new' do |f| %>  
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :nombre %><br />
     <%= f.text_field :name%>
   </div>
   <div class="field">
-    <%= f.label :date %>
-    <%= f.date_select :date %>
+    <%= f.label :fecha %>
+    <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
   </div>
       <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
 

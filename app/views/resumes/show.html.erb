@@ -1,5 +1,13 @@
-<h2>Curriculum Vitae</h2>
+
+<h2><%=@user.name%> <%=@user.last_name%> </h2>
   <div class="container-body ">
+    <h2>Informacion Personal</h2>
+    <b>Direccion: </b><%=@personal_info.address%><br>
+    <b>Fecha de Nacimiento: </b><%=@personal_info.birthdate%> <br>
+    <b>Fijo: </b><%=@personal_info.phone%><br>
+    <b>Movil: </b><%=@personal_info.cellphone%><br>
+    <b>e-mail: </b><%=@user.email%><br>
+
     <h2>Formacion Academica </h2>
     <% if @educations.size >0%>
     <h5><% @educations.each do |education| %></h5>

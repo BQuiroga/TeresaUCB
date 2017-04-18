@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TeresaV21</title>
+  <title>Teresa</title>
   <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -23,14 +23,14 @@
 <% end %>
 <p class="navbar-text pull-right">
 <% if user_signed_in? %>
-  Logged in as <strong><%= current_user.email %></strong>.
+  Usted inicio sesion como <strong><%= current_user.email %></strong>.
   <%= link_to 'Editar CV', '/users/curriculum/edit', :class => 'navbar-link' %> |
   <%= link_to 'Curriculum', '/mycurriculum', :class => 'navbar-link' %> |
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+  <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %> |
+  <%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
 <% else %>
-  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+  <%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link'  %> |
+  <%= link_to "Iniciar Sesion", new_user_session_path, :class => 'navbar-link'  %>
 <% end %>
 </p>
 <%= yield %>
