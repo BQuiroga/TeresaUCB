@@ -104,3 +104,17 @@
     <%= f.submit "Save" %>
   </div>
 <% end %>
+<%= form_for :knowledge, url: '/knowledge/new' do |f| %>  
+  <div class="field">
+    <%= f.label :area %><br />
+    <%= f.select( :knowkedge_area_id, KnowledgeArea.all.collect {|a| [a.name, a.id]}) -%>
+  </div>
+    <div class="field">
+    <%= f.label :Nombre %><br />
+    <%= f.text_field :description%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Guardar" %>
+  </div>
+<% end %>

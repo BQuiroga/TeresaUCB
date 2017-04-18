@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+	KnowledgeArea.create([{name: 'Idiomas'},{name: 'Informatica'},{name: 'Otros'},{name: 'Liderazgo'},{name: 'Trabajo en equipo'}])
