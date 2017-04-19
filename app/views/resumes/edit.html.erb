@@ -109,16 +109,119 @@
     <%= f.submit "Save" %>
   </div>
 <% end %>
+<h2> Conocimientos</h2>
+        <% if @knowledges.size >0%>
+    <h5><% @knowledges.each do |know| %></h5>
+            <div>
+                <p>
+                  <b><%=know.knowledge_area.name%></b><br>
+                  <%=know.description%>
+                </p>
+            </div>
+        <%end%>
+     <%end%>
+
 <%= form_for :knowledge, url: '/knowledge/new' do |f| %>  
   <div class="field">
     <%= f.label :area %><br />
-    <%= f.select( :knowkedge_area_id, KnowledgeArea.all.collect {|a| [a.name, a.id]}) -%>
+    <%= f.select( :knowledge_area_id, KnowledgeArea.all.collect {|a| [a.name, a.id]}) -%>
   </div>
     <div class="field">
     <%= f.label :Nombre %><br />
     <%= f.text_field :description%>
   </div>
+  <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+  <div class="actions">
+    <%= f.submit "Guardar" %>
+  </div>
+<% end %>
+<h2> Publicaciones </h2>
+        <% if @publications.size >0%>
+    <h5><% @publications.each do |pub| %></h5>
+            <div>
+                <p>
+                  <b><%=pub.publicationType%></b><br>
+                  <%=pub.date.year%>&emsp;<b><%=pub.name%></b><br>
+                  <%=pub.location%>  
+                  
+                </p>
+            </div>
+        <%end%>
+     <%end%>
 
+<%= form_for :publication, url: '/publication/new' do |f| %>  
+  <div class="field">
+    <%= f.label :tipo_de_publicacion %>
+    <%= f.select( :publicationType, @publicationTypes.map {|a| [a]}) -%>
+  </div>
+    <div class="field">
+    <%= f.label :Nombre %><br />
+    <%= f.text_field :name%>
+  </div>
+     <div class="field">
+    <%= f.label :lugar %><br />
+    <%= f.text_field :location%>
+  </div>
+    <div class="field">
+    <%= f.label :fecha %>
+    <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+  </div>
+  <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+  <div class="actions">
+    <%= f.submit "Guardar" %>
+  </div>
+<% end %>
+<h2> Meritos </h2>
+        <% if @merits.size >0%>
+    <h5><% @merits.each do |merit| %></h5>
+            <div>
+                <p>
+                  <b><%=merit.date.year%></b>&emsp;<%=merit.name%><br>
+                </p>
+            </div>
+        <%end%>
+     <%end%>
+
+<%= form_for :merit, url: '/merit/new' do |f| %>  
+    <div class="field">
+    <%= f.label :Merito %><br />
+    <%= f.text_field :name%>
+    </div>
+    <div class="field">
+    <%= f.label :fecha %>
+    <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+  </div>
+  <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+  <div class="actions">
+    <%= f.submit "Guardar" %>
+  </div>
+<% end %>
+
+<h2> Membresia </h2>
+        <% if @memberships.size >0%>
+    <h5><% @memberships.each do |member| %></h5>
+            <div>
+                <p>
+                  <b><%=member.name%> en <%=member.organization%></b><br>
+                  desde <%=member.date.year%>&emsp;<br>
+                </p>
+            </div>
+        <%end%>
+     <%end%>
+
+<%= form_for :membership, url: '/member/new' do |f| %>  
+    <div class="field">
+    <%= f.label :titulo %><br />
+    <%= f.text_field :name%>
+    </div>   <div class="field">
+    <%= f.label :comunidad %><br />
+    <%= f.text_field :organization%>
+    </div>
+    <div class="field">
+    <%= f.label :fecha %>
+    <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+  </div>
+  <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
   <div class="actions">
     <%= f.submit "Guardar" %>
   </div>
