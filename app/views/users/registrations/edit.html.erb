@@ -8,7 +8,7 @@
   </div>
   <div class="field">
     <%= f.label :Fecha_Nacimiento %><br />
-    <%= f.text_field :birthdate%>
+    <%= f.date_select :birthdate,:start_year=> 1970,:end_year=>Time.now.year-10%>
   </div>
     <div class="field">
     <%= f.label :Telefono_Fijo %>

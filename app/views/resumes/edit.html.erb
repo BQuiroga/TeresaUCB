@@ -84,7 +84,8 @@
             <div>
                 <p>
                   <b><%=course.date.year%></b>&emsp;
-                  <%=course.name%><br>
+                  <%=course.name%>&emsp;
+                  <%=course.orador%>
                 </p>
             </div>
         <%end%>
@@ -97,6 +98,10 @@
   <div class="field">
     <%= f.label :fecha %>
     <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+  </div>
+  <div>
+    <%=f.label :yo_di_este_seminario_o_curso%>
+    <%=f.check_box :given%>
   </div>
       <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
 
