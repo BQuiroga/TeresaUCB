@@ -2,16 +2,18 @@ class PersonalInformation < ActiveRecord::Base
   belongs_to :user
   after_update :translate_birthdate_to_string
   def translate_birthdate_to_string
-  	birthdate.remove!("{")
-  	birthdate.remove!("}")
-  	birthdate.remove!(' ')
-  	cad_aux=""
-  	birthdate.split(',').each do |a|
-  		cad_aux=cad_aux+"/"+a.from(3)
-  	end
-  	cad_aux=cad_aux.from(1)
-  	cad_aux=cad_aux.to_date
-  	birthdate=cad_aux
+    if (birthdate)
+  	 birthdate.remove!("{")
+  	 birthdate.remove!("}")
+  	 birthdate.remove!(' ')
+  	 cad_aux=""
+  	 birthdate.split(',').each do |a|
+  		  cad_aux=cad_aux+"/"+a.from(3)
+  	 end
+  	 cad_aux=cad_aux.from(1)
+  	 cad_aux=cad_aux.to_date
+  	 birthdate=cad_aux
+    end
   end
   def literal(fecha)
    		fecha.day.to_s +" "+ mes(fecha.month) +" "+ fecha.year.to_s
@@ -36,7 +38,7 @@ class PersonalInformation < ActiveRecord::Base
    			"Agosto"
    		when 9
    			"Septiembre"
-   		when 10 
+   		when 10
    			"Octubre"
    		when 11
    			"Noviembre"
