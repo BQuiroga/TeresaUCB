@@ -1,0 +1,14 @@
+<%= form_for :knowledge, url: '/knowledge/update', html: { method: :put } do |f| %>
+<div class="field">
+  <%= f.label :area %><br />
+  <%= f.select( :knowledge_area_id, KnowledgeArea.all.collect {|a| [a.name, a.id]}) -%>
+</div>
+  <div class="field">
+  <%= f.label :Nombre %><br />
+  <%= f.text_field :description%>
+</div>
+<%=f.hidden_field :id, :value => @knowledge.id%>
+  <div class="actions">
+    <%= f.submit "Guardar" %>
+  </div>
+<% end %>

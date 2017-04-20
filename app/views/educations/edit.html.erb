@@ -1,0 +1,27 @@
+<%= form_for :education, url: '/education/update', html: { method: :put } do |f| %>
+  <div class="field">
+    <%= f.label :Titulo_academico %><br />
+    <%= f.text_field :title%>
+  </div>
+
+    <div class="field">
+    <%= f.label :Universidad %>
+    <%= f.text_field :school_name%>
+  </div>
+  <div class="field">
+    <%= f.label :Fecha_ingreso %>
+    <%= f.date_select :start_date,:start_year  =>1990, :end_year=>Time.now.year %>
+  </div>
+    <div class="field">
+    <%= f.label :fecha_egreso %>
+    <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year%>
+  </div>
+  <div class="field">
+  <%= f.label :descripcion %>
+  <%= f.text_field :description%>
+</div>
+<%=f.hidden_field :id, :value => @education.id%>
+  <div class="actions">
+    <%= f.submit "Guardar" %>
+  </div>
+<% end %>

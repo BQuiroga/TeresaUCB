@@ -1,0 +1,14 @@
+<%= form_for :merit, url: '/merit/update', html: { method: :put } do |f| %>
+<div class="field">
+<%= f.label :Merito %><br />
+<%= f.text_field :name%>
+</div>
+<div class="field">
+<%= f.label :fecha %>
+<%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+</div>
+<%=f.hidden_field :id, :value => @merit.id%>
+  <div class="actions">
+    <%= f.submit "Guardar" %>
+  </div>
+<% end %>

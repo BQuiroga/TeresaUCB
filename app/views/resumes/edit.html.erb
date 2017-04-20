@@ -5,7 +5,7 @@
     <h5><% @educations.each do |education| %></h5>
             <div>
                 <p>
-                  <h5><b><%=education.title%></b></h5>
+                  <h5><b><%=education.title%>&emsp;<%=link_to "Editar", [:edit,education]%></b></h5>
                   <%=education.school_name%>&nbsp;
                   <%=education.start_date.year%>&emsp; - &emsp; <%=education.end_date.year%>
                 </p>
@@ -13,7 +13,7 @@
         <%end%>
      <%end%>
   </div>
-<%= form_for :education, url: '/education/new' do |f| %>  
+<%= form_for :education, url: '/education/new' do |f| %>
   <div class="field">
     <%= f.label :Titulo_academico %><br />
     <%= f.text_field :title%>
@@ -23,6 +23,10 @@
     <%= f.label :Universidad %>
     <%= f.text_field :school_name%>
   </div>
+  <div class="field">
+  <%= f.label :descripcion %>
+  <%= f.text_field :description%>
+</div>
   <div class="field">
     <%= f.label :Fecha_ingreso %>
     <%= f.date_select :start_date,:start_year  =>1990, :end_year=>Time.now.year %>
@@ -34,7 +38,7 @@
       <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
 
   <div class="actions">
-    <%= f.submit "Save" %>
+    <%= f.submit "Guardar" %>
   </div>
 <% end %>
     <h2>Experiencia Profesional </h2>
@@ -43,14 +47,14 @@
             <div>
                 <p>
                   <h5><b><%=experience.company_name%></b></h5>
-                  <%=experience.job_title%><br>
+                  <%=experience.job_title%>&emsp;<%=link_to "Editar", [:edit,experience]%><br>
                   <%=experience.start_job_date%>&emsp; - &emsp;
                   <%=experience.finish_job_date%>
                 </p>
             </div>
         <%end%>
      <%end%>
-<%= form_for :experience, url: '/experience/new' do |f| %>  
+<%= form_for :experience, url: '/experience/new' do |f| %>
   <div class="field">
     <%= f.label :cargo_profesional %><br />
     <%= f.text_field :job_title%>
@@ -75,7 +79,7 @@
       <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
 
   <div class="actions">
-    <%= f.submit "Save" %>
+    <%= f.submit "Guardar" %>
   </div>
 <% end %>
 <h2>Cursos y Seminarios </h2>
@@ -86,11 +90,12 @@
                   <b><%=course.date.year%></b>&emsp;
                   <%=course.name%>&emsp;
                   <%=course.orador%>
+                  &emsp;<%=link_to "Editar", [:edit,course]%>
                 </p>
             </div>
         <%end%>
      <%end%>
-<%= form_for :course, url: '/course/new' do |f| %>  
+<%= form_for :course, url: '/course/new' do |f| %>
   <div class="field">
     <%= f.label :nombre %><br />
     <%= f.text_field :name%>
@@ -106,7 +111,7 @@
       <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
 
   <div class="actions">
-    <%= f.submit "Save" %>
+    <%= f.submit "Guardar" %>
   </div>
 <% end %>
 <h2> Conocimientos</h2>
@@ -114,14 +119,14 @@
     <h5><% @knowledges.each do |know| %></h5>
             <div>
                 <p>
-                  <b><%=know.knowledge_area.name%></b><br>
+                  <b><%=know.knowledge_area.name%>&emsp;<%=link_to "Editar", [:edit,know]%></b><br>
                   <%=know.description%>
                 </p>
             </div>
         <%end%>
      <%end%>
 
-<%= form_for :knowledge, url: '/knowledge/new' do |f| %>  
+<%= form_for :knowledge, url: '/knowledge/new' do |f| %>
   <div class="field">
     <%= f.label :area %><br />
     <%= f.select( :knowledge_area_id, KnowledgeArea.all.collect {|a| [a.name, a.id]}) -%>
@@ -140,16 +145,16 @@
     <h5><% @publications.each do |pub| %></h5>
             <div>
                 <p>
-                  <b><%=pub.publicationType%></b><br>
+                  <b><%=pub.publicationType%>&emsp;<%=link_to "Editar", [:edit,pub]%></b><br>
                   <%=pub.date.year%>&emsp;<b><%=pub.name%></b><br>
-                  <%=pub.location%>  
-                  
+                  <%=pub.location%>
+
                 </p>
             </div>
         <%end%>
      <%end%>
 
-<%= form_for :publication, url: '/publication/new' do |f| %>  
+<%= form_for :publication, url: '/publication/new' do |f| %>
   <div class="field">
     <%= f.label :tipo_de_publicacion %>
     <%= f.select( :publicationType, @publicationTypes.map {|a| [a]}) -%>
@@ -176,13 +181,13 @@
     <h5><% @merits.each do |merit| %></h5>
             <div>
                 <p>
-                  <b><%=merit.date.year%></b>&emsp;<%=merit.name%><br>
+                  <b><%=merit.date.year%></b>&emsp;<%=merit.name%>&emsp;<%=link_to "Editar", [:edit,merit]%><br>
                 </p>
             </div>
         <%end%>
      <%end%>
 
-<%= form_for :merit, url: '/merit/new' do |f| %>  
+<%= form_for :merit, url: '/merit/new' do |f| %>
     <div class="field">
     <%= f.label :Merito %><br />
     <%= f.text_field :name%>
@@ -202,14 +207,14 @@
     <h5><% @memberships.each do |member| %></h5>
             <div>
                 <p>
-                  <b><%=member.name%> en <%=member.organization%></b><br>
+                  <b><%=member.name%> en <%=member.organization%>&emsp;<%=link_to "Editar", [:edit,member]%></b><br>
                   desde <%=member.date.year%>&emsp;<br>
                 </p>
             </div>
         <%end%>
      <%end%>
 
-<%= form_for :membership, url: '/member/new' do |f| %>  
+<%= form_for :membership, url: '/member/new' do |f| %>
     <div class="field">
     <%= f.label :titulo %><br />
     <%= f.text_field :name%>

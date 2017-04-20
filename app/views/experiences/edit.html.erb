@@ -1,0 +1,28 @@
+<%= form_for :experience, url: '/experience/update', html: { method: :put } do |f| %>
+  <div class="field">
+    <%= f.label :cargo_profesional %><br />
+    <%= f.text_field :job_title%>
+  </div>
+
+    <div class="field">
+    <%= f.label :empresa %>
+    <%= f.text_field :company_name%>
+  </div>
+  <div class="field">
+    <%= f.label :descripcion %><br />
+    <%= f.text_field :job_description%>
+  </div>-
+  <div class="field">
+    <%= f.label :Fecha_ingreso %>
+    <%= f.date_select :start_date ,:start_year  =>1990, :end_year=>Time.now.year%>
+  </div>
+    <div class="field">
+    <%= f.label :fecha_salida %>
+    <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year%>
+  </div>
+      <%=f.hidden_field :id, :value => @experience.id%>
+
+  <div class="actions">
+    <%= f.submit "Guardar" %>
+  </div>
+<% end %>

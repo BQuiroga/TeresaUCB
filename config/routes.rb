@@ -8,10 +8,34 @@ Rails.application.routes.draw do
   root to: 'users#profile'
   post 'posts/new'=> 'posts#create'
   resources :posts
+  resources :educations
+  get 'education/edit/:id'=>'educations#edit'
+  put 'education/update'=> 'educations#update'
+  resources :experiences
+  get 'experience/edit/:id'=>'experiences#edit'
+  put 'experience/update'=> 'experiencess#update'
+  resources :memberships
+  get 'membership/edit/:id'=>'memberships#edit'
+  put 'membership/update'=> 'memberships#update'
+  resources :knowledges
+  get 'knowledge/edit/:id'=>'knowledges#edit'
+  put 'knowledge/update'=> 'knowledges#update'
+  resources :publications
+  get 'publication/edit/:id'=>'publications#edit'
+  put 'publication/update'=> 'publications#update'
+  resources :merits
+  get 'merit/edit/:id'=>'merits#edit'
+  put 'merit/update'=> 'merits#update'
+  resources :courses
+  get 'course/edit/:id'=>'courses#edit'
+  put 'course/update'=> 'courses#update'
+
   get 'users/curriculum/edit' =>'resumes#edit'
   post 'personal/update' =>'personal_informations#update'
   post 'education/new' => 'educations#create'
+
   post 'experience/new' => 'experiences#create'
+  get 'experience/edit/:id'=>'experiences#edit'
   post 'course/new' => 'courses#create'
   get 'mycurriculum' => 'resumes#show'
   post 'knowledge/new'=>'knowledges#create'

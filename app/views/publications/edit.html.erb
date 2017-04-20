@@ -1,0 +1,22 @@
+<%= form_for :publication, url: '/publication/update', html: { method: :put } do |f| %>
+<div class="field">
+  <%= f.label :tipo_de_publicacion %>
+  <%= f.select( :publicationType, @publicationTypes.map {|a| [a]}) -%>
+</div>
+  <div class="field">
+  <%= f.label :Nombre %><br />
+  <%= f.text_field :name%>
+</div>
+   <div class="field">
+  <%= f.label :lugar %><br />
+  <%= f.text_field :location%>
+</div>
+  <div class="field">
+  <%= f.label :fecha %>
+  <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+</div>
+<%=f.hidden_field :id, :value => @publication.id%>
+  <div class="actions">
+    <%= f.submit "Guardar" %>
+  </div>
+<% end %>
