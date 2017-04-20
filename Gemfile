@@ -5,7 +5,7 @@ gem 'chosen-rails'
 gem 'jquery-turbolinks'
 gem 'compass-rails', '~> 2.0.4'
 gem 'mailboxer'
-
+gem 'tzinfo-data'
 gem 'bootstrap-will_paginate'
 gem 'will_paginate'
 gem 'faker', '~> 1.6', '>= 1.6.1'
@@ -58,4 +58,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-

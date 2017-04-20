@@ -1,7 +1,7 @@
 <h2>Editar Perfil </h2>
 <h3>Informacion Personal</h3>
-
-<%= form_for :personal_information, url: '/personal/update' do |f| %>  
+<%= link_to "Atras", :back %>
+<%= form_for :personal_information, url: '/personal/update' do |f| %>
   <div class="field">
     <%= f.label :Direccion %><br />
     <%= f.text_field :address%>
@@ -72,5 +72,3 @@
 <h3>Eliminar mi cuenta</h3>
 
 <p>Ya no quieres ser parte de nuestra red? <%= button_to "Eliminar mi cuenta", registration_path(resource_name), data: { confirm: "Estas seguro?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
