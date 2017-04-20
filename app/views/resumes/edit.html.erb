@@ -1,59 +1,81 @@
-<h2>Curriculum Vitae</h2>
-  <div class="container-body ">
-    <h2>Formacion Academica </h2>
+<h1>Curriculum Vitae</h1>
+  <div class="panel panel-default">
+    <div class="panel-heading"><div class="panel-title"><h3>Formacion Academica </h3></div></div>
+    <div class="panel-body">
     <% if @educations.size >0%>
-    <h5><% @educations.each do |education| %></h5>
-            <div>
-                <p>
-                  <h5><b><%=education.title%>&emsp;<%=link_to "Editar", [:edit,education]%></b></h5>
-                  <%=education.school_name%>&nbsp;
-                  <%=education.start_date.year%>&emsp; - &emsp; <%=education.end_date.year%>
-                </p>
-            </div>
+    <ul class="list-group">
+    <% @educations.each do |education| %>
+      <li class="list-group-item">
+        <div>
+          <h4>  <b><%=education.title%>&emsp;</b><button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,education]%></button></h4>
+          <%=education.school_name%>&nbsp;
+          <%=education.start_date.year%>&emsp; - &emsp; <%=education.end_date.year%>
+        </div>
+      </li>
         <%end%>
      <%end%>
-  </div>
+   </ul>
+   </div>
+<div class="panel-footer well">
 <%= form_for :education, url: '/education/new' do |f| %>
-  <div class="field">
-    <%= f.label :Titulo_academico %><br />
-    <%= f.text_field :title%>
+  <div  class="field col-xs-3">
+    <%= f.label :Titulo_academico %>:
+    <%= f.text_field :title,:class=>"form-control"%>
   </div>
 
-    <div class="field">
-    <%= f.label :Universidad %>
-    <%= f.text_field :school_name%>
+    <div class="field col-xs-3">
+    <%= f.label :Universidad %>:
+    <%= f.text_field :school_name,:class=>"form-control"%>
   </div>
-  <div class="field">
-  <%= f.label :descripcion %>
-  <%= f.text_field :description%>
-</div>
-  <div class="field">
-    <%= f.label :Fecha_ingreso %>
-    <%= f.date_select :start_date,:start_year  =>1990, :end_year=>Time.now.year %>
+  <div class="field col-xs-4">
+  <%= f.label :descripcion %>:
+  <%= f.text_area :description, :class=>"form-control"%>
+</div><br><br>
+  <div class="field col-xs-3">
+    <%= f.label :Fecha_ingreso %>:
+    <%= f.date_select :start_date,:start_year  =>1990, :end_year=>Time.now.year%>
   </div>
-    <div class="field">
-    <%= f.label :fecha_egreso %>
+
+    <div class="field col-xs-3">
+    <%= f.label :fecha_egreso %>:
     <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year%>
   </div>
       <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
 
-  <div class="actions">
-    <%= f.submit "Guardar" %>
+  <div class="actions col-xs-3">
+    <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
   </div>
+  <br><br><br><br><br>
 <% end %>
-    <h2>Experiencia Profesional </h2>
+</div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">
+      <h3>Experiencia Profesional </h3>
+    </div>
+  </div>
+  <div class="panel-body">
         <% if @experiences.size >0%>
-    <h5><% @experiences.each do |experience| %></h5>
-            <div>
-                <p>
+            <ul class="list-group">
+              <% @experiences.each do |experience| %>
+              <li class="list-group-item">
+              <div>
+                  <p>
                   <h5><b><%=experience.company_name%></b></h5>
-                  <%=experience.job_title%>&emsp;<%=link_to "Editar", [:edit,experience]%><br>
+                  <%=experience.job_title%>&emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,experience]%></button><br>
                   <%=experience.start_job_date%>&emsp; - &emsp;
                   <%=experience.finish_job_date%>
                 </p>
             </div>
+          </li>
         <%end%>
      <%end%>
+   </ul>
+   </div>
+ </div>
+ <div class="panel-footer well">
 <%= form_for :experience, url: '/experience/new' do |f| %>
   <div class="field">
     <%= f.label :cargo_profesional %><br />
@@ -67,7 +89,7 @@
   <div class="field">
     <%= f.label :descripcion %><br />
     <%= f.text_field :job_description%>
-  </div>-
+  </div>
   <div class="field">
     <%= f.label :Fecha_ingreso %>
     <%= f.date_select :start_date ,:start_year  =>1990, :end_year=>Time.now.year%>
@@ -82,6 +104,7 @@
     <%= f.submit "Guardar" %>
   </div>
 <% end %>
+</div>
 <h2>Cursos y Seminarios </h2>
         <% if @courses.size >0%>
     <h5><% @courses.each do |course| %></h5>
@@ -90,7 +113,7 @@
                   <b><%=course.date.year%></b>&emsp;
                   <%=course.name%>&emsp;
                   <%=course.orador%>
-                  &emsp;<%=link_to "Editar", [:edit,course]%>
+                  &emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,course]%></button>
                 </p>
             </div>
         <%end%>
@@ -231,3 +254,7 @@
     <%= f.submit "Guardar" %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+ $('.datepicker').datepicker();
+</script>
