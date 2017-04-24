@@ -7,4 +7,7 @@ class Course < ActiveRecord::Base
 			"Participante"
 		end
 	end
+	def participations
+		["Participante","Aprobacion","Expositor","Organizador"]
+	end
 end

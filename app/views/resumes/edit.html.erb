@@ -101,83 +101,130 @@
       <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
 
   <div class="actions">
-    <%= f.submit "Guardar" %>
+    <%= f.submit "Guardar", :class =>"btn btn-primary" %>
   </div>
 <% end %>
 </div>
-<h2>Cursos y Seminarios </h2>
-        <% if @courses.size >0%>
-    <h5><% @courses.each do |course| %></h5>
-            <div>
-                <p>
-                  <b><%=course.date.year%></b>&emsp;
-                  <%=course.name%>&emsp;
-                  <%=course.orador%>
-                  &emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,course]%></button>
-                </p>
-            </div>
-        <%end%>
-     <%end%>
-<%= form_for :course, url: '/course/new' do |f| %>
-  <div class="field">
-    <%= f.label :nombre %><br />
-    <%= f.text_field :name%>
-  </div>
-  <div class="field">
-    <%= f.label :fecha %>
-    <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
-  </div>
-  <div>
-    <%=f.label :yo_di_este_seminario_o_curso%>
-    <%=f.check_box :given%>
-  </div>
-      <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
 
-  <div class="actions">
-    <%= f.submit "Guardar" %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">
+      <h2>Cursos y Seminarios </h2>
+    </div>
   </div>
-<% end %>
-<h2> Conocimientos</h2>
-        <% if @knowledges.size >0%>
-    <h5><% @knowledges.each do |know| %></h5>
-            <div>
-                <p>
-                  <b><%=know.knowledge_area.name%>&emsp;<%=link_to "Editar", [:edit,know]%></b><br>
-                  <%=know.description%>
-                </p>
-            </div>
+  <div class="panel-body">
+    <% if @courses.size >0%>
+      <ul class="list-group">
+        <h5><% @courses.each do |course| %></h5>
+          <li class="list-group-item">
+              <div>
+                  <p>
+                    <b><%=course.date.year%></b>&emsp;
+                    <%=course.name%>&emsp;
+                    <%=course.orador%>
+                    &emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,course]%></button>
+                  </p>
+              </div>
+          </li>
+          <%end%>
         <%end%>
-     <%end%>
-
-<%= form_for :knowledge, url: '/knowledge/new' do |f| %>
-  <div class="field">
-    <%= f.label :area %><br />
-    <%= f.select( :knowledge_area_id, KnowledgeArea.all.collect {|a| [a.name, a.id]}) -%>
-  </div>
+      </ul>
+    </div>
+      <div class="panel-footer well">
+  <%= form_for :course, url: '/course/new' do |f| %>
     <div class="field">
-    <%= f.label :Nombre %><br />
-    <%= f.text_field :description%>
+      <%= f.label :nombre %><br />
+      <%= f.text_field :name%>
+    </div>
+    <div class="field">
+      <%= f.label :fecha %>
+      <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+    </div>
+    <div>
+      <%=f.label :yo_di_este_seminario_o_curso%>
+      <%=f.check_box :given%>
+    </div>
+        <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+
+    <div class="actions">
+      <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
+    </div>
+    <% end %>
+
   </div>
-  <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
-  <div class="actions">
-    <%= f.submit "Guardar" %>
+</div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title"><h2> Conocimientos</h2></div>
   </div>
-<% end %>
-<h2> Publicaciones </h2>
-        <% if @publications.size >0%>
+  <div class="panel-body">
+    <% if @knowledges.size >0%>
+    <ul class="list-group">
+      <h5><% @knowledges.each do |know| %></h5>
+        <li class="list-group-item">
+          <div>
+            <p>
+
+              <b><%=know.knowledge_area.name%></b>
+              &emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,know]%></button><br>
+              <%=know.description%>
+            </p>
+          </div>
+        </li>
+        <%end%>
+     <%end%>
+    </ul>
+  </div>
+        
+  <div class="panel-footer well">
+    <%= form_for :knowledge, url: '/knowledge/new' do |f| %>
+    <div class="field">
+      <%= f.label :area %><br />
+      <%= f.select( :knowledge_area_id, KnowledgeArea.all.collect {|a| [a.name, a.id]}) -%>
+    </div>
+      <div class="field">
+      <%= f.label :Nombre %><br />
+      <%= f.text_field :description%>
+    </div>
+    <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+    <div class="actions">
+      <%= f.submit "Guardar", :class =>"btn btn-primary" %>
+    </div>
+  <% end %>    
+  </div>
+</div>
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading"> 
+    <div class="panel-title"><h2> Publicaciones </h2></div>
+  </div>
+
+  <div class="panel-body">
+  <% if @publications.size >0%>
+    <ul class="list-group">
     <h5><% @publications.each do |pub| %></h5>
-            <div>
+      <li class="list-group-item">
+        <div>
                 <p>
-                  <b><%=pub.publicationType%>&emsp;<%=link_to "Editar", [:edit,pub]%></b><br>
+                  <b><%=pub.publicationType%>&emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,pub]%></button> </b><br>
                   <%=pub.date.year%>&emsp;<b><%=pub.name%></b><br>
                   <%=pub.location%>
 
                 </p>
             </div>
-        <%end%>
+      </li>
+      <%end%>
      <%end%>
+    </ul>
+  </div>
 
-<%= form_for :publication, url: '/publication/new' do |f| %>
+  <div class="panel-footer well">
+    <%= form_for :publication, url: '/publication/new' do |f| %>
   <div class="field">
     <%= f.label :tipo_de_publicacion %>
     <%= f.select( :publicationType, @publicationTypes.map {|a| [a]}) -%>
@@ -196,21 +243,38 @@
   </div>
   <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
   <div class="actions">
-    <%= f.submit "Guardar" %>
+    <%= f.submit "Guardar", :class =>"btn btn-primary" %>
   </div>
 <% end %>
-<h2> Meritos </h2>
-        <% if @merits.size >0%>
+  </div>
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading"> 
+    <div class="panel-title"><h2> Meritos </h2></div>
+  </div>
+
+  <div class="panel-body">
+  <% if @merits.size >0%>
+    <ul class="list-group">
     <h5><% @merits.each do |merit| %></h5>
-            <div>
+      <li class="list-group-item">
+        <div>
                 <p>
-                  <b><%=merit.date.year%></b>&emsp;<%=merit.name%>&emsp;<%=link_to "Editar", [:edit,merit]%><br>
+                  <b><%=merit.date.year%></b>&emsp;<%=merit.name%>&emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,merit]%></button><br>
                 </p>
             </div>
-        <%end%>
+      </li>
+       <%end%>
      <%end%>
+    </ul>
+  </div>
 
-<%= form_for :merit, url: '/merit/new' do |f| %>
+  <div class="panel-footer well">
+    <%= form_for :merit, url: '/merit/new' do |f| %>
     <div class="field">
     <%= f.label :Merito %><br />
     <%= f.text_field :name%>
@@ -221,23 +285,39 @@
   </div>
   <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
   <div class="actions">
-    <%= f.submit "Guardar" %>
+    <%= f.submit "Guardar", :class =>"btn btn-primary" %>
   </div>
 <% end %>
+  </div>
+</div>
 
-<h2> Membresia </h2>
-        <% if @memberships.size >0%>
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading"> 
+    <div class="panel-title"><h2> Membresia </h2></div>
+  </div>
+
+  <div class="panel-body">
+  <% if @memberships.size >0%>
+    <ul class="list-group">
     <h5><% @memberships.each do |member| %></h5>
-            <div>
+      <li class="list-group-item">
+       <div>
                 <p>
-                  <b><%=member.name%> en <%=member.organization%>&emsp;<%=link_to "Editar", [:edit,member]%></b><br>
+                  <b><%=member.name%> en <%=member.organization%>&emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,member]%></button></b><br>
                   desde <%=member.date.year%>&emsp;<br>
                 </p>
             </div>
-        <%end%>
+      </li>
+      <%end%>
      <%end%>
+    </ul>
+  </div>
 
-<%= form_for :membership, url: '/member/new' do |f| %>
+  <div class="panel-footer well">
+    <%= form_for :membership, url: '/member/new' do |f| %>
     <div class="field">
     <%= f.label :titulo %><br />
     <%= f.text_field :name%>
@@ -251,9 +331,36 @@
   </div>
   <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
   <div class="actions">
-    <%= f.submit "Guardar" %>
+    <%= f.submit "Guardar", :class =>"btn btn-primary" %>
   </div>
 <% end %>
+  </div>
+</div>
+
+
+
+
+        
+    
+            
+        
+
+
+
+        
+    
+            
+       
+
+
+
+
+        
+    
+           
+        
+
+
 
 <script type="text/javascript">
  $('.datepicker').datepicker();
