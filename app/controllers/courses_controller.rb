@@ -5,7 +5,6 @@ class CoursesController < ApplicationController
 	end
 	def edit
 		@course=Course.find(params[:id])
-		@tu="no manches"
 	end
 	def update
 		@course=Course.find(courses_params_for_edit[:id])

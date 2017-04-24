@@ -25,6 +25,6 @@ class ResumesController < ApplicationController
   	@courses = @resume.courses
     @knowledges = @resume.knowledges
     @publications=@resume.publications
-    @memerships=@resume.memberships
+    @memberships=@resume.memberships
   end
 end

@@ -46,3 +46,48 @@
             </div>
         <%end%>
      <%end%>
+     <h2> Conocimientos</h2>
+        <% if @knowledges.size >0%>
+    <h5><% @knowledges.each do |know| %></h5>
+            <div>
+                <p>
+                  <b><%=know.knowledge_area.name%></b><br>
+                  <%=know.description%>
+                </p>
+            </div>
+        <%end%>
+     <%end%>
+     <h2> Publicaciones </h2>
+        <% if @publications.size >0%>
+    <h5><% @publications.each do |pub| %></h5>
+            <div>
+                <p>
+                  <b><%=pub.publicationType%></b><br>
+                  <%=pub.date.year%>&emsp;<b><%=pub.name%></b><br>
+                  <%=pub.location%>  
+                  
+                </p>
+            </div>
+        <%end%>
+     <%end%>
+     <h2> Meritos </h2>
+        <% if @merits.size >0%>
+    <h5><% @merits.each do |merit| %></h5>
+            <div>
+                <p>
+                  <b><%=merit.date.year%></b>&emsp;<%=merit.name%><br>
+                </p>
+            </div>
+        <%end%>
+     <%end%>
+<h2> Membresia </h2>
+        <% if @memberships.size >0%>
+    <h5><% @memberships.each do |member| %></h5>
+            <div>
+                <p>
+                  <b><%=member.name%> en <%=member.organization%></b><br>
+                  desde <%=member.date.year%>&emsp;<br>
+                </p>
+            </div>
+        <%end%>
+     <%end%>
