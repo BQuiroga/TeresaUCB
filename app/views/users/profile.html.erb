@@ -1,16 +1,69 @@
+<div class="container-fluid" style="padding: 0px">
+  <div id="container-cover">
+    <div class="hovereffect">
+				<%= image_tag("IMG_12151.jpg"	) %>
+          <div class="overlay">
+            <h2>Actualizar foto de portada</h2>
+                <label ><span class="glyphicon glyphicon-camera"></span></label>
+          </div>
+    </div>
+  </div>
+</div>
+	<div id="container-avatar">
+	  <div class="hovereffect">
+	    <%= image_tag ("missing.png")%>
+	        <div class="overlay">
+	          <h2>Actualizar foto de perfil</h2>
+	              <label ><span class="glyphicon glyphicon-camera"></span></label>
+	        </div>
+	  </div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+    		<div class="contenedor-enlaces">
+     		<%= link_to '<span class="glyphicon glyphicon-briefcase"></span> Ver Curriculum'.html_safe,  '/mycurriculum',class: 'enlaces-perfil'%>
+      	<%= link_to '<span class="glyphicon glyphicon-pencil"></span> Editar Curriculum'.html_safe,'/users/curriculum/edit' ,class: 'enlaces-perfil'%>
+      	<%= link_to '<span class="glyphicon glyphicon-tree-conifer"></span> Contratar'.html_safe, '#',class: 'enlaces-perfil'%>
+      	<%= link_to '<span class="glyphicon glyphicon-picture"></span> Fotos'.html_safe, '#' ,class: 'enlaces-perfil'%>
+    	 </div>
+  	 </div>
+		 <br><br>
+<div class="col-md-6">
+	<%= form_for :post, url: new_post_path do |f| %>
+	<div class="row">
+		<div class="col-md-12">
+			<%= f.text_area(:body, class: "form-control", placeholder: 'Como te sientes?', rows: 4) %>
+			<%=f.hidden_field :user_id, :value => current_user.id%>
+		</div>
+	</div>
+	<div class="row barra-enviar">
+		<div class="col-md-9 col-sm-8 col-xs-4">
+			<label for="post_image">
+					<span class="glyphicon glyphicon-camera btn btn-primary" aria-hidden="true"></span>
+			</label>
+		</div>
+		<div class="col-md-3  col-sm-4  col-xs-8 cont-btn-publicar">
+			<button type="submit" class="btn btn-primary">
+				Publicar <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+			</button>
+		</div>
+	</div>
+	<% end %>
 
+<br><br>
 
 <%if (@posts)%>
 	<% @posts.each do |post| %>
-      <div class="container-body ">
-      	
+      <div class="container-body" style="background-color: #D8D8D8">
+
       	<h5><%= post.user.name %></h5>
-      	
+
       	<p class="format-text"><%= post.body %></p>
-      	<button type="button" class="btn btn-default" aria-label="Left Align">
+      	<button type="button" class="btn btn-primary" aria-label="Left Align">
       	  <span class=" glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
       	</button>
-      	<button type="button" class="btn btn-default" aria-label="Left Align">
+      	<button type="button" class="btn btn-warning" aria-label="Left Align">
        	 <span class=" glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
       	</button>
       	<button type="button" class="btn btn-default" aria-label="Left Align">
@@ -20,25 +73,6 @@
 	<% end %>
 <%end%>
 
-  <div class="col-md-6">
-    <%= form_for :post, url: new_post_path do |f| %>
-    <div class="row">
-      <div class="col-md-12">
-        <%= f.text_area(:body, class: "form-control", placeholder: 'Como te sientes?', rows: 4) %>
-        <%=f.hidden_field :user_id, :value => current_user.id%>
-      </div>
-    </div>
-    <div class="row barra-enviar">
-      <div class="col-md-9 col-sm-8 col-xs-4">
-        <label for="post_image">
-            <span class="glyphicon glyphicon-camera btn btn-primary" aria-hidden="true"></span>
-        </label>
-      </div>
-      <div class="col-md-3  col-sm-4  col-xs-8 cont-btn-publicar">
-        <button type="submit" class="btn btn-primary">
-          Publicar <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
-        </button>
-      </div>
-    </div>
-    <% end %>
-  </div>
+</div>
+</div>
+</div>
