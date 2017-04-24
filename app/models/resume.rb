@@ -7,4 +7,5 @@ class Resume < ActiveRecord::Base
 	has_many :publications
 	has_many :merits
 	has_many :memberships
+	has_many :languages
 end
