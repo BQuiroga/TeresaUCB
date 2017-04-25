@@ -295,6 +295,8 @@
 
 
 
+
+
 <div class="panel panel-default">
   <div class="panel-heading">
     <div class="panel-title"><h2> Membresia </h2></div>
@@ -339,7 +341,54 @@
 </div>
 
 
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title"><h2> Idiomas </h2></div>
+  </div>
 
+  <div class="panel-body">
+    <% if @languages.size >0%>
+    <ul class="list-group">
+      <h5><% @languages.each do |language| %></h5>
+      <li class="list-group-item">
+        <div>
+            <p>
+              <b><%=language.name%></b>&emsp;
+              <%=language.level%>&emsp;
+              <%=language.skill%>
+              &emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,language]%></button>
+            </p>
+        </div>
+      </li>
+      <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="panel-footer well">
+    <%= form_for :language, url: '/language/new' do |f| %>
+      <div class="field">
+        <%= f.label :nombre %><br />
+        <%= f.text_field :name%>
+      </div>
+      <div>
+        <%=f.label :nivel%>
+
+        <%= f.select(:level, options_for_select(Language.levels)) %>
+      </div>
+      <div>
+        <%=f.label :habilidades%>
+
+        <%= f.select(:skill, options_for_select(Language.skills)) %>
+      </div>
+          <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+
+      <div class="actions">
+        <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
+      </div>
+      <% end %>
+  </div>
+</div>
 
 
 

@@ -1,6 +1,6 @@
 class ResumesController < ApplicationController
-  
-  
+
+
   def edit
   	@resume=current_user.resume
   	@personal_info=current_user.personal_information
@@ -11,6 +11,7 @@ class ResumesController < ApplicationController
     @publications=@resume.publications
     @merits=@resume.merits
     @memberships=@resume.memberships
+    @languages=@resume.languages
     @publicationTypes=["Articulo","Tesis","Libro","Monografia"]
   end
   def update
@@ -26,5 +27,6 @@ class ResumesController < ApplicationController
     @knowledges = @resume.knowledges
     @publications=@resume.publications
     @memberships=@resume.memberships
+    @languages=@resume.languages
   end
 end

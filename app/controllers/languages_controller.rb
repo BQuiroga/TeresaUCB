@@ -1,6 +1,6 @@
 class LanguagesController < ApplicationController
   def create
-    Language.create(languaes_params)
+    Language.create(languages_params)
       redirect_to '/users/curriculum/edit'
   end
   def edit

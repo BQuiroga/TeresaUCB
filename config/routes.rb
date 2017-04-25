@@ -29,6 +29,10 @@ Rails.application.routes.draw do
   resources :courses
   get 'course/edit/:id'=>'courses#edit'
   put 'course/update'=> 'courses#update'
+  resources :languages
+  get 'language/edit/:id'=>'languages#edit'
+  put 'language/update'=> 'languages#update'
+
 
   get 'users/curriculum/edit' =>'resumes#edit'
   post 'personal/update' =>'personal_informations#update'
@@ -42,6 +46,7 @@ Rails.application.routes.draw do
   post 'publication/new'=>'publications#create'
   post 'merit/new'=>'merits#create'
   post 'member/new'=>'memberships#create'
+  post 'language/new' => 'languages#create'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
