@@ -9,7 +9,7 @@
 </div>
 <div>
   <%=f.label :yo_di_este_seminario_o_curso%>
-  <%=f.check_box :given%>
+  <%= f.select(:given, options_for_select(Course.participations)) %>
 </div>
 <%=f.hidden_field :id, :value => @course.id%>
   <div class="actions">
