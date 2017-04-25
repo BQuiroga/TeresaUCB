@@ -15,6 +15,6 @@ class CoursesController < ApplicationController
   		params.require(:course).permit(:date,:resume_id,:name,:given, :workload)
   	end
   	def courses_params_for_edit
-  		params.require(:course).permit(:id,:name,:date,:given, :workload)
+  		params.require(:course).permit(:id,:name,:date,:given, :workload,:institution)
   	end
 end

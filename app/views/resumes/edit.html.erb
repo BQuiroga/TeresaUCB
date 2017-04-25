@@ -122,6 +122,7 @@
                     <b><%=course.date.year%></b>&emsp;
                     <%=course.name%>&emsp;
                     <%=course.given%>&emsp;
+                    <%=course.institution%>&emsp;
                     <%=course.workload%> Hrs.
                     &emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,course]%></button>
                   </p>
@@ -149,6 +150,10 @@
     <div class="field">
       <%= f.label :carga_horaria %><br />
       <%= f.number_field :workload%> Hrs.
+    </div>
+    <div class="field">
+      <%= f.label :institucion %><br />
+      <%= f.text_field :institution%>
     </div>
         <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
 
