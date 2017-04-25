@@ -121,7 +121,7 @@
                   <p>
                     <b><%=course.date.year%></b>&emsp;
                     <%=course.name%>&emsp;
-                    <%=course.orador%>
+                    <%=course.given%>
                     &emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,course]%></button>
                   </p>
               </div>
@@ -142,7 +142,8 @@
     </div>
     <div>
       <%=f.label :yo_di_este_seminario_o_curso%>
-      <%=f.check_box :given%>
+
+      <%= f.select(:given, options_for_select(Course.participations)) %>
     </div>
         <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
 
@@ -178,7 +179,7 @@
      <%end%>
     </ul>
   </div>
-        
+
   <div class="panel-footer well">
     <%= form_for :knowledge, url: '/knowledge/new' do |f| %>
     <div class="field">
@@ -193,14 +194,14 @@
     <div class="actions">
       <%= f.submit "Guardar", :class =>"btn btn-primary" %>
     </div>
-  <% end %>    
+  <% end %>
   </div>
 </div>
 
 
 
 <div class="panel panel-default">
-  <div class="panel-heading"> 
+  <div class="panel-heading">
     <div class="panel-title"><h2> Publicaciones </h2></div>
   </div>
 
@@ -253,7 +254,7 @@
 
 
 <div class="panel panel-default">
-  <div class="panel-heading"> 
+  <div class="panel-heading">
     <div class="panel-title"><h2> Meritos </h2></div>
   </div>
 
@@ -295,7 +296,7 @@
 
 
 <div class="panel panel-default">
-  <div class="panel-heading"> 
+  <div class="panel-heading">
     <div class="panel-title"><h2> Membresia </h2></div>
   </div>
 
@@ -340,25 +341,25 @@
 
 
 
-        
-    
-            
-        
-
-
-
-        
-    
-            
-       
 
 
 
 
-        
-    
-           
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
