@@ -41,7 +41,7 @@
             <div>
                 <p>
                   <b><%=course.date.year%></b>&emsp;
-                  <%=course.name%>&emsp; 
+                  <%=course.name%>&emsp;
                   <%=course.given%><br>
                 </p>
             </div>
@@ -92,3 +92,14 @@
             </div>
         <%end%>
      <%end%>
+
+ <h2> Idiomas </h2>
+         <% if @languages.size >0%>
+     <h5><% @languages.each do |language| %></h5>
+             <div>
+                 <p>
+                   <b><%=language.name%> Nivel:  <%=language.level%> Destreza: <%=language.skill%></b><br>
+                 </p>
+             </div>
+         <%end%>
+      <%end%>
