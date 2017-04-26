@@ -12,9 +12,9 @@ class CoursesController < ApplicationController
 		redirect_to '/users/curriculum/edit'
 	end
 	def courses_params
-  		params.require(:course).permit(:date,:resume_id,:name,:given, :workload)
+  		params.require(:course).permit(:date,:resume_id,:name,:given, :workload,:institution)
   	end
   	def courses_params_for_edit
-  		params.require(:course).permit(:id,:name,:date,:given, :workload)
+  		params.require(:course).permit(:id,:name,:date,:given, :workload,:institution)
   	end
 end
