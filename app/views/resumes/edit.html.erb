@@ -87,8 +87,21 @@
     <%= f.text_field :company_name%>
   </div>
   <div class="field">
-    <%= f.label :descripcion %><br />
+    <%= f.label :actividades_a_cargo %><br />
     <%= f.text_field :job_description%>
+  </div>
+  <div >
+    <input type="checkbox" id="checkbox" name="checkbox">Desea agregar una persona de referencia
+  </div>
+  <div id="rest" style="display:none;">
+    <div class="field">
+      <%= f.label :Persona_de_Referencia %>
+      <%= f.text_field :referential%>
+    </div>
+    <div class="field">
+      <%= f.label :numero_de_referencia %>
+      <%= f.text_field :referential_number%>
+    </div>
   </div>
   <div class="field">
     <%= f.label :Fecha_ingreso %>
@@ -143,7 +156,7 @@
       <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
     </div>
     <div>
-      <%=f.label :yo_di_este_seminario_o_curso%>
+      <%=f.label :participe_como%>
 
       <%= f.select(:given, options_for_select(Course.participations)) %>
     </div>
@@ -420,8 +433,17 @@
 
 
 
+<script>
+window.onload = function() {
+ var checkbox = document.getElementById('checkbox');
+ if (checkbox.checked) {
+ document.getElementById("rest").style.display = "block";
+ } else {
+ document.getElementById("rest").style.display = "none";
+ }
+};
 
-
-<script type="text/javascript">
- $('.datepicker').datepicker();
+$('#checkbox').click(function() {
+  $('#rest')[this.checked ? "show" : "hide"]();
+});
 </script>

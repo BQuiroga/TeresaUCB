@@ -1,5 +1,9 @@
 class Experience < ActiveRecord::Base
 	belongs_to :resume
+	before_create :validate_date
+	def validate_date
+		start_date<end_date&& start_date<Time.now
+	end
 	def isThisMonth
 		end_date.month==Time.now.month
 	end
@@ -39,7 +43,7 @@ class Experience < ActiveRecord::Base
    			"Agosto"
    		when 9
    			"Septiembre"
-   		when 10 
+   		when 10
    			"Octubre"
    		when 11
    			"Noviembre"
