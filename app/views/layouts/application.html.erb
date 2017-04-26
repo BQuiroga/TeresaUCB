@@ -29,6 +29,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/responsive-elements/1.0.2/responsive-elements.min.js">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
 <!-- jQuery library -->
+<link rel="shortcut icon" type="image/png" href="public/logocato-favi.png">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff"></script>
 </head>
@@ -38,7 +39,7 @@
   <p class="navbar-text pull-left"><b>Bolsa de Trabajo</b></p>
 <p class="navbar-text pull-right">
 <% if user_signed_in? %>
-  <%= link_to 'Perfil', '/', :class => 'navbar-link' %>&emsp;
+  <%= link_to 'Perfil', '/users/profile', :class => 'navbar-link' %>&emsp;
   <%= link_to 'Editar CV', '/users/curriculum/edit', :class => 'navbar-link' %>&emsp;
   <%= link_to 'Curriculum', '/mycurriculum', :class => 'navbar-link' %>&emsp;
   <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %>&emsp;

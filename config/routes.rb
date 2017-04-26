@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root to: 'users#profile'
+  root to: 'index#inicio'
   post 'posts/new'=> 'posts#create'
   resources :posts
   resources :educations
