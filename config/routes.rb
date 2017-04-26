@@ -34,7 +34,9 @@ Rails.application.routes.draw do
   resources :languages
   get 'language/edit/:id'=>'languages#edit'
   put 'language/update'=> 'languages#update'
-
+  resources :referentials
+  get 'referential/edit/:id'=>'referentials#edit'
+  put 'referential/update'=> 'referentials#update'
 
   get 'users/curriculum/edit' =>'resumes#edit'
   post 'personal/update' =>'personal_informations#update'

@@ -100,7 +100,7 @@
     </div>
     <div class="field">
       <%= f.label :numero_de_referencia %>
-      <%= f.text_field :referential_number%>
+      <%= f.number_field :referential_number%>
     </div>
   </div>
   <div class="field">
@@ -180,72 +180,6 @@
 </div>
 
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <div class="panel-title"><h2> Conocimientos</h2></div>
-  </div>
-  <div class="panel-body">
-    <% if @knowledges.size >0%>
-    <ul class="list-group">
-      <h5><% @knowledges.each do |know| %></h5>
-        <li class="list-group-item">
-          <div>
-            <p>
-
-              <b><%=know.knowledge_area.name%></b>
-              &emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,know]%></button><br>
-              <%=know.description%>
-            </p>
-          </div>
-        </li>
-        <%end%>
-     <%end%>
-    </ul>
-  </div>
-
-  <div class="panel-footer well">
-    <%= form_for :knowledge, url: '/knowledge/new' do |f| %>
-    <div class="field">
-      <%= f.label :area %><br />
-      <%= f.select( :knowledge_area_id, KnowledgeArea.all.collect {|a| [a.name, a.id]}) -%>
-    </div>
-      <div class="field">
-      <%= f.label :Nombre %><br />
-      <%= f.text_field :description%>
-    </div>
-    <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
-    <div class="actions">
-      <%= f.submit "Guardar", :class =>"btn btn-primary" %>
-    </div>
-  <% end %>
-  </div>
-</div>
-
-
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <div class="panel-title"><h2> Publicaciones </h2></div>
-  </div>
-
-  <div class="panel-body">
-  <% if @publications.size >0%>
-    <ul class="list-group">
-    <h5><% @publications.each do |pub| %></h5>
-      <li class="list-group-item">
-        <div>
-                <p>
-                  <b><%=pub.publicationType%>&emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,pub]%></button> </b><br>
-                  <%=pub.date.year%>&emsp;<b><%=pub.name%></b><br>
-                  <%=pub.location%>
-
-                </p>
-            </div>
-      </li>
-      <%end%>
-     <%end%>
-    </ul>
-  </div>
 
   <div class="panel-footer well">
     <%= form_for :publication, url: '/publication/new' do |f| %>
@@ -410,6 +344,51 @@
         <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
       </div>
       <% end %>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title"><h2> Personas de referencia</h2></div>
+  </div>
+  <div class="panel-body">
+    <% if @referentials.size >0%>
+    <ul class="list-group">
+      <h5><% @referentials.each do |refer| %></h5>
+        <li class="list-group-item">
+          <div>
+            <p>
+              <b><%=refer.name%></b>
+              &emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,refer]%></button><br>
+              <%=refer.number%>&emsp;<%=refer.institution%>
+            </p>
+          </div>
+        </li>
+        <%end%>
+     <%end%>
+    </ul>
+  </div>
+
+  <div class="panel-footer well">
+    <%= form_for :referential, url: '/referential/new' do |f| %>
+    <div class="field">
+      <%= f.label :nombre_de_la_persona_de_referencia %><br />
+      <%= f.text_field :name %>
+    </div>
+      <div class="field">
+      <%= f.label :institucion %><br />
+      <%= f.text_field :institution%>
+    </div>
+      <div class="field">
+      <%= f.label :numero_de_referencia %><br />
+      <%= f.number_field :number%>
+    </div>
+    <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+    <div class="actions">
+      <%= f.submit "Guardar", :class =>"btn btn-primary" %>
+    </div>
+  <% end %>
   </div>
 </div>
 

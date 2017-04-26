@@ -12,6 +12,7 @@ class ResumesController < ApplicationController
     @merits=@resume.merits
     @memberships=@resume.memberships
     @languages=@resume.languages
+    @referentials=@resume.referentials
     @publicationTypes=["Articulo","Tesis","Libro","Monografia"]
   end
   def update
@@ -28,5 +29,6 @@ class ResumesController < ApplicationController
     @publications=@resume.publications
     @memberships=@resume.memberships
     @languages=@resume.languages
+    @referentials=@resume.referentials
   end
 end

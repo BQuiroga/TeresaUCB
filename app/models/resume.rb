@@ -8,4 +8,5 @@ class Resume < ActiveRecord::Base
 	has_many :merits
 	has_many :memberships
 	has_many :languages
+	has_many :referentials
 end

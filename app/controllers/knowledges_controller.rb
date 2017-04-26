@@ -12,9 +12,9 @@ class KnowledgesController < ApplicationController
 		redirect_to '/users/curriculum/edit'
 	end
 	def knowledges_params
-  		params.require(:knowledge).permit(:description,:knowledge_area_id,:resume_id)
+  		params.require(:knowledge).permit(:description,:area,:resume_id)
   	end
   	def knowledges_params_for_edit
-  		params.require(:knowledge).permit(:id,:description)
+  		params.require(:knowledge).permit(:id,:description,:area)
   	end
 end
