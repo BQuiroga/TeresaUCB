@@ -18,22 +18,22 @@
    </div>
 <div class="panel-footer well">
 <%= form_for :education, url: '/education/new' do |f| %>
-  <div  class="field col-xs-3">
+  <div  class="field col col-xs-3">
     <%= f.label :Titulo_academico %>:
-    <%= f.text_field :title,:class=>"form-control"%>
+    <%= f.text_field :title%>
   </div>
 
     <div class="field col-xs-3">
     <%= f.label :Universidad %>:
-    <%= f.text_field :school_name,:class=>"form-control"%>
+    <%= f.text_field :school_name%>
   </div>
   <div class="field col-xs-4">
   <%= f.label :descripcion %>:
-  <%= f.text_area :description, :class=>"form-control"%>
+  <%= f.text_area :description%>
 </div><br><br>
   <div class="field col-xs-3">
     <%= f.label :Fecha_ingreso %>:
-      <%= f.date_select :start_date,:start_year  =>1990, :end_year=>Time.now.year, :class=> "form-control"%>
+      <%= f.date_select :start_date,:start_year  =>1990, :end_year=>Time.now.year%>
   </div>
 
     <div class="field col-xs-3">
