@@ -1,14 +1,19 @@
-
-<h2><%=@user.name%> <%=@user.last_name%> </h2>
+<div class="container">
+<div ><h2><%=@user.name%> <%=@user.last_name%> </h2></div>
   <div class="container-body ">
+    <div class="container">
     <h2>Informacion Personal</h2>
-    <b>Direccion: </b><%=@personal_info.address%><br>
-    <b>Fecha de Nacimiento: </b><%=@personal_info.translate_birthdate_to_string%> <br>
-    <b>Fijo: </b><%=@personal_info.phone%><br>
-    <b>Movil: </b><%=@personal_info.cellphone%><br>
-    <b>e-mail: </b><%=@user.email%><br>
-
+    <div class="container">
+      <b>Direccion: </b><%=@personal_info.address%><br>
+      <b>Fecha de Nacimiento: </b><%=@personal_info.translate_birthdate_to_string%> <br>
+      <b>Fijo: </b><%=@personal_info.phone%><br>
+      <b>Movil: </b><%=@personal_info.cellphone%><br>
+      <b>e-mail: </b><%=@user.email%><br>
+    </div>
+  </div>
+  <div class="container">
     <h2>Formacion Academica </h2>
+    <div class="container">
     <% if @educations.size >0%>
     <h5><% @educations.each do |education| %></h5>
             <div>
@@ -21,7 +26,11 @@
         <%end%>
      <%end%>
   </div>
+</div>
+</div>
+  <div class="container">
     <h2>Experiencia Profesional </h2>
+    <div class="container">
         <% if @experiences.size >0%>
     <h5><% @experiences.each do |experience| %></h5>
             <div>
@@ -34,8 +43,11 @@
             </div>
         <%end%>
      <%end%>
-
+   </div>
+ </div>
+<div class="container">
 <h2>Cursos y Seminarios </h2>
+<div class="container">
         <% if @courses.size >0%>
     <h5><% @courses.each do |course| %></h5>
             <div>
@@ -49,18 +61,26 @@
             </div>
         <%end%>
      <%end%>
+   </div>
+ </div>
+ <div class="container">
      <h2> Conocimientos</h2>
+     <div class="container">
         <% if @knowledges.size >0%>
     <h5><% @knowledges.each do |know| %></h5>
             <div>
                 <p>
-                  <b><%=know.knowledge_area.name%></b><br>
+                  <b><%=know.area%></b><br>
                   <%=know.description%>
                 </p>
             </div>
         <%end%>
      <%end%>
+   </div>
+ </div>
+ <div class="container">
      <h2> Publicaciones </h2>
+     <div class="container">
         <% if @publications.size >0%>
     <h5><% @publications.each do |pub| %></h5>
             <div>
@@ -73,7 +93,11 @@
             </div>
         <%end%>
      <%end%>
+   </div>
+ </div>
+ <div class="container">
      <h2> Meritos </h2>
+     <div class="container">
         <% if @merits.size >0%>
     <h5><% @merits.each do |merit| %></h5>
             <div>
@@ -83,7 +107,11 @@
             </div>
         <%end%>
      <%end%>
+   </div>
+ </div>
+ <div class="container">
 <h2> Membresia </h2>
+<div class="container">
         <% if @memberships.size >0%>
     <h5><% @memberships.each do |member| %></h5>
             <div>
@@ -94,8 +122,11 @@
             </div>
         <%end%>
      <%end%>
-
+</div>
+</div>
+<div class="container">
  <h2> Idiomas </h2>
+ <div class="container">
          <% if @languages.size >0%>
      <h5><% @languages.each do |language| %></h5>
              <div>
@@ -105,3 +136,6 @@
              </div>
          <%end%>
       <%end%>
+    </div>
+  </div>
+</div>
