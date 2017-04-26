@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post 'posts/new'=> 'posts#create'
   resources :posts
   resources :educations
+  get '/inicio'=> 'index#inicio'
   get '/users/profile'=>'users#profile'
   get 'education/edit/:id'=>'educations#edit'
   put 'education/update'=> 'educations#update'
