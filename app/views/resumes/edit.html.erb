@@ -67,6 +67,7 @@
                   <%=experience.job_title%>&emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,experience]%></button><br>
                   <%=experience.start_job_date%>&emsp; - &emsp;
                   <%=experience.finish_job_date%>
+                  <div>RANGO SALARIAL: <%=experience.salary_range%></div> 
                 </p>
             </div>
           </li>
@@ -103,6 +104,11 @@
       <%= f.number_field :referential_number%>
     </div>
   </div>
+  <div class="pull-right">
+      ESTA INFORMACION NO ES PUBLICA
+      <%= f.label :rango_salarial %>
+      <%= f.select(:salary_range, options_for_select(Experience.salary_range)) %>
+    </div>
   <div class="field">
     <%= f.label :Fecha_ingreso %>
     <%= f.date_select :start_date ,:start_year  =>1990, :end_year=>Time.now.year%>
@@ -112,6 +118,8 @@
     <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year%>
   </div>
       <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+    
+
 
   <div class="actions">
     <%= f.submit "Guardar", :class =>"btn btn-primary" %>

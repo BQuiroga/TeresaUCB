@@ -12,9 +12,9 @@ class ExperiencesController < ApplicationController
 		redirect_to '/users/curriculum/edit'
 	end
 	def experiences_params
-  		params.require(:experience).permit(:start_date,:resume_id,:end_date,:job_title,:company_name,:key_words,:job_description,:referential,:referential_number)
+  		params.require(:experience).permit(:start_date,:resume_id,:end_date,:job_title,:company_name,:key_words,:job_description,:referential,:referential_number,:salary_range)
   	end
   	def experiences_params_for_edit
-  		params.require(:experience).permit(:id,:job_title,:company_name,:key_words,:job_description,:referential,:referential_number)
+  		params.require(:experience).permit(:id,:job_title,:company_name,:key_words,:job_description,:referential,:referential_number,:salary_range)
   	end
 end
