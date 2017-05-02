@@ -6,6 +6,8 @@ class PostsController < ApplicationController
   end
   def new
   end
+  def offer
+  end
   def create
     Post.create(post_params)
     redirect_to root_path

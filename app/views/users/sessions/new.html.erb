@@ -1,26 +1,58 @@
-<h2>Iniciar Sesion</h2>
+<div class="top-content">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :correo %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :contraseña %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :recordarme %>
+    <div class="inner-bg">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 col-sm-offset-2 text">
+            <h1><strong>Iniciar Sesion</strong></h1>
+            <div class="description">
+              <p>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3 form-box">
+            <div class="form-top">
+              <div class="form-top-left">
+                <h3>Ingresa a nuestro sitio</h3>
+                <p>Ingresa tu correo elecrtronico y tu contraseña:</p>
+              </div>
+              <div class="form-top-right">
+                <i class="fa fa-lock"></i>
+              </div>
+            </div>
+            <div class="form-bottom">
+              <%= form_for(resource, as: resource_name, :class=>"login-form" ,url: session_path(resource_name)) do |f| %>
+              <div class="form-group">
+                <%= f.label :correo %><br />
+                <%= f.email_field :email, autofocus: true ,:class=>"form-username form-control"%>
+              </div>
+              <div class="form-group">
+                <%= f.label :contraseña %><br />
+                <%= f.password_field :password, autocomplete: "off", :class=>"form-password form-control" %>
+              </div>
+              <% if devise_mapping.rememberable? -%>
+                <div class="form-group">
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :recordarme %>
+                </div>
+              <% end -%>
+                  <%= f.submit "Iniciar Sesion",:class=>"btn"%>
+              <%end%>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Iniciar Sesion" %>
   </div>
-<% end %>
+  <script>
+jQuery(document).ready(function() {
 
-<%= render "users/shared/links" %>
+    /*
+        Fullscreen background
+    */
+    $.backstretch("assets/images/ibackgrounds/1.jpg");
+]
+});
+</script>

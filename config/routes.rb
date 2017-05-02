@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root to: 'index#inicio'
   post 'posts/new'=> 'posts#create'
+  get 'newOffer'=> 'posts#offer'
   resources :posts
   resources :educations
   get '/inicio'=> 'index#inicio'
