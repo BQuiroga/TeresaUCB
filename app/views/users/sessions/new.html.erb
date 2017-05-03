@@ -1,3 +1,40 @@
+<style>
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #888;
+    line-height: 30px;
+    text-align: center;
+}
+
+button.btn {
+	height: 50px;
+    margin: 0;
+    padding: 0 20px;
+    vertical-align: middle;
+    background: #de615e;
+    border: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 50px;
+    color: #fff;
+    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+    text-shadow: none;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+}
+
+button.btn:hover { opacity: 0.6; color: #fff; }
+
+button.btn:active { outline: 0; opacity: 0.6; color: #fff; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
+
+button.btn:focus { outline: 0; opacity: 0.6; background: #de615e; color: #fff; }
+
+button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; background: #de615e; color: #fff; }
+
+</style>
 <div class="top-content">
 
     <div class="inner-bg">
@@ -25,17 +62,17 @@
             <div class="form-bottom">
               <%= form_for(resource, as: resource_name, :class=>"login-form" ,url: session_path(resource_name)) do |f| %>
               <div class="form-group">
-                <%= f.label :correo %><br />
+                <%= f.label :correo,:class=>"text" %><br />
                 <%= f.email_field :email, autofocus: true ,:class=>"form-username form-control"%>
               </div>
               <div class="form-group">
-                <%= f.label :contraseña %><br />
+                <%= f.label :contraseña,:class=>"text"  %><br />
                 <%= f.password_field :password, autocomplete: "off", :class=>"form-password form-control" %>
               </div>
               <% if devise_mapping.rememberable? -%>
                 <div class="form-group">
                   <%= f.check_box :remember_me %>
-                  <%= f.label :recordarme %>
+                  <%= f.label :recordarme,:class=>"text"  %>
                 </div>
               <% end -%>
                   <%= f.submit "Iniciar Sesion",:class=>"btn"%>
