@@ -18,9 +18,10 @@
     <%= f.label :nit %>
     <%= f.number_field :nit %>
   </div>
+  <br>
   <div class="field">
-    <%= f.label :descripcion %>
-    <%= f.text_area :description %>
+    <%= f.label :descripcion %><br>
+    <%= f.text_field :description %><br>
   </div>
       <%= f.hidden_field :user_id, :value => current_user.id%>
       <%=f.hidden_field :id, :value => current_user.company_information.id%>
