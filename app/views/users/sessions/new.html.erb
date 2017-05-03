@@ -63,7 +63,7 @@ button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; bac
               <%= form_for(resource, as: resource_name, :class=>"login-form" ,url: session_path(resource_name)) do |f| %>
               <div class="form-group">
                 <%= f.label :correo,:class=>"text" %><br />
-                <%= f.email_field :email, autofocus: true ,:class=>"form-username form-control"%>
+                <%= f.email_field :email, autofocus: true ,:class=>"form-username form-control",:style=>"background-color: #ffffff"%>
               </div>
               <div class="form-group">
                 <%= f.label :contraseña,:class=>"text"  %><br />
@@ -74,8 +74,9 @@ button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; bac
                   <%= f.check_box :remember_me %>
                   <%= f.label :recordarme,:class=>"text"  %>
                 </div>
-              <% end -%>
-                  <%= f.submit "Iniciar Sesion",:class=>"btn"%>
+              <% end %>
+              <%= render "users/shared/links" %>
+              <%= f.submit "Iniciar Sesion",:class=>"btn"%>
               <%end%>
             </div>
           </div>
@@ -83,6 +84,7 @@ button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; bac
       </div>
     </div>
   </div>
+
   <script>
 jQuery(document).ready(function() {
 
