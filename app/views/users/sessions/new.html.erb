@@ -62,7 +62,7 @@ button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; bac
             <div class="form-bottom">
               <%= form_for(resource, as: resource_name, :class=>"login-form" ,url: session_path(resource_name)) do |f| %>
               <div class="form-group">
-                <%= f.label :correo,:class=>"text" %><br />
+                <%= f.label :correo,:class=>"text",:style=>"color: #ffffff" %><br />
                 <%= f.email_field :email, autofocus: true ,:class=>"form-username form-control",:style=>"background-color: #ffffff"%>
               </div>
               <div class="form-group">

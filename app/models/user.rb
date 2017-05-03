@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
     if company
       self.add_role(:company) if self.roles.blank?
     else
-    self.add_role(:user) if self.roles.blank?
+      self.add_role(:user) if self.roles.blank?
+    end
   end
 end

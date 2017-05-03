@@ -5,7 +5,7 @@
 
 body {
   margin: auto;
-  background: #eaeaea;  
+  background: #eaeaea;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -28,18 +28,10 @@ form h1 {
   padding: 22px 25px;
   border-radius: 5px 5px 0px 0px;
   margin: auto;
-  text-shadow: none; 
+  text-shadow: none;
   text-align:left
 }
 
-form {
-  border-radius: 5px;
-  max-width:700px;
-  width:100%;
-  margin: 5% auto;
-  background-color: #FFFFFF;
-  overflow: hidden;
-}
 
 p span {
   color: #F00;
@@ -52,22 +44,8 @@ p {
   color:#333;
 }
 
-h1 {
-  text-align:center; 
-  color: #666;
-  text-shadow: 1px 1px 0px #FFF;
-  margin:50px 0px 0px 0px
-}
 
-input {
-  border-radius: 0px 5px 5px 0px;
-  border: 1px solid #eee;
-  margin-bottom: 15px;
-  width: 75%;
-  height: 40px;
-  float: left;
-  padding: 0px 15px;
-}
+
 
 a {
   text-decoration:inherit
@@ -78,7 +56,7 @@ textarea {
   border: 1px solid #EEE;
   margin: 0;
   width: 75%;
-  height: 130px; 
+  height: 130px;
   float: left;
   padding: 0px 15px;
 }
@@ -121,7 +99,7 @@ i {
 }
 
 .leftcontact {
-  width:49.5%; 
+  width:49.5%;
   float:left;
   border-right: 1px dotted #CCC;
   box-sizing: border-box;
