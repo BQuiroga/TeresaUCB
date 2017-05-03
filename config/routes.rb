@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   put 'referential/update'=> 'referentials#update'
 
   get 'users/curriculum/edit' =>'resumes#edit'
+  post 'company/update'=>'company_informations#update'
   post 'personal/update' =>'personal_informations#update'
   post 'education/new' => 'educations#create'
 
