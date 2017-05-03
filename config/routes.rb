@@ -53,6 +53,9 @@ Rails.application.routes.draw do
   post 'merit/new'=>'merits#create'
   post 'member/new'=>'memberships#create'
   post 'language/new' => 'languages#create'
+
+  post '/oferta/nueva' => 'offers#create' 
+  get '/oferta/nueva' => 'posts#offer' 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
