@@ -24,7 +24,7 @@
     		<div class="contenedor-enlaces">
      		<%= link_to '<span class="glyphicon glyphicon-briefcase"></span> Ver Curriculum'.html_safe,  '/mycurriculum',class: 'enlaces-perfil'%>
       	<%= link_to '<span class="glyphicon glyphicon-pencil"></span> Editar Curriculum'.html_safe,'/users/curriculum/edit' ,class: 'enlaces-perfil'%>
-      	
+
     	 </div>
   	 </div>
 		 <br><br>
@@ -58,7 +58,11 @@
 
       	<h5><%= post.user.name %></h5>
 
-      	<p class="format-text"><%= post.body %></p>
+      	<p class="format-text">
+          <% post.body.split("\n").each do |line|  %>
+            <%=line%><br>
+          <%end%>
+        </p>
       	<button type="button" class="btn btn-primary" aria-label="Left Align">
       	  <span class=" glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
       	</button>
