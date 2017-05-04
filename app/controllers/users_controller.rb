@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
 	def profile
-		@posts= current_user.posts
+		@posts= Post.all
 	end
 end
