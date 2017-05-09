@@ -21,4 +21,8 @@ class Course < ActiveRecord::Base
 	def self.participations
 		["Participante","Aprobacion","Expositor","Organizador"]
 	end
+	def user
+		resume=self.resume
+		user=resume.user
+	end
 end
