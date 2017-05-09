@@ -35,6 +35,9 @@ class User < ActiveRecord::Base
       PersonalInformation.create(:user_id => self.id)
     end
   end
+  def follows
+    Follow.where(follower: self.id)
+  end
 
   def assign_default_role
     if company
