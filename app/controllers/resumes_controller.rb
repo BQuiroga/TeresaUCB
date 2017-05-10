@@ -31,4 +31,18 @@ class ResumesController < ApplicationController
     @languages=@resume.languages
     @referentials=@resume.referentials
   end
+  def external_show
+    @user=User.find(params[:id])
+    @resume=@user.resume
+    @merits=@resume.merits
+    @personal_info=@user.personal_information
+  	@educations=@resume.educations
+  	@experiences=@resume.experiences
+  	@courses = @resume.courses
+    @knowledges = @resume.knowledges
+    @publications=@resume.publications
+    @memberships=@resume.memberships
+    @languages=@resume.languages
+    @referentials=@resume.referentials
+  end
 end

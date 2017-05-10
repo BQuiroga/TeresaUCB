@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root to: 'index#inicio'
   post 'posts/new'=> 'posts#create'
-  post 'posts/ofertas'=>'posts#oferta'
+  post 'resultados/busqueda'=>'posts#oferta'
+  post 'posts/oferta'=> 'posts#publicar'
   get 'newOffer'=> 'posts#offer'
   resources :posts
   resources :educations
@@ -56,9 +57,10 @@ Rails.application.routes.draw do
   post 'merit/new'=>'merits#create'
   post 'member/new'=>'memberships#create'
   post 'language/new' => 'languages#create'
-
-  post '/oferta/nueva' => 'offers#create'
+  get 'curriculums/:id'=>'resumes#external_show'
   get '/oferta/nueva' => 'posts#offer'
+  get 'resultados/busqueda' =>'posts#oferta'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

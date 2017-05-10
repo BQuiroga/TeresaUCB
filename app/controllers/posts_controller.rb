@@ -10,7 +10,10 @@ class PostsController < ApplicationController
   end
   def results
   end
-  def oferta
+  def show
+
+  end
+  def publicar
     new_post=Post.new
     new_body=new_post.job_offer(search_params[:titulo],
                                 search_params[:post_grado],
@@ -23,6 +26,10 @@ class PostsController < ApplicationController
     new_post.body=new_body
     new_post.user_id=search_params[:user_id]
     new_post.save
+    redirect_to '/users/profile'
+  end
+  def oferta
+
     @users=[]
     @titulos=search_params[:titulo].split(',')
     @postgrados=search_params[:post_grado].split(',')

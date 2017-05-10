@@ -1,6 +1,51 @@
-<br><br><br>
-<div class="container">
-  <%@users.each do |user|%>
-    <%=user.id%>
-  <%end%>
+
+<%= form_for :post, url: '/posts/oferta' do |f| %>
+<%= f.hidden_field :user_id,:value => current_user.id%>
+    <%=f.hidden_field :titulo,:value => @titulos%>
+    <%=f.hidden_field :post_grado,:value => @postgrados%>
+    <%=f.hidden_field :horas,:value => nil%>
+    <%=f.hidden_field :experiencia,:value => @experiencias%>
+    <%=f.hidden_field :ciudad,:value => nil%>
+    <%=f.hidden_field :idiomas,:value => @idiomas%>
+    <%=f.hidden_field :cargo,:value => @cargos%>
+    <%=f.hidden_field :habilidades,:value => @habilidades%>
+    <!-- <textarea name="message" rows="14" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Message' doit être renseigné."></textarea> -->
+    <div class="validation"></div>
+  </div>
+ </div>
 </div>
+<button type="submit">Publicar</button>
+
+<%end%>
+
+<div id="page-content-wrapper">
+<div class="container">
+      <h1 style="border-bottom: 1px solid #A6AAA9; color: #000000;">Personas Calificadas</h1>
+      <br>
+
+      <!-- Three columns of text below the carousel -->
+
+      <div class="row">
+        <% @users.each do |user| %>
+
+        <div class="col-lg-4" align="center">
+        <br>
+          <h2><td><%= user.name%>   <%=user.last_name%></td></h2>
+          <p><strong>Informacion Personal </strong><br>
+
+          <strong>Email: </strong><%= user.email %><br></p>
+        <div class="btn btn-group" align='center'>
+          <a href="/curriculums/<%=user.id%>"><button class="btn btn-default">Ver Perfil</button></a>
+          <%if true%>
+          <%end%>
+        </div>
+      </div>
+      <% end %>
+
+</div>
+<br><center>
+  <div class="btn btn-group" align='center'>
+     <a href="/oferta/nueva"><button class='btn btn-default btn-sm'>Volver a la Busqueda</button></a>
+    </p>
+</div>
+</center>
