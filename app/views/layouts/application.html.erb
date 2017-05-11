@@ -45,8 +45,12 @@
 <p class="navbar-text pull-right">
 <% if user_signed_in? %>
   <%= link_to 'Perfil', '/users/profile', :class => 'navbar-link' %>&emsp;
+  <%if !current_user.is_company?%>
   <%= link_to 'Editar CV', '/users/curriculum/edit', :class => 'navbar-link' %>&emsp;
   <%= link_to 'Curriculum', '/mycurriculum', :class => 'navbar-link' %>&emsp;
+  <%else%>
+  <%= link_to 'Publicar oferta', '/oferta/nueva', :class => 'navbar-link' %>&emsp;
+  <%end%>
   <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %>&emsp;
   <%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
   <p class="navbar-text pull-left">Has iniciado sesion como <strong><%= current_user.email %></strong></p>

@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   has_many :pictures
   belongs_to :user
 
-  def job_offer(titulo,postgrado,horas,ciudad,idiomas,cargo,experiencia,habilidades)
+  def job_offer(titulo,postgrado,horas,ciudad,idiomas,cargo,experiencia,habilidades,fijo,contact)
     resp="Estamos buscando personal, con las siguientes caracteristicas: \n"
     if titulo
       resp+="  Titulo Academico: "+titulo+"\n"
@@ -26,10 +26,7 @@ class Post < ActiveRecord::Base
     if experiencia
       resp+="  Con experiencia en areas de: "+experiencia+"\n"
     end
-    if horas
-      resp+="  Que haya cumplido con por lo menos: "+horas + " horas de trabajo \n"
-    end
-    resp+= "  Si tu curriculum cumple con los anteriores requisitos, comunicate con nosotros"
+    resp+= "  Si tu curriculum cumple con los anteriores requisitos, comunicate con nosotros\n"+ "Contactacte con: "+contact+"a este numero de referencia: " +fijo+"\n"
     resp
   end
 end

@@ -22,7 +22,9 @@ class PostsController < ApplicationController
                                 search_params[:idiomas],
                                 search_params[:cargo],
                                 search_params[:experiencia],
-                                search_params[:habilidades])
+                                search_params[:habilidades],
+                                search_params[:phone],
+                                search_params[:contact])
     new_post.body=new_body
     new_post.user_id=search_params[:user_id]
     new_post.save
@@ -58,6 +60,9 @@ class PostsController < ApplicationController
       @user=User.find(language.user.id)
       @users=@users+[@user]
     end
+    @users.uniq!
+
+
   end
   def create
     Post.create(post_params)
@@ -71,6 +76,6 @@ class PostsController < ApplicationController
     params.require(:post).permit(:image)
   end
   def search_params
-    params.require(:post).permit(:titulo,:ciudad,:post_grado,:cargo,:experiencia,:horas,:idiomas,:habilidades,:user_id)
+    params.require(:post).permit(:titulo,:ciudad,:post_grado,:cargo,:experiencia,:horas,:idiomas,:habilidades,:user_id,:phone,:contact)
   end
 end

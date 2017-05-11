@@ -38,6 +38,12 @@ class User < ActiveRecord::Base
   def follows
     Follow.where(follower: self.id)
   end
+  def phone
+    self.company_information.phone
+  end
+  def contact_name
+    self.company_information.contact_name
+  end
 
   def assign_default_role
     if company
