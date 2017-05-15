@@ -33,6 +33,7 @@ class PostsController < ApplicationController
   def oferta
 
     @users=[]
+    @count=0
     @titulos=search_params[:titulo].split(',')
     @postgrados=search_params[:post_grado].split(',')
     @cargos=search_params[:cargo].split(',')
@@ -44,23 +45,38 @@ class PostsController < ApplicationController
     @experiences=Experience.where(job_title: @cargos,job_description: @experiencias)
     @knowledges=Knowledge.where(description: @habilidades)
     @languages=Language.where(name:@idiomas)
+    if (@postgrados!="")
+      @count+=1
+    end
+    if (@educations.size>0)
+      @count+=1
+    end
     @educations.each do |education|
       @user=User.find(education.user.id)
       @users=@users+[@user]
+    end
+    if (@experiences.size>0)
+      @count+=1
     end
     @experiences.each do |experience|
       @user=User.find(experience.user.id)
       @users=@users+[@user]
     end
+    if (@knowledges.size>0)
+      @count+=1
+    end
     @knowledges.each do |knowledge|
       @user=User.find(knowledge.user.id)
       @users=@users+[@user]
+    end
+    if (@languages.size>0)
+      @count+=1
     end
     @languages.each do |language|
       @user=User.find(language.user.id)
       @users=@users+[@user]
     end
-    @users.uniq!
+    @users=@users.select{ |e| @users.count(e)>=@count}.uniq
 
 
   end
