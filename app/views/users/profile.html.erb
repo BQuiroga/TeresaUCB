@@ -71,8 +71,8 @@
       	<button type="button" class="btn btn-warning" aria-label="Left Align">
        	 <span class=" glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
       	</button>
-        <%if (post.user_id!=current_user.id)%>
-          <%= form_for :follow, url: new_follower_path do |f| %>
+        <%if post.user_id!=current_user.id and (Follow.where(follower:current_user.id,followed:post.user.id).size==0) %>
+          <%= form_for :follow, url: new_follow_path do |f| %>
             <%=f.hidden_field :follower, :value => current_user.id%>
             <%=f.hidden_field :followed, :value => post.user.id%>
       	    <button type="button submit" class="btn btn-default" aria-label="Left Align">
@@ -82,7 +82,7 @@
         <%else%>
           <%if (Follow.where(follower:current_user.id,followed:post.user.id).size!=0)%>
           <button type="button submit" class="btn btn-danger" aria-label="Left Align">
-            <%=link_to "Dejar de seguir", [:delete,Follow.where(follower:current_user.id,followed:post.user.id)]%>
+            <%=link_to "Dejar de seguir", {controller: "follows", action: "dejar", id: Follow.where(follower:current_user.id,followed:post.user.id).first.id}%>
           </button>
           <%end%>
         <%end%>

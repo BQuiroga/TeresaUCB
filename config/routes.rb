@@ -38,7 +38,8 @@ Rails.application.routes.draw do
   get 'language/edit/:id'=>'languages#edit'
   put 'language/update'=> 'languages#update'
   resources :follows
-  post 'followers/new'=> 'followers#create'
+  post 'follows/new'=> 'follows#create'
+  get  'follows/:id/delete'=> 'follows#dejar'
   resources :referentials
   get 'referential/edit/:id'=>'referentials#edit'
   put 'referential/update'=> 'referentials#update'

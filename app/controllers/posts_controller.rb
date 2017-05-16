@@ -45,7 +45,7 @@ class PostsController < ApplicationController
     @experiences=Experience.where(job_title: @cargos,job_description: @experiencias)
     @knowledges=Knowledge.where(description: @habilidades)
     @languages=Language.where(name:@idiomas)
-    if (@postgrados!="")
+    if (@postgrados.size>0)
       @count+=1
     end
     if (@educations.size>0)

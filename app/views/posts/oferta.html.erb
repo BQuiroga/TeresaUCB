@@ -1,33 +1,28 @@
-<div class="container">
-<%= form_for :post, url: '/posts/oferta' do |f| %>
-<%= f.hidden_field :user_id,:value => current_user.id%>
-    <%=f.hidden_field :titulo,:value => @titulos%>
-    <%=f.hidden_field :post_grado,:value => @postgrados%>
-    <%=f.hidden_field :horas,:value => nil%>
-    <%=f.hidden_field :experiencia,:value => @experiencias%>
-    <%=f.hidden_field :ciudad,:value => nil%>
-    <%=f.hidden_field :idiomas,:value => @idiomas%>
-    <%=f.hidden_field :cargo,:value => @cargos%>
-    <%=f.hidden_field :habilidades,:value => @habilidades%>
-    <%=f.hidden_field :phone,:value =>current_user.phone%>
-    <%=f.hidden_field :contact, :value=>current_user.contact_name%>
-    <!-- <textarea name="message" rows="14" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Message' doit être renseigné."></textarea> -->
-    <div class="validation"></div>
-  </div>
- </div>
-</div>
-<button type="submit">Publicar</button>
 
-<%end%>
-</div>
 <div id="page-content-wrapper">
 <div class="container">
       <h1 style="border-bottom: 1px solid #A6AAA9; color: #000000;">Personas Calificadas </h1>
-      <%=@postgrados!=""%>
-      <%=@count%>
       <h3>Se encontraron <%=@users.size%> personas que cumplen su requerimimento</h3>
       <br>
+      <%= form_for :post, url: '/posts/oferta' do |f| %>
+      <%= f.hidden_field :user_id,:value => current_user.id%>
+          <%=f.hidden_field :titulo,:value => @titulos%>
+          <%=f.hidden_field :post_grado,:value => @postgrados%>
+          <%=f.hidden_field :horas,:value => nil%>
+          <%=f.hidden_field :experiencia,:value => @experiencias%>
+          <%=f.hidden_field :ciudad,:value => nil%>
+          <%=f.hidden_field :idiomas,:value => @idiomas%>
+          <%=f.hidden_field :cargo,:value => @cargos%>
+          <%=f.hidden_field :habilidades,:value => @habilidades%>
+          <%=f.hidden_field :phone,:value =>current_user.phone%>
+          <%=f.hidden_field :contact, :value=>current_user.contact_name%>
+          <!-- <textarea name="message" rows="14" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Message' doit être renseigné."></textarea> -->
+          <div class="validation"></div>
+      <div class="container">
+      <button type="submit">Publicar</button>
 
+      <%end%>
+      </div>
       <!-- Three columns of text below the carousel -->
 
       <div class="row">
