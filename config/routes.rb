@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   put 'education/update'=> 'educations#update'
   resources :experiences
   get 'experience/edit/:id'=>'experiences#edit'
-  put 'experience/update'=> 'experiencess#update'
+  put 'experience/update'=> 'experiences#update'
   resources :memberships
   get 'membership/edit/:id'=>'memberships#edit'
   put 'membership/update'=> 'memberships#update'

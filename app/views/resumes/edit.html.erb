@@ -67,7 +67,7 @@
                   <%=experience.job_title%>&emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,experience]%></button><br>
                   <%=experience.start_job_date%>&emsp; - &emsp;
                   <%=experience.finish_job_date%>
-                  <div>RANGO SALARIAL: <%=experience.salary_range%></div> 
+                  <div>RANGO SALARIAL: <%=experience.salary_range%></div>
                 </p>
             </div>
           </li>
@@ -113,12 +113,16 @@
     <%= f.label :Fecha_ingreso %>
     <%= f.date_select :start_date ,:start_year  =>1990, :end_year=>Time.now.year%>
   </div>
-    <div class="field">
+    <div class="field" id="date" style="display:none;">
     <%= f.label :fecha_salida %>
     <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year%>
   </div>
+    <div class="field">
+        <%=f.label :si_aun_sigue_por_favor_deje_marcada_esta_casilla%>
+        <input type="checkbox" id="checkboxDate" name="until_now", checked="true">
+    </div>
       <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
-    
+
 
 
   <div class="actions">
@@ -431,6 +435,20 @@
 
 
 
+<script>
+window.onload = function() {
+ var checkbox2 = document.getElementById('checkboxDate');
+ if (checkbox2.checked) {
+ document.getElementById("date").style.display = "none";
+ } else {
+ document.getElementById("date").style.display = "block";
+ }
+};
+
+$('#checkboxDate').click(function() {
+  $('#date')[this.checked ? "hide" : "show"]();
+});
+</script>
 
 
 

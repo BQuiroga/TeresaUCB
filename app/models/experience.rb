@@ -11,8 +11,8 @@ class Experience < ActiveRecord::Base
 		end_date.year==Time.now.year
    	end
    	def finish_job_date
-   		if isThisMonth and isThisYear
-   			"Actualidad"
+   		if (isThisMonth and isThisYear) or until_now
+   			"Hasta la fecha"
    		else
    			literal(end_date)
    		end

@@ -16,9 +16,13 @@
     <%= f.label :Fecha_ingreso %>
     <%= f.date_select :start_date ,:start_year  =>1990, :end_year=>Time.now.year%>
   </div>
-    <div class="field">
+    <div class="field" id="date" style="display:none;">
     <%= f.label :fecha_salida %>
     <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year%>
+  </div>
+  <div class="field">
+      <%=f.label :si_aun_sigue_por_favor_deje_marcada_esta_casilla%>
+      <%= f.check_box :until_now,:id=>"checkboxDate", :checked =>"true"%>
   </div>
       <%=f.hidden_field :id, :value => @experience.id%>
 
@@ -26,3 +30,17 @@
     <%= f.submit "Guardar" %>
   </div>
 <% end %>
+<script>
+window.onload = function() {
+ var checkbox2 = document.getElementById('checkboxDate');
+ if (checkbox2.checked) {
+ document.getElementById("date").style.display = "none";
+ } else {
+ document.getElementById("date").style.display = "block";
+ }
+};
+
+$('#checkboxDate').click(function() {
+  $('#date')[this.checked ? "hide" : "show"]();
+});
+</script>
