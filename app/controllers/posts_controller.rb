@@ -30,6 +30,7 @@ class PostsController < ApplicationController
     new_post.save
     redirect_to '/users/profile'
   end
+  
   def oferta
 
     @users=[]
@@ -77,13 +78,13 @@ class PostsController < ApplicationController
       @users=@users+[@user]
     end
     @users=@users.select{ |e| @users.count(e)>=@count}.uniq
-
-
   end
+
   def create
     Post.create(post_params)
     redirect_to '/users/profile'
   end
+
   private
   def post_params
     params.require(:post).permit(:body,:user_id)
