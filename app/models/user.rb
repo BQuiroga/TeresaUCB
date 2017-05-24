@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :password, format:{ with: /\A(?=.*[a-z])(?=.*[A-Z])./, message: "must contain at least one uppercase letter, one lowercase letter and some digit"}
+  validates :password, format:{ with: /\A(?=.*[a-z])(?=.*[A-Z])./, message: "debe contener por lo menos una mayuscula, una minuscula y un numero"}
 	#after_create :send_admin_mail
   after_create :assign_default_role
   after_create :create_dependencies
@@ -44,7 +44,9 @@ class User < ActiveRecord::Base
   def contact_name
     self.company_information.contact_name
   end
-
+  def suggested_publication(post)
+    post
+  end
   def assign_default_role
     if company
       self.add_role(:company) if self.roles.blank?

@@ -27,12 +27,17 @@ class PostsController < ApplicationController
                                 search_params[:contact])
     new_post.body=new_body
     new_post.user_id=search_params[:user_id]
+    new_post.requiring=true
+    @users=search_params[:results].split(' ')
+    @users.each do |suggested_user|
+      Searched.create(found:suggested_user,searched_by: current_user.id)
+    end
     new_post.save
+
     redirect_to '/users/profile'
   end
   
   def oferta
-
     @users=[]
     @count=0
     @titulos=search_params[:titulo].split(',')
@@ -78,6 +83,10 @@ class PostsController < ApplicationController
       @users=@users+[@user]
     end
     @users=@users.select{ |e| @users.count(e)>=@count}.uniq
+    @ids=[]
+    @users.each do |user|
+      @ids=@ids+[user.id]
+    end
   end
 
   def create
@@ -87,12 +96,12 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:body,:user_id)
+    params.require(:post).permit(:body,:user_id,:requiring)
   end
   def picture_params
     params.require(:post).permit(:image)
   end
   def search_params
-    params.require(:post).permit(:titulo,:ciudad,:post_grado,:cargo,:experiencia,:horas,:idiomas,:habilidades,:user_id,:phone,:contact)
+    params.require(:post).permit(:titulo,:ciudad,:post_grado,:cargo,:experiencia,:horas,:idiomas,:habilidades,:user_id,:phone,:contact,:results)
   end
 end
