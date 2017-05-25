@@ -54,4 +54,9 @@ class User < ActiveRecord::Base
       self.add_role(:user) if self.roles.blank?
     end
   end
+  def is_my_friend(other_id)
+    my_friend = Friendship.where(one:id,two:other_id)
+    his_friend = Friendship.where(one:other_id,two:id)
+    my_friend or his_friend
+  end
 end
