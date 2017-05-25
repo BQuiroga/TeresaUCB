@@ -29,8 +29,10 @@ class PostsController < ApplicationController
     new_post.user_id=search_params[:user_id]
     new_post.requiring=true
     @users=search_params[:results].split(' ')
-    @users.each do |suggested_user|
-      Searched.create(found:suggested_user,searched_by: current_user.id)
+    @users.each do |suggested_user_id|
+      Searched.create(found:suggested_user_id,searched_by: current_user.id)
+      suggested_user=User.find(suggested_user_id)
+      new_post.send_notice_mail(suggested_user)
     end
     new_post.save
 

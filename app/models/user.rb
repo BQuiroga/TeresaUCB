@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :password, format:{ with: /\A(?=.*[a-z])(?=.*[A-Z])./, message: "debe contener por lo menos una mayuscula, una minuscula y un numero"}
-	#after_create :send_admin_mail
+	after_create :send_admin_mail
   after_create :assign_default_role
   after_create :create_dependencies
   after_create :capit

@@ -29,4 +29,7 @@ class Post < ActiveRecord::Base
     resp+= "  Si tu curriculum cumple con los anteriores requisitos, comunicate con nosotros\n"+ "Contactacte con: "+contact+"a este numero de referencia: " +fijo+"\n"
     resp
   end
+  def send_notice_mail(user)
+    UserMailer.notify_email(user).deliver_now!
+  end
 end
