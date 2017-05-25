@@ -1,0 +1,36 @@
+
+<div class="panel panel-default">
+  <div class="panel-heading"><div class="panel-title"><h3>Mis Grupos </h3></div></div>
+  <div class="panel-body">
+  <% if @groups.size >0%>
+  <ul class="list-group">
+  <% @groups.each do |group| %>
+    <li class="list-group-item">
+      <div>
+        <h4>  <b><%=group.name%>&emsp;</b><button class="btn btn-warning btn-sm pull-right"></button></h4>
+        <%=group.description%>&nbsp;
+        <%=group.members%>
+      </div>
+    </li>
+      <%end%>
+   <%end%>
+ </ul>
+ </div>
+ </div>
+ <div class="panel panel-footer well">
+ <%= form_for :education, url: '/nuevo/grupo' do |f| %>
+   <div  class="field col col-xs-3">
+     <%= f.label :nombre_del_grupo %>:
+     <%= f.text_field :name%>
+   </div>
+
+     <div class="field col-xs-3">
+     <%= f.label :descripcion_del_grupo %>:
+     <%= f.text_field :description%>
+   </div>
+   <div class="actions col-xs-3">
+     <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
+   </div>
+   <br><br><br><br><br>
+ <% end %>
+ </div>
