@@ -24,6 +24,7 @@
     		<div class="contenedor-enlaces">
      		<%= link_to '<span class="glyphicon glyphicon-briefcase"></span> Ver Curriculum'.html_safe,  '/mycurriculum',class: 'enlaces-perfil'%>
       	<%= link_to '<span class="glyphicon glyphicon-pencil"></span> Editar Curriculum'.html_safe,'/users/curriculum/edit' ,class: 'enlaces-perfil'%>
+        <%= link_to '<span class="glyphicon glyphicon-briefcase"></span> Mis Grupos'.html_safe, '/grupos/mis_grupos', class: 'enlaces-perfil'%> 
       		<%if current_user.is_company?%>
       	<%= link_to '<span class="glyphicon glyphicon-pencil"></span> Crear oferta'.html_safe,'/oferta/nueva' ,class: 'enlaces-perfil'%>
       	<%end%>

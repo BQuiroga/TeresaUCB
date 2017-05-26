@@ -43,6 +43,10 @@ Rails.application.routes.draw do
   resources :referentials
   get 'referential/edit/:id'=>'referentials#edit'
   put 'referential/update'=> 'referentials#update'
+  resources :groups
+  get 'grupos/mis_grupos'=>'groups#index'
+  post 'nuevo/grupo'=> 'groups#create'
+
 
   get 'users/curriculum/edit' =>'resumes#edit'
   post 'company/update'=>'company_informations#update'

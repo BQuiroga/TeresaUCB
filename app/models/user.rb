@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :posts
+  has_many :group_managers
   has_one :personal_information
   has_one :resume
   has_one :company_information
