@@ -11,9 +11,9 @@ class GroupsController < ApplicationController
   def create
     if Group.create(group_params)
       @grupo=Group.last
-      GroupManager.create(@grupo.id,current_user.id)
+      GroupManager.create(group_id:@grupo.id,user_id:current_user.id)
     end
-    redirect_to 'grupos/mis-grupos'
+    redirect_to '/grupos/mis_grupos'
   end
   def group_params
     params.require(:group).permit(:name,:description)

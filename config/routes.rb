@@ -10,41 +10,32 @@ Rails.application.routes.draw do
   post 'resultados/busqueda'=>'posts#oferta'
   post 'posts/oferta'=> 'posts#publicar'
   get 'newOffer'=> 'posts#offer'
-  resources :posts
-  resources :educations
+
   get '/inicio'=> 'index#inicio'
   get '/users/profile'=>'users#profile'
   get 'education/edit/:id'=>'educations#edit'
   put 'education/update'=> 'educations#update'
-  resources :experiences
   get 'experience/edit/:id'=>'experiences#edit'
   put 'experience/update'=> 'experiences#update'
-  resources :memberships
   get 'membership/edit/:id'=>'memberships#edit'
   put 'membership/update'=> 'memberships#update'
-  resources :knowledges
   get 'knowledge/edit/:id'=>'knowledges#edit'
   put 'knowledge/update'=> 'knowledges#update'
-  resources :publications
   get 'publication/edit/:id'=>'publications#edit'
   put 'publication/update'=> 'publications#update'
-  resources :merits
   get 'merit/edit/:id'=>'merits#edit'
   put 'merit/update'=> 'merits#update'
-  resources :courses
   get 'course/edit/:id'=>'courses#edit'
   put 'course/update'=> 'courses#update'
-  resources :languages
   get 'language/edit/:id'=>'languages#edit'
   put 'language/update'=> 'languages#update'
-  resources :follows
   post 'follows/new'=> 'follows#create'
   get  'follows/:id/delete'=> 'follows#dejar'
-  resources :referentials
+
   get 'referential/edit/:id'=>'referentials#edit'
   put 'referential/update'=> 'referentials#update'
-  resources :groups
-  get 'grupos/mis_grupos'=>'groups#index'
+
+  get '/grupos/mis_grupos'=>'groups#index'
   post 'nuevo/grupo'=> 'groups#create'
 
 
@@ -66,6 +57,19 @@ Rails.application.routes.draw do
   get '/oferta/nueva' => 'posts#offer'
   get 'resultados/busqueda' =>'posts#oferta'
 
+  resources :posts
+  resources :educations
+  resources :referentials
+  resources :follows
+  resources :languages
+  resources :courses
+  resources :memberships
+  resources :knowledges
+  resources :publications
+  resources :merits
+  resources :experiences
+
+  resources :groups
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

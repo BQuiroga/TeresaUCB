@@ -45,6 +45,10 @@ class User < ActiveRecord::Base
   def contact_name
     self.company_information.contact_name
   end
+  def is_in_this_group(grupo)
+    mis_grupos=self.group_managers
+    mis_grupos.where(group_id:grupo.id)
+  end
   def suggested_publication(post)
     post
   end

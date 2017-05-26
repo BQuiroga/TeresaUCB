@@ -7,7 +7,15 @@
   <% @groups.each do |group| %>
     <li class="list-group-item">
       <div>
-        <h4>  <b><%=group.name%>&emsp;</b><button class="btn btn-warning btn-sm pull-right"></button></h4>
+        <h4>  <b><%=group.name%>&emsp;</b>
+          <button class="btn btn-warning btn-sm pull-right">
+            <%if current_user.is_in_this_group(group)%>
+                Salir
+            <%else%>
+                Unirme
+            <%end%>
+          </button>
+        </h4>
         <%=group.description%>&nbsp;
         <%=group.members%>
       </div>
@@ -18,7 +26,7 @@
  </div>
  </div>
  <div class="panel panel-footer well">
- <%= form_for :education, url: '/nuevo/grupo' do |f| %>
+ <%= form_for :group, url: '/nuevo/grupo' do |f| %>
    <div  class="field col col-xs-3">
      <%= f.label :nombre_del_grupo %>:
      <%= f.text_field :name%>
