@@ -44,7 +44,12 @@
   <p class="navbar-text pull-left"><b>Bolsa de Trabajo</b></p>
 <p class="navbar-text pull-right">
 <% if user_signed_in? %>
+  
   <%= link_to 'Perfil', '/users/profile', :class => 'navbar-link' %>&emsp;
+  <%= form_tag(recipes_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Recipes" %>
+    <%= submit_tag "Search", :name => nil %>
+  <% end %>
   <%if !current_user.is_company?%>
   <%= link_to 'Editar CV', '/users/curriculum/edit', :class => 'navbar-link' %>&emsp;
   <%= link_to 'Curriculum', '/mycurriculum', :class => 'navbar-link' %>&emsp;
@@ -54,6 +59,7 @@
   <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %>&emsp;
   <%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
   <p class="navbar-text pull-left">Has iniciado sesion como <strong><%= current_user.email %></strong></p>
+
 <% else %>
   <%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link'  %> |
   <%= link_to "Iniciar Sesion", new_user_session_path, :class => 'navbar-link'  %>
