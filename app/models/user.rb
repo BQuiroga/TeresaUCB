@@ -1,7 +1,14 @@
 class User < ActiveRecord::Base
   rolify
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+   # :confirmable, :lockable, :timeoutable and :omniauthable
+
+  has_attached_file :avatar, styles: {
+    thumb: '100x100>',
+    square: '200x200#',
+    medium: '300x300>'
+  }
+
   has_many :posts
   has_many :group_managers
   has_one :personal_information
@@ -11,13 +18,16 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :password, format:{ with: /\A(?=.*[a-z])(?=.*[A-Z])./, message: "debe contener por lo menos una mayuscula, una minuscula y un numero"}
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 	after_create :send_admin_mail
   after_create :assign_default_role
   after_create :create_dependencies
   after_create :capit
+
   def send_admin_mail
-    UserMailer.welcome_email(self).deliver_now!
+    # UserMailer.welcome_email(self).deliver_now!
   end
+  
   def is_company?
     has_role? :company
   end

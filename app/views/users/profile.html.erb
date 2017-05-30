@@ -11,10 +11,15 @@
 </div>
 	<div id="container-avatar">
 	  <div class="hovereffect">
-	    <%= image_tag ("missing.png")%>
+      <% if @user.avatar %>
+        <%= image_tag @user.avatar.url(:square) %>
+      <%else%> 
+         <%= image_tag ("missing.png")%>
+      <%end%>
 	        <div class="overlay">
 	          <h2>Actualizar foto de perfil</h2>
 	              <label ><span class="glyphicon glyphicon-camera"></span></label>
+          <%= f.file_field :avatar %> 
 	        </div>
 	  </div>
 	</div>

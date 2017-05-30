@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 	end
 
 	def search_params
-    	params.require(:user).permit(:name,:last_name)
+    	params.require(:user).permit(:name, :avatar, :last_name)
   	end
 
 end

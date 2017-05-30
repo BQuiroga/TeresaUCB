@@ -37,7 +37,7 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
 config.paperclip_defaults = { 
-    storage: :s3
+    storage: :s3,
     s3_credentials: {
       bucket: 'teresaucb',
       access_key_id: 'AKIAJ5VRLUEI2TNNKN6Q',
@@ -45,6 +45,7 @@ config.paperclip_defaults = {
       s3_region: 'US West (Oregon)'
     }
   }
+
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
