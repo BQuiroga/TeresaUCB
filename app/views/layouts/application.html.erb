@@ -49,8 +49,8 @@
     <%= f.text_field :name%>
     <%= f.submit "Buscar" %>
     </div>
-
-  <% end %> 
+  <% end %>
+  <%= link_to 'Perfil', '/users/profile', :class => 'navbar-link' %>&emsp; 
   <%if !current_user.is_company?%>
   <%= link_to 'Editar CV', '/users/curriculum/edit', :class => 'navbar-link' %>&emsp;
   <%= link_to 'Curriculum', '/mycurriculum', :class => 'navbar-link' %>&emsp;
