@@ -14,4 +14,21 @@ class UsersController < ApplicationController
 		@posts=@posts.uniq
 
 	end
+	def search
+		@users=[]
+		@busqueda_param=search_params[:name]
+		@busqueda_param=@busqueda_param.split(' ')
+		@busqueda_param.each do |criterio|
+  			@user = User.where(name: criterio)
+  			@users = @users+ @user
+  			@user = User.where(last_name: criterio)
+  			@users=@users+@user
+  		end
+  		@users=@users.uniq
+	end
+
+	def search_params
+    	params.require(:user).permit(:name,:last_name)
+  	end
+
 end

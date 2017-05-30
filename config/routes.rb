@@ -56,7 +56,7 @@ Rails.application.routes.draw do
   get 'curriculums/:id'=>'resumes#external_show'
   get '/oferta/nueva' => 'posts#offer'
   get 'resultados/busqueda' =>'posts#oferta'
-
+  post '/busqueda/usuarios' => 'users#search'
   resources :posts
   resources :educations
   resources :referentials
@@ -118,4 +118,8 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  resources :users do
+    post 'search',  :on => :collection
+  end
 end
