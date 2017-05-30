@@ -36,6 +36,15 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+config.paperclip_defaults = { 
+    storage: :s3
+    s3_credentials: {
+      bucket: 'teresaucb',
+      access_key_id: 'AKIAJ5VRLUEI2TNNKN6Q',
+      secret_access_key: 'H/msehfkFK/pUUDmmLidscqGyBeRLHQhQX+ylqc',
+      s3_region: 'US West (Oregon)'
+    }
+  }
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
@@ -51,5 +60,6 @@ Rails.application.configure do
    :password => "bolsadetrabajo123",
    :enable_starttls_auto => true
 }
+
 
 end
