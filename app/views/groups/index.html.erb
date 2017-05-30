@@ -10,7 +10,7 @@
         <h4>  <b><%=group.name%>&emsp;</b>
           <button class="btn btn-warning btn-sm pull-right">
             <%if current_user.is_in_this_group(group)%>
-                Salir
+                <%=link_to "Salir", {controller: "groups",action:"abandonar",id:group.id}%>
             <%else%>
                 Unirme
             <%end%>
