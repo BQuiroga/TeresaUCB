@@ -12,11 +12,12 @@ default: &default
   pool: 5
   host: localhost
   database: teresa2_db
-  # username: teresa2_admin
-  # password: admin123
 
-  username: postgres
-  password: root
+  username: teresa2_admin
+  password: admin123
+
+  #username: postgres
+  #password: root
 
 
 development:

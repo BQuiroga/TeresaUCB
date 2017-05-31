@@ -11,15 +11,18 @@
 </div>
 	<div id="container-avatar">
 	  <div class="hovereffect">
-      <% if @user.avatar %>
-        <%= image_tag @user.avatar.url(:square) %>
+      <% if @current_user.avatar %>
+        <%= image_tag @current_user.avatar.url(:square) %>
       <%else%> 
          <%= image_tag ("missing.png")%>
       <%end%>
 	        <div class="overlay">
 	          <h2>Actualizar foto de perfil</h2>
-	              <label ><span class="glyphicon glyphicon-camera"></span></label>
-          <%= f.file_field :avatar %> 
+              <div class="field">
+                <%= file_field(:user,:avatar) %>
+              </div>
+	              <label data-toggle="modal" data-target="#myModal" ><span class="glyphicon glyphicon-camera"></span></label>
+          
 	        </div>
 	  </div>
 	</div>
@@ -99,4 +102,37 @@
 
 </div>
 </div>
+</div>
+
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+
+
+        <%= form_for @current_user do |f| %>
+          <div class="field">
+            <%= f.label :avatar %><br>
+            <%= f.file_field :avatar %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        <% end %>
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
