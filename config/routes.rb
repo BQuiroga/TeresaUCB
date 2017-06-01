@@ -31,13 +31,13 @@ Rails.application.routes.draw do
   put 'language/update'=> 'languages#update'
   post 'follows/new'=> 'follows#create'
   get  'follows/:id/delete'=> 'follows#dejar'
-
   get 'referential/edit/:id'=>'referentials#edit'
   put 'referential/update'=> 'referentials#update'
 
   get '/grupos/mis_grupos'=>'groups#index'
   post 'nuevo/grupo'=> 'groups#create'
-
+  get 'users/dejarAmigos'=>'friendships#notmine'
+  get 'users/nuevoAmigo'=>'friendships#friend'
 
   get 'users/curriculum/edit' =>'resumes#edit'
   post 'company/update'=>'company_informations#update'

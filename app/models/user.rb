@@ -59,9 +59,61 @@ class User < ActiveRecord::Base
       self.add_role(:user) if self.roles.blank?
     end
   end
+  def join_group(group)
+    @g=GroupManager.new
+    @g.group_id=group.id
+    @group.user_id=self.id
+    @group.save
+  end
+  def quit_group(group)
+    @g=GroupManager.where(group_id:group.id,user_id:self.id)
+    @g.first.delete
+  end
+  def my_friends_groups
+    @friends_groups=[]
+    all_my_friends.each do |friend|
+      @friend_group=friend.my_group
+      @friends_groups=@friends_groups+@friend_group
+    end
+    @friends_groups
+  end
+  def my_friend(other_id)
+    Friendship.where(one:id,two:other_id)
+  end
+  def my_groups
+    groups=[]
+    belong=self.group_managers
+    belong.each do |registration|
+      groups=groups+[registration.group]
+    end
+    groups
+  end
+  def his_friend(other_id)
+    Friendship.where(one:other_id,two:id)
+  end
+  def all_my_friends
+    mine=Friendship.where(one:id)
+    friends=[]
+    mine.each do |friend|
+      mine_friend=User.find(friend.two)
+      friends=friends+[mine_friend]
+    end
+    their=Friendship.where(two:id)
+    their.each do |friend|
+      their_friend=User.find(friend.one)
+      friends=friends=[their_friend]
+    end
+    friends.uniq
+  end
+  def my_friends_posts
+    @posts=[]
+    all_my_friends.each do |friend|
+      @post=Post.where(user_id:friend.id)
+      @posts=@posts+@post
+    end
+    @posts
+  end
   def is_my_friend(other_id)
-    my_friend = Friendship.where(one:id,two:other_id)
-    his_friend = Friendship.where(one:other_id,two:id)
-    my_friend or his_friend
+    my_friend(other_id).size>0 or his_friend(other_id).size>0
   end
 end

@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 			@posts2= Post.where(user_id: searching_company.searched_by,requiring:true)
 			@posts =@posts +@posts2
 		end
+		@posts=@posts+current_user.my_friends_posts
 		@posts=@posts.uniq
 
 	end

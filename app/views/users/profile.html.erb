@@ -24,7 +24,7 @@
     		<div class="contenedor-enlaces">
      		<%= link_to '<span class="glyphicon glyphicon-briefcase"></span> Ver Curriculum'.html_safe,  '/mycurriculum',class: 'enlaces-perfil'%>
       	<%= link_to '<span class="glyphicon glyphicon-pencil"></span> Editar Curriculum'.html_safe,'/users/curriculum/edit' ,class: 'enlaces-perfil'%>
-        <%= link_to '<span class="glyphicon glyphicon-briefcase"></span> Mis Grupos'.html_safe, '/grupos/mis_grupos', class: 'enlaces-perfil'%> 
+        <%= link_to '<span class="glyphicon glyphicon-briefcase"></span> Mis Grupos'.html_safe, '/grupos/mis_grupos', class: 'enlaces-perfil'%>
       		<%if current_user.is_company?%>
       	<%= link_to '<span class="glyphicon glyphicon-pencil"></span> Crear oferta'.html_safe,'/oferta/nueva' ,class: 'enlaces-perfil'%>
       	<%end%>
@@ -73,6 +73,7 @@
       	<button type="button" class="btn btn-warning" aria-label="Left Align">
        	 <span class=" glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
       	</button>
+
         <%if post.user_id!=current_user.id and (Follow.where(follower:current_user.id,followed:post.user.id).size==0) %>
           <%= form_for :follow, url: new_follow_path do |f| %>
             <%=f.hidden_field :follower, :value => current_user.id%>
@@ -87,6 +88,16 @@
             <%=link_to "Dejar de seguir", {controller: "follows", action: "dejar", id: Follow.where(follower:current_user.id,followed:post.user.id).first.id}%>
           </button>
           <%end%>
+        <%end%>
+
+        <%if (!current_user.is_my_friend(post.user.id))%>
+            <button type="button submit" class="btn btn-default" aria-label="Left Align">
+              <%=link_to "Agregar a mis amigos", {controller: "friendships", action: "friend", id: post.user.id}%>
+            </button>
+        <%else%>
+          <button type="button submit" class="btn btn-danger" aria-label="Left Align">
+            <%=link_to "Dejar de ser amigos", {controller: "friendships", action: "notmine", id: post.user.id}%>
+          </button>
         <%end%>
       </div>
 	<% end %>
