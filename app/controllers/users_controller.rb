@@ -12,8 +12,8 @@ class UsersController < ApplicationController
 			@posts =@posts +@posts2
 		end
 		@posts=@posts.uniq
-
 	end
+
 	def search
 		@users=[]
 		@busqueda_param=search_params[:name]
@@ -26,8 +26,18 @@ class UsersController < ApplicationController
   		end
   		@users=@users.uniq
 	end
-
+ 	def update
+		current_user.update(profile_params)
+    	redirect_to '/users/profile'
+    end
 	def search_params
     	params.require(:user).permit(:name, :avatar, :last_name)
   	end
+
+  	def profile_params
+    	params.permit(:avatar)
+  	end
+
+
+
 end
