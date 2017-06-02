@@ -15,13 +15,24 @@ class GroupsController < ApplicationController
     end
     redirect_to '/grupos/mis_grupos'
   end
+  def unirme
+    @group_id=params[:id]
+    GroupManager.create(group_id:@group_id,user_id:current_user.id)
+    redirect_to '/grupos/mis_grupos'
+  end
+  def all
+    @grupos=Group.all
+  end
   def abandonar
     @group=GroupManager.where(group_id:params[:id],user_id:current_user.id)
     @group=@group.first
     @group.destroy
+    if current_user.is_my_group(params[:id])
+      Group.find(params[:id]).destroy
+    end
     redirect_to '/grupos/mis_grupos'
   end
   def group_params
-    params.require(:group).permit(:name,:description)
+    params.require(:group).permit(:name,:description,:user_id)
   end
 end

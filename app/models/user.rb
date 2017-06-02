@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :posts
   has_many :group_managers
+  has_many :groups
   has_one :personal_information
   has_one :resume
   has_one :company_information
@@ -47,7 +48,7 @@ class User < ActiveRecord::Base
   end
   def is_in_this_group(grupo)
     mis_grupos=self.group_managers
-    mis_grupos.where(group_id:grupo.id)
+    mis_grupos.where(group_id:grupo.id).size>0
   end
   def suggested_publication(post)
     post
@@ -113,7 +114,13 @@ class User < ActiveRecord::Base
     end
     @posts
   end
+  def not_me(other_id)
+    id!=other_id
+  end
   def is_my_friend(other_id)
     my_friend(other_id).size>0 or his_friend(other_id).size>0
+  end
+  def is_my_group(group_id)
+    Group.where(id:group_id,user_id:id).size>0
   end
 end

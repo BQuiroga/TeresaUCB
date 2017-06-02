@@ -58,6 +58,8 @@ Rails.application.routes.draw do
   get 'resultados/busqueda' =>'posts#oferta'
   post '/busqueda/usuarios' => 'users#search'
   get 'grupos/:id/abandonar'=> 'groups#abandonar'
+  get 'grupos/todos'=>'groups#all'
+  get 'grupos/:id/unirme'=>'groups#unirme'
   resources :posts
   resources :educations
   resources :referentials
