@@ -8,6 +8,11 @@ class GroupsController < ApplicationController
       @groups=@groups+[@group]
     end
   end
+  def show
+    @group=Group.find(params[:id])
+    @creator=User.find(@group.user)
+    @members=@group.my_members
+  end
   def create
     if Group.create(group_params)
       @grupo=Group.last
@@ -22,6 +27,12 @@ class GroupsController < ApplicationController
   end
   def all
     @grupos=Group.all
+  end
+  def botar
+    @group=GroupManager.where(group_id:params[:id],user_id:params[:user_id])
+    @group=@group.first
+    @group.destroy
+    redirect_to '/grupos/mis_grupos'
   end
   def abandonar
     @group=GroupManager.where(group_id:params[:id],user_id:current_user.id)

@@ -8,6 +8,10 @@
     <li class="list-group-item">
       <div>
         <h4>  <b><%=group.name%>&emsp;</b>
+          <a href="/grupos/<%=group.id%>/miembros">
+            <button class="btn btn-default btn-sm pull-right">Ver Miembros</button>
+          </a>
+
           <button class="btn btn-warning btn-sm pull-right">
                 <%if current_user.is_my_group(group.id)%>
                   <%=link_to "Borrar grupo", {controller: "groups",action:"abandonar",id:group.id}%>
