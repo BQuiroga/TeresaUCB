@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 		end
 		@posts=@posts+current_user.my_friends_posts
 		@posts=@posts.uniq
-
+		
 	end
 	def search
 		@users=[]

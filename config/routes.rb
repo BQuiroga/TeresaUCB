@@ -60,6 +60,9 @@ Rails.application.routes.draw do
   get 'grupos/:id/abandonar'=> 'groups#abandonar'
   get 'grupos/todos'=>'groups#all'
   get 'grupos/:id/unirme'=>'groups#unirme'
+  get 'mis_notificaciones'=>'notifications#index'
+  put 'mis_notificaciones/crear'=>'notifications#create'
+  get 'mis_notificaciones/:id'=>'notifications#show'
   resources :posts
   resources :educations
   resources :referentials

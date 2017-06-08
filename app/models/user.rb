@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_one :personal_information
   has_one :resume
   has_one :company_information
+  has_many :notifications
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -122,5 +123,8 @@ class User < ActiveRecord::Base
   end
   def is_my_group(group_id)
     Group.where(id:group_id,user_id:id).size>0
+  end
+  def unreaded_notifications
+    self.notifications.where(readed:false)
   end
 end
