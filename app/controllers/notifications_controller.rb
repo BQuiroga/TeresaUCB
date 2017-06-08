@@ -2,19 +2,32 @@ class NotificationsController < ApplicationController
 	def index
 		@notifications=current_user.notifications
 	end
+	def new
+		@post=Post.find(params[:id])
+	end
 	def create
-		notification.create(notification_params)
+		Notification.create(notification_params)
+		redirect_to '/users/profile'
 	end
 	def show
 		@notification=Notification.find(params[:id])
+		@notification.readed=true
+		@notification.save
 		@sender=@notification.user_sender
 	end
 	def read
 		@notification=Notification.find(params[:id])
 		@notification.readed=true
-		@notification.update
+		@notification.save
+		redirect_to '/mis_notificaciones'
+	end
+	def unread
+		@notification=Notification.find(params[:id])
+		@notification.readed=false
+		@notification.save
+		redirect_to '/mis_notificaciones'
 	end
 	def notification_params
-		params.require(:notification).permit(:id,:title,:user_id,:description,:sender,:post_id)
+		params.require(:notification).permit(:id,:title,:user_id,:description,:sender,:post_id,:readed)
 	end
 end

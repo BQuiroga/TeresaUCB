@@ -7,13 +7,23 @@
   <% @notifications.each do |notification| %>
     <li class="list-group-item">
       <div>
-        <h4>  <b><%=notification.title%> de <%=notification.user_sender.name%></b>
+        <h4> <a href="/mis_notificaciones/<%=notification.id%>"> <b><%=notification.title%> de <%=notification.user_sender.name%></b></a>
           <a href="/mis_notificaciones/<%=notification.id%>">
             <button class="btn btn-default btn-sm pull-right">Mostrar Completo</button>
           </a>
-
-          <button class="btn btn-warning btn-sm pull-right">
-              
+            <%if !notification.readed%>
+               <a href="/mis_notificaciones/read/<%=notification.id%>">
+                 <button class="btn btn-warning btn-sm pull-right">
+                   Marcar como leido
+                </button>
+                </a>
+              <%else%>
+                  <a href="/mis_notificaciones/unread/<%=notification.id%>">
+                 <button class="btn btn-warning btn-sm pull-right">
+                   Marcar como no leido
+                </button>
+                </a>
+              <%end%>
           </button>
         </h4>
         <%=notification.description%>&nbsp;
@@ -24,27 +34,4 @@
    <%end%>
  </ul>
  </div>
- </div>
- <div class="panel panel-footer well">
- <%= form_for :group, url: '/nuevo/grupo' do |f| %>
-   <div  class="field col col-xs-3">
-     <%= f.label :nombre_del_grupo %>:
-     <%= f.text_field :name%>
-   </div>
-
-     <div class="field col-xs-3">
-     <%= f.label :descripcion_del_grupo %>:
-     <%= f.text_field :description%>
-     <%= f.hidden_field :user_id, :value => current_user.id%>
-   </div>
-   <div class="actions col-xs-3">
-     <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
-   </div>
-   <div class="container">
-     <button class="btn btn-default">
-       <%=link_to "Todos los grupos",'/grupos/todos' %>
-    </button>
-   </div>
-   <br><br><br><br><br>
- <% end %>
  </div>

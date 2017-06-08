@@ -1,0 +1,27 @@
+  <br><br><br>
+   <div class="panel panel-footer well">
+  <%= form_for :notification, url: '/mis_notificaciones/crear' do |f| %>
+  <div class="row">
+    <div class="col-md-12">
+      <%=f.label :motivo%>
+      <%=f.text_field :title%>
+      <br><br>
+      <%= f.text_area(:description, class: "form-control", placeholder: 'Explicanos un poco', rows: 4) %>
+      <%=f.hidden_field :user_id, :value => @post.user.id%>
+      <%=f.hidden_field :post_id,:value=>@post.id%>
+      <%=f.hidden_field :sender,:value =>current_user.id%>
+      <%=f.hidden_field :readed, :value=>false%>
+    </div>
+  </div>
+  <div class="row barra-enviar">
+    <div class="col-md-9 col-sm-8 col-xs-4">
+
+    </div>
+    <div class="col-md-3  col-sm-4  col-xs-8 cont-btn-publicar">
+      <button type="submit" class="btn btn-primary">
+        Publicar <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+  <% end %>
+  </div>

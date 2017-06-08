@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   post 'nuevo/grupo'=> 'groups#create'
   get 'users/dejarAmigos'=>'friendships#notmine'
   get 'users/nuevoAmigo'=>'friendships#friend'
+  get '/users/Amigo/:id'=>'friendships#friend'
   get 'grupos/botar/:id'=>'groups#botar'
   get 'users/curriculum/edit' =>'resumes#edit'
   post 'company/update'=>'company_informations#update'
@@ -61,8 +62,11 @@ Rails.application.routes.draw do
   get 'grupos/todos'=>'groups#all'
   get 'grupos/:id/unirme'=>'groups#unirme'
   get 'mis_notificaciones'=>'notifications#index'
-  put 'mis_notificaciones/crear'=>'notifications#create'
+  post 'mis_notificaciones/crear'=>'notifications#create'
   get 'mis_notificaciones/:id'=>'notifications#show'
+  get 'mis_notificaciones/read/:id'=>'notifications#read'
+  get 'mis_notificaciones/unread/:id'=>'notifications#unread'
+  get 'mis_notificaciones/new/:id'=>'notifications#new'
   resources :posts
   resources :educations
   resources :referentials
