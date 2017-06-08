@@ -9,4 +9,7 @@ class Notification < ActiveRecord::Base
   def no_self
   	user_id!=sender
   end
+  def send_application_email
+  	UserMailer.apply_job(self).deliver_now!
+  end
 end

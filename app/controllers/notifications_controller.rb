@@ -6,7 +6,9 @@ class NotificationsController < ApplicationController
 		@post=Post.find(params[:id])
 	end
 	def create
-		Notification.create(notification_params)
+		@notification=Notification.new(notification_params)
+		@notification.send_application_email
+		@notification.save
 		redirect_to '/users/profile'
 	end
 	def show
