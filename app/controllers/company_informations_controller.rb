@@ -10,9 +10,9 @@ class CompanyInformationsController < ApplicationController
     @company.update(company_info_params_for_edit)
     redirect_to '/users/edit'
   end
-  def company_info_params
-    params.require(:pompany_information).permit(:address,:user_id,:phone,:contact_email,:description,:nit)
-  end
+  # def company_info_params
+  #   params.require(:pompany_information).permit(:address,:user_id,:phone,:contact_email,:description,:nit)
+  # end
   def company_info_params_for_edit
     params.require(:company_information).permit(:id,:address,:phone,:contact_email,:nit,:description,:contact_name)
   end

@@ -4,15 +4,15 @@ class Searched < ActiveRecord::Base
   def no_self
     searched_by!=found
   end
-  def no_repeat
-    buscador=self.searched_by
-    buscado=self.found
-    @exist=Searched.where(searched_by:buscador,found:buscado)
-    !@exist
-  end
-  def clean
-    Searched.delete_all
-  end
+  # def no_repeat
+  #   buscador=self.searched_by
+  #   buscado=self.found
+  #   @exist=Searched.where(searched_by:buscador,found:buscado)
+  #   !@exist
+  # end
+  # def clean
+  #   Searched.delete_all
+  # end
   def user
     resume=self.resume
     user=resume.users

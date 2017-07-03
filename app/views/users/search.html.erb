@@ -10,25 +10,17 @@
       <h4><%= user.name%>   <%=user.last_name%></h4>
       <strong>Email: </strong><%= user.email %><br>
           <a href="/curriculums/<%=user.id%>"><button class="btn btn-default">Ver Perfil</button></a>
-          <%if true%>
-          <%end%>
-        
         <% if !current_user.is_company? %>
           <a href="/users/Amigo/<%=user.id%>">
           <button type="button submit" class="btn btn-default" aria-label="Right Align"> Agregar a mis amigos</button>
           </a>
         <% end %>
-        
        </div>
         </li>
   <% end %>
   <%end %>
 
-    
+
  </ul>
  </div>
  </div>
-
-        
-          
-     

@@ -57,7 +57,7 @@
     <%if (@posts)%>
     	<% @posts.each do |post| %>
         <div class="container-body" style="background-color: #D8D8D8">
-          <h5><%= post.user.name %></h5>
+          <h5><%= post.user_name %></h5>
           <p class="format-text">
             <% post.body.split("\n").each do |line|  %>
               <%=line%><br>
@@ -102,6 +102,6 @@
             <%end%>
           </div>
     	 <%end%>
-      <%end%> 
+      <%end%>
     </div>
   </div>

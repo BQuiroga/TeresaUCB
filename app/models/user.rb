@@ -23,9 +23,6 @@ class User < ActiveRecord::Base
   def is_company?
     has_role? :company
   end
-  def is_admin?
-    has_role? :admin
-  end
   def capit
     self.name.capitalize!
     self.last_name.capitalize!
@@ -38,9 +35,6 @@ class User < ActiveRecord::Base
       PersonalInformation.create(:user_id => self.id)
     end
   end
-  def follows
-    Follow.where(follower: self.id)
-  end
   def phone
     self.company_information.phone
   end
@@ -51,9 +45,6 @@ class User < ActiveRecord::Base
     mis_grupos=self.group_managers
     mis_grupos.where(group_id:grupo.id).size>0
   end
-  def suggested_publication(post)
-    post
-  end
   def assign_default_role
     if company
       self.add_role(:company) if self.roles.blank?
@@ -61,34 +52,39 @@ class User < ActiveRecord::Base
       self.add_role(:user) if self.roles.blank?
     end
   end
-  def join_group(group)
-    @g=GroupManager.new
-    @g.group_id=group.id
-    @group.user_id=self.id
-    @group.save
-  end
-  def quit_group(group)
-    @g=GroupManager.where(group_id:group.id,user_id:self.id)
-    @g.first.delete
-  end
-  def my_friends_groups
-    @friends_groups=[]
-    all_my_friends.each do |friend|
-      @friend_group=friend.my_group
-      @friends_groups=@friends_groups+@friend_group
-    end
-    @friends_groups
-  end
+
   def my_friend(other_id)
     Friendship.where(one:id,two:other_id)
   end
-  def my_groups
-    groups=[]
-    belong=self.group_managers
-    belong.each do |registration|
-      groups=groups+[registration.group]
+  def follows
+    Follow.where(follower: id)
+  end
+  def follows_posts
+    posts=[]
+    follows.each do |follow|
+      post=Post.where(user_id: follow.followed)
+      posts=posts+post
     end
-    groups
+    posts
+  end
+  def searched_people_posts
+    posts=[]
+    searched= Searched.where(found: id)
+		searched.each do |searching_company|
+			post= Post.where(user_id: searching_company.searched_by,requiring:true)
+			posts =posts +post
+		end
+    posts
+  end
+  def search(param)
+    users=[]
+    param.each do |criterio|
+        user = User.where(name: criterio)
+        users = users+ user
+        user = User.where(last_name: criterio)
+        users=users+user
+    end
+    users
   end
   def his_friend(other_id)
     Friendship.where(one:other_id,two:id)

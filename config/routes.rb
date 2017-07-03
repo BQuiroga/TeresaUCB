@@ -67,19 +67,7 @@ Rails.application.routes.draw do
   get 'mis_notificaciones/read/:id'=>'notifications#read'
   get 'mis_notificaciones/unread/:id'=>'notifications#unread'
   get 'mis_notificaciones/new/:id'=>'notifications#new'
-  resources :posts
-  resources :educations
-  resources :referentials
-  resources :follows
-  resources :languages
-  resources :courses
-  resources :memberships
-  resources :knowledges
-  resources :publications
-  resources :merits
-  resources :experiences
 
-  resources :groups
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
