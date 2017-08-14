@@ -40,7 +40,7 @@
 </head>
 <body >
 
-<div class="navbar navbar-inverse navbar-fixed-top collapse navbar-collapse">
+<div class="navbar navbar-inverse navbar-fixed-top collapse">
   <p class="navbar-text pull-left"><b>Bolsa de Trabajo</b></p>
 <p class="navbar-text pull-right">
 <% if user_signed_in? %>
@@ -63,7 +63,7 @@
   <%= link_to 'Mis grupos', '/grupos/mis_grupos', :class => 'navbar-link' %>&emsp;
   <%= link_to 'Notificaciones', '/mis_notificaciones', :class => 'navbar-link' %><span style="color:rgb(255, 255, 255);"><%=current_user.unreaded_notifications.size%>&emsp;</span>
   <%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-  <p class="navbar-text pull-left">Has iniciado sesion como <strong><%= current_user.email %></strong></p>
+  <p class="navbar-text pull-left ">Has iniciado sesion como <strong><%= current_user.email %></strong></p>
 
 <% else %>
   <%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link'  %> |

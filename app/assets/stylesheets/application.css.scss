@@ -802,6 +802,12 @@
    margin-bottom: 3px;
    border-radius: 3px;
  }
+ .pull-right-g {
+  float: right !important;
+}
+.estado{
+  color: #F2F2F2;
+}
  .enlaces-perfil:hover{
    text-decoration: none;
    background-color: rgb(58, 83, 155);
@@ -816,7 +822,7 @@
  }
  .contenedor-enlaces{
    background-color: white;
-   padding: 15px;
+   padding: 10px;
    border-radius: 8px;
  }
  .thumbnail {
