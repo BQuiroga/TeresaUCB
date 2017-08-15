@@ -1,3 +1,4 @@
+<div class="container">
 <h2>Editar Perfil </h2>
 <%if (current_user.is_company?)%>
 <h3>Informacion Empresarial</h3>
@@ -107,3 +108,5 @@
 <h3>Eliminar mi cuenta</h3>
 
 <p>Ya no quieres ser parte de nuestra red? <%= button_to "Eliminar mi cuenta", registration_path(resource_name), data: { confirm: "Estas seguro?" }, method: :delete %></p>
+</div>
+<br>

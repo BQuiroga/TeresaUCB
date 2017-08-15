@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
 	def profile
-		@grupos=Group.all
+		@user=current_user
+		@belongs=@user.group_managers
+		@groups=[]
+		@belongs.each do |my_group|
+			@group=my_group.group
+			@groups=@groups+[@group]
+		end
 		@posts= current_user.posts
 		@posts=@posts+current_user.follows_posts+current_user.searched_people_posts+current_user.my_friends_posts
 		@posts=@posts.uniq

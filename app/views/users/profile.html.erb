@@ -18,9 +18,9 @@
 	        </div>
 	  </div>
 	</div>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row ">
-		 <div class="col-md-3">
+		 <div class="col-md-2">
     		<div class="contenedor-enlaces">
      		<%= link_to '<span class="glyphicon glyphicon-briefcase"></span> Ver Curriculum'.html_safe,  '/mycurriculum',class: 'enlaces-perfil'%>
       	<%= link_to '<span class="glyphicon glyphicon-pencil"></span> Editar Curriculum'.html_safe,'/users/curriculum/edit' ,class: 'enlaces-perfil'%>
@@ -106,13 +106,13 @@
       <%end%>
     </div>
 
-<div class="pull-right">
+<div class="pull-right col-md-4">
   <div class="panel panel-default">
-    <div class="panel-heading"><div class="panel-title"><h3>Todos los Grupos </h3></div></div>
+    <div class="panel-heading"><div class="panel-title"><h3>Mis Grupos </h3></div></div>
     <div class="panel-body">
-    <% if @grupos.size >0%>
+    <% if @groups.size >0%>
     <ul class="list-group">
-    <% @grupos.each do |group| %>
+    <% @groups.each do |group| %>
       <li class="list-group-item">
         <div>
           <h4>  <b><%=group.name%>&emsp;</b>
@@ -121,15 +121,15 @@
             </a>
 
             <button class="btn btn-warning btn-sm pull-right">
-              <%if current_user.is_my_group(group.id)%>
-                <%=link_to "Borrar grupo", {controller: "groups",action:"abandonar",id:group.id}%>
-              <%else%>
-                <%if current_user.is_in_this_group(group)%>
-                  <%=link_to "Salir", {controller: "groups",action:"abandonar",id:group.id}%>
-                <%else%>
-                  <%=link_to "Unirme",{controller: "groups",action:"unirme",id:group.id}%>
-                <%end%>
-              <%end%>
+                  <%if current_user.is_my_group(group.id)%>
+                    <%=link_to "Borrar grupo", {controller: "groups",action:"abandonar",id:group.id}%>
+                  <%else%>
+                    <%if current_user.is_in_this_group(group)%>
+                      <%=link_to "Salir", {controller: "groups",action:"abandonar",id:group.id}%>
+                    <%else%>
+                      <%=link_to "Unirme",{ controller: "groups",action:"unirme",id:group.id}%>
+                    <%end%>
+                  <%end%>
             </button>
           </h4>
           <%=group.description%>&nbsp;
@@ -141,7 +141,6 @@
    </ul>
    </div>
    </div>
-</div>
   </div>
 
 
