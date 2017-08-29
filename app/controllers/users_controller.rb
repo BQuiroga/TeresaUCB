@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 	layout :resolve_layout
 	def resolve_layout
-		"application"
+		if index
+			"inicio"
+		else
+			"application"
+		end	
 	end
 	def profile
 		@user=current_user
@@ -20,6 +24,19 @@ class UsersController < ApplicationController
 		@busqueda_param=@busqueda_param.split(' ')
 		@users=current_user.search(@busqueda_param)
   	@users=@users.uniq
+	end
+	def bloquear
+		@user=User.find(params[:id])
+		@user.lock_access!({send_instructions: false})
+		redirect_to '/users'
+	end
+	def desbloquear
+		@user=User.find(params[:id])
+		@user.unlock_access!
+		redirect_to '/users'
+	end
+	def index
+		@users=User.all
 	end
 
 	def search_params

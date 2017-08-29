@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_one :company_information
   has_many :notifications
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,:lockable
 
   validates :password, format:{ with: /\A(?=.*[a-z])(?=.*[A-Z])./, message: "debe contener por lo menos una mayuscula, una minuscula y un numero"}
 	after_create :send_admin_mail
@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
   end
   def is_company?
     has_role? :company
+  end
+  def is_administrator
+    has_role? :administrator
   end
   def capit
     self.name.capitalize!

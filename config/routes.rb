@@ -67,6 +67,9 @@ Rails.application.routes.draw do
   get 'mis_notificaciones/read/:id'=>'notifications#read'
   get 'mis_notificaciones/unread/:id'=>'notifications#unread'
   get 'mis_notificaciones/new/:id'=>'notifications#new'
+  get '/users'=>'users#index'
+  get 'user/:id/bloquear'=>'users#bloquear'
+  get 'user/:id/desbloquear'=>'users#desbloquear'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

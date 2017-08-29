@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><div class="panel-title"><h3>Usuarios registrados </h3></div></div>
+  <div class="panel-body">
+  <% if @users.size >0%>
+    <ul class="list-group">
+      <% @users.each do |usuario| %>
+      <li class="list-group-item">
+        <div>
+          <h4>  <b><%=usuario.name%>&nbsp;<%=usuario.last_name %></b>
+            <a href="">
+              <button class="btn btn-default btn-sm pull-right">Ver Registro</button>
+            </a>
+            <button class="btn btn-warning btn-sm pull-right">
+              <%if (current_user.not_me(usuario.id) and !usuario.access_locked?)%>
+                <%=link_to "Bloquar usuario", {controller: "users",action:"bloquear",id:usuario.id}%>
+              <%else%>
+                  <%=link_to "Desbloquear", {controller: "users",action:"desbloquear",id:usuario.id}%>
+              <%end%>
+            </button>
+          </h4>&nbsp;
+          <%=usuario.email%>
+        </div>
+      </li>
+      <%end%>
+   <%end%>
+  </ul>
+  </div>
+</div>
