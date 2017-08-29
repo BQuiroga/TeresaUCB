@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+	layout :resolve_layout
+	def resolve_layout
+		"application"
+	end
 	def profile
 		@user=current_user
 		@belongs=@user.group_managers
