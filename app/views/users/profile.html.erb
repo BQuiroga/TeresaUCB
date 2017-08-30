@@ -1,7 +1,7 @@
-<div class="container-fluid" style="padding: 0px">
+<div class="container-fluid" style="padding: 30px">
   <div id="container-cover">
     <div class="hovereffect">
-				<%= image_tag("IMG_12151.jpg"	) %>
+				<%= image_tag("Cochabamba2016.jpg"	) %>
           <div class="overlay">
             <h2>Actualizar foto de portada</h2>
                 <label ><span class="glyphicon glyphicon-camera"></span></label>
@@ -18,9 +18,9 @@
 	        </div>
 	  </div>
 	</div>
-	<div class="container">
-		<div class="row">
-		 <div class="col-md-3">
+	<div class="container-fluid">
+		<div class="row ">
+		 <div class="col-md-2">
     		<div class="contenedor-enlaces">
      		<%= link_to '<span class="glyphicon glyphicon-briefcase"></span> Ver Curriculum'.html_safe,  '/mycurriculum',class: 'enlaces-perfil'%>
       	<%= link_to '<span class="glyphicon glyphicon-pencil"></span> Editar Curriculum'.html_safe,'/users/curriculum/edit' ,class: 'enlaces-perfil'%>
@@ -35,7 +35,7 @@
 	     <%= form_for :post, url: '/posts/new' do |f| %>
 	      <div class="row">
 		      <div class="col-md-12">
-      			<%= f.text_area(:body, class: "form-control", placeholder: 'Como te sientes?', rows: 4) %>
+      			<%= f.text_area(:body, class: "form-control estado", placeholder: 'Como te sientes?', rows: 3,style: 'color: #F2F2F2;') %>
       			<%=f.hidden_field :user_id, :value => current_user.id%>
             <%=f.hidden_field :requiring,:value=>false%>
 		      </div>
@@ -56,7 +56,7 @@
       <br><br>
     <%if (@posts)%>
     	<% @posts.each do |post| %>
-        <div class="container-body" style="background-color: #D8D8D8">
+        <div class="bs-callout bs-callout-danger"style="background-color: #D8D8D8">
           <h5><%= post.user_name %></h5>
           <p class="format-text">
             <% post.body.split("\n").each do |line|  %>
@@ -69,7 +69,7 @@
         	<button type="button" class="btn btn-warning" aria-label="Left Align">
           	<span class=" glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
           </button>
-          
+
           <%if current_user.not_me(post.user.id) and (Follow.where(follower:current_user.id,followed:post.user.id).size==0) and !current_user.is_my_friend(post.user.id)%>
             <%= form_for :follow, url: '/follows/new' do |f| %>
               <%=f.hidden_field :follower, :value => current_user.id%>
@@ -105,4 +105,56 @@
     	 <%end%>
       <%end%>
     </div>
+
+<div class="pull-right col-md-4">
+  <div class="panel panel-default">
+    <div class="panel-heading"><div class="panel-title"><h3>Mis Grupos </h3></div></div>
+    <div class="panel-body">
+    <% if @groups.size >0%>
+    <ul class="list-group">
+    <% @groups.each do |group| %>
+      <li class="list-group-item">
+        <div>
+          <h4>  <b><%=group.name%>&emsp;</b>
+            <a href="/grupos/<%=group.id%>/miembros">
+              <button class="btn btn-default btn-sm pull-right">Ver Miembros</button>
+            </a>
+
+            <button class="btn btn-warning btn-sm pull-right">
+                  <%if current_user.is_my_group(group.id)%>
+                    <%=link_to "Borrar grupo", {controller: "groups",action:"abandonar",id:group.id}%>
+                  <%else%>
+                    <%if current_user.is_in_this_group(group)%>
+                      <%=link_to "Salir", {controller: "groups",action:"abandonar",id:group.id}%>
+                    <%else%>
+                      <%=link_to "Unirme",{ controller: "groups",action:"unirme",id:group.id}%>
+                    <%end%>
+                  <%end%>
+            </button>
+          </h4>
+          <%=group.description%>&nbsp;
+          <%=group.members%>
+        </div>
+      </li>
+        <%end%>
+     <%end%>
+   </ul>
+   </div>
+   </div>
   </div>
+
+
+
+
+
+
+
+
+  <!-- nav bar -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>

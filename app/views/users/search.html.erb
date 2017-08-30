@@ -1,26 +1,28 @@
 
 <div class="panel panel-default">
-  <div class="panel-heading"><div class="panel-title"><h3>Busqueda de <%=@busqueda_param%> </h3></div></div>
+  <div class="panel-heading">
+    <div class="panel-title">
+      <h3>Busqueda de <%=@busqueda_param%> </h3>
+    </div>
+  </div>
   <div class="panel-body">
-<%if @users%>
-  <ul class="list-group">
-  <% @users.each do |user| %>
-     <li class="list-group-item">
-      <div>
-      <h4><%= user.name%>   <%=user.last_name%></h4>
-      <strong>Email: </strong><%= user.email %><br>
-          <a href="/curriculums/<%=user.id%>"><button class="btn btn-default">Ver Perfil</button></a>
-        <% if !current_user.is_company? %>
-          <a href="/users/Amigo/<%=user.id%>">
-          <button type="button submit" class="btn btn-default" aria-label="Right Align"> Agregar a mis amigos</button>
-          </a>
+    <%if @users%>
+      <ul class="list-group">
+        <% @users.each do |user| %>
+          <li class="list-group-item">
+            <div>
+              <h4><%= user.name%>   <%=user.last_name%></h4>
+              <strong>Email: </strong><%= user.email %><br>
+              <a href="/curriculums/<%=user.id%>"><button class="btn btn-default">Ver Perfil</button></a>
+              <% if !current_user.is_company? %>
+                <a href="/users/Amigo/<%=user.id%>">
+                  <button type="button submit" class="btn btn-default" aria-label="Right Align"> Agregar a mis amigos</button>
+                </a>
+              <% end %>
+            </div>
+          </li>
         <% end %>
-       </div>
-        </li>
-  <% end %>
-  <%end %>
-
-
- </ul>
- </div>
+      </ul>
+    <%end %>
+  </div>
  </div>
