@@ -20,11 +20,20 @@
               <%else%>
                   <%=link_to "Desbloquear", {controller: "users",action:"desbloquear",id:usuario.id}%>
               <%end%>
-              
+
             <%end%>
             </button>
           </h4>&nbsp;
-          <%=usuario.email%>
+          <%=usuario.email%>&nbsp;
+          <%if usuario.is_company?%>
+            Empresa
+          <%else%>
+            <%if usuario.is_administrator%>
+              Administrador
+              <%else%>
+              Usuario
+              <%end%>
+          <%end%>
         </div>
       </li>
       <%end%>
