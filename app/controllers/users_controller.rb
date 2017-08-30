@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	def profile
 		@posts= current_user.posts
-		@posts=@posts+current_user.follows_posts+current_user.searched_people_posts+my_friends_posts
+		@posts=@posts+current_user.follows_posts+current_user.searched_people_posts+current_user.my_friends_posts
 		@posts=@posts.uniq
 	end
 	def search

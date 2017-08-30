@@ -32,7 +32,7 @@
   	 </div>
 		 <br><br>
      <div class="col-md-6">
-	     <%= form_for :post, url: new_post_path do |f| %>
+	     <%= form_for :post, url: '/posts/new' do |f| %>
 	      <div class="row">
 		      <div class="col-md-12">
       			<%= f.text_area(:body, class: "form-control", placeholder: 'Como te sientes?', rows: 4) %>
@@ -69,8 +69,9 @@
         	<button type="button" class="btn btn-warning" aria-label="Left Align">
           	<span class=" glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
           </button>
-          <%if current_user.not_me(post.user.id) and (Follow.where(follower:current_user.id,followed:post.user.id).size==0)%>
-            <%= form_for :follow, url: new_follow_path do |f| %>
+          
+          <%if current_user.not_me(post.user.id) and (Follow.where(follower:current_user.id,followed:post.user.id).size==0) and !current_user.is_my_friend(post.user.id)%>
+            <%= form_for :follow, url: '/follows/new' do |f| %>
               <%=f.hidden_field :follower, :value => current_user.id%>
               <%=f.hidden_field :followed, :value => post.user.id%>
         	    <button type="button submit" class="btn btn-default" aria-label="Left Align">
@@ -78,7 +79,7 @@
         	    </button>
             <%end%>
           <%else%>
-            <%if (Follow.where(follower:current_user.id,followed:post.user.id).size!=0)%>
+            <%if (Follow.where(follower:current_user.id,followed:post.user.id).size!=0) %>
               <button type="button submit" class="btn btn-default" aria-label="Left Align">
                 <%=link_to "Dejar de seguir", {controller: "follows", action: "dejar", id: Follow.where(follower.current_user.id,followed:post.user.id).first.id}%>
               </button>
@@ -95,7 +96,7 @@
               <%=link_to "Dejar de ser amigos", {controller: "friendships", action: "notmine", id: post.user.id}%>
             </button>
           <%end%>
-            <%if current_user.not_me(post.user.id) or true%>
+            <%if current_user.not_me(post.user.id)%>
               <a href="/mis_notificaciones/new/<%=post.id%>">
                <button type="button" class="btn btn-default" aria-label="Left Align">Postular</button>
               </a>
