@@ -2,10 +2,10 @@ class UsersController < ApplicationController
 	layout :resolve_layout
 	def resolve_layout
 		if index
-			"inicio"
+			"application"
 		else
 			"application"
-		end	
+		end
 	end
 	def profile
 		@user=current_user
@@ -36,7 +36,12 @@ class UsersController < ApplicationController
 		redirect_to '/users'
 	end
 	def index
-		@users=User.all
+		if !current_user.is_administrator
+			throwUnauthorized
+			return
+		else
+			@users=User.all
+		end
 	end
 
 	def search_params

@@ -60,6 +60,9 @@
   <%= link_to 'Ver grupos', '/grupos/todos', :class => 'navbar-link' %>&emsp;
   <%= link_to 'Mis grupos', '/grupos/mis_grupos', :class => 'navbar-link' %>&emsp;
   <%= link_to 'Notificaciones', '/mis_notificaciones', :class => 'navbar-link' %><span style="color:rgb(255, 255, 255);"><%=current_user.unreaded_notifications.size%>&emsp;</span>
+  <%if current_user.is_administrator%>
+    <%= link_to 'Gestion de usuarios', '/users', :class => 'navbar-link' %>&emsp;
+  <%end%>
   <%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
   <p class="navbar-text pull-left ">Has iniciado sesion como <strong><%= current_user.email %></strong></p>
 
