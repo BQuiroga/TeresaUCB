@@ -602,8 +602,8 @@
 
 
  #container-avatar{
-   width: 180px;
-   height: 180px;
+   width: 12%;
+   height: auto;
    /*position: relative;*/
    /*left: 50px;*/
    /*top: -150px;*/
@@ -612,6 +612,10 @@
    margin-left: 8%;
    margin-bottom: 5px;
 
+ }
+ #container-avatar img{
+     width: 100%;
+     height: auto;
  }
  #container-cover{
 
@@ -637,8 +641,8 @@
 
  }
  .img-avatar{
-   width: 70px;
-   height: 70px;
+   width: 30%px;
+   height: auto;
    /*margin: 8px;*/
    border-radius: 8px;
    background-size: contain;
@@ -678,6 +682,7 @@
  }
 
  .hovereffect img {
+   width: 100%;
    display:block;
    position:relative;
    -webkit-transition:all .4s linear;
@@ -824,6 +829,10 @@
    background-color: white;
    padding: 10px;
    border-radius: 8px;
+ }
+ .right-group-menu{
+   position: fixed;
+   align:left;
  }
  .thumbnail {
    padding: 0 0 2px 0;

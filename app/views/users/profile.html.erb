@@ -14,7 +14,7 @@
 	    <%= image_tag ("missing.png")%>
 	        <div class="overlay">
 	          <h2>Actualizar foto de perfil</h2>
-	              <label ><span class="glyphicon glyphicon-camera"></span></label>
+	          <label ><span class="glyphicon glyphicon-camera"></span></label>
 	        </div>
 	  </div>
 	</div>
@@ -35,7 +35,7 @@
 	     <%= form_for :post, url: '/posts/new' do |f| %>
 	      <div class="row">
 		      <div class="col-md-12">
-      			<%= f.text_area(:body, class: "form-control estado", placeholder: 'Como te sientes?', rows: 3,style: 'color: #F2F2F2;') %>
+      			<%= f.text_area(:body, class: "form-control estado", placeholder: 'Como te sientes?', rows: 3) %>
       			<%=f.hidden_field :user_id, :value => current_user.id%>
             <%=f.hidden_field :requiring,:value=>false%>
 		      </div>
@@ -43,8 +43,8 @@
       	<div class="row barra-enviar">
       		<div class="col-md-9 col-sm-8 col-xs-4">
       			<label for="post_image">
-      					<span class="glyphicon glyphicon-camera btn btn-primary" aria-hidden="true"></span>
-      			</label>
+              <!-- <span class="glyphicon glyphicon-camera btn btn-primary" aria-hidden="true"></span> -->
+            </label>
       		</div>
       		<div class="col-md-3  col-sm-4  col-xs-8 cont-btn-publicar">
       			<button type="submit" class="btn btn-primary">
@@ -106,7 +106,7 @@
       <%end%>
     </div>
 
-<div class="pull-right col-md-4">
+<div class="pull-right col-md-4 right-group-menu">
   <div class="panel panel-default">
     <div class="panel-heading"><div class="panel-title"><h3>Mis Grupos </h3></div></div>
     <div class="panel-body">
@@ -143,8 +143,11 @@
    </div>
   </div>
 
+<br>
 
-
+</div>
+</div>
+<br>
 
 
 

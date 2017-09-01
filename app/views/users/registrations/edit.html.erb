@@ -1,5 +1,49 @@
 <div class="container">
 <h2>Editar Perfil </h2>
+<h3>Datos de la cuenta</h3>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+  <div class="field">
+    <%= f.label :nombre %><br />
+    <%= f.text_field :name%>
+  </div>
+  <div class="field">
+    <%= f.label :apellido %><br />
+    <%= f.text_field :last_name%>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :contraseña %> <i>(dejelo vacio si no va a cambiarlo)</i><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> caracteres minimo</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :confirmacion_contraseña %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :contraseña_actual %> <i>(es obligatorio ingresar la contraseña para cambiar los datos)</i><br />
+    <%= f.password_field :current_password, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Actualizar" %>
+  </div>
+<% end %>
+<br>
 <%if (current_user.is_company?)%>
 <h3>Informacion Empresarial</h3>
 <%= link_to "Atras", :back %>
@@ -60,50 +104,8 @@
   </div>
 <% end %>
 <%end%>
-<br><br>
-<h3>Datos de la cuenta</h3>
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <div class="field">
-    <%= f.label :nombre %><br />
-    <%= f.text_field :name%>
-  </div>
-  <div class="field">
-    <%= f.label :apellido %><br />
-    <%= f.text_field :last_name%>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+<br>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :contraseña %> <i>(dejelo vacio si no va a cambiarlo)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> caracteres minimo</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :confirmacion_contraseña %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :contraseña_actual %> <i>(es obligatorio ingresar la contraseña para cambiar los datos)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Actualizar" %>
-  </div>
-<% end %>
 
 <h3>Eliminar mi cuenta</h3>
 

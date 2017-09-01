@@ -70,7 +70,18 @@ Rails.application.routes.draw do
   get '/users'=>'users#index'
   get 'user/:id/bloquear'=>'users#bloquear'
   get 'user/:id/desbloquear'=>'users#desbloquear'
-
+  resources :posts
+  resources :educations
+  resources :referentials
+  resources :follows
+  resources :languages
+  resources :courses
+  resources :memberships
+  resources :knowledges
+  resources :publications
+  resources :merits
+  resources :experiences
+  resources :groups
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

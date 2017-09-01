@@ -38,7 +38,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top collapse" style="top:0;">
+<div class="navbar navbar-inverse navbar-fixed-top collapse navbar-collapse">
   <p class="navbar-text pull-left"><b>Bolsa de Trabajo</b></p>
 <p class="navbar-text pull-right" style="display:inline;">
 <% if user_signed_in? %>
@@ -78,7 +78,7 @@
 <% if alert %>
   <p class="alert alert-danger"><%= alert %></p>
 <% end %>
-
+  <br><br><br>
 <%= yield %>
 
 

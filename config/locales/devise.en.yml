@@ -20,7 +20,7 @@ en:
       confirmation_instructions:
         subject: "Instrucciones de confirmacion"
       reset_password_instructions:
-        subject: "Instrucciones de recuperacion de cotnraseña"
+        subject: "Instrucciones de recuperacion de contraseña"
       unlock_instructions:
         subject: "Instrucciones de desbloqueo de cuenta"
       email_changed:
