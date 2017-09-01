@@ -42,25 +42,25 @@ class Post < ActiveRecord::Base
   end
   def job_offer(titulo,postgrado,horas,ciudad,idiomas,cargo,experiencia,habilidades,fijo,contact)
     resp="Estamos buscando personal, con las siguientes caracteristicas: \n"
-    if titulo
+    if titulo.size>0
       resp+="  Titulo Academico: "+titulo+"\n"
     end
-    if postgrado
+    if postgrado.size>0
       resp+="  Post Grado: "+postgrado+"\n"
     end
-    if ciudad
+    if ciudad.size>0
       resp+="  De la ciudad: "+ciudad+"\n"
     end
-    if idiomas
+    if idiomas.size>0
       resp+="  Con dominio en los siguientes idiomas: "+idiomas+"\n"
     end
-    if cargo
+    if cargo.size>0
       resp+="  Que haya ocupado el cargo de: "+cargo+"\n"
     end
-    if habilidades
+    if habilidades.size>0
       resp+="  Con las siguientes habilidades: "+habilidades+"\n"
     end
-    if experiencia
+    if experiencia.size>0
       resp+="  Con experiencia en areas de: "+experiencia+"\n"
     end
     resp+= "  Si tu curriculum cumple con los anteriores requisitos, comunicate con nosotros\n"+ "Contactacte con: "+contact+" a este numero de referencia: " +fijo+"\n"
