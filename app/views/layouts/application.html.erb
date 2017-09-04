@@ -42,6 +42,7 @@
 <div class="navbar navbar-inverse navbar-fixed-top collapse navbar-collapse"style="position:fixed;top:0px;">
   <%= link_to 'Bolsa de Trabajo', '/', :class=>'navbar-text pull-left'%>
   <!-- <p class="navbar-text pull-left"><b>Bolsa de Trabajo</b></p> -->
+  <% if user_signed_in? %>
 <p class="navbar-text pull-right">
   Has iniciado sesion como <strong><%= current_user.email %></strong>
 <% if user_signed_in? %>
@@ -69,7 +70,14 @@
   <%end%>
   <%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
   </p>
-
+  <span class="navbar-text pull-left">
+    <%= form_for :user, url: '/busqueda/usuarios' do |f| %>
+      <div>
+      <%= f.text_field :name%>
+      <%= f.submit "Buscar" %>
+      </div>
+    <% end %>
+  </span>
 <% else %>
   <%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link'  %> |
   <%= link_to "Iniciar Sesion", new_user_session_path, :class => 'navbar-link'  %>
@@ -82,7 +90,7 @@
 <% if alert %>
   <p class="alert alert-danger"><%= alert %></p>
 <% end %>
-  <br><br><br>
+  <br><br><br><br>
 <%= yield %>
 
 
