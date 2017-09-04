@@ -45,14 +45,7 @@
   <% if user_signed_in? %>
 <p class="navbar-text pull-right">
   Has iniciado sesion como <strong><%= current_user.email %></strong>
-<% if user_signed_in? %>
-  <%= form_for :user, url: '/busqueda/usuarios' do |f| %>
-    <div>
-    <%= f.text_field :name%>
-    <%= f.submit "Buscar" %>
-    </div>
-  <% end %>
-    <p class="navbar-text pull-right" style="top:0px;left:30%; position:fixed;">
+    <p class="navbar-text pull-right">
   <%= link_to 'Perfil', '/users/profile', :class => 'navbar-link' %>&emsp;
   <%if !current_user.is_company?%>
   <%= link_to 'Editar CV', '/users/curriculum/edit', :class => 'navbar-link' %>&emsp;

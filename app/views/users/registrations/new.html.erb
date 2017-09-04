@@ -4,37 +4,40 @@ body {
   background: #eaeaea;
   font-family: 'Open Sans', sans-serif;
 }
+.sign-in-email{
+  background-color : #FFFFFF;
+}
 </style>
+<div class="container">
 <h2>Registro</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<div class= "row">
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name),:class=>"form-horizontal") do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :nombre %><br />
-    <%= f.text_field :name%>
+  <div class="form-group">
+    <%= f.label :nombre,:class=>"control-label col-sm-2" %><br />
+    <%= f.text_field :name,:class=>"form-control"%>
   </div>
-  <div class="field">
-    <%= f.label :apellido %><br />
-    <%= f.text_field :last_name%>
+  <div class="form-group">
+    <%= f.label :apellido,:class=>"control-label col-sm-2" %><br />
+    <%= f.text_field :last_name,:class=>"form-control"%>
   </div>
-  <div class="field">
-    <%= f.label :correo_electronico %><br />
-    <%= f.email_field :email, autofocus: true %>
+  <div class="form-group">
+    <%= f.label :correo_electronico,:class=>"control-label col-sm-2" %><br />
+    <%= f.email_field :email, autofocus: true,:class=>"form-control sign-in-email" %>
   </div>
-
-  <div class="field">
-    <%= f.label :contraseña %>
+  <div class="form-group">
+    <%= f.label :contraseña,:class=>"control-label col-sm-2" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> caracteres minimo)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off",:class=>"form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :confirmar_contraseña %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  <div class="form-group">
+    <%= f.label :confirmar_contraseña,:class=>"control-label col-sm-2" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off",:class=>"form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%=f.check_box :company%>
     <%=f.label :quiero_registrarme_como_empresa%>
   </div>
@@ -42,5 +45,6 @@ body {
     <%= f.submit "Registrarse" %>
   </div>
 <% end %>
-
 <%= render "users/shared/links" %>
+</div>
+</div>
