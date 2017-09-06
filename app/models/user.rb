@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,:lockable
 
-  validates :password, format:{ with: /\A(?=.*[a-z])(?=.*[A-Z])./, message: "debe contener por lo menos una mayuscula, una minuscula y un numero"}
+  validates :password, format:{ with: /\A(?=.*[a-z])(?=.*[A-Z])./, message: "o contraseña, debe contener por lo menos una mayúscula, una minúscula y un número"}
 	after_create :send_admin_mail
   after_create :assign_default_role
   after_create :create_dependencies

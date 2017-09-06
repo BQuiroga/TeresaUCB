@@ -20,7 +20,7 @@ body {
 
 
 
-   <%if devise_error_messages!%>
+   <%if devise_error_messages!.size>0%>
 <div class="alert alert-danger alert-dismissable fade in">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
   <%= devise_error_messages! %>
@@ -46,10 +46,10 @@ body {
     <%= f.label :correo_electronico,:class=>"control-label col-sm-2" %><br />
     <%= f.email_field :email, autofocus: true,:class=>"form-control sign-in-email" %>
   </div>
+  <button class="btn-xs btn-default small pull-left" data-toggle="tooltip" data-placement="right" title="La contraseña debe contener al menos una mayúscula, una minúscula y un número"><i class="glyphicon glyphicon-question-sign" aria-hidden="true"></i></button>
+
   <div class="form-group">
     <%= f.label :contraseña,:class=>"control-label col-sm-2" %>
-    <button type="button" class="btn btn-default pull-right" data-toggle="tooltip" data-placement="bottom" title="La contraseña debe contener al menos uncaracter mayuscula minuscula y un numero"><i class="glyphicon glyphicon-search" aria-hidden="true"></i></button>
-
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> caracteres minimo)</em>
     <% end %><br />

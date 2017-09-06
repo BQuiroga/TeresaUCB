@@ -44,6 +44,9 @@ en:
       signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
       updated: "Tus datos han sido actualizados correctamente."
+      email:
+        blank: "El campo de Correo no debe estar vacio"
+        taken: "El correo electronico ya esta registrado"
     sessions:
       signed_in: "Iniciaste sesion!."
       signed_out: "Registro satisfactorio"
@@ -61,4 +64,4 @@ en:
       not_locked: "was not locked"
       not_saved:
         one: "existe 1 error que no nos permite continuar:"
-        other: " existe %{count} errores que no nos permite continuar:"
+        other: " existe %{count} errores que no nos permiten continuar:"

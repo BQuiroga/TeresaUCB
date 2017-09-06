@@ -1,0 +1,10 @@
+es:
+  hello: "Hello world"
+  activerecord:
+    error:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "El campo de Correo no debe estar vacio"
+              taken: "El correo electronico ya esta registrado"
