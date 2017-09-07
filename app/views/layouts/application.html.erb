@@ -42,14 +42,80 @@
 
 <!-- Offers form css -->
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<style>
+ul#menu li{display: inline;}
+nav select {display: none;}
+@media (max-width: 960px) {
+  nav ul     { display: none; }
+  nav select { display: inline-block; }
+}
+</style>
 </head>
 <body >
-<div class="navbar navbar-inverse navbar-fixed-top collapse navbar-collapse"style="position:fixed;top:0px;">
+  <nav class="navbar navbar-inverse navbar-fixed-top collapse navbar-collapse" style="top:0px;position:absolute;">
+      <ul id="menu">
+        <li>  <%= link_to 'Bolsa de Trabajo', '/', :class=>'navbar-text pull-left'%></li>
+        <% if user_signed_in? %>
+        <li>
+            <%= link_to 'Perfil', '/users/profile', :class => 'navbar-link navbar-text' %>&emsp;
+        </li>
+        <%if !current_user.is_company?%>
+          <li><%= link_to 'Editar CV', '/users/curriculum/edit', :class => 'navbar-link navbar-text' %>&emsp;</li>
+          <li><%= link_to 'Curriculum', '/mycurriculum', :class => 'navbar-link' %>&emsp;</li>
+        <%else%>
+          <li><%= link_to 'Publicar oferta', '/oferta/nueva', :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <%end%>
+        <li><%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <li><%= link_to 'Ver grupos', '/grupos/todos', :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <li><%= link_to 'Mis grupos', '/grupos/mis_grupos', :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <li><%= link_to 'Notificaciones', '/mis_notificaciones', :class => 'navbar-link navbar-text' %><span style="color:rgb(255, 255, 255);" class=navbar-text><%=current_user.unreaded_notifications.size%>&emsp;</span></li>
+        <%if current_user.is_administrator%>
+          <li><%= link_to 'Gestion de usuarios', '/users', :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <%end%>
+        <li><%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link navbar-text'  %></li>
+        <li class="pull-right">
+          <%= form_for :user, url: '/busqueda/usuarios' do |f| %>
+            <div>
+              <%= f.text_field :name%>
+              <%= f.submit "Buscar" %>
+            </div>
+          <% end %>
+        </li>
+        <% else %>
+        <li><%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link navbar-text'  %>  </li>
+        <li><%= link_to "Iniciar Sesion", new_user_session_path, :class => 'navbar-link navbar-text'  %></li>
+        <% end %>
+      </ul>
+    <select>
+      <option value='/'>  <%= link_to 'Bolsa de Trabajo', '/', :class=>'navbar-text pull-left'%></option>
+      <% if user_signed_in? %>
+      <option>
+          <%= link_to 'Perfil', '/users/profile', :class => 'navbar-link' %>&emsp;
+      </option>
+      <%if !current_user.is_company?%>
+        <option value='/users/curriculum.edit'><%= link_to 'Editar CV', '/users/curriculum/edit', :class => 'navbar-link' %>&emsp;</option>
+        <option value='mycurriculum'><%= link_to 'Curriculum', '/mycurriculum', :class => 'navbar-link' %>&emsp;</option>
+      <%else%>
+        <option value='/oferta/nueva'><%= link_to 'Publicar oferta', '/oferta/nueva', :class => 'navbar-link' %>&emsp;</option>
+      <%end%>
+      <option value='<%=edit_user_registration_path%>'><%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %>&emsp;</option>
+      <option value="/grupos/todos"><%= link_to 'Ver grupos', '/grupos/todos', :class => 'navbar-link' %>&emsp;</option>
+      <option value="/grupos/mis_grupos"><%= link_to 'Mis grupos', '/grupos/mis_grupos', :class => 'navbar-link' %>&emsp;</option>
+      <option value="/mis_notificaciones"><%= link_to 'Notificaciones', '/mis_notificaciones', :class => 'navbar-link' %><span style="color:rgb(255, 255, 255);"><%=current_user.unreaded_notifications.size%>&emsp;</span></option>
+      <%if current_user.is_administrator%>
+        <option value ="/users"><%= link_to 'Gestion de usuarios', '/users', :class => 'navbar-link' %>&emsp;</option>
+      <%end%>
+      <option value"<%=destroy_user_session_path%>"><%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></option>
+      <% else %>
+      <option value="/users/sign_up"><%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link'  %>  </option>
+      <option value="/users_sign_in"><%= link_to "Iniciar Sesion", new_user_session_path, :class => 'navbar-link'  %></option>
+      <% end %>
+    </select>
+  </nav>
+<!-- <div class="navbar navbar-inverse navbar-fixed-top collapse navbar-collapse"style="position:fixed;top:0px;">
   <%= link_to 'Bolsa de Trabajo', '/', :class=>'navbar-text pull-left'%>
-  <!-- <p class="navbar-text pull-left"><b>Bolsa de Trabajo</b></p> -->
   <% if user_signed_in? %>
 <p class="navbar-text pull-right">
-  Has iniciado sesion como <strong><%= current_user.email %></strong>
     <p class="navbar-text pull-right">
   <%= link_to 'Perfil', '/users/profile', :class => 'navbar-link' %>&emsp;
   <%if !current_user.is_company?%>
@@ -81,7 +147,10 @@
   <%= link_to "Iniciar Sesion", new_user_session_path, :class => 'navbar-link'  %>
 <% end %>
 </p>
-</div>
+</div> -->
+
+
+
 <% if notice %>
   <p class="alert alert-success"><%= notice %></p>
 <% end %>
@@ -98,3 +167,27 @@
 
 </body>
 </html>
+
+<script>
+// Create the dropdown base
+$("<select />").appendTo("nav");
+
+// Create default option "Go to..."
+$("<option />", {
+   "selected": "selected",
+   "value"   : "",
+   "text"    : "Ir a..."
+}).appendTo("nav select");
+
+// Populate dropdown with menu items
+$("nav a").each(function() {
+ var el = $(this);
+ $("<option />", {
+     "value"   : el.attr("href"),
+     "text"    : el.text()
+ }).appendTo("nav select");
+});
+$("nav select").change(function() {
+  window.location = $(this).find("option:selected").val();
+});
+</script>
