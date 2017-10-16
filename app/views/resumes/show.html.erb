@@ -16,10 +16,14 @@
     <div class="container">
     <% if @educations.size >0%>
     <h5><% @educations.each do |education| %></h5>
-            <div>
-                <p>
+            <div >
+                <p >
                   <h5><b><%=education.title%></b></h5>
-                  <%=education.school_name%>&nbsp;
+                  <%if education.description.size>0%>
+                    <%=education.description%>
+                    <br>
+                  <%end%>
+                <%=education.school_name%>&nbsp;
                   <%=education.start_date.year%>&emsp; - &emsp; <%=education.end_date.year%>
                 </p>
             </div>
