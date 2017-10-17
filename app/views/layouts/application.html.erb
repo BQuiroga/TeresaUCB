@@ -46,7 +46,7 @@
 ul#menu li{display: inline;}
 nav select {display: none;}
 @media (max-width: 960px) {
-  nav ul     { display: none; }
+  nav ul#menu { display: none; }
   nav select { display: inline-block; }
 }
 </style>
@@ -59,11 +59,11 @@ nav select {display: none;}
         <li>
             <%= link_to 'Perfil', '/users/profile', :class => 'navbar-link navbar-text' %>&emsp;
         </li>
-        <%if !current_user.is_company?%>
-          <li><%= link_to 'Editar CV', '/users/curriculum/edit', :class => 'navbar-link navbar-text' %>&emsp;</li>
-          <li><%= link_to 'Curriculum', '/mycurriculum', :class => 'navbar-link' %>&emsp;</li>
-        <%else%>
+        <%if current_user.is_company?%>
           <li><%= link_to 'Publicar oferta', '/oferta/nueva', :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <%elsif !current_user.is_administrator%>
+          <li><%= link_to 'Editar CV', '/users/curriculum/edit', :class => 'navbar-link navbar-text' %>&emsp;</li>
+          <li><%= link_to 'Curriculum', '/mycurriculum', :class => 'navbar-link navbar-text' %>&emsp;</li>
         <%end%>
         <li><%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link navbar-text' %>&emsp;</li>
         <li><%= link_to 'Ver grupos', '/grupos/todos', :class => 'navbar-link navbar-text' %>&emsp;</li>
@@ -75,9 +75,9 @@ nav select {display: none;}
         <li><%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link navbar-text'  %></li>
         <li class="pull-right">
           <%= form_for :user, url: '/busqueda/usuarios' do |f| %>
-            <div>
-              <%= f.text_field :name%>
-              <%= f.submit "Buscar" %>
+            <div class="input group add-on">
+              <%= f.text_field :name,:class=>"form-control",:id=>"search-box",placeholder:"Buscar"%>
+              <%= f.submit "Buscar",:class=>"btn btn-default" %><i class="glyphicon glyphicon-search"></i>
             </div>
           <% end %>
         </li>
@@ -89,7 +89,7 @@ nav select {display: none;}
     <select>
       <option value='/'>  <%= link_to 'Bolsa de Trabajo', '/', :class=>'navbar-text pull-left'%></option>
       <% if user_signed_in? %>
-      <option>
+      <option value='/users/profile'>
           <%= link_to 'Perfil', '/users/profile', :class => 'navbar-link' %>&emsp;
       </option>
       <%if !current_user.is_company?%>
@@ -170,24 +170,25 @@ nav select {display: none;}
 
 <script>
 // Create the dropdown base
-$("<select />").appendTo("nav");
-
-// Create default option "Go to..."
-$("<option />", {
-   "selected": "selected",
-   "value"   : "",
-   "text"    : "Ir a..."
-}).appendTo("nav select");
+// $("<select />").appendTo("nav");
+//
+// // Create default option "Go to..."
+// $("<option />", {
+//    "selected": "selected",
+//    "value"   : "",
+//    "text"    : "Ir a..."
+// }).appendTo("nav select");
 
 // Populate dropdown with menu items
-$("nav a").each(function() {
- var el = $(this);
- $("<option />", {
-     "value"   : el.attr("href"),
-     "text"    : el.text()
- }).appendTo("nav select");
-});
+// $("nav a").each(function() {
+//  var el = $(this);
+//  $("<option />", {
+//      "value"   : el.attr("href"),
+//      "text"    : el.text()
+//  }).appendTo("nav select");
+// });
 $("nav select").change(function() {
   window.location = $(this).find("option:selected").val();
 });
+document.getElementById('search-box').value = ""
 </script>
