@@ -75,10 +75,8 @@ nav select {display: none;}
         <li><%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link navbar-text'  %></li>
         <li class="pull-right">
           <%= form_for :user, url: '/busqueda/usuarios' do |f| %>
-            <div class="input group add-on">
-              <%= f.text_field :name,:class=>"form-control",:id=>"search-box",placeholder:"Buscar"%>
-              <%= f.submit "Buscar",:class=>"btn btn-default" %><i class="glyphicon glyphicon-search"></i>
-            </div>
+              <%= f.text_field :name,:style=>"height:500%",:id=>"search-box",placeholder:"Buscar"%>
+              <%= f.submit "Buscar",:class=>"btn btn-default" %>
           <% end %>
         </li>
         <% else %>
