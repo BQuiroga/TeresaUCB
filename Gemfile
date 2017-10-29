@@ -18,6 +18,7 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'bootstrap-datepicker-rails'
 gem 'rolify'
 gem 'authority'
+
 #devise for user registration and control, and some gems to extends te security
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -62,3 +63,5 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+gem 'chartkick'
+gem 'groupdate'

@@ -70,6 +70,7 @@ Rails.application.routes.draw do
   get '/users'=>'users#index'
   get 'user/:id/bloquear'=>'users#bloquear'
   get 'user/:id/desbloquear'=>'users#desbloquear'
+  get '/reportes'=>'users#reportes_general'
   resources :posts
   resources :educations
   resources :referentials

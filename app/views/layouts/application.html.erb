@@ -72,6 +72,9 @@ nav select {display: none;}
         <%if current_user.is_administrator%>
           <li><%= link_to 'Gestion de usuarios', '/users', :class => 'navbar-link navbar-text' %>&emsp;</li>
         <%end%>
+        <%if current_user.is_director%>
+          <li><%= link_to 'Reportes','/reportes',:class=>'navbar-link navbar-text' %>&emsp;</li>
+        <%end%>
         <li><%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link navbar-text'  %></li>
         <li class="pull-right">
           <%= form_for :user, url: '/busqueda/usuarios' do |f| %>

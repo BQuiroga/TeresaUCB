@@ -1,0 +1,63 @@
+<h1>Lista de reportes</h1>
+  <div class="panel panel-default">
+    <div class="panel-heading"><div class="panel-title"><h3>Criterios de busqueda</h3></div></div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item">Usuarios por fecha
+            <a href="">
+              <button class="btn btn-warning btn-sm pull-right ">Generar Reporte</button>
+            </a>
+          </li>
+          <li class="list-group-item">Usuarios por Universidad
+            <a href="">
+              <button class="btn btn-warning btn-sm pull-right">Generar Reporte</button>
+            </a>
+          </li>
+          <li class="list-group-item">Usuarios por Carrera
+            <a href="">
+              <button class="btn btn-warning btn-sm pull-right">Generar Reporte</button>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <%= line_chart User.group_by_month(:created_at).count%>
+<div class="panel-footer well">
+  <%= form_for :referential, url: '/referential/new' do |f| %>
+  <div class="panel-heading"><div class="panel-title"><h3>Otros Criterios de busqueda</h3></div></div>
+
+  <div class="field">
+    <%= f.label :Que_otro_criterios_busca %><br />
+    <%= f.text_field :name %>
+  </div>
+    <div class="field">
+    <%= f.label :institucion %><br />
+    <%= f.text_field :institution%>
+  </div>
+    <div class="field">
+    <%= f.label :años_de_trabajo %><br />
+    <%= f.number_field :number%>
+  </div>
+  <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+  <div class="actions">
+    <%= f.submit "Generar", :class =>"btn btn-primary" %>
+  </div>
+<% end %>
+</div>
+</div>
+
+
+<script>
+window.onload = function() {
+ var checkbox2 = document.getElementById('checkboxDate');
+ if (checkbox2.checked) {
+ document.getElementById("date").style.display = "none";
+ } else {
+ document.getElementById("date").style.display = "block";
+ }
+};
+
+$('#checkboxDate').click(function() {
+  $('#date')[this.checked ? "hide" : "show"]();
+});
+</script>

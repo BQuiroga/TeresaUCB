@@ -1,0 +1,2 @@
+gem cleanup bundler  //para poder limpiar bundler, usar chartkcik
+gem install bundler

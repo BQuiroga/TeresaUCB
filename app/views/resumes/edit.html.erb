@@ -20,7 +20,13 @@
 <%= form_for :education, url: '/education/new' do |f| %>
   <div  class="field col col-xs-3">
     <%= f.label :Grado_academico %>:
-    <%= f.select(:title,["Licenciatura", "Maestria", "Doctorado", "Post Grado"])%>
+    <!-- <%= f.select(:title,["Licenci>atura", "Maestria", "Doctorado", "Post Grado"])%> -->
+    <div>
+      <%= f.select :title,@title_list,:id=>"title"%>
+    </div>
+    <div id='detail'>
+      <%= f.select( :title2, @degree_list,:id=>"tittle") %>
+    </div>
   </div>
 
     <div class="field col-xs-3">
@@ -356,7 +362,7 @@
   <div class="panel-footer well">
     <%= form_for :language, url: '/language/new' do |f| %>
       <div class="field">
-        <%= f.label :nombre %><br />
+        <%= f.label :idioma %><br />
         <%= f.text_field :name%>
       </div>
       <div>
@@ -459,6 +465,15 @@ $('#checkboxDate').click(function() {
 
 <script>
 window.onload = function() {
+    // document.getElementById("detail").style.display = "none";
+        var select= document.getElementById('tittle');
+        alert(select);
+        var e= select.options[select.selectedIndex].text;
+        alert(select);
+    //     if (#{title_list[select].size==0}){
+    //       document.getElementById("detail").style.display = "none";
+    //       alert("funca");
+    //     }
  var checkbox = document.getElementById('checkbox');
  if (checkbox.checked) {
  document.getElementById("rest").style.display = "block";
@@ -466,8 +481,17 @@ window.onload = function() {
  document.getElementById("rest").style.display = "none";
  }
 };
-
 $('#checkbox').click(function() {
   $('#rest')[this.checked ? "show" : "hide"]();
 });
+// window.onload = function(){
+//
+//   document.getElementById("detail").style.display = "none";
+//
+//     var select= document.getElementById('title');
+//     if (#{title_list[select].size==0}){
+//       document.getElementById("detail").style.display = "none";
+//       alert("funca");
+//     }
+// };
 </script>

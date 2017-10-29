@@ -43,6 +43,9 @@ class UsersController < ApplicationController
 			@users=User.all
 		end
 	end
+	def reportes_general
+		@users=User.all
+	end
 
 	def search_params
     	params.require(:user).permit(:name,:last_name)

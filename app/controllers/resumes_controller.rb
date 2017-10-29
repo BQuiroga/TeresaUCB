@@ -16,6 +16,18 @@ class ResumesController < ApplicationController
     @languages=@resume.languages
     @referentials=@resume.referentials
     @publicationTypes=["Articulo","Tesis","Libro","Monografia"]
+    @titles=Title.all
+    @newA=Array.new
+    @title_list=Array.new
+    @titles.each do |title|
+      @newA=@newA+[title.name]
+    end
+    @title_list=@newA
+      @newA=Array.new
+    @degree_list=Degree.all.each do |degree|
+      @newA=@newA+[degree.name]
+    end
+    @degree_list=@newA
   end
   def update
   end
