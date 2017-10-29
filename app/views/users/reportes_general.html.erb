@@ -4,21 +4,31 @@
       <div class="panel-body">
         <ul class="list-group">
           <li class="list-group-item">Usuarios por fecha
-              <button class="btn btn-warning btn-sm pull-right" type="button" data-toggle="modal" data-target="#myModal" id="buttonModal">Generar Reporte</button>
+              <button class="btn btn-warning btn-sm pull-right" id="mostrarFecha" onclick="showFecha()" style="display:none; ">Mostrar Reporte Estadístico</button>
+              <button class="btn btn-warning btn-sm pull-right" id="ocultarFecha" onclick="showFecha()">Ocultar Reporte Estadístico</button>
               <div id="by_date">
-                <%= line_chart User.group_by_month(:created_at).count%>
+                <%= column_chart User.group_by_month(:created_at).count, stacked: true, donwload: true%>
               </div>
           </li>
           <li class="list-group-item">Usuarios por Universidad
-              <button class="btn btn-warning btn-sm pull-right">Generar Reporte</button>
-              <div id="by_date">
-                <%= line_chart Education.group(:school_name).count%>
+              <button class="btn btn-warning btn-sm pull-right" id="mostrarUniversidad" onclick="showUniversidad()" style="display:none;">Mostrar Reporte Estadístico</button>
+              <button class="btn btn-warning btn-sm pull-right" id="ocultarUniversidad" onclick="showUniversidad()">Ocultar Reporte Estadístico</button>
+              <div id="by_university">
+                <%= column_chart Education.group(:school_name).count, stacked: true%>
               </div>
           </li>
           <li class="list-group-item">Usuarios por Carrera
-              <button class="btn btn-warning btn-sm pull-right">Generar Reporte</button>
-              <div id="by_university">
+              <button class="btn btn-warning btn-sm pull-right" id="mostrarCarrera" onclick="showCarrera()" style="display:none;">Mostrar Reporte Estadístico</button>
+              <button class="btn btn-warning btn-sm pull-right" id="ocultarCarrera" onclick="showCarrera()">Ocultar Reporte Estadístico</button>
+              <div id="by_career">
                 <%= bar_chart Education.group(:title).count%>
+              </div>
+          </li>
+          <li class="list-group-item">Usuarios por Género
+              <button class="btn btn-warning btn-sm pull-right" id="mostrarGenero" onclick="showGenero()" style="display:none;">Mostrar Reporte Estadístico</button>
+              <button class="btn btn-warning btn-sm pull-right" id="ocultarGenero" onclick="showGenero()">Ocultar Reporte Estadístico</button>
+              <div id="by_gender">
+                <%= bar_chart @info_charts%>
               </div>
           </li>
         </ul>
@@ -29,11 +39,11 @@
   <div class="panel-heading"><div class="panel-title"><h3>Otros Criterios de busqueda</h3></div></div>
 
   <div class="field">
-    <%= f.label :Que_otro_criterios_busca %><br />
+    <%= f.label :Qué_otro_criterios_busca? %><br />
     <%= f.text_field :name %>
   </div>
     <div class="field">
-    <%= f.label :institucion %><br />
+    <%= f.label :institución %><br />
     <%= f.text_field :institution%>
   </div>
     <div class="field">
@@ -51,18 +61,76 @@
 
 <script>
 
-// ;
-// window.onload = function() {
-//
-//  var checkbox2 = document.getElementById('checkboxDate');
-//  if (checkbox2.checked) {
-//  document.getElementById("date").style.display = "none";
-//  } else {
-//  document.getElementById("date").style.display = "block";
-//  }
-// };
-//
-// $('#checkboxDate').click(function() {
-//   $('#date')[this.checked ? "hide" : "show"]();
-// });
+var fecha = document.getElementById("by_date");
+var botonOcultarF = document.getElementById("ocultarFecha");
+var botonMostrarF = document.getElementById("mostrarFecha");
+var uni = document.getElementById("by_university");
+var botonOcultarU = document.getElementById("ocultarUniversidad");
+var botonMostrarU = document.getElementById("mostrarUniversidad");
+var carrera = document.getElementById("by_career");
+var botonOcultarC = document.getElementById("ocultarCarrera");
+var botonMostrarC = document.getElementById("mostrarCarrera");
+var genero = document.getElementById("by_gender");
+var botonOcultarG = document.getElementById("ocultarGenero");
+var botonMostrarG = document.getElementById("mostrarGenero");
+window.onload =function(){
+  botonMostrarF.style.display="block";
+  botonMostrarC.style.display="block";
+  botonMostrarU.style.display="block";
+  botonOcultarC.style.display="none";
+  botonOcultarF.style.display="none";
+  botonOcultarU.style.display="none";
+  botonMostrarG.style.display="block";
+  botonOcultarG.style.display="none";
+  fecha.style.display="none";
+  uni.style.display="none";
+  carrera.style.display="none";
+  genero.style.display="none";
+}
+function showFecha() {
+    if (fecha.style.display === "none") {
+        fecha.style.display = "block";
+        botonMostrar.style.display="none";
+        botonOcultar.style.display="block";
+    } else {
+        fecha.style.display = "none";
+        botonMostrar.style.display="block";
+        botonOcultar.style.display="none";
+    }
+}
+function showUniversidad() {
+    if (uni.style.display === "none") {
+        uni.style.display = "block";
+        botonMostrarU.style.display="none";
+        botonOcultarU.style.display="block";
+    } else {
+        uni.style.display = "none";
+        botonMostrarU.style.display="block";
+        botonOcultarU.style.display="none";
+    }
+}
+
+
+function showCarrera() {
+    if (carrera.style.display === "none") {
+        carrera.style.display = "block";
+        botonMostrarC.style.display="none";
+        botonOcultarC.style.display="block";
+    } else {
+        carrera.style.display = "none";
+        botonMostrarC.style.display="block";
+        botonOcultarC.style.display="none";
+    }
+}
+function showGenero() {
+    if (genero.style.display === "none") {
+        genero.style.display = "block";
+        botonMostrarG.style.display="none";
+        botonOcultarG.style.display="block";
+    } else {
+        genero.style.display = "none";
+        botonMostrarG.style.display="block";
+        botonOcultarG.style.display="none";
+    }
+}
 </script>

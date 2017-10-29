@@ -45,6 +45,9 @@ class UsersController < ApplicationController
 	end
 	def reportes_general
 		@users=User.all
+		@personal_by_gender=PersonalInformation.group(:gender).count
+		@info_charts=Hash.new
+		@info_charts={"Hombres"=>@personal_by_gender[true],"Mujeres"=>@personal_by_gender[false],"Empresas"=>@personal_by_gender[nil]}
 	end
 
 	def search_params

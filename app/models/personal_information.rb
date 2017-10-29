@@ -2,6 +2,20 @@ class PersonalInformation < ActiveRecord::Base
   belongs_to :user
   after_update :translate_birthdate_to_string
   before_update :validate_date
+  def gender_to_string
+    if gender==true
+      "Masculino"
+    end
+    if gender==false
+      "Femenino"
+    end
+    if user.company
+      "Empresa"
+    end
+  end
+  def chart_names
+    [""]
+  end
   def validate_date
     birthdate<Time.now
   end

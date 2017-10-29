@@ -105,6 +105,13 @@
     <%= f.label :celular %>
     <%= f.number_field :cellphone %>
   </div>
+  <div class="field">
+    <%= f.label :género%>&nbsp;
+    <%= f.label :Hombre%>
+    <%= f.radio_button :gender, true, :checked=>true%>
+    <%= f.label :Mujer%>
+    <%= f.radio_button :gender, false%>
+  </div>
       <%= f.hidden_field :user_id, :value => current_user.id%>
       <%=f.hidden_field :id, :value => current_user.personal_information.id%>
   <div class="actions">

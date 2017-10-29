@@ -14,6 +14,6 @@ class PersonalInformationsController < ApplicationController
   # 		params.require(:personal_information).permit(:address,:user_id,:phone,:cellphone,:birthdate)
   # 	end
   	def personal_info_params_for_edit
-  		params.require(:personal_information).permit(:id,:address,:phone,:cellphone,:birthdate)
+  		params.require(:personal_information).permit(:id,:address,:phone,:cellphone,:birthdate,:gender)
   	end
 end
