@@ -4,24 +4,26 @@
       <div class="panel-body">
         <ul class="list-group">
           <li class="list-group-item">Usuarios por fecha
-            <a href="">
-              <button class="btn btn-warning btn-sm pull-right ">Generar Reporte</button>
-            </a>
+              <button class="btn btn-warning btn-sm pull-right" type="button" data-toggle="modal" data-target="#myModal" id="buttonModal">Generar Reporte</button>
+              <div id="by_date">
+                <%= line_chart User.group_by_month(:created_at).count%>
+              </div>
           </li>
           <li class="list-group-item">Usuarios por Universidad
-            <a href="">
               <button class="btn btn-warning btn-sm pull-right">Generar Reporte</button>
-            </a>
+              <div id="by_date">
+                <%= line_chart Education.group(:school_name).count%>
+              </div>
           </li>
           <li class="list-group-item">Usuarios por Carrera
-            <a href="">
               <button class="btn btn-warning btn-sm pull-right">Generar Reporte</button>
-            </a>
+              <div id="by_university">
+                <%= bar_chart Education.group(:title).count%>
+              </div>
           </li>
         </ul>
       </div>
 
-      <%= line_chart User.group_by_month(:created_at).count%>
 <div class="panel-footer well">
   <%= form_for :referential, url: '/referential/new' do |f| %>
   <div class="panel-heading"><div class="panel-title"><h3>Otros Criterios de busqueda</h3></div></div>
@@ -48,16 +50,19 @@
 
 
 <script>
-window.onload = function() {
- var checkbox2 = document.getElementById('checkboxDate');
- if (checkbox2.checked) {
- document.getElementById("date").style.display = "none";
- } else {
- document.getElementById("date").style.display = "block";
- }
-};
 
-$('#checkboxDate').click(function() {
-  $('#date')[this.checked ? "hide" : "show"]();
-});
+// ;
+// window.onload = function() {
+//
+//  var checkbox2 = document.getElementById('checkboxDate');
+//  if (checkbox2.checked) {
+//  document.getElementById("date").style.display = "none";
+//  } else {
+//  document.getElementById("date").style.display = "block";
+//  }
+// };
+//
+// $('#checkboxDate').click(function() {
+//   $('#date')[this.checked ? "hide" : "show"]();
+// });
 </script>
