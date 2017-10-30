@@ -31,7 +31,7 @@
                 <%= bar_chart @info_charts%>
               </div>
           </li>
-          <li class="list-group-item">Usuarios por Género
+          <li class="list-group-item">Usuarios por Género y Universidad
               <button class="btn btn-warning btn-sm pull-right" id="mostrarGeneroU" onclick="showGeneroU()" style="display:none;">Mostrar Reporte Estadístico</button>
               <button class="btn btn-warning btn-sm pull-right" id="ocultarGeneroU" onclick="showGeneroU()">Ocultar Reporte Estadístico</button>
               <div id="by_genderU">
@@ -44,20 +44,19 @@
 <div class="panel-footer well">
   <%= form_for :referential, url: '/referential/new' do |f| %>
   <div class="panel-heading"><div class="panel-title"><h3>Otros Criterios de busqueda</h3></div></div>
-
+  <%= f.label :Qué_otro_criterios_busca? %><br>
   <div class="field">
-    <%= f.label :Qué_otro_criterios_busca? %><br />
-    <%= f.text_field :name %>
+    <%=f.label :Analizar_por_género%>&nbsp;
+    <%= f.radio_button :name,true%>
   </div>
-    <div class="field">
-    <%= f.label :institución %><br />
-    <%= f.text_field :institution%>
+  <div class="field">
+    <%=f.label :Analizar_por_universidad%>&nbsp;
+    <%= f.radio_button :strin, true %>
   </div>
-    <div class="field">
-    <%= f.label :años_de_trabajo %><br />
-    <%= f.number_field :number%>
+  <div class="field">
+    <%=f.label :Analizar_por_ciudad%>&nbsp;
+    <%= f.radio_button :strin, true %>
   </div>
-  <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
   <div class="actions">
     <%= f.submit "Generar", :class =>"btn btn-primary" %>
   </div>
