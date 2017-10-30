@@ -129,4 +129,10 @@ class User < ActiveRecord::Base
   def unreaded_notifications
     self.notifications.where(readed:false)
   end
+  def school_names
+    resume.educations.map{|education| education.school_name}
+  end
+  def gender
+    personal_information.gender_to_string
+  end
 end

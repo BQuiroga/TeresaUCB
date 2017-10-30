@@ -31,6 +31,13 @@
                 <%= bar_chart @info_charts%>
               </div>
           </li>
+          <li class="list-group-item">Usuarios por Género
+              <button class="btn btn-warning btn-sm pull-right" id="mostrarGeneroU" onclick="showGeneroU()" style="display:none;">Mostrar Reporte Estadístico</button>
+              <button class="btn btn-warning btn-sm pull-right" id="ocultarGeneroU" onclick="showGeneroU()">Ocultar Reporte Estadístico</button>
+              <div id="by_genderU">
+                <%= column_chart @data,stacked:true%>
+              </div>
+          </li>
         </ul>
       </div>
 
@@ -73,6 +80,9 @@ var botonMostrarC = document.getElementById("mostrarCarrera");
 var genero = document.getElementById("by_gender");
 var botonOcultarG = document.getElementById("ocultarGenero");
 var botonMostrarG = document.getElementById("mostrarGenero");
+var generoU = document.getElementById("by_genderU");
+var botonOcultarGU = document.getElementById("ocultarGeneroU");
+var botonMostrarGU = document.getElementById("mostrarGeneroU");
 window.onload =function(){
   botonMostrarF.style.display="block";
   botonMostrarC.style.display="block";
@@ -82,10 +92,13 @@ window.onload =function(){
   botonOcultarU.style.display="none";
   botonMostrarG.style.display="block";
   botonOcultarG.style.display="none";
+  botonMostrarGU.style.display="block";
+  botonOcultarGU.style.display="none";
   fecha.style.display="none";
   uni.style.display="none";
   carrera.style.display="none";
   genero.style.display="none";
+  generoU.style.display="none";
 }
 function showFecha() {
     if (fecha.style.display === "none") {
@@ -131,6 +144,17 @@ function showGenero() {
         genero.style.display = "none";
         botonMostrarG.style.display="block";
         botonOcultarG.style.display="none";
+    }
+}
+function showGeneroU() {
+    if (generoU.style.display === "none") {
+        generoU.style.display = "block";
+        botonMostrarGU.style.display="none";
+        botonOcultarGU.style.display="block";
+    } else {
+        generoU.style.display = "none";
+        botonMostrarGU.style.display="block";
+        botonOcultarGU.style.display="none";
     }
 }
 </script>

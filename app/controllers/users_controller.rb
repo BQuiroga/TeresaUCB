@@ -45,9 +45,23 @@ class UsersController < ApplicationController
 	end
 	def reportes_general
 		@users=User.all
+		@perso=Education.new
+		@total_persons=PersonalInformation.all
 		@personal_by_gender=PersonalInformation.group(:gender).count
 		@info_charts=Hash.new
+		@used_genders=Hash.new
 		@info_charts={"Hombres"=>@personal_by_gender[true],"Mujeres"=>@personal_by_gender[false],"Empresas"=>@personal_by_gender[nil]}
+		@used_schools=@perso.chart_names
+		@used_schools.each do |school|
+			@used_genders[school]=@perso.genders(school)
+		end
+		@data=Array.new(@used_schools.size)
+		i=0
+		@used_genders.each do |gender|
+			@data[i]={name:gender[0], data:[["Hombres",gender[1].count(true)],["Mujeres",gender[1].count(false)],["Empresas",gender[1].count(nil)]]}
+			i+=1
+		end
+
 	end
 
 	def search_params

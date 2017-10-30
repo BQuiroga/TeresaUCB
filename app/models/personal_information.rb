@@ -13,8 +13,7 @@ class PersonalInformation < ActiveRecord::Base
       "Empresa"
     end
   end
-  def chart_names
-    [""]
+  def schools_total
   end
   def validate_date
     birthdate<Time.now
