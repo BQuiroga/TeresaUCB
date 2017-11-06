@@ -61,7 +61,11 @@ class UsersController < ApplicationController
 			@data[i]={name:gender[0], data:[["Hombres",gender[1].count(true)],["Mujeres",gender[1].count(false)],["Empresas",gender[1].count(nil)]]}
 			i+=1
 		end
-
+		@companies_by_code=CompanyInformation.group(:ciu_code_id).count
+		@companies_names=Hash.new
+		@companies_by_code.each do |c|
+			@companies_names[CiuCode.find(c[0]).description]=c[1]
+		end
 	end
 	def new_report
 		@city=report_params[:city]

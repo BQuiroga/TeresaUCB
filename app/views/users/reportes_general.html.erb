@@ -38,30 +38,25 @@
                 <%= column_chart @data,stacked:true%>
               </div>
           </li>
+          <li class="list-group-item">Empresas clasificadas codigo CIUU
+              <button class="btn btn-warning btn-sm pull-right" id="mostrarEmpresasC" onclick="showEmpresasC()" style="display:none;">Mostrar Reporte Estadístico</button>
+              <button class="btn btn-warning btn-sm pull-right" id="ocultarEmpresasC" onclick="showEmpresasC()">Ocultar Reporte Estadístico</button>
+              <div id="by_ciu">
+                <%=bar_chart @companies_names,stacked:true%>
+              </div>
+          </li>
+          <li class="list-group-item">Trabajos por rango salarial
+              <button class="btn btn-warning btn-sm pull-right" id="mostrarEmpresasC" onclick="showEmpresasC()" style="display:none;">Mostrar Reporte Estadístico</button>
+              <button class="btn btn-warning btn-sm pull-right" id="ocultarEmpresasC" onclick="showEmpresasC()">Ocultar Reporte Estadístico</button>
+              <div id="by_ciu">
+                <%=pie_chart Experience.all.group(:salary_range).count,stacked:true%>
+              </div>
+          </li>
+
         </ul>
       </div>
 
-<div class="panel-footer well">
-  <%= form_for :user, url: '/nuevoReporte' do |f| %>
-  <div class="panel-heading"><div class="panel-title"><h3>Otros Criterios de busqueda</h3></div></div>
-  <%= f.label :Qué_otro_criterios_busca? %><br>
-  <div class="field">
-    <%=f.label :Analizar_por_género%>&nbsp;
-    <%= f.check_box :gender%>
-  </div>
-  <div class="field">
-    <%=f.label :Analizar_por_universidad%>&nbsp;
-    <%= f.check_box :university %>
-  </div>
-  <div class="field">
-    <%=f.label :Analizar_por_ciudad%>&nbsp;
-    <%= f.check_box :city %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Generar", :class =>"btn btn-primary" %>
-  </div>
-<% end %>
-</div>
+
 </div>
 
 
@@ -82,6 +77,9 @@ var botonMostrarG = document.getElementById("mostrarGenero");
 var generoU = document.getElementById("by_genderU");
 var botonOcultarGU = document.getElementById("ocultarGeneroU");
 var botonMostrarGU = document.getElementById("mostrarGeneroU");
+var empresasC = document.getElementById("by_ciu");
+var botonOcultarEC = document.getElementById("ocultarEmpresasC");
+var botonMostrarEC = document.getElementById("mostrarempresasC");
 window.onload =function(){
   botonMostrarF.style.display="block";
   botonMostrarC.style.display="block";
@@ -93,11 +91,14 @@ window.onload =function(){
   botonOcultarG.style.display="none";
   botonMostrarGU.style.display="block";
   botonOcultarGU.style.display="none";
+  botonMostrarEC.style.display="block";
+  botonOcultarEC.style.display="none";
   fecha.style.display="none";
   uni.style.display="none";
   carrera.style.display="none";
   genero.style.display="none";
   generoU.style.display="none";
+  empresasC.style.display="none";
 }
 function showFecha() {
     if (fecha.style.display === "none") {
@@ -121,8 +122,6 @@ function showUniversidad() {
         botonOcultarU.style.display="none";
     }
 }
-
-
 function showCarrera() {
     if (carrera.style.display === "none") {
         carrera.style.display = "block";
@@ -154,6 +153,17 @@ function showGeneroU() {
         generoU.style.display = "none";
         botonMostrarGU.style.display="block";
         botonOcultarGU.style.display="none";
+    }
+}
+function showEmpresasC() {
+    if (empresasC.style.display === "none") {
+        empresasC.style.display = "block";
+        botonMostrarEC.style.display="none";
+        botonOcultarEc.style.display="block";
+    } else {
+        empresasC.style.display = "none";
+        botonMostrarEC.style.display="block";
+        botonOcultarEC.style.display="none";
     }
 }
 </script>

@@ -1,6 +1,11 @@
 class Experience < ActiveRecord::Base
 	belongs_to :resume
-	before_create :validate_date
+	before_create :validate_date,:set_anonim_salary
+	def set_anonim_salary
+		if salary_range==nil
+			salary_range="Anonimo"
+		end
+	end
 	def validate_date
 		start_date<end_date&& start_date<Time.now
 	end
