@@ -63,9 +63,17 @@ class UsersController < ApplicationController
 		end
 
 	end
-
+	def new_report
+		@city=report_params[:city]
+		@university=report_params[:university]
+		@gender=report_params[:gender]
+		if (@city)
+		end
+	end
 	def search_params
-    	params.require(:user).permit(:name,:last_name)
-  	end
-
+  	params.require(:user).permit(:name,:last_name)
+	end
+	def report_params
+		params.require(:user).permit(:city,:gender,:university)
+	end
 end

@@ -51,7 +51,10 @@
 								"UNITEPC","UNIVERSIDAD NACIONAL SIGLO XX","ECEM","UDABOL","CEMLA ","ASOCIACION DE BANCOS PRIVADOS DE BOLIVIA","CAMARA DE COMERCIO Y SERVICIOS","FUNDES","TECNOLOGICO BOLIVIANO ALEMAN","CENTRO EMPRESARIAL DE CAPACITACION","UNIVERSIDAD LATINOAMERICANA - ULAT","S.A.R.","UCATEC","UPAL","CENTRO SIMON I. PATIÑO","TUDELA & TH CONSULTING GROUP S.R.L.","COLEGIO ALEMAN SANTA MARIA","UNIDAD EDUCATIVA NUESTRA SRA. DE LA PAZ ",
 								"UNIVERSIDAD AMAZONICA DE PANDO","UNIVERSIDAD JUAN MISAEL SARACHO","COLEGIO TÉCNICO AGROPECUARIO 'MARTIN CÁRDENAS'","CONSEJO DE LA JUDICIATURA","ESC. NORMAL M. SUCRE"]
 Title.create([{name:"Abogado"},{name:"Administracion"},{name:"Agronomia"},{name:"Arquitecto"},{name:"Artesano"},{name:"Auditor"},{name:"Auxiliar"},{name:"Ayudante de Gerencia"},{name:"Bachiller"},{name:"Bibliotecologo"},{name:"Biologo"},{name:"Bioquimico"}])
+CiuCode.create(ciu:"01111",description:"Cultivo De Cereales Y Otros Cultivos N.C.P.",group:"A")
+CiuCode.create(ciu:"01112",description:	"Cultivo De Semillas Oleaginosas O Soya",group:"A")
+
 abogado_id=Title.where(name:"Administracion").first.id
-Degree.create({name: "Escolar",title_id:abogado_id},{name: "Internacional",title_id:abogado_id},{name: "Publica",title_id:abogado_id},{name: "Direccion de Empresas",title_id:abogado_id},{name: "De Empresas",title_id:abogado_id})
+# Degree.create(name: "Escolar",title_id:abogado_id},{name: "Internacional",title_id:abogado_id},{name: "Publica",title_id:abogado_id},{name: "Direccion de Empresas",title_id:abogado_id},{name: "De Empresas",title_id:abogado_id})
 auxiliar_id=Title.where(name:"Auxiliar").first.id
-Degree.crearte({name:"Contabilidad",title_id:auxiliar_id},{name:"de Oficina",title_id:auxiliar_id})
+# Degree.crearte({name:"Contabilidad",title_id:auxiliar_id},{name:"de Oficina",title_id:auxiliar_id})

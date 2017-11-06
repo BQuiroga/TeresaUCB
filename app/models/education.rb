@@ -26,6 +26,12 @@ class Education < ActiveRecord::Base
    }
     v
   end
+  def title_name
+    education.try(:title)
+  end
+  def title_name=(name)
+    self.education=Education.find_by(title: name) if name.present?
+  end
   def chart_names
     Education.group(:school_name).count.keys
   end

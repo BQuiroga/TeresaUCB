@@ -71,6 +71,7 @@ Rails.application.routes.draw do
   get 'user/:id/bloquear'=>'users#bloquear'
   get 'user/:id/desbloquear'=>'users#desbloquear'
   get '/reportes'=>'users#reportes_general'
+  post 'nuevoReporte'=>'users#new_report'
   resources :posts
   resources :educations
   resources :referentials
