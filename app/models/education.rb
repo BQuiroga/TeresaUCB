@@ -48,6 +48,7 @@ class Education < ActiveRecord::Base
     # e[2]=educations.count(nil)
     # e
   end
+  
   def title_detail(title)
     title_list[title]
   end

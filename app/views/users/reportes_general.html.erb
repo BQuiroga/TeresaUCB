@@ -1,3 +1,4 @@
+<div class="container">
 <h1>Lista de reportes</h1>
   <div class="panel panel-default">
     <div class="panel-heading"><div class="panel-title"><h3>Criterios de busqueda</h3></div></div>
@@ -52,13 +53,25 @@
                 <%=pie_chart Experience.all.group(:salary_range).count,stacked:true%>
               </div>
           </li>
+          <li class="list-group-item">Años transcurridos para conseguir un trabajo
+              <button class="btn btn-warning btn-sm pull-right" id="mostrarEmpresasC" onclick="showEmpresasC()" style="display:none;">Mostrar Reporte Estadístico</button>
+              <button class="btn btn-warning btn-sm pull-right" id="ocultarEmpresasC" onclick="showEmpresasC()">Ocultar Reporte Estadístico</button>
+              <div id="by_ciu">
+                <%=column_chart @years,stacked:true%>
+              </div>
+          </li>
+          <li class="list-group-item">Años de permanencia en un trabajo
+              <button class="btn btn-warning btn-sm pull-right" id="mostrarEmpresasC" onclick="showEmpresasC()" style="display:none;">Mostrar Reporte Estadístico</button>
+              <button class="btn btn-warning btn-sm pull-right" id="ocultarEmpresasC" onclick="showEmpresasC()">Ocultar Reporte Estadístico</button>
+              <div id="by_ciu">
+                <%=column_chart @jobs_time,stacked:true%>
+              </div>
+          </li>
 
         </ul>
       </div>
-
-
 </div>
-
+</div>
 
 <script>
 

@@ -66,6 +66,24 @@ class UsersController < ApplicationController
 		@companies_by_code.each do |c|
 			@companies_names[CiuCode.find(c[0]).description]=c[1]
 		end
+		@years=Hash.new(0)
+		@users.where(company:false).each do |u|
+			if (u.years_to_first_job==-1)
+				@years["Aun no ha egresado"]+=1
+			else
+				@years[u.years_to_first_job] +=1
+			end
+		end
+		@experiences=Experience.all
+		@jobs_time=Hash.new(0)
+		@experiences.each do |e|
+			if (e.time_in_job==-1)
+				@jobs_time["Continua trabajando"]+=1
+			else
+				@jobs_time[e.time_in_job] +=1
+			end
+		end
+
 	end
 	def new_report
 		@city=report_params[:city]

@@ -135,4 +135,43 @@ class User < ActiveRecord::Base
   def gender
     personal_information.gender_to_string
   end
+  def last_education_date
+    educations=self.resume.educations
+    last=Date.today
+    educations.each do |edu|
+      if last>edu.end_date
+        last=edu.end_date
+      end
+    end
+    last
+  end
+  def not_company_users
+    users=User.where(company:false)
+  end
+  def first_job_date
+    jobs=self.resume.experiences
+    first=Date.today
+    jobs.each do |work|
+      if first>work.end_date
+        first=work.end_date
+      end
+    end
+    first
+  end
+  def years_to_first_job
+    res=Date.new
+    if first_job_date>last_education_date
+      res= (first_job_date - last_education_date).to_i
+      resp=days_into_years(res)
+    else
+      return -1
+    end
+    resp
+  end
+  def days_into_years(some_date)
+    y=some_date/365
+    m=(some_date%365)/30
+    d=(some_date%365)%30
+    y
+  end
 end
