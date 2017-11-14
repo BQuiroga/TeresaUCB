@@ -4,68 +4,32 @@
     <div class="panel-heading"><div class="panel-title"><h3>Criterios de busqueda</h3></div></div>
       <div class="panel-body">
         <ul class="list-group">
-          <li class="list-group-item">Usuarios por fecha
-              <button class="btn btn-warning btn-sm pull-right" id="mostrarFecha" onclick="showFecha()" style="display:none; ">Mostrar Reporte Estadístico</button>
-              <button class="btn btn-warning btn-sm pull-right" id="ocultarFecha" onclick="showFecha()">Ocultar Reporte Estadístico</button>
-              <div id="by_date">
-                <%= column_chart User.group_by_month(:created_at).count, stacked: true, donwload: true%>
-              </div>
+          <li class="list-group-item">Personas registradas por fecha
+            <a href="/reportes/UsuariosPorFecha"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
           </li>
-          <li class="list-group-item">Usuarios por Universidad
-              <button class="btn btn-warning btn-sm pull-right" id="mostrarUniversidad" onclick="showUniversidad()" style="display:none;">Mostrar Reporte Estadístico</button>
-              <button class="btn btn-warning btn-sm pull-right" id="ocultarUniversidad" onclick="showUniversidad()">Ocultar Reporte Estadístico</button>
-              <div id="by_university">
-                <%= column_chart Education.group(:school_name).count, stacked: true%>
-              </div>
+          <li class="list-group-item">Personas registradas por Universidad
+            <a href="/reportes/UsuariosPorUniversidad"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
           </li>
-          <li class="list-group-item">Usuarios por Carrera
-              <button class="btn btn-warning btn-sm pull-right" id="mostrarCarrera" onclick="showCarrera()" style="display:none;">Mostrar Reporte Estadístico</button>
-              <button class="btn btn-warning btn-sm pull-right" id="ocultarCarrera" onclick="showCarrera()">Ocultar Reporte Estadístico</button>
-              <div id="by_career">
-                <%= bar_chart Education.group(:title).count%>
-              </div>
+          <li class="list-group-item">Estudiantes egresados por Carrera
+            <a href="/reportes/UsuariosPorCarrera"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
           </li>
-          <li class="list-group-item">Usuarios por Género
-              <button class="btn btn-warning btn-sm pull-right" id="mostrarGenero" onclick="showGenero()" style="display:none;">Mostrar Reporte Estadístico</button>
-              <button class="btn btn-warning btn-sm pull-right" id="ocultarGenero" onclick="showGenero()">Ocultar Reporte Estadístico</button>
-              <div id="by_gender">
-                <%= bar_chart @info_charts%>
-              </div>
+          <li class="list-group-item">Personas registradas por Género
+            <a href="/reportes/UsuariosPorGenero"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
           </li>
-          <li class="list-group-item">Usuarios por Género y Universidad
-              <button class="btn btn-warning btn-sm pull-right" id="mostrarGeneroU" onclick="showGeneroU()" style="display:none;">Mostrar Reporte Estadístico</button>
-              <button class="btn btn-warning btn-sm pull-right" id="ocultarGeneroU" onclick="showGeneroU()">Ocultar Reporte Estadístico</button>
-              <div id="by_genderU">
-                <%= column_chart @data,stacked:true%>
-              </div>
+          <li class="list-group-item">Personas registradas por Género y Universidad
+            <a href="/reportes/UsuariosPorGeneroUniversidad"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
           </li>
           <li class="list-group-item">Empresas clasificadas codigo CIUU
-              <button class="btn btn-warning btn-sm pull-right" id="mostrarEmpresasC" onclick="showEmpresasC()" style="display:none;">Mostrar Reporte Estadístico</button>
-              <button class="btn btn-warning btn-sm pull-right" id="ocultarEmpresasC" onclick="showEmpresasC()">Ocultar Reporte Estadístico</button>
-              <div id="by_ciu">
-                <%=bar_chart @companies_names,stacked:true%>
-              </div>
+            <a href="/reportes/EmpresasPorcodigoCIUU"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
           </li>
           <li class="list-group-item">Trabajos por rango salarial
-              <button class="btn btn-warning btn-sm pull-right" id="mostrarEmpresasC" onclick="showEmpresasC()" style="display:none;">Mostrar Reporte Estadístico</button>
-              <button class="btn btn-warning btn-sm pull-right" id="ocultarEmpresasC" onclick="showEmpresasC()">Ocultar Reporte Estadístico</button>
-              <div id="by_ciu">
-                <%=pie_chart Experience.all.group(:salary_range).count,stacked:true%>
-              </div>
+            <a href="/reportes/TrabajosPorRangoSalarial"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
           </li>
           <li class="list-group-item">Años transcurridos para conseguir un trabajo
-              <button class="btn btn-warning btn-sm pull-right" id="mostrarEmpresasC" onclick="showEmpresasC()" style="display:none;">Mostrar Reporte Estadístico</button>
-              <button class="btn btn-warning btn-sm pull-right" id="ocultarEmpresasC" onclick="showEmpresasC()">Ocultar Reporte Estadístico</button>
-              <div id="by_ciu">
-                <%=column_chart @years,stacked:true%>
-              </div>
+            <a href="/reportes/TiempoParaTrabajar"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
           </li>
           <li class="list-group-item">Años de permanencia en un trabajo
-              <button class="btn btn-warning btn-sm pull-right" id="mostrarEmpresasC" onclick="showEmpresasC()" style="display:none;">Mostrar Reporte Estadístico</button>
-              <button class="btn btn-warning btn-sm pull-right" id="ocultarEmpresasC" onclick="showEmpresasC()">Ocultar Reporte Estadístico</button>
-              <div id="by_ciu">
-                <%=column_chart @jobs_time,stacked:true%>
-              </div>
+            <a href="/reportes/DuracionDeTrabajo"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
           </li>
 
         </ul>
@@ -96,10 +60,10 @@ var botonMostrarEC = document.getElementById("mostrarempresasC");
 window.onload =function(){
   botonMostrarF.style.display="block";
   botonMostrarC.style.display="block";
-  botonMostrarU.style.display="block";
   botonOcultarC.style.display="none";
   botonOcultarF.style.display="none";
   botonOcultarU.style.display="none";
+  botonMostrarU.style.display="block";
   botonMostrarG.style.display="block";
   botonOcultarG.style.display="none";
   botonMostrarGU.style.display="block";

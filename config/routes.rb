@@ -72,6 +72,15 @@ Rails.application.routes.draw do
   get 'user/:id/desbloquear'=>'users#desbloquear'
   get '/reportes'=>'users#reportes_general'
   post 'nuevoReporte'=>'users#new_report'
+  get 'reportes/UsuariosPorFecha'=>'reports#users_by_date'
+  get 'reportes/UsuariosPorUniversidad'=>'reports#users_by_university'
+  get 'reportes/UsuariosPorCarrera'=>'reports#students_by_career'
+  get 'reportes/UsuariosPorGenero'=>'reports#users_by_gender'
+  get 'reportes/UsuariosPorGeneroUniversidad'=>'reports#by_gender_university'
+  get 'reportes/EmpresasPorcodigoCIUU'=>'reports#by_ciuu'
+  get 'reportes/TrabajosPorRangoSalarial'=>'reports#by_salary_range'
+  get 'reportes/TiempoParaTrabajar'=>'reports#by_time_to_work'
+  get 'reportes/DuracionDeTrabajo'=>'reports#time_in_job'
   resources :posts
   resources :educations
   resources :referentials

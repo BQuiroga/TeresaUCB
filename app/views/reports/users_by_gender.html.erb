@@ -1,0 +1,60 @@
+<a href="/reportes"><button class="btn btn-primary">Volver Atras</button></a>
+<div class="container">
+<h1>Lista de reportes</h1>
+  <div class="panel panel-default">
+    <div class="panel-heading"><div class="panel-title"><h3>Personas registradas por Género</h3></div></div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item">
+              <button class="btn btn-warning btn-sm pull-right" id="mostrarGenero" onclick="showGenero()" style="display:none;">Mostrar Gráfica Estadística</button>
+              <button class="btn btn-warning btn-sm pull-right" id="ocultarGenero" onclick="showGenero()">Ocultar Gráfica Estadística</button>
+              <div >
+                <div class="container">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                      <tr>
+                        <th style="text-align: center;">&nbsp;Género&nbsp;</th>
+                        <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+                      </tr>
+                      <% @info_charts.each do |date|%>
+                        <tr>
+                          <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                          <td ><%= date[1]%></td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div id="by_gender">
+                <%= bar_chart @info_charts%>
+              </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<script>
+var genero = document.getElementById("by_gender");
+var botonOcultarG = document.getElementById("ocultarGenero");
+var botonMostrarG = document.getElementById("mostrarGenero");
+window.onload =function(){
+  botonMostrarG.style.display="block";
+  botonOcultarG.style.display="none";
+  genero.style.display="none";
+}
+function showGenero() {
+    if (genero.style.display === "none") {
+        genero.style.display = "block";
+        botonMostrarG.style.display="none";
+        botonOcultarG.style.display="block";
+    } else {
+        genero.style.display = "none";
+        botonMostrarG.style.display="block";
+        botonOcultarG.style.display="none";
+    }
+}
+</script>

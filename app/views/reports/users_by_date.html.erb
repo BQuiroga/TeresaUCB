@@ -1,0 +1,60 @@
+<a href="/reportes"><button class="btn btn-primary">Volver Atras</button></a>
+<div class="container">
+<h1>Lista de reportes</h1>
+  <div class="panel panel-default">
+    <div class="panel-heading"><div class="panel-title"><h3>Personas registradas por fecha</h3></div></div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item">
+              <button class="btn btn-warning btn-sm pull-right" id="mostrarFecha" onclick="showFecha()" style="display:none; ">Mostrar Gráfica Estadística</button>
+              <button class="btn btn-warning btn-sm pull-right" id="ocultarFecha" onclick="showFecha()">Ocultar Gráfica Estadística</button>
+              <div>
+                <div class="container">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                      <tr>
+                        <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
+                        <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+                      </tr>
+                      <% @date_users.each do |date|%>
+                        <tr>
+                          <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                          <td ><%= date[1]%></td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                </div>
+              </div>
+            </li>
+              <li class="list-group-item">
+              <div id="by_date">
+                <%= bar_chart @date_users, stacked: true, donwload: true%>
+              </div>
+            </li>
+        </div>
+      </div>
+    </div>
+
+    <script>
+
+    var fecha = document.getElementById("by_date");
+    var botonOcultarF = document.getElementById("ocultarFecha");
+    var botonMostrarF = document.getElementById("mostrarFecha");
+    window.onload =function(){
+      botonMostrarF.style.display="block";
+      botonOcultarF.style.display="none";
+      fecha.style.display="none";
+    }
+    function showFecha() {
+      if (fecha.style.display === "none") {
+        fecha.style.display = "block";
+        botonMostrarF.style.display="none";
+        botonOcultarF.style.display="block";
+      } else {
+        fecha.style.display = "none";
+        botonMostrarF.style.display="block";
+        botonOcultarF.style.display="none";
+      }
+    }
+    </script>

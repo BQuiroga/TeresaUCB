@@ -46,10 +46,14 @@ class UsersController < ApplicationController
 	def reportes_general
 		@users=User.all
 		@perso=Education.new
-		@total_persons=PersonalInformation.all
 		@personal_by_gender=PersonalInformation.group(:gender).count
 		@info_charts=Hash.new
 		@used_genders=Hash.new
+		@date_users=User.group_by_month(:created_at).count
+		@university_users=Education.group(:school_name).count
+		@catolica_users=Education.where(school_name:"Universidad Catolica San Pablo")
+		@career_users=@catolica_users.group(:title).count
+		@salaries=Experience.all.group(:salary_range).count
 		@info_charts={"Hombres"=>@personal_by_gender[true],"Mujeres"=>@personal_by_gender[false],"Empresas"=>@personal_by_gender[nil]}
 		@used_schools=@perso.chart_names
 		@used_schools.each do |school|

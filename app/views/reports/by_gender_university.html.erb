@@ -1,0 +1,62 @@
+<a href="/reportes"><button class="btn btn-primary">Volver Atras</button></a>
+<div class="container">
+<h1>Lista de reportes</h1>
+  <div class="panel panel-default">
+    <div class="panel-heading"><div class="panel-title"><h3>Personas registradas por Género y Universidad</h3></div></div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item">
+              <button class="btn btn-warning btn-sm pull-right" id="mostrarGeneroU" onclick="showGeneroU()" style="display:none;">Mostrar Gráfica Estadística</button>
+              <button class="btn btn-warning btn-sm pull-right" id="ocultarGeneroU" onclick="showGeneroU()">Ocultar Gráfica Estadística</button>
+              <div >
+                <div class="container">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                      <tr>
+                        <th style="text-align: center;">&nbsp;Universidad&nbsp;</th>
+                        <th style="text-align: center;">&nbsp;Hombres&nbsp;</th>
+                        <th style="text-align: center;">&nbsp;Mujeres&nbsp;</th>
+                      </tr>
+                      <% @data.each do |date|%>
+                        <tr>
+                          <td>&nbsp;<%=date[:name]%>&nbsp;</td>
+                          <td ><%= date[:data][0][1]%></td>
+                          <td ><%= date[:data][1][1]%></td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div id="by_genderU">
+                <%= column_chart @data,stacked:true%>
+              </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<script>
+var generoU = document.getElementById("by_genderU");
+var botonOcultarGU = document.getElementById("ocultarGeneroU");
+var botonMostrarGU = document.getElementById("mostrarGeneroU");
+window.onload =function(){
+  botonMostrarGU.style.display="block";
+  botonOcultarGU.style.display="none";
+  generoU.style.display="none";
+}
+function showGeneroU() {
+    if (generoU.style.display === "none") {
+        generoU.style.display = "block";
+        botonMostrarGU.style.display="none";
+        botonOcultarGU.style.display="block";
+    } else {
+        generoU.style.display = "none";
+        botonMostrarGU.style.display="block";
+        botonOcultarGU.style.display="none";
+    }
+}
+</script>
