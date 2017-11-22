@@ -85,7 +85,18 @@ class Education < ActiveRecord::Base
     end
     results
   end
-
+  def entre_fechas(inicio,fin,query)
+    if inicio=="Invalido" and fin=="Invalido"
+      return query
+    end
+    if (inicio=="Invalido")
+      return query.where("end_date < ?",fin)
+    end
+    if (fin=="Invalido")
+      return query.where("end_date > ?",inicio)
+    end
+    query.where(end_date:inicio..fin)
+  end
   def title_detail(title)
     title_list[title]
   end

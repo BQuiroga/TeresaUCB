@@ -6,8 +6,20 @@ class ReportsController < ApplicationController
     @gradop=report_params[:grado_postgrado]
     @gradod=report_params[:grado_doctorado]
     @grado =report_params[:grado]
+    @fecha1=params[:report]
+    @genero=report_params[:genero]
+    if(@fecha1["fecha_inicio(1i)"].to_i>0 and @fecha1["fecha_inicio(2i)"].to_i>0 and @fecha1["fecha_inicio(3i)"].to_i>0 )
+      @fecha_inicio=Date.new @fecha1["fecha_inicio(1i)"].to_i,@fecha1["fecha_inicio(2i)"].to_i,@fecha1["fecha_inicio(3i)"].to_i
+    else
+      @fecha_inicio="Invalido"
+    end
+    if ( @fecha1["fecha_fin(1i)"].to_i>0 and @fecha1["fecha_fin(2i)"].to_i>0 and @fecha1["fecha_fin(3i)"].to_i>0)
+      @fecha_fin=Date.new  @fecha1["fecha_fin(1i)"].to_i,@fecha1["fecha_fin(2i)"].to_i,@fecha1["fecha_fin(3i)"].to_i
+    else
+      @fecha_fin="Invalido"
+    end
     @results=@@r.registro_academico(@grado,@gradol,@gradom,@gradop,@gradod)
-    @data_graphic= @results.group(:title).count
+    @results=@@r.entre_fechas(@fecha_inicio,@fecha_fin,@results)
     @users=Array.new
     if @results
       @results.each do |edu|
@@ -16,7 +28,13 @@ class ReportsController < ApplicationController
       if @users.size>1
         @users=@users.uniq
       end
+      if @genero!="Ambos"
+        @users=@users.select{|x| x.gender==@genero}
+      end
     end
+    @user_ids=@users.map{|user| user.resume.id}
+    @results=@results.where(resume_id:@user_ids)
+    @data_graphic= @results.group(:title).count
   end
 
 
@@ -84,6 +102,6 @@ class ReportsController < ApplicationController
     end
   end
   def report_params
-    params.require(:report).permit(:grado_licenciatura,:grado_postgrado,:grado_maestria,:grado_doctorado,:grado)
+    params.require(:report).permit(:grado_licenciatura,:grado_postgrado,:grado_maestria,:grado_doctorado,:grado,:fecha_inicio,:fecha_fin,:genero)
   end
 end

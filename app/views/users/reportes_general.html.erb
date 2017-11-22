@@ -33,24 +33,52 @@
                 <div id="grado_doctorado" style="display:none;">
                   <%= f.select(:grado_doctorado,@e.doctorados,:class=>"selectpicker",:include_blank => true)%>
                 </div>
-                <div class="form-control">
 
               </div>
 
 
               <div class="col-sm-3 col-md-6 col-lg-4">
-                <div class="form-control">
-                  <!-- <input type="checkbox" id=check_carreras>reporte por carreras</input> -->
+                <div>
+                  <%=f.label :por_fecha %>
+                  <input type="checkbox" id="check_fecha">
+                  <div id="fecha_inicio" style="display:none;">
+                    <%= f.label :fecha_inicio%>
+                    <%= f.date_select :fecha_inicio,:start_year  =>1990, :end_year=>Time.now.year,:include_blank => true%>
+                  </div>
+                  <div id="fecha_fin" style="display:none;">
+                    <%= f.label :fecha_fin%>
+                    <%= f.date_select :fecha_fin,:start_year  =>1990, :end_year=>Time.now.year,:include_blank => true%>
+                  </div>
                 </div>
               </div>
               <div  class="col-sm-3 col-md-6 col-lg-4">
+                <div>
+                  <%=f.label :por_genero %>
+                  <input type="checkbox" id="check_genero">
+                  <div id="hombres" style="display:none;">
+                    <%= f.label :hombres%>
+                    <%= f.radio_button :genero,"Masculino"%>
+                  </div>
+                  <div id="mujeres" style="display:none;">
+                    <%= f.label :mujeres%>
+                    <%= f.radio_button :genero,"Femenino"%>
+                  </div>
+                  <div id="ambos" style="display:none;">
+                    <%= f.label :ambos%>
+                    <%= f.radio_button :genero,"Ambos",:checked => true %>
+                  </div>
+                </div>
               </div>
               <div  class="col-sm-3 col-md-6 col-lg-4">
               </div>
               <div class="actions col-xs-3">
                 <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
               </div>
+            <div>
+
+
             </div>
+
             <br><br><br><br><br>
           <% end %>
         </div>
@@ -108,5 +136,15 @@
   $('#check_grados').click(function() {
     $('#grados')[this.checked ? "show" : "hide"]();
   });
+    $('#check_fecha').click(function() {
+      $('#fecha_inicio')[this.checked ? "show" : "hide"]();
+      $('#fecha_fin')[this.checked ? "show" : "hide"]();
+    });
+    $('#check_genero').click(function() {
+      $('#hombres')[this.checked ? "show" : "hide"]();
+      $('#mujeres')[this.checked ? "show" : "hide"]();
+      $('#ambos')[this.checked ? "show" : "hide"]();
+    });
+
 
   </script>

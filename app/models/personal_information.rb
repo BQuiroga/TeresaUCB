@@ -4,13 +4,13 @@ class PersonalInformation < ActiveRecord::Base
   before_update :validate_date
   def gender_to_string
     if gender==true
-      "Masculino"
+      return "Masculino"
     end
     if gender==false
-      "Femenino"
+      return "Femenino"
     end
     if user.company
-      "Empresa"
+      return "Empresa"
     end
   end
   def schools_total
