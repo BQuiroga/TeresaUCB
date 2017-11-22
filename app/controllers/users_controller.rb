@@ -7,6 +7,8 @@ class UsersController < ApplicationController
 			"application"
 		end
 	end
+	def show
+	end
 	def profile
 		@user=current_user
 		@belongs=@user.group_managers

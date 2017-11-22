@@ -1,6 +1,29 @@
 class ReportsController < ApplicationController
+  @@r=Education.new
+  def new
+    @gradol=report_params[:grado_licenciatura]
+    @gradom=report_params[:grado_maestria]
+    @gradop=report_params[:grado_postgrado]
+    @gradod=report_params[:grado_doctorado]
+    @grado =report_params[:grado]
+    @results=@@r.registro_academico(@grado,@gradol,@gradom,@gradop,@gradod)
+    @data_graphic= @results.group(:title).count
+    @users=Array.new
+    if @results
+      @results.each do |edu|
+        @users = [edu.user]+@users
+      end
+      if @users.size>1
+        @users=@users.uniq
+      end
+    end
+  end
+
+
+
   def users_by_date
     @date_users=User.group_by_month(:created_at).count
+    @date_users=Hash.new{}
   end
   def users_by_university
     @university_users=Education.group(:school_name).count
@@ -59,5 +82,8 @@ class ReportsController < ApplicationController
         @jobs_time[e.time_in_job] +=1
       end
     end
+  end
+  def report_params
+    params.require(:report).permit(:grado_licenciatura,:grado_postgrado,:grado_maestria,:grado_doctorado,:grado)
   end
 end

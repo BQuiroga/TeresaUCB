@@ -1,146 +1,112 @@
-<div class="container">
-<h1>Lista de reportes</h1>
-  <div class="panel panel-default">
-    <div class="panel-heading"><div class="panel-title"><h3>Criterios de busqueda</h3></div></div>
-      <div class="panel-body">
-        <ul class="list-group">
-          <li class="list-group-item">Personas registradas por fecha
-            <a href="/reportes/UsuariosPorFecha"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
-          </li>
-          <li class="list-group-item">Personas registradas por Universidad
-            <a href="/reportes/UsuariosPorUniversidad"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
-          </li>
-          <li class="list-group-item">Estudiantes egresados por Carrera
-            <a href="/reportes/UsuariosPorCarrera"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
-          </li>
-          <li class="list-group-item">Personas registradas por Género
-            <a href="/reportes/UsuariosPorGenero"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
-          </li>
-          <li class="list-group-item">Personas registradas por Género y Universidad
-            <a href="/reportes/UsuariosPorGeneroUniversidad"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
-          </li>
-          <li class="list-group-item">Empresas clasificadas codigo CIUU
-            <a href="/reportes/EmpresasPorcodigoCIUU"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
-          </li>
-          <li class="list-group-item">Trabajos por rango salarial
-            <a href="/reportes/TrabajosPorRangoSalarial"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
-          </li>
-          <li class="list-group-item">Años transcurridos para conseguir un trabajo
-            <a href="/reportes/TiempoParaTrabajar"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
-          </li>
-          <li class="list-group-item">Años de permanencia en un trabajo
-            <a href="/reportes/DuracionDeTrabajo"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
-          </li>
+  <div class="container">
+  <h1>Lista de reportes</h1>
+    <div class="panel panel-default">
+      <div class="panel-heading"><div class="panel-title"><h3>Criterios de busqueda</h3></div></div>
+        <div class="panel-body">
+          <%= form_for :report, url: '/reporte/nuevo' do |f| %>
+            <div class="container-fluid">
+              <!-- reportes por grado academico -->
+              <div class="col-sm-3 col-md-6 col-lg-4">
+                <div class="field">
+                  <%=f.label :reportes_por_grados %>
+                  <input type="checkbox" id=check_grados name="check_grados" class="field">
+                </div>
+                <div id="grados" name="grados" style="display:none;" class="field">
+                  <select id="grado" onchange="cambioCarreras()" name="report[grado]">
+                    <option>Licenciatura</option>
+                    <option>Maestria</option>
+                    <option>Doctorado</option>
+                    <option>Postgrado</option>
+                    <option selected>Todos</option>
+                  </select>
+                </div>
+                <%@e=Education.new%>
+                <div id="grado_licenciatura" style="display:none;">
+                  <%= f.select :grado_licenciatura,@e.licenciaturas,{:class=>"selectpicker",:include_blank => true}%>
+                </div>
+                <div id="grado_postgrado" style="display:none;">
+                  <%= f.select(:grado_postgrado,@e.postgrados,:class=>"selectpicker",:include_blank => true)%>
+                </div>
+                <div id="grado_maestria" style="display:none;">
+                  <%= f.select(:grado_maestria,@e.maestrias,:class=>"selectpicker",:include_blank => true)%>
+                </div>
+                <div id="grado_doctorado" style="display:none;">
+                  <%= f.select(:grado_doctorado,@e.doctorados,:class=>"selectpicker",:include_blank => true)%>
+                </div>
+                <div class="form-control">
 
-        </ul>
-      </div>
-</div>
-</div>
+              </div>
 
-<script>
 
-var fecha = document.getElementById("by_date");
-var botonOcultarF = document.getElementById("ocultarFecha");
-var botonMostrarF = document.getElementById("mostrarFecha");
-var uni = document.getElementById("by_university");
-var botonOcultarU = document.getElementById("ocultarUniversidad");
-var botonMostrarU = document.getElementById("mostrarUniversidad");
-var carrera = document.getElementById("by_career");
-var botonOcultarC = document.getElementById("ocultarCarrera");
-var botonMostrarC = document.getElementById("mostrarCarrera");
-var genero = document.getElementById("by_gender");
-var botonOcultarG = document.getElementById("ocultarGenero");
-var botonMostrarG = document.getElementById("mostrarGenero");
-var generoU = document.getElementById("by_genderU");
-var botonOcultarGU = document.getElementById("ocultarGeneroU");
-var botonMostrarGU = document.getElementById("mostrarGeneroU");
-var empresasC = document.getElementById("by_ciu");
-var botonOcultarEC = document.getElementById("ocultarEmpresasC");
-var botonMostrarEC = document.getElementById("mostrarempresasC");
-window.onload =function(){
-  botonMostrarF.style.display="block";
-  botonMostrarC.style.display="block";
-  botonOcultarC.style.display="none";
-  botonOcultarF.style.display="none";
-  botonOcultarU.style.display="none";
-  botonMostrarU.style.display="block";
-  botonMostrarG.style.display="block";
-  botonOcultarG.style.display="none";
-  botonMostrarGU.style.display="block";
-  botonOcultarGU.style.display="none";
-  botonMostrarEC.style.display="block";
-  botonOcultarEC.style.display="none";
-  fecha.style.display="none";
-  uni.style.display="none";
-  carrera.style.display="none";
-  genero.style.display="none";
-  generoU.style.display="none";
-  empresasC.style.display="none";
-}
-function showFecha() {
-    if (fecha.style.display === "none") {
-        fecha.style.display = "block";
-        botonMostrar.style.display="none";
-        botonOcultar.style.display="block";
-    } else {
-        fecha.style.display = "none";
-        botonMostrar.style.display="block";
-        botonOcultar.style.display="none";
+              <div class="col-sm-3 col-md-6 col-lg-4">
+                <div class="form-control">
+                  <!-- <input type="checkbox" id=check_carreras>reporte por carreras</input> -->
+                </div>
+              </div>
+              <div  class="col-sm-3 col-md-6 col-lg-4">
+              </div>
+              <div  class="col-sm-3 col-md-6 col-lg-4">
+              </div>
+              <div class="actions col-xs-3">
+                <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
+              </div>
+            </div>
+            <br><br><br><br><br>
+          <% end %>
+        </div>
+  </div>
+
+  </div>
+
+  <script>
+  window.onload = function() {
+   var checkbox = document.getElementById('check_grados');
+   if (checkbox.checked) {
+   document.getElementById("grados").style.display = "block";
+   } else {
+   document.getElementById("grados").style.display = "none";
+  }
+  };
+  function cambioCarreras(){
+    var x= document.getElementById("grado").value;
+    if (x=="Licenciatura")
+    {
+      document.getElementById("grado_licenciatura").style.display="block";
+      document.getElementById("grado_maestria").style.display="none";
+      document.getElementById("grado_postgrado").style.display="none";
+      document.getElementById("grado_doctorado").style.display="none";
     }
-}
-function showUniversidad() {
-    if (uni.style.display === "none") {
-        uni.style.display = "block";
-        botonMostrarU.style.display="none";
-        botonOcultarU.style.display="block";
-    } else {
-        uni.style.display = "none";
-        botonMostrarU.style.display="block";
-        botonOcultarU.style.display="none";
+    if (x=="Maestria")
+    {
+      document.getElementById("grado_licenciatura").style.display="none";
+      document.getElementById("grado_maestria").style.display="block";
+      document.getElementById("grado_postgrado").style.display="none";
+      document.getElementById("grado_doctorado").style.display="none";
     }
-}
-function showCarrera() {
-    if (carrera.style.display === "none") {
-        carrera.style.display = "block";
-        botonMostrarC.style.display="none";
-        botonOcultarC.style.display="block";
-    } else {
-        carrera.style.display = "none";
-        botonMostrarC.style.display="block";
-        botonOcultarC.style.display="none";
+    if (x=="Postgrado")
+    {
+      document.getElementById("grado_licenciatura").style.display="none";
+      document.getElementById("grado_maestria").style.display="none";
+      document.getElementById("grado_postgrado").style.display="block";
+      document.getElementById("grado_doctorado").style.display="none";
     }
-}
-function showGenero() {
-    if (genero.style.display === "none") {
-        genero.style.display = "block";
-        botonMostrarG.style.display="none";
-        botonOcultarG.style.display="block";
-    } else {
-        genero.style.display = "none";
-        botonMostrarG.style.display="block";
-        botonOcultarG.style.display="none";
+    if (x=="Doctorado")
+    {
+      document.getElementById("grado_licenciatura").style.display="none";
+      document.getElementById("grado_maestria").style.display="none";
+      document.getElementById("grado_postgrado").style.display="none";
+        document.getElementById("grado_doctorado").style.display="blok";
     }
-}
-function showGeneroU() {
-    if (generoU.style.display === "none") {
-        generoU.style.display = "block";
-        botonMostrarGU.style.display="none";
-        botonOcultarGU.style.display="block";
-    } else {
-        generoU.style.display = "none";
-        botonMostrarGU.style.display="block";
-        botonOcultarGU.style.display="none";
+    if (x=="Todos")
+    {
+      document.getElementById("grado_licenciatura").style.display="none";
+      document.getElementById("grado_maestria").style.display="none";
+      document.getElementById("grado_postgrado").style.display="none";
+      document.getElementById("grado_doctorado").style.display="none";
     }
-}
-function showEmpresasC() {
-    if (empresasC.style.display === "none") {
-        empresasC.style.display = "block";
-        botonMostrarEC.style.display="none";
-        botonOcultarEc.style.display="block";
-    } else {
-        empresasC.style.display = "none";
-        botonMostrarEC.style.display="block";
-        botonOcultarEC.style.display="none";
-    }
-}
-</script>
+  }
+  $('#check_grados').click(function() {
+    $('#grados')[this.checked ? "show" : "hide"]();
+  });
+
+  </script>

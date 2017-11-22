@@ -32,6 +32,18 @@ class PersonalInformation < ActiveRecord::Base
   	 birthdate=cad_aux
     end
   end
+  def call_center
+    response=nil
+    if phone
+      return phone
+    end
+    if cellphone
+      return cellphone
+    end
+    if cellphone and phone
+      return cellphone+" - " +phone
+    end
+  end
   def literal(fecha)
    		fecha.day.to_s +" "+ mes(fecha.month) +" "+ fecha.year.to_s
    	end

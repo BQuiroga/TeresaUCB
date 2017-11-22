@@ -9,22 +9,40 @@ class Education < ActiveRecord::Base
     user=resume.user
   end
   def title_list
-    v=Hash.new
-    v={"Abogado"=>[],
-      "Administracion"=>["Escolar","Internacional", "Publica","y Direccion de Empresas","de Empresas"],
-      "Agronomia"=>[],
-      "Arquitecto"=>[],
-     "Artesano"=>[],
-     "Auditor"=>[],
-     "Auxiliar"=>["Contabilidad","de Oficina"],
-     "Ayudante de Gerencia"=>[],
-     "Bachiller"=>["En Humanidades"],
-     "Bachillerato Internacional"=>[],
-     "Bibliotecologo"=>[],
-     "Biologo"=>[],
-     "Bioquimico"=>[]
-   }
+    v=Array.new
+    v=["Abogado","Administracion Escolar","Administracion Internacional","Administracion Publica","Administracion y Direccion de Empresas","Administracion de Empresas","Agronomia",
+       "Auditor","Auxiliar de Contabilidad","Auxiliar de Oficina","Ayudante de Gerencia","Bachiller En Humanidades","Bachillerato Internacional","Ingenieria Industrial","Ingenieria de Sistemas"]
     v
+  end
+  def grade(grade)
+    if grade[1]!=""
+      return "Maestria"
+    end
+    if grade[2]!=""
+      return "Postgrado"
+    end
+    if grade[3]!=""
+      return "Doctorado"
+    end
+    if grade[0]!=""
+      return ["Maestria","Postgrado","Doctorado"]
+    end
+  end
+  def licenciaturas
+    result=title_list-postgrados-maestrias-doctorados
+    result=result+["Todos"]
+  end
+  def postgrados
+    result=title_list.select{|x| x.include?("Postgrado")}
+    result=result+["Todos"]
+  end
+  def maestrias
+    result=title_list.select{|x| x.include?("Maestria")}+title_list.select{|x| x.include?("Master")}
+    result=result+["Todos"]
+  end
+  def doctorados
+    result=title_list.select{|x| x.include?("Doctorado")} + title_list.select{|x| x.include?("Doctor")}
+    result=result+["Todos"]
   end
   def title_name
     education.try(:title)
@@ -48,7 +66,26 @@ class Education < ActiveRecord::Base
     # e[2]=educations.count(nil)
     # e
   end
-  
+  def registro_academico(grado,licen,maestria,postgrado,doctorado)
+    if grado=="Todos"
+      edu ="Todos los grados academicos"
+      results=Education.all
+    else
+      edu=[licen,maestria,postgrado,doctorado].join
+      if edu=="Todos"
+        data=self.grade([licen,maestria,postgrado,doctorado])
+        if data.class==Array
+          results=Education.where.not(title:data)
+        else
+          results=Education.where(title:data)
+        end
+      else
+        results=Education.where(title:edu)
+      end
+    end
+    results
+  end
+
   def title_detail(title)
     title_list[title]
   end

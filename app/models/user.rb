@@ -33,6 +33,18 @@ class User < ActiveRecord::Base
     self.name.capitalize!
     self.last_name.capitalize!
   end
+  def role
+    if is_company?
+      return "Empresa"
+    end
+    if is_administrator
+      return "Administrador"
+    end
+    if is_director
+      return "Director de Carrera"
+    end
+    "Usuario"
+  end
   def create_dependencies
     Resume.create(:user_id => self.id)
     if self.is_company?
@@ -42,7 +54,11 @@ class User < ActiveRecord::Base
     end
   end
   def phone
-    self.company_information.phone
+    if is_company?
+      self.company_information.phone
+    else
+      self.personal_information.call_center
+    end
   end
   def contact_name
     self.company_information.contact_name
