@@ -82,6 +82,7 @@ Rails.application.routes.draw do
   get 'reportes/TrabajosPorRangoSalarial'=>'reports#by_salary_range'
   get 'reportes/TiempoParaTrabajar'=>'reports#by_time_to_work'
   get 'reportes/DuracionDeTrabajo'=>'reports#time_in_job'
+  get 'reportes/ConPostgrado'=> 'reports#with_postgrade'
   resources :posts
   resources :educations
   resources :referentials

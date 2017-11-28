@@ -41,13 +41,12 @@ class ReportsController < ApplicationController
 
   def users_by_date
     @date_users=User.group_by_month(:created_at).count
-    @date_users=Hash.new{}
   end
   def users_by_university
-    @university_users=Education.group(:school_name).count
+    @university_users=Education.where("end_date < ?", Date.today).group(:school_name).count
   end
   def students_by_career
-    @catolica_users=Education.where(school_name:"Universidad Catolica San Pablo")
+    @catolica_users=Education.where("end_date < ?", Date.today).where(school_name:"Universidad Catolica San Pablo")
 		@career_users=@catolica_users.group(:title).count
   end
   def users_by_gender
@@ -101,6 +100,23 @@ class ReportsController < ApplicationController
       end
     end
   end
+  def with_postgrade
+    @educations=Education.where("end_date < ?", Date.today)
+    @egresados=@educations.where(title: "Postgrado")
+    @data=@egresados.group(:title).count
+    @ids=[]
+    @egresados.each do |edu|
+      @ids=@ids+[edu.resume_id]
+    end
+    @ids=@ids.uniq
+    @users=Array.new
+    if @egresados
+      @ids.each do |id|
+        @users=@users + [Resume.find(id).user]
+      end
+    end
+  end
+
   def report_params
     params.require(:report).permit(:grado_licenciatura,:grado_postgrado,:grado_maestria,:grado_doctorado,:grado,:fecha_inicio,:fecha_fin,:genero)
   end

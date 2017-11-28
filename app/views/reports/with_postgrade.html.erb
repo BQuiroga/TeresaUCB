@@ -1,0 +1,85 @@
+<a href="/reportes"><button class="btn btn-primary">Volver Atras</button></a>
+<div class="container">
+<h1>Lista de reportes</h1>
+  <div class="panel panel-default">
+    <div class="panel-heading"><div class="panel-title"><h3>Estudiantes titulados con Postgrado</h3></div></div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item">
+              <button class="btn btn-warning btn-sm pull-right" id="mostrarEmpresasC" onclick="showEmpresasC()" style="display:none;">Mostrar Gráfica Estadística</button>
+              <button class="btn btn-warning btn-sm pull-right" id="ocultarEmpresasC" onclick="showEmpresasC()">Ocultar Gráfica Estadística</button>
+              <div >
+                <div class="container">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                      <tr>
+                        <th style="text-align: center;">&nbsp;Categoria segun codigo CIU &nbsp;</th>
+                        <th style="text-align: center;">&nbsp;Numero de empresas registradas&nbsp;</th>
+                      </tr>
+                      <% @data.each do |data|%>
+                        <tr>
+                          <td>&nbsp;<%=data[0]%>&nbsp;</td>
+                          <td ><%=data[1] %></td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" id="lista_usuarios">
+                <div class="table table-responsive">
+                  <table  class="table table-striped table-bordered" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Correo electronico &nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Telefono &nbsp;</th>
+                      <th></th>
+                    </tr>
+                    <% @users.each do |user|%>
+                      <tr>
+                        <td><%=user.name%></td>
+                        <td><%=user.email%></td>
+                        <td><%=user.gender%></td>
+                        <td>
+                          <button class="btn btn-default btn-sm pull-right">
+                            <%=link_to "Ver Curriculum", {controller: "resumes",action:"external_show",id:user.id}%>
+                          </button>
+                        </td>
+                      </tr>
+                    <%end%>
+                  </table>
+                </div>
+            </li>
+
+            <li class="list-group-item">
+              <div id="by_ciu">
+                <%= column_chart @data,stacked:true%>
+              </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<script>
+var empresasC = document.getElementById("by_ciu");
+var botonOcultarEC = document.getElementById("ocultarEmpresasC");
+var botonMostrarEC = document.getElementById("mostrarEmpresasC");
+window.onload =function(){
+  botonMostrarEC.style.display="block";
+  botonOcultarEC.style.display="none";
+  empresasC.style.display="none";
+}
+function showEmpresasC() {
+    if (empresasC.style.display === "none") {
+        empresasC.style.display = "block";
+        botonMostrarEC.style.display="none";
+        botonOcultarEC.style.display="block";
+    } else {
+        empresasC.style.display = "none";
+        botonMostrarEC.style.display="block";
+        botonOcultarEC.style.display="none";
+    }
+}
+</script>
