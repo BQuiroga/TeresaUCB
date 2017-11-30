@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="field col-xs-3">
-        <%= f.label :Universidad %>:
+        <%= f.label :institucion %>:
         <%= f.text_field :school_name%>
       </div>
       <div class="field col-xs-3">
@@ -320,6 +320,40 @@
   </div>
 </div>
 
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title"><h2> Conocimientos</h2></div>
+  </div>
+
+  <div class="panel-body">
+    <% if @knowledges.size >0%>
+    <ul class="list-group">
+      <h5><% @knowledges.each do |known| %></h5>
+      <li class="list-group-item">
+        <div>
+            <p>
+              <b><%=known.description%></b>&emsp;
+              &emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,known]%></button>
+            </p>
+        </div>
+      </li>
+      <% end %>
+      <% end %>
+    </ul>
+  </div>
+<div class="panel-footer well">
+  <%= form_for :knowledge, url: '/knowledge/new' do |f| %>
+    <div class="field">
+      <%= f.label :conocimiento %><br />
+      <%= f.text_field :description%>
+    </div>
+        <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+    <div class="actions">
+      <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
+    </div>
+    <% end %>
+  </div>
+</div>
 
 <div class="panel panel-default">
   <div class="panel-heading">

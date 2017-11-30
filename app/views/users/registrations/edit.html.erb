@@ -3,7 +3,7 @@
     <div class="panel-heading"><div class="panel-title"><h3>Editar Perfil </h3></div></div>
     <div  class="panel-body"></div>
 <div class="panel panel-footer well">
-  <%= link_to "Atras", :back %>
+  <%= link_to "Atras", "/users/profile" %>
   <div class="container">
 <h3>Datos de la cuenta</h3>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
