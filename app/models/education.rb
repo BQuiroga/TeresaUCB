@@ -33,7 +33,7 @@ class Education < ActiveRecord::Base
     result=result+["Todos"]
   end
   def postgrados
-    result=title_list.select{|x| x.include?("Postgrado")}
+    result=title_list.select{|x| x.include?("Postgrado")} + title_list.select{|x| x.include?("Diplomado")}
     result=result+["Todos"]
   end
   def maestrias

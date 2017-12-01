@@ -26,9 +26,6 @@
         <div>
           <%= f.select :title,@title_list,:id=>"title"%>
         </div>
-        <div id='detail'>
-          <%= f.select( :title2, @degree_list,:id=>"tittle") %>
-        </div>
       </div>
       <div class="field col-xs-3">
         <%= f.label :institucion %>:
@@ -40,11 +37,11 @@
       </div><br><br>
       <div class="field col-xs-3">
         <%= f.label :Fecha_ingreso %>:
-        <%= f.date_select :start_date,:start_year  =>1990, :end_year=>Time.now.year%>
+        <%= f.date_select :start_date,:start_year  =>1990, :end_year=>Time.now.year + 5%>
       </div>
       <div class="field col-xs-3">
         <%= f.label :fecha_egreso %>:
-        <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year%>
+        <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year + 5%>
       </div>
       <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
       <div class="actions col-xs-3">

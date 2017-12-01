@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get  'follows/:id/delete'=> 'follows#dejar'
   get 'referential/edit/:id'=>'referentials#edit'
   put 'referential/update'=> 'referentials#update'
+  post 'referential/new'=> 'referentials#create'
   get '/grupos/:id/miembros'=>'groups#show'
   get '/grupos/mis_grupos'=>'groups#index'
   post 'nuevo/grupo'=> 'groups#create'

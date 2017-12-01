@@ -51,6 +51,18 @@
 								"UNITEPC","UNIVERSIDAD NACIONAL SIGLO XX","ECEM","UDABOL","CEMLA ","ASOCIACION DE BANCOS PRIVADOS DE BOLIVIA","CAMARA DE COMERCIO Y SERVICIOS","FUNDES","TECNOLOGICO BOLIVIANO ALEMAN","CENTRO EMPRESARIAL DE CAPACITACION","UNIVERSIDAD LATINOAMERICANA - ULAT","S.A.R.","UCATEC","UPAL","CENTRO SIMON I. PATIÑO","TUDELA & TH CONSULTING GROUP S.R.L.","COLEGIO ALEMAN SANTA MARIA","UNIDAD EDUCATIVA NUESTRA SRA. DE LA PAZ ",
 								"UNIVERSIDAD AMAZONICA DE PANDO","UNIVERSIDAD JUAN MISAEL SARACHO","COLEGIO TÉCNICO AGROPECUARIO 'MARTIN CÁRDENAS'","CONSEJO DE LA JUDICIATURA","ESC. NORMAL M. SUCRE"]
 Title.create([{name:"Abogado"},{name:"Administracion"},{name:"Agronomia"},{name:"Arquitecto"},{name:"Artesano"},{name:"Auditor"},{name:"Auxiliar"},{name:"Ayudante de Gerencia"},{name:"Bachiller"},{name:"Bibliotecologo"},{name:"Biologo"},{name:"Bioquimico"}])
+Title.create([{name:"Licenciado en Ingenieria Industrial"},
+	{name:"Administracion"},
+	{name:"Agronomia"},
+	{name:"Arquitecto"},
+	{name:"Artesano"},
+	{name:"Auditor"},
+	{name:"Auxiliar"},
+	{name:"Ayudante de Gerencia"},
+	{name:"Bachiller"},
+	{name:"Bibliotecologo"},
+	{name:"Biologo"},
+	{name:"Bioquimico"}])
 CiuCode.create(ciu:"01111",description:"Cultivo De Cereales Y Otros Cultivos N.C.P.",group:"A")
 CiuCode.create(ciu:"01112",description:	"Cultivo De Semillas Oleaginosas O Soya",group:"A")
 

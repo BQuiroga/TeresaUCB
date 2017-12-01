@@ -92,7 +92,7 @@ nav select {display: none;}
           <%= link_to 'Perfil', '/users/profile', :class => 'navbar-link' %>&emsp;
       </option>
       <%if !current_user.is_company?%>
-        <option value='/users/curriculum.edit'><%= link_to 'Editar CV', '/users/curriculum/edit', :class => 'navbar-link' %>&emsp;</option>
+        <option value='/users/curriculum/edit'><%= link_to 'Editar CV', '/users/curriculum/edit', :class => 'navbar-link' %>&emsp;</option>
         <option value='mycurriculum'><%= link_to 'Curriculum', '/mycurriculum', :class => 'navbar-link' %>&emsp;</option>
       <%else%>
         <option value='/oferta/nueva'><%= link_to 'Publicar oferta', '/oferta/nueva', :class => 'navbar-link' %>&emsp;</option>

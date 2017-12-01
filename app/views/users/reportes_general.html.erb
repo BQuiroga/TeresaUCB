@@ -3,7 +3,45 @@
     <div class="panel panel-default">
       <div class="panel-heading"><div class="panel-title"><h3>Criterios de busqueda</h3></div></div>
         <div class="panel-body">
-          <ul class="list-group">
+          <span onclick="openNav()"><button class="btn btn-primary btn-sm">Reportes estaticos</button></span>
+          <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+              <ul class="list-group">
+              <li class="list-group-item">Estudiantes registrados por fecha
+                <a href="/reportes/UsuariosPorFecha"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
+              </li>
+              <li class="list-group-item">Estudiantes titulados por Universidad
+                <a href="/reportes/UsuariosPorUniversidad"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
+              </li>
+              <li class="list-group-item">Estudiantes egresados por Carrera
+                <a href="/reportes/UsuariosPorCarrera"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
+              </li>
+              <li class="list-group-item">Estudiantes registradas por Género
+                <a href="/reportes/UsuariosPorGenero"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
+              </li>
+              <li class="list-group-item">Estudiantes registradas por Género y Universidad
+                <a href="/reportes/UsuariosPorGeneroUniversidad"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
+              </li>
+              <li class="list-group-item">Estudiantes titulados con Postgrado
+                <a href="/reportes/ConPostgrado"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
+              </li>
+              <li class="list-group-item">Empresas clasificadas codigo CIUU
+                <a href="/reportes/EmpresasPorcodigoCIUU"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
+              </li>
+              <li class="list-group-item">Trabajos por rango salarial
+                <a href="/reportes/TrabajosPorRangoSalarial"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
+              </li>
+              <li class="list-group-item">Años transcurridos para conseguir un trabajo
+                <a href="/reportes/TiempoParaTrabajar"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
+              </li>
+              <li class="list-group-item">Años de permanencia en un trabajo
+                <a href="/reportes/DuracionDeTrabajo"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
+              </li>
+            </ul>
+          </div>
+
+
+          <!-- <ul class="list-group">
             <li class="list-group-item">Estudiantes registrados por fecha
               <a href="/reportes/UsuariosPorFecha"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
             </li>
@@ -34,7 +72,7 @@
             <li class="list-group-item">Años de permanencia en un trabajo
               <a href="/reportes/DuracionDeTrabajo"><button class="btn btn-warning btn-sm pull-right">Ver Reporte Estadístico</button></a>
             </li>
-          </ul>
+          </ul> -->
           <%= form_for :report, url: '/reporte/nuevo' do |f| %>
             <div class="container-fluid">
               <!-- reportes por grado academico -->
@@ -119,6 +157,16 @@
   </div>
 
   <script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+}
   window.onload = function() {
    var checkbox = document.getElementById('check_grados');
    if (checkbox.checked) {
