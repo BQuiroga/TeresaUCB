@@ -101,9 +101,9 @@ class User < ActiveRecord::Base
   def search(param)
     users=[]
     param.each do |criterio|
-        user = User.where(name: criterio)
+        user = User.where("name ~* ?",criterio)
         users = users+ user
-        user = User.where(last_name: criterio)
+        user = User.where("last_name ~* ?", criterio)
         users=users+user
     end
     users

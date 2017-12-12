@@ -9,10 +9,12 @@ class Education < ActiveRecord::Base
     user=resume.user
   end
   def title_list
-    v=Array.new
-    v=["Abogado","Administracion Escolar","Administracion Internacional","Administracion Publica","Administracion y Direccion de Empresas","Administracion de Empresas","Agronomia",
-       "Auditor","Auxiliar de Contabilidad","Auxiliar de Oficina","Ayudante de Gerencia","Bachiller En Humanidades","Bachillerato Internacional","Ingenieria Industrial","Ingenieria de Sistemas"]
-    v
+    list=Array.new
+    v=Title.all
+    v.each do |title|
+      list=list+[title.name]
+    end
+    list
   end
   def grade(grade)
     if grade[1]!=""

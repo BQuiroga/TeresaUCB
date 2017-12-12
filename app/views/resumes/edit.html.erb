@@ -8,7 +8,7 @@
           <% @educations.each do |education| %>
             <li class="list-group-item">
               <div>
-                <h4>  <b><%=education.title%>&emsp;</b><button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,education]%></button></h4>
+                <h4>  <b><%=education.title%>&emsp;</b><button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,education]%></button></h4>
                 <%=education.school_name%>&nbsp;
                 <%=education.start_date.year%>&emsp; - &emsp; <%=education.end_date.year%>
               </div>
@@ -65,7 +65,7 @@
           <div>
             <p>
               <h5><b><%=experience.company_name%></b></h5>
-              <%=experience.job_title%>&emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,experience]%></button><br>
+              <%=experience.job_title%>&emsp;<button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,experience]%></button><br>
               <%=experience.start_job_date%>&emsp; - &emsp;
               <%=experience.finish_job_date%>
               <div>RANGO SALARIAL: <%=experience.salary_range%></div>
@@ -104,7 +104,7 @@
         <%= f.number_field :referential_number%>
       </div>
     </div>
-    <div class="pull-right">
+    <div class="field pull-right" style="position:relative;">
       ESTA INFORMACION NO ES PUBLICA
       <%= f.label :rango_salarial %>
       <%= f.select(:salary_range, options_for_select(Experience.salary_range)) %>
@@ -146,7 +146,7 @@
               <%=course.given%>&emsp;
               <%=course.institution%>&emsp;
               <%=course.workload%> Hrs.
-              &emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,course]%></button>
+              &emsp;<button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,course]%></button>
             </p>
           </div>
           </li>
@@ -195,7 +195,7 @@
         <li class="list-group-item">
           <div>
             <p>
-              <b><%=pub.date.year%></b>&emsp;<%=pub.name%>&emsp;<%=pub.publicationType%><button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,pub]%></button><br>
+              <b><%=pub.date.year%></b>&emsp;<%=pub.name%>&emsp;<%=pub.publicationType%><button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,pub]%></button><br>
               <%=pub.location%>
             </p>
           </div>
@@ -242,7 +242,7 @@
       <li class="list-group-item">
         <div>
                 <p>
-                  <b><%=merit.date.year%></b>&emsp;<%=merit.name%>&emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,merit]%></button><br>
+                  <b><%=merit.date.year%></b>&emsp;<%=merit.name%>&emsp;<button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,merit]%></button><br>
                 </p>
             </div>
       </li>
@@ -286,7 +286,7 @@
       <li class="list-group-item">
        <div>
                 <p>
-                  <b><%=member.name%> en <%=member.organization%>&emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,member]%></button></b><br>
+                  <b><%=member.name%> en <%=member.organization%>&emsp;<button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,member]%></button></b><br>
                   desde <%=member.date.year%>&emsp;<br>
                 </p>
             </div>
@@ -330,7 +330,7 @@
         <div>
             <p>
               <b><%=known.description%></b>&emsp;
-              &emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,known]%></button>
+              &emsp;<button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,known]%></button>
             </p>
         </div>
       </li>
@@ -367,7 +367,7 @@
               <b><%=language.name%></b>&emsp;
               <%=language.level%>&emsp;
               <%=language.skill%>
-              &emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,language]%></button>
+              &emsp;<button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,language]%></button>
             </p>
         </div>
       </li>
@@ -414,7 +414,7 @@
           <div>
             <p>
               <b><%=refer.name%></b>
-              &emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,refer]%></button><br>
+              &emsp;<button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,refer]%></button><br>
               <%=refer.number%>&emsp;<%=refer.institution%>
             </p>
           </div>
