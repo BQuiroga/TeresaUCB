@@ -178,11 +178,14 @@ class User < ActiveRecord::Base
     res=Date.new
     if first_job_date>last_education_date
       res= (first_job_date - last_education_date).to_i
-      resp=days_into_years(res)
+      resp=days_into_months(res)
     else
       return -1
     end
     resp
+  end
+  def days_into_months(some_date)
+    some_date/30
   end
   def days_into_years(some_date)
     y=some_date/365

@@ -9,4 +9,5 @@ class Resume < ActiveRecord::Base
 	has_many :memberships
 	has_many :languages
 	has_many :referentials
+	has_many :skills
 end

@@ -354,6 +354,41 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
+    <div class="panel-title"><h2> Habilidades</h2></div>
+  </div>
+
+  <div class="panel-body">
+    <% if @skills.size >0%>
+    <ul class="list-group">
+      <h5><% @skills.each do |skill| %></h5>
+      <li class="list-group-item">
+        <div>
+            <p>
+              <b><%=skill.description%></b>&emsp;
+              &emsp;<button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,skill]%></button>
+            </p>
+        </div>
+      </li>
+      <% end %>
+      <% end %>
+    </ul>
+  </div>
+<div class="panel-footer well">
+  <%= form_for :skill, url: '/skill/new' do |f| %>
+    <div class="field">
+      <%= f.label :habilidad %><br />
+      <%= f.text_field :description%>
+    </div>
+        <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+    <div class="actions">
+      <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
     <div class="panel-title"><h2> Idiomas </h2></div>
   </div>
 

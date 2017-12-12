@@ -102,5 +102,35 @@ class Education < ActiveRecord::Base
   def title_detail(title)
     title_list[title]
   end
-
+  def time_range_hash(hash)
+    nueva=Hash.new(0)
+    hash.each do |item|
+      if (item[0].to_i>0 and item[0].to_i<3)
+        nueva["meses: 0 - 3"]+=item[1]
+      end
+      if (item[0].to_i>=3 and item[0].to_i<6)
+        nueva["meses: 3 - 6"]+=item[1]
+      end
+      if (item[0].to_i>=6 and item[0].to_i<9)
+        nueva["meses: 6 - 9"]+=item[1]
+      end
+      if (item[0].to_i>=9 and item[0].to_i<12)
+        nueva["meses: 9 - 12"]+=item[1]
+      end
+      if (item[0].to_i>=12 and item[0].to_i<36)
+        nueva["años: 1 a 3"]+=item[1]
+      end
+      if (item[0].to_i>=36 and item[0].to_i<60)
+        nueva["años: 3 a 5"]+=item[1]
+      end
+      if (item[0].to_i>=60 and item[0].to_i<84)
+        nueva["años: 5 a 7"]+=item[1]
+      end
+      if (item[0].to_i>=84 )
+        nueva["pasados 7 años"]+=item[1]
+      end
+    end
+    nueva["Aun no ha egresado"]=hash["Aun no ha egresado"]
+    nueva.sort_by {|key,value| key}
+  end
 end

@@ -15,6 +15,7 @@ class ResumesController < ApplicationController
     @memberships=@resume.memberships
     @languages=@resume.languages
     @referentials=@resume.referentials
+    @skills=@resume.skills
     @publicationTypes=["Articulo","Tesis","Libro","Monografia"]
     @titles=Title.all
     @newA=Array.new
@@ -44,6 +45,7 @@ class ResumesController < ApplicationController
     @memberships=@resume.memberships
     @languages=@resume.languages
     @referentials=@resume.referentials
+    @skills=@resume.skills
   end
   def external_show
     @user=User.find(params[:id])
@@ -58,5 +60,6 @@ class ResumesController < ApplicationController
     @memberships=@resume.memberships
     @languages=@resume.languages
     @referentials=@resume.referentials
+    @skills=@resume.skills
   end
 end

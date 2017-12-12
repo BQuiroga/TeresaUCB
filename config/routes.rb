@@ -47,6 +47,10 @@ Rails.application.routes.draw do
   post 'education/new' => 'educations#create'
 
   post 'experience/new' => 'experiences#create'
+  post 'skill/new' => 'skills#create'
+  get 'skill/edit/:id'=>'skills#edit'
+  put 'skill/update'=> 'skills#update'
+
   get 'experience/edit/:id'=>'experiences#edit'
   post 'course/new' => 'courses#create'
   get 'mycurriculum' => 'resumes#show'
@@ -96,6 +100,7 @@ Rails.application.routes.draw do
   resources :merits
   resources :experiences
   resources :groups
+  resources :skills
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

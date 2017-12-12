@@ -1,6 +1,6 @@
 <%if current_user.is_administrator%>
 <div class="panel panel-default">
-  <div class="panel-heading"><div class="panel-title"><h3>Usuarios registrados </h3></div></div>
+  <div class="panel-heading"><div class="panel-title"><h3>Usuarios registrados: <%=@users.size%> </h3></div></div>
   <div class="panel-body">
   <% if @users.size >0%>
     <ul class="list-group">

@@ -84,6 +84,21 @@
    </div>
  </div>
  <div class="container">
+     <h2> Habilidades</h2>
+     <div class="container">
+        <% if @skills.size >0%>
+    <h5><% @skills.each do |skill| %></h5>
+            <div>
+                <p>
+                  <b><%=skill.area%></b>
+                  <%=skill.description%>
+                </p>
+            </div>
+        <%end%>
+     <%end%>
+   </div>
+ </div>
+ <div class="container">
      <h2> Publicaciones </h2>
      <div class="container">
         <% if @publications.size >0%>

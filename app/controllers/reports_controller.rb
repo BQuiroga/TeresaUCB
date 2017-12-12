@@ -88,6 +88,7 @@ class ReportsController < ApplicationController
         @years[u.years_to_first_job] +=1
       end
     end
+    @years=@@r.time_range_hash(@years)
   end
   def time_in_job
     @experiences=Experience.all
