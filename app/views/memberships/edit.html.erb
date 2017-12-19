@@ -1,5 +1,5 @@
 <%= form_for :membership, url: '/membership/update', html: { method: :put } do |f| %>
-<div class="field">
+<div class="container"><div class="field">
 <%= f.label :titulo %><br />
 <%= f.text_field :name%>
 </div>   <div class="field">
@@ -14,4 +14,5 @@
   <div class="actions">
     <%= f.submit "Guardar" %>
   </div>
+</div>
 <% end %>

@@ -2,7 +2,7 @@ class LanguagesController < ApplicationController
   def create
     @new=Language.new(languages_params)
 		if @new.save
-			flash[:success] = "Asombroso! Cuentanos mas"
+			flash[:success] = "Admirable! cuentanos mas!"
 		else
 			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
 		end

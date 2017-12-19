@@ -132,7 +132,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <div class="panel-title">
-        <h2>Cursos y Seminarios </h2>
+        <h3>Cursos y Seminarios </h3>
       </div>
     </div>
     <div class="panel-body">
@@ -187,7 +187,7 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <div class="panel-title"><h2> Publicaciones </h2></div>
+      <div class="panel-title"><h3> Publicaciones </h3></div>
     </div>
     <div class="panel-body">
       <% if @publications.size >0%>
@@ -233,7 +233,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <div class="panel-title"><h2> Meritos </h2></div>
+    <div class="panel-title"><h3> Meritos </h3></div>
   </div>
 
   <div class="panel-body">
@@ -277,7 +277,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <div class="panel-title"><h2> Membresia </h2></div>
+    <div class="panel-title"><h3> Membresia </h3></div>
   </div>
 
   <div class="panel-body">
@@ -320,7 +320,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <div class="panel-title"><h2> Conocimientos</h2></div>
+    <div class="panel-title"><h3> Conocimientos</h3></div>
   </div>
 
   <div class="panel-body">
@@ -355,7 +355,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <div class="panel-title"><h2> Habilidades</h2></div>
+    <div class="panel-title"><h3> Habilidades</h3></div>
   </div>
 
   <div class="panel-body">
@@ -390,7 +390,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <div class="panel-title"><h2> Idiomas </h2></div>
+    <div class="panel-title"><h3> Idiomas </h3></div>
   </div>
 
   <div class="panel-body">
@@ -440,7 +440,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <div class="panel-title"><h2> Personas de referencia</h2></div>
+    <div class="panel-title"><h3> Personas de referencia</h3></div>
   </div>
   <div class="panel-body">
     <% if @referentials.size >0%>
@@ -518,7 +518,6 @@ $('#checkboxDate').click(function() {
 
 <script>
 window.onload = function() {
-
  var checkbox = document.getElementById('checkbox');
  if (checkbox.checked) {
  document.getElementById("rest").style.display = "block";
@@ -529,14 +528,5 @@ window.onload = function() {
 $('#checkbox').click(function() {
   $('#rest')[this.checked ? "show" : "hide"]();
 });
-// window.onload = function(){
-//
-//   document.getElementById("detail").style.display = "none";
-//
-//     var select= document.getElementById('title');
-//     if (#{title_list[select].size==0}){
-//       document.getElementById("detail").style.display = "none";
-//       alert("funca");
-//     }
-// };
+
 </script>

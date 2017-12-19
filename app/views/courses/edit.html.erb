@@ -13,6 +13,14 @@
         <%=f.label :yo_di_este_seminario_o_curso%>
         <%= f.select(:given, options_for_select(Course.participations)) %>
       </div>
+      <div>
+        <%= f.label :carga_horaria %><br />
+        <%= f.number_field :workload%> Hrs.
+      </div>
+      <div>
+        <%= f.label :institucion %><br />
+        <%= f.text_field :institution%>
+      </div>
       <%=f.hidden_field :id, :value => @course.id%>
         <div class="actions">
           <%= f.submit "Guardar" %>

@@ -10,6 +10,13 @@ class EducationsController < ApplicationController
 	end
 	def edit
 		@education=Education.find(params[:id])
+		@titles=Title.all
+		@newA=Array.new
+		@title_list=Array.new
+		@titles.each do |title|
+			@newA=@newA+[title.name]
+		end
+		@title_list=@newA
 	end
 	def update
 		@education=Education.find(educations_params_for_edit[:id])

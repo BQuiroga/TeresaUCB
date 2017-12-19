@@ -1,17 +1,17 @@
 <%= form_for :experience, url: '/experience/update', html: { method: :put } do |f| %>
+<div class="container">
   <div class="field">
     <%= f.label :cargo_profesional %><br />
     <%= f.text_field :job_title%>
   </div>
-
-    <div class="field">
+  <div class="field">
     <%= f.label :empresa %>
     <%= f.text_field :company_name%>
   </div>
   <div class="field">
-    <%= f.label :descripcion %><br />
+    <%= f.label :actividades_a_cargo %>:<br />
     <%= f.text_field :job_description%>
-  </div>-
+  </div>
   <div class="field">
     <%= f.label :Fecha_ingreso %>
     <%= f.date_select :start_date ,:start_year  =>1990, :end_year=>Time.now.year%>
@@ -24,11 +24,30 @@
       <%=f.label :si_aun_sigue_por_favor_deje_marcada_esta_casilla%>
       <%= f.check_box :until_now,:id=>"checkboxDate", :checked =>"true"%>
   </div>
+  <div class="field">
+    <input type="checkbox" id="checkbox" name="checkbox">Desea agregar una persona de referencia
+  </div>
+  <div id="rest" style="display:none;">
+    <div class="field">
+      <%= f.label :Persona_de_Referencia %><br />
+      <%= f.text_field :referential%>
+    </div>
+    <div class="field">
+      <%= f.label :numero_de_referencia %>
+      <%= f.number_field :referential_number%>
+    </div>
+  </div>
+  <div class="field pull-right" style="position:relative;">
+    ESTA INFORMACION NO ES PUBLICA
+    <%= f.label :rango_salarial %>
+    <%= f.select(:salary_range, options_for_select(Experience.salary_range)) %>
+  </div>
       <%=f.hidden_field :id, :value => @experience.id%>
 
   <div class="actions">
     <%= f.submit "Guardar" %>
   </div>
+</div>
 <% end %>
 <script>
 window.onload = function() {
@@ -43,4 +62,20 @@ window.onload = function() {
 $('#checkboxDate').click(function() {
   $('#date')[this.checked ? "hide" : "show"]();
 });
+</script>
+
+<script>
+window.onload = function() {
+
+ var checkbox = document.getElementById('checkbox');
+ if (checkbox.checked) {
+ document.getElementById("rest").style.display = "block";
+ } else {
+ document.getElementById("rest").style.display = "none";
+ }
+};
+$('#checkbox').click(function() {
+  $('#rest')[this.checked ? "show" : "hide"]();
+});
+
 </script>

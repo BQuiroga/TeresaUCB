@@ -1,5 +1,6 @@
 <%= form_for :merit, url: '/merit/update', html: { method: :put } do |f| %>
-<div class="field">
+<div class="container">
+  <div class="field">
 <%= f.label :Merito %><br />
 <%= f.text_field :name%>
 </div>
@@ -11,4 +12,5 @@
   <div class="actions">
     <%= f.submit "Guardar" %>
   </div>
+</div>
 <% end %>
