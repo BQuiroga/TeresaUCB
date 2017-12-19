@@ -1,0 +1,88 @@
+
+REPORTES ESTADISTICOS DE
+genero(X),
+universidad(X),
+---postgrados,
+tipo de empresa(X),
+rango salarial(X),
+tiempo para conseguir un trabajo(tomando en cuenta la fecha de egreso)(X),
+tiempo de permanencia media en trabajos(X).
+..area laboral??,
+egresados por carrera y genero.(X)
+
+agregar campo codigo CIU al registro de empresas, menu desplegable con los nombres(X)
+
+
+
+<li class="list-group-item">
+  <button class="btn btn-warning btn-sm pull-right" id="mostrarFecha" onclick="showFecha()" style="display:none; ">Mostrar Gráfica Estadística</button>
+  <button class="btn btn-warning btn-sm pull-right" id="ocultarFecha" onclick="showFecha()">Ocultar Gráfica Estadística</button>
+  <div>
+    <div class="container">
+      <div class="table-responsive">
+        <table  class="table table-striped table-bordered table-hover" style="text-align: center;">
+          <tr>
+            <th style="text-align: center;">&nbsp;Titulo&nbsp;</th>
+            <th style="text-align: center;">&nbsp;Estudiantes egresados &nbsp;</th>
+          </tr>
+          <% @data_graphic.each do |user|%>
+          <tr>
+            <td ><%= user[0]%></td>
+            <td><%=user[1]%></td>
+          </tr>
+          <%end%>
+        </table>
+      </div>
+    </div>
+  </div>
+</li>
+
+
+
+
+MEJORAS PARA EL SIGUIENTE
+
+
+- colocar seccion habilidades
+
+- menu desplegable en reporte
+
+- arreglar tablas de informacion en  reportes
+
+
+- MAS CURRICULUMS!!! (minimo 20)
+
+
+
+
+
+-------------------------------- 05/12/2017 -------------------------
+
+
+ tiempo para conseguir un trabajo mediante rango de años:
+  - de 0 a 3 meses
+  - de 3 a 6 meses
+  - de 6 a 9 meses
+  - de 9 a 12 meses
+  - 1 a 3 años
+  - 3 a 5 años
+  - 5 a 7 años
+
+
+
+---------------------------12/12/2017--------------------------------
+--- mgr calderon
+
+experiencia profesional campos unidos+>separar
+
+- mensajes despues de ingresar trabajos
+- que mas quisiera llenar
+         software amigable!!
+
+--- mgr galaburda
+- lista de reportes, titulomuy grande
+- boton de reportes estadisticos, pequeño
+- subdividir partes                 estatico | dinamico
+- graficas con porcentaje
+- arrreglo en NOMBRES DE GRAFICAS DINAMICAS
+- lista de usuarios en reportes estaticos WE

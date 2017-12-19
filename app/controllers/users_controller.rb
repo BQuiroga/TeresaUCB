@@ -28,14 +28,24 @@ class UsersController < ApplicationController
   	@users=@users.uniq
 	end
 	def bloquear
-		@user=User.find(params[:id])
-		@user.lock_access!({send_instructions: false})
-		redirect_to '/users'
+		if !current_user.is_administrator
+			throwUnauthorized
+			return
+		else
+			@user=User.find(params[:id])
+			@user.lock_access!({send_instructions: false})
+			redirect_to '/users'
+		end
 	end
 	def desbloquear
-		@user=User.find(params[:id])
-		@user.unlock_access!
-		redirect_to '/users'
+		if !current_user.is_administrator
+			throwUnauthorized
+			return
+		else
+			@user=User.find(params[:id])
+			@user.unlock_access!
+			redirect_to '/users'
+		end
 	end
 	def index
 		if !current_user.is_administrator
@@ -46,50 +56,54 @@ class UsersController < ApplicationController
 		end
 	end
 	def reportes_general
-		@users=User.all
-		@perso=Education.new
-		@personal_by_gender=PersonalInformation.group(:gender).count
-		@info_charts=Hash.new
-		@used_genders=Hash.new
-		@date_users=User.group_by_month(:created_at).count
-		@university_users=Education.group(:school_name).count
-		@catolica_users=Education.where(school_name:"Universidad Catolica San Pablo")
-		@career_users=@catolica_users.group(:title).count
-		@salaries=Experience.all.group(:salary_range).count
-		@info_charts={"Hombres"=>@personal_by_gender[true],"Mujeres"=>@personal_by_gender[false],"Empresas"=>@personal_by_gender[nil]}
-		@used_schools=@perso.chart_names
-		@used_schools.each do |school|
-			@used_genders[school]=@perso.genders(school)
-		end
-		@data=Array.new(@used_schools.size)
-		i=0
-		@used_genders.each do |gender|
-			@data[i]={name:gender[0], data:[["Hombres",gender[1].count(true)],["Mujeres",gender[1].count(false)],["Empresas",gender[1].count(nil)]]}
-			i+=1
-		end
-		@companies_by_code=CompanyInformation.group(:ciu_code_id).count
-		@companies_names=Hash.new
-		@companies_by_code.each do |c|
-			@companies_names[CiuCode.find(c[0]).description]=c[1]
-		end
-		@years=Hash.new(0)
-		@users.where(company:false).each do |u|
-			if (u.years_to_first_job==-1)
-				@years["Aun no ha egresado"]+=1
-			else
-				@years[u.years_to_first_job] +=1
+		if !current_user.is_administrator
+			throwUnauthorized
+			return
+		else
+			@users=User.all
+			@perso=Education.new
+			@personal_by_gender=PersonalInformation.group(:gender).count
+			@info_charts=Hash.new
+			@used_genders=Hash.new
+			@date_users=User.group_by_month(:created_at).count
+			@university_users=Education.group(:school_name).count
+			@catolica_users=Education.where(school_name:"Universidad Catolica San Pablo")
+			@career_users=@catolica_users.group(:title).count
+			@salaries=Experience.all.group(:salary_range).count
+			@info_charts={"Hombres"=>@personal_by_gender[true],"Mujeres"=>@personal_by_gender[false],"Empresas"=>@personal_by_gender[nil]}
+			@used_schools=@perso.chart_names
+			@used_schools.each do |school|
+				@used_genders[school]=@perso.genders(school)
+			end
+			@data=Array.new(@used_schools.size)
+			i=0
+			@used_genders.each do |gender|
+				@data[i]={name:gender[0], data:[["Hombres",gender[1].count(true)],["Mujeres",gender[1].count(false)],["Empresas",gender[1].count(nil)]]}
+				i+=1
+			end
+			@companies_by_code=CompanyInformation.group(:ciu_code_id).count
+			@companies_names=Hash.new
+			@companies_by_code.each do |c|
+				@companies_names[CiuCode.find(c[0]).description]=c[1]
+			end
+			@years=Hash.new(0)
+			@users.where(company:false).each do |u|
+				if (u.years_to_first_job==-1)
+					@years["Aun no ha egresado"]+=1
+				else
+					@years[u.years_to_first_job] +=1
+				end
+			end
+			@experiences=Experience.all
+			@jobs_time=Hash.new(0)
+			@experiences.each do |e|
+				if (e.time_in_job==-1)
+					@jobs_time["Continua trabajando"]+=1
+				else
+					@jobs_time[e.time_in_job] +=1
+				end
 			end
 		end
-		@experiences=Experience.all
-		@jobs_time=Hash.new(0)
-		@experiences.each do |e|
-			if (e.time_in_job==-1)
-				@jobs_time["Continua trabajando"]+=1
-			else
-				@jobs_time[e.time_in_job] +=1
-			end
-		end
-
 	end
 	def new_report
 		@city=report_params[:city]

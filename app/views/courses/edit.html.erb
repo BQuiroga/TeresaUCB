@@ -1,18 +1,22 @@
-<%= form_for :course, url: '/course/update', html: { method: :put } do |f| %>
-<div class="field">
-  <%= f.label :nombre %><br />
-  <%= f.text_field :name%>
+<div class="container">
+  <div class="container">
+    <%= form_for :course, url: '/course/update', html: { method: :put } do |f| %>
+      <div class="field">
+        <%= f.label :nombre %><br />
+        <%= f.text_field :name%>
+      </div>
+      <div class="field">
+        <%= f.label :fecha %>
+        <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+      </div>
+      <div>
+        <%=f.label :yo_di_este_seminario_o_curso%>
+        <%= f.select(:given, options_for_select(Course.participations)) %>
+      </div>
+      <%=f.hidden_field :id, :value => @course.id%>
+        <div class="actions">
+          <%= f.submit "Guardar" %>
+        </div>
+      <% end %>
+    </div>
 </div>
-<div class="field">
-  <%= f.label :fecha %>
-  <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
-</div>
-<div>
-  <%=f.label :yo_di_este_seminario_o_curso%>
-  <%= f.select(:given, options_for_select(Course.participations)) %>
-</div>
-<%=f.hidden_field :id, :value => @course.id%>
-  <div class="actions">
-    <%= f.submit "Guardar" %>
-  </div>
-<% end %>

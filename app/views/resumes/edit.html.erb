@@ -20,31 +20,32 @@
   </div>
   <div class="panel-footer well">
     <%= form_for :education, url: '/education/new' do |f| %>
-      <div  class="field col col-xs-3">
+      <div  class="field col col-md-3 col-xs-3">
         <%= f.label :Grado_academico %>:
         <!-- <%= f.select(:title,["Licenci>atura", "Maestria", "Doctorado", "Post Grado"])%> -->
         <div>
-          <%= f.select :title,@title_list,:id=>"title"%>
+          <%= f.select :title,@title_list,{},class:"form-control  col-12 col-md-9 col-xs-12"%>
         </div>
       </div>
-      <div class="field col-xs-3">
+      <div class="field col col-md-3 col-xs-3">
         <%= f.label :institucion %>:
         <%= f.text_field :school_name%>
       </div>
-      <div class="field col-xs-3">
+      <div class="field col col-md-3 col-xs-3">
         <%= f.label :descripcion %>:
         <%= f.text_area :description%>
       </div><br><br>
-      <div class="field col-xs-3">
+      <div class="field col col-md-3 col-xs-3">
         <%= f.label :Fecha_ingreso %>:
         <%= f.date_select :start_date,:start_year  =>1990, :end_year=>Time.now.year + 5%>
       </div>
-      <div class="field col-xs-3">
+      <div class="field col col-md-3 col-xs-3">
         <%= f.label :fecha_egreso %>:
         <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year + 5%>
       </div>
+      <br>
       <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
-      <div class="actions col-xs-3">
+      <div class="actions field col col-md-3 col-xs-3" >
         <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
       </div>
       <br><br><br><br><br>
@@ -79,24 +80,24 @@
   </div>
   <div class="panel-footer well">
     <%= form_for :experience, url: '/experience/new' do |f| %>
-    <div class="field">
-      <%= f.label :cargo_profesional %><br />
+    <div class="field col col-md-4">
+      <%= f.label :cargo_profesional %>:<br />
       <%= f.text_field :job_title%>
     </div>
-    <div class="field">
-      <%= f.label :empresa %>
+    <div class="field col col-md-4">
+      <%= f.label :empresa %>:<br />
       <%= f.text_field :company_name%>
     </div>
-    <div class="field">
-      <%= f.label :actividades_a_cargo %><br />
+    <div class="field col col-md-4">
+      <%= f.label :actividades_a_cargo %>:<br />
       <%= f.text_field :job_description%>
     </div>
-    <div >
+    <div class="field">
       <input type="checkbox" id="checkbox" name="checkbox">Desea agregar una persona de referencia
     </div>
     <div id="rest" style="display:none;">
       <div class="field">
-        <%= f.label :Persona_de_Referencia %>
+        <%= f.label :Persona_de_Referencia %><br />
         <%= f.text_field :referential%>
       </div>
       <div class="field">
@@ -157,23 +158,23 @@
   </div>
   <div class="panel-footer well">
     <%= form_for :course, url: '/course/new' do |f| %>
-      <div class="field">
+      <div class="field col col-md-4 col-xs-4">
         <%= f.label :nombre_del_curso_o_seminario %><br />
         <%= f.text_field :name%>
       </div>
-      <div class="field">
+      <div class="field col col-md-4 col-xs-4">
         <%= f.label :fecha %>
         <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
       </div>
-      <div>
+      <div class="field col col-md-4 col-xs-4">
         <%=f.label :participe_como%>
         <%= f.select(:given, options_for_select(Course.participations)) %>
       </div>
-      <div class="field">
+      <div class="field col col-md-4 col-xs-4">
         <%= f.label :carga_horaria %><br />
         <%= f.number_field :workload%> Hrs.
       </div>
-      <div class="field">
+      <div class="field col col-md-4 col-xs-4">
         <%= f.label :institucion %><br />
         <%= f.text_field :institution%>
       </div>
@@ -207,19 +208,19 @@
   </div>
   <div class="panel-footer well">
     <%= form_for :publication, url: '/publication/new' do |f| %>
-      <div class="field">
+      <div class="field col col-md-4 col-xs-4">
         <%= f.label :tipo_de_publicacion %>
         <%= f.select( :publicationType, @publicationTypes.map {|a| [a]}) -%>
       </div>
-      <div class="field">
+      <div class="field col col-md-4 col-xs-4">
         <%= f.label :Nombre %><br />
         <%= f.text_field :name%>
       </div>
-      <div class="field">
+      <div class="field col col-md-4 col-xs-4">
         <%= f.label :lugar %><br />
         <%= f.text_field :location%>
       </div>
-      <div class="field">
+      <div class="field col col-md-4 col-xs-4">
         <%= f.label :fecha %>
         <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
       </div>
@@ -253,11 +254,11 @@
 
   <div class="panel-footer well">
     <%= form_for :merit, url: '/merit/new' do |f| %>
-    <div class="field">
-    <%= f.label :Merito %><br />
-    <%= f.text_field :name%>
+    <div class="field col col-md-4 col-xs-4">
+      <%= f.label :Merito %>:
+      <%= f.text_field :name%>
     </div>
-    <div class="field">
+    <div class="field col col-md-4 col-xs-4">
     <%= f.label :fecha %>
     <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
   </div>
@@ -265,7 +266,7 @@
   <div class="actions">
     <%= f.submit "Guardar", :class =>"btn btn-primary" %>
   </div>
-<% end %>
+  <% end %>
   </div>
 </div>
 
@@ -298,14 +299,14 @@
 
   <div class="panel-footer well">
     <%= form_for :membership, url: '/member/new' do |f| %>
-    <div class="field">
-    <%= f.label :titulo %><br />
+    <div class="field col col-md-4 col-xs-4">
+    <%= f.label :titulo %>:<br />
     <%= f.text_field :name%>
-    </div>   <div class="field">
-    <%= f.label :comunidad %><br />
+    </div>   <div class="field col col-md-4 col-xs-4">
+    <%= f.label :comunidad %>:<br />
     <%= f.text_field :organization%>
     </div>
-    <div class="field">
+    <div class="field col col-md-4 col-xs-4">
     <%= f.label :fecha %>
     <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
   </div>

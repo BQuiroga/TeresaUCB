@@ -1,12 +1,12 @@
 <div class="container">
-<%= form_for :skill, url: '/skill/update', html: { method: :put } do |f| %>
-  <div class="field">
-  <%= f.label :descripcion %><br />
-  <%= f.text_field :description%>
-</div>
-<%=f.hidden_field :id, :value => @skill.id%>
-  <div class="actions">
-    <%= f.submit "Guardar" %>
+  <%= form_for :skill, url: '/skill/update', html: { method: :put } do |f| %>
+    <div class="field">
+    <%= f.label :descripcion %><br />
+    <%= f.text_field :description%>
   </div>
-<% end %>
+  <%=f.hidden_field :id, :value => @skill.id%>
+    <div class="actions">
+      <%= f.submit "Guardar" %>
+    </div>
+  <% end %>
 </div>
