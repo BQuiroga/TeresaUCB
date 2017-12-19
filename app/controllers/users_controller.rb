@@ -56,7 +56,7 @@ class UsersController < ApplicationController
 		end
 	end
 	def reportes_general
-		if !current_user.is_administrator
+		if !current_user.is_director
 			throwUnauthorized
 			return
 		else

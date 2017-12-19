@@ -1,7 +1,7 @@
 class ReportsController < ApplicationController
   @@r=Education.new
   def new
-    if !current_user.is_administrator
+    if !current_user.is_director
       throwUnauthorized
       return
     else
@@ -45,7 +45,7 @@ class ReportsController < ApplicationController
 
 
   def users_by_date
-    if !current_user.is_administrator
+    if !current_user.is_director
       throwUnauthorized
       return
     else
@@ -53,7 +53,7 @@ class ReportsController < ApplicationController
   end
   end
   def users_by_university
-    if !current_user.is_administrator
+    if !current_user.is_director
       throwUnauthorized
       return
     else
@@ -61,7 +61,7 @@ class ReportsController < ApplicationController
     end
   end
   def students_by_career
-    if !current_user.is_administrator
+    if !current_user.is_director
       throwUnauthorized
       return
     else
@@ -70,7 +70,7 @@ class ReportsController < ApplicationController
     end
   end
   def users_by_gender
-    if !current_user.is_administrator
+    if !current_user.is_director
       throwUnauthorized
       return
     else
@@ -80,7 +80,7 @@ class ReportsController < ApplicationController
     end
   end
   def by_gender_university
-    if !current_user.is_administrator
+    if !current_user.is_director
       throwUnauthorized
       return
     else
@@ -99,7 +99,7 @@ class ReportsController < ApplicationController
     end
   end
   def by_ciuu
-    if !current_user.is_administrator
+    if !current_user.is_director
       throwUnauthorized
       return
     else
@@ -111,7 +111,7 @@ class ReportsController < ApplicationController
     end
   end
   def by_salary_range
-    if !current_user.is_administrator
+    if !current_user.is_director
       throwUnauthorized
       return
     else
@@ -119,7 +119,7 @@ class ReportsController < ApplicationController
     end
   end
   def by_time_to_work
-    if !current_user.is_administrator
+    if !current_user.is_director
       throwUnauthorized
       return
     else
@@ -147,7 +147,7 @@ class ReportsController < ApplicationController
     end
   end
   def with_postgrade
-    if !current_user.is_administrator
+    if !current_user.is_director
       throwUnauthorized
       return
     else
