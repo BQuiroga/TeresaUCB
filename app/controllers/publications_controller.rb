@@ -1,6 +1,11 @@
 class PublicationsController < ApplicationController
 	def create
-		Publication.create(publications_params)
+		@new=Publication.new(publications_params)
+		if @new.save
+			flash[:success] = "Asombroso! Cuentanos mas de ti"
+		else
+			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+		end
     	redirect_to '/users/curriculum/edit'
 	end
 	def edit

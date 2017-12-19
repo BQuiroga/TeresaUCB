@@ -1,6 +1,12 @@
 class LanguagesController < ApplicationController
   def create
-    Language.create(languages_params)
+    @new=Language.new(languages_params)
+		if @new.save
+			flash[:success] = "Asombroso! Cuentanos mas"
+		else
+			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+		end
+    	redirect_
       redirect_to '/users/curriculum/edit'
   end
   def edit

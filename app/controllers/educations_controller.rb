@@ -1,6 +1,11 @@
 class EducationsController < ApplicationController
 	def create
-		Education.create(educations_params)
+		@new=Education.new(educations_params)
+		if @new.save
+			flash[:success] = "Asombroso! Cuentanos mas"
+		else
+			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+		end
     	redirect_to '/users/curriculum/edit'
 	end
 	def edit

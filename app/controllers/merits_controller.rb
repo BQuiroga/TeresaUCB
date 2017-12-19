@@ -1,6 +1,11 @@
 class MeritsController < ApplicationController
 	def create
-		Merit.create(merits_params)
+		@new=Merit.new(merits_params)
+		if @new.save
+			flash[:success] = "Fantastico! Dinos mas"
+		else
+			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+		end
     	redirect_to '/users/curriculum/edit'
 	end
 	def edit

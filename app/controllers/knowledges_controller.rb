@@ -1,6 +1,11 @@
 class KnowledgesController < ApplicationController
 	def create
-		Knowledge.create(knowledges_params)
+		@new=Knowledge.new(knowledges_params)
+		if @new.save
+			flash[:success] = "Genial! ¿Que otras cosas mas sabes?"
+		else
+			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+		end
     	redirect_to '/users/curriculum/edit'
 	end
 	def edit

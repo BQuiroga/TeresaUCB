@@ -1,6 +1,11 @@
 class SkillsController < ApplicationController
   def create
-    Skill.create(skills_params)
+    @new=Skill.new(skills_params)
+		if @new.save
+			flash[:success] = "Perfecto! ¿Que otras habilidades adquiriste?"
+		else
+			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+		end
       redirect_to '/users/curriculum/edit'
   end
   def edit

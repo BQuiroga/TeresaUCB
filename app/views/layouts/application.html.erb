@@ -151,12 +151,24 @@ nav select {display: none;}
 
 
 <% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
+<div class="container">
+  <div class="alert alert-success"><%= notice %></div>
+</div>
 <% end %>
 <% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
+<div class="container">
+  <div class="alert alert-danger"><%= alert %></div>
+</div>
 <% end %>
   <br><br><br><br>
+  <%if flash and !notice and !alert%>
+  <div class="container">
+     <% flash.each do |key, value| %>
+       <div class="alert alert-<%= key %>"><%= value %></div>
+     <% end %>
+     <% debug(params) if Rails.env.development? %>
+   </div>
+   <%end%>
 <%= yield %>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

@@ -1,7 +1,12 @@
 class CoursesController < ApplicationController
 	def create
-		Course.create(courses_params)
-    	redirect_to '/users/curriculum/edit'
+		@new=Course.new(courses_params)
+		if @new.save
+			flash[:success] = "Wow! ¿Que mas aprendiste?"
+		else
+			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+		end
+    redirect_to '/users/curriculum/edit'
 	end
 	def edit
 		@course=Course.find(params[:id])

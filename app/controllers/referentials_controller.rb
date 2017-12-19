@@ -1,6 +1,11 @@
 class ReferentialsController < ApplicationController
   def create
-    Referential.create(referentials_params)
+    @new=Referential.new(referentials_params)
+		if @new.save
+			flash[:success] = "Fabuloso! ¿Tienes alguien mas en mente?"
+		else
+			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+		end
       redirect_to '/users/curriculum/edit'
   end
   def edit

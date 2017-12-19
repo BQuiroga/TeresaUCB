@@ -1,6 +1,11 @@
 class MembershipsController < ApplicationController
 	def create
-		Membership.create(memberships_params)
+		@new=Membership.new(memberships_params)
+		if @new.save
+			flash[:success] = "Asombroso! ¿En que otros grupos mas formas parte?"
+		else
+			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+		end
     	redirect_to '/users/curriculum/edit'
 	end
 	def edit

@@ -1,6 +1,11 @@
 class ExperiencesController < ApplicationController
 	def create
-		Experience.create(experiences_params)
+		@new=Experience.new(experiences_params)
+		if @new.save
+			flash[:success] = "Muy bien! ¿Que otros retos afrontaste?"
+		else
+			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+		end
     	redirect_to '/users/curriculum/edit'
 	end
 	def edit
