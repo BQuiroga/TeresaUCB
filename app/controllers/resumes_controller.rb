@@ -30,6 +30,34 @@ class ResumesController < ApplicationController
     end
     @degree_list=@newA
   end
+  def external_edit
+    @user=User.find(params[:id])
+    @resume=@user.resume
+    @personal_info=current_user.personal_information
+    @educations=@resume.educations
+    @experiences=@resume.experiences
+    @courses = @resume.courses
+    @knowledges = @resume.knowledges
+    @publications=@resume.publications
+    @merits=@resume.merits
+    @memberships=@resume.memberships
+    @languages=@resume.languages
+    @referentials=@resume.referentials
+    @skills=@resume.skills
+    @publicationTypes=["Articulo","Tesis","Libro","Monografia"]
+    @titles=Title.all
+    @newA=Array.new
+    @title_list=Array.new
+    @titles.each do |title|
+      @newA=@newA+[title.name]
+    end
+    @title_list=@newA
+      @newA=Array.new
+    @degree_list=Degree.all.each do |degree|
+      @newA=@newA+[degree.name]
+    end
+    @degree_list=@newA
+  end
   def update
   end
   def show

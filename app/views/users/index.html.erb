@@ -12,11 +12,11 @@
       <li class="list-group-item">
         <div>
           <h4>  <b><%=usuario.name%>&nbsp;<%=usuario.last_name %></b>
-            <%if current_user.not_me(usuario.id)%>
+            <%if current_user.not_me(usuario.id) and !usuario.is_administrator%>
               <button class="btn btn-default btn-sm pull-right">
                 <%=link_to "Ver Curriculum", {controller: "resumes",action:"external_show",id:usuario.id}%>
               </button>
-
+            <%if current_user.is_administrator%>
             <button class="btn btn-warning btn-sm pull-right">
 
               <%if ( !usuario.access_locked?)%>
@@ -27,6 +27,7 @@
 
             <%end%>
             </button>
+            <%end%>
           </h4>&nbsp;
           <%=usuario.email%>&nbsp;
           <%if usuario.is_company?%>

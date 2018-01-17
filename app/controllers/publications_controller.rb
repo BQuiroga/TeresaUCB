@@ -6,8 +6,12 @@ class PublicationsController < ApplicationController
 		else
 			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
 		end
+		if @new.resume.user_id==current_user.id
     	redirect_to '/users/curriculum/edit'
-	end
+		else
+			@v='/curriculum/'+@new.resume.user_id.to_s+'/edit'
+			redirect_to @v
+		end	end
 	def edit
 		@publication=Publication.find(params[:id])
 		@publicationTypes=["Articulo","Tesis","Libro","Monografia"]
@@ -15,8 +19,12 @@ class PublicationsController < ApplicationController
 	def update
 		@publication=Publication.find(publications_params_for_edit[:id])
 		@publication.update(publications_params_for_edit)
-		redirect_to '/users/curriculum/edit'
-	end
+		if @publication.resume.user_id==current_user.id
+    	redirect_to '/users/curriculum/edit'
+		else
+			@v='/curriculum/'+@publication.resume.user_id.to_s+'/edit'
+			redirect_to @v
+		end	end
 	def publications_params
   		params.require(:publication).permit(:name, :resume_id,:publicationType,:date,:location)
   	end

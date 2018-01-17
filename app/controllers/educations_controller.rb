@@ -6,7 +6,11 @@ class EducationsController < ApplicationController
 		else
 			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
 		end
-    	redirect_to '/users/curriculum/edit'
+		if @new.resume.user_id==current_user.id
+			redirect_to '/users/curriculum/edit'
+		else
+			redirect_to '/curriculum/:@new.resume.user_id/edit'
+		end
 	end
 	def edit
 		@education=Education.find(params[:id])
@@ -21,7 +25,11 @@ class EducationsController < ApplicationController
 	def update
 		@education=Education.find(educations_params_for_edit[:id])
 		@education.update(educations_params_for_edit)
-		redirect_to '/users/curriculum/edit'
+		if @new.resume.user_id=current_user.id
+			redirect_to '/users/curriculum/edit'
+		else
+			redirect_to '/curriculum/:@new.resume.user_id/edit'
+		end
 	end
 	def educations_params
   		params.require(:education).permit(:start_date,:resume_id,:end_date,:school_name,:title,:description)

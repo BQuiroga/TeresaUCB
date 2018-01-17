@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   post 'company/update'=>'company_informations#update'
   post 'personal/update' =>'personal_informations#update'
   post 'education/new' => 'educations#create'
-
+  get 'curriculum/:id/edit' => 'resumes#external_edit'
   post 'experience/new' => 'experiences#create'
   post 'skill/new' => 'skills#create'
   get 'skill/edit/:id'=>'skills#edit'

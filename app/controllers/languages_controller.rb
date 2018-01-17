@@ -6,17 +6,24 @@ class LanguagesController < ApplicationController
 		else
 			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
 		end
-    	redirect_
-      redirect_to '/users/curriculum/edit'
-  end
+    if @new.resume.user_id==current_user.id
+    	redirect_to '/users/curriculum/edit'
+		else
+			@v='/curriculum/'+@new.resume.user_id.to_s+'/edit'
+			redirect_to @v
+		end  end
   def edit
     @language=Language.find(params[:id])
   end
   def update
     @language=Language.find(languages_params_for_edit[:id])
     @language.update(languages_params_for_edit)
-    redirect_to '/users/curriculum/edit'
-  end
+    if @language.resume.user_id==current_user.id
+    	redirect_to '/users/curriculum/edit'
+		else
+			@v='/curriculum/'+@language.resume.user_id.to_s+'/edit'
+			redirect_to @v
+		end  end
   def languages_params
       params.require(:language).permit(:name,:skill,:resume_id,:level)
     end

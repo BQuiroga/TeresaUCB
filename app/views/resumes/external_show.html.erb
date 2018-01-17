@@ -1,6 +1,10 @@
 
 <div class="container">
-<div ><h2><%=@user.name%> <%=@user.last_name%> </h2></div>
+<div >
+  <h2><%=@user.name%> <%=@user.last_name%> <button class="btn btn-default btn-sm pull-right">
+      <%=link_to "Editar Curriculum", {controller: "resumes",action:"external_edit",id:@user.id}%>
+  </button></h2>
+</div>
   <div class="container-body ">
    <%if !@user.is_company?%>
     <div class="container">
