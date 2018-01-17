@@ -67,7 +67,7 @@ nav select {display: none;}
         <li><%= link_to 'Ver grupos', '/grupos/todos', :class => 'navbar-link navbar-text' %>&emsp;</li>
         <li><%= link_to 'Mis grupos', '/grupos/mis_grupos', :class => 'navbar-link navbar-text' %>&emsp;</li>
         <li><%= link_to 'Notificaciones', '/mis_notificaciones', :class => 'navbar-link navbar-text' %><span style="color:rgb(255, 255, 255);" class=navbar-text><%=current_user.unreaded_notifications.size%>&emsp;</span></li>
-        <%if current_user.is_administrator%>
+        <%if current_user.is_administrator or current_user.is_secretary?%>
           <li><%= link_to 'Gestion de usuarios', '/users', :class => 'navbar-link navbar-text' %>&emsp;</li>
         <%end%>
         <%if current_user.is_director%>

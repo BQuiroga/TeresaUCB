@@ -20,6 +20,9 @@ class User < ActiveRecord::Base
   def send_admin_mail
     UserMailer.welcome_email(self).deliver_now!
   end
+  def is_secretary?
+    has_role? :secretary
+  end
   def is_company?
     has_role? :company
   end

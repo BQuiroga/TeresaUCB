@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 		end
 	end
 	def index
-		if !current_user.is_administrator
+		if !(current_user.is_administrator or current_user.is_secretary?)
 			throwUnauthorized
 			return
 		else
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
 		end
 	end
 	def reportes_general
-		if !current_user.is_director
+		if !(current_user.is_director)
 			throwUnauthorized
 			return
 		else

@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
   has_many :pictures
   has_many :notifications
   belongs_to :user
+  has_many :likes
   def new_post_body(search_params)
     self.body=job_offer(search_params[:titulo],
                                 search_params[:post_grado],
@@ -20,6 +21,9 @@ class Post < ActiveRecord::Base
   def user_name
     user=self.user
     user.name
+  end
+  def likes
+    Like.where(post_id: id).count
   end
   def search_params_count(postgrados,educaciones,experiencias,conocimientos,idiomas)
     count=0
