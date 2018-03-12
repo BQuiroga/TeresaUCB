@@ -1,11 +1,13 @@
   <div class="container">
-  <h1>Lista de reportes</h1>
+  <h2>Lista de reportes</h2>
     <div class="panel panel-default">
       <div class="panel-heading"><div class="panel-title"><h3>Criterios de busqueda</h3></div></div>
         <div class="panel-body">
-          <span onclick="openNav()"><button class="btn btn-info btn-sm">Reportes estaticos</button></span>
+          <h3>Reportes estaticos</h3>
+          <span onclick="openNav()"><button class="btn btn-info btn-lg">Ver reportes</button></span>
+          <div class="">
           <div id="mySidenav" class="sidenav">
-              <a onclick="closeNav()"><span class="glyphicon glyphicon-remove float-xs-right"></span></a>
+              <a onclick="closeNav()"><span class="glyphicon glyphicon-remove float-xs-left"></span></a>
             <ul>
               <li class="list-group-item">
                 <p class="test" tabindex="-1" href="#">Estudiantes registrados <span class="glyphicon glyphicon-chevron-right "></span></p>
@@ -49,9 +51,12 @@
               </li>
             </ul>
           </div>
-
-
-          <%= form_for :report, url: '/reporte/nuevo' do |f| %>
+        </div>
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-6" style="top:-100px;">
+          <h3>Reportes dinamicos</h3>
+          <%= form_for :report, url: '/reporte/nuevo' do |f|%>
             <div class="container-fluid">
               <!-- reportes por grado academico -->
               <div class="col-sm-3 col-md-6 col-lg-4">
@@ -119,7 +124,8 @@
               </div>
               <div  class="col-sm-3 col-md-6 col-lg-4">
               </div>
-              <div class="actions col-xs-3">
+              <br>
+              <div class="actions col-xs-12">
                 <%= f.submit "Generar" , :class =>"btn btn-primary"%>
               </div>
             <div>
@@ -130,8 +136,8 @@
             <br><br><br><br><br>
           <% end %>
         </div>
+      </div>
   </div>
-
   </div>
 </div>
   <script>
