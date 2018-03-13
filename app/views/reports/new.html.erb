@@ -44,6 +44,7 @@
                     <td>
                       <button class="btn btn-default btn-sm pull-right">
                         <%=link_to "Ver Curriculum", {controller: "resumes",action:"external_show",id:user.id}%>
+
                       </button>
                     </td>
                   </tr>
@@ -56,8 +57,9 @@
           <%@data_graphic_to_chart=@data_graphic%>
           <%@total =@data_graphic_to_chart.sum{|x,y| @data_graphic_to_chart[x]}%>
           <%@data_graphic_to_chart=@data_graphic_to_chart.each{|x,y| @data_graphic_to_chart[x]=y.to_f/@total*100}%>
-          <%@data_graphic_to_chart=@data_graphic_to_chart.each{|x,y| y.to_s.replace "#{y}%"}%>
-            <%= pie_chart @data_graphic_to_chart, stacked: true, donwload: true,suffix:"%"%>
+          <%@data_graphic_to_chart=@data_graphic_to_chart.each{|x,y| @data_graphic_to_chart[x]=y.to_s.first(5)+"%"}%>
+            <%= pie_chart @data_graphic_to_chart, stacked: true, donwload: true%>
+            <p style="text-align: center;">Los datos mostrados en la grafica se encuentran en %</p>
           </div>
         </li>
       </ul>
