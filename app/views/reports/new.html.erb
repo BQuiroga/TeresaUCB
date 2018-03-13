@@ -40,7 +40,7 @@
                   <tr>
                     <td><%=user.name%></td>
                     <td><%=user.email%></td>
-                    <td><%=user.gender%></td>
+                    <td><%=user.phone%></td>
                     <td>
                       <button class="btn btn-default btn-sm pull-right">
                         <%=link_to "Ver Curriculum", {controller: "resumes",action:"external_show",id:user.id}%>
@@ -53,7 +53,11 @@
         </li>
         <li class="list-group-item">
           <div id="by_date">
-            <%= bar_chart @data_graphic, stacked: true, donwload: true%>
+          <%@data_graphic_to_chart=@data_graphic%>
+          <%@total =@data_graphic_to_chart.sum{|x,y| @data_graphic_to_chart[x]}%>
+          <%@data_graphic_to_chart=@data_graphic_to_chart.each{|x,y| @data_graphic_to_chart[x]=y.to_f/@total*100}%>
+          <%@data_graphic_to_chart=@data_graphic_to_chart.each{|x,y| y.to_s.replace "#{y}%"}%>
+            <%= pie_chart @data_graphic_to_chart, stacked: true, donwload: true,suffix:"%"%>
           </div>
         </li>
       </ul>

@@ -52,14 +52,14 @@
             </ul>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
         </div>
-        <div class="col-md-6" style="top:-100px;">
+        <div class="col-md-8" style="top:-100px;">
           <h3>Reportes dinamicos</h3>
           <%= form_for :report, url: '/reporte/nuevo' do |f|%>
             <div class="container-fluid">
               <!-- reportes por grado academico -->
-              <div class="col-sm-3 col-md-6 col-lg-4">
+              <div class="col-sm-3 col-md-6 col-lg-6">
                 <div class="field">
                   <%=f.label :reportes_por_grados %>
                   <input type="checkbox" id=check_grados name="check_grados" class="field">
@@ -73,6 +73,7 @@
                     <option selected>Todos</option>
                   </select>
                 </div>
+                <br>
                 <%@e=Education.new%>
                 <div id="grado_licenciatura" style="display:none;">
                   <%= f.select :grado_licenciatura,@e.licenciaturas,{:class=>"selectpicker",:include_blank => true}%>
@@ -90,7 +91,7 @@
               </div>
 
 
-              <div class="col-sm-3 col-md-6 col-lg-4">
+              <div class="col-sm-3 col-md-6 col-lg-3">
                 <div>
                   <%=f.label :por_fecha %>
                   <input type="checkbox" id="check_fecha">
@@ -104,7 +105,7 @@
                   </div>
                 </div>
               </div>
-              <div  class="col-sm-3 col-md-6 col-lg-4">
+              <div  class="col-sm-3 col-md-6 col-lg-3">
                 <div>
                   <%=f.label :por_genero %>
                   <input type="checkbox" id="check_genero">
