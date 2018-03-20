@@ -1,6 +1,24 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<div class="w3-sidebar w3-bar-block w3-card w3-black w3-animate-left" style="display:none" id="mySidebar">
+  <button class="w3-bar-item w3-button  w3-tiny"style="right:0px;"
+  onclick="w3_close()">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&emsp;&emsp;Cerrar &times;</button>
+  <a onclick="original()" class="w3-bar-item w3-button">Original</a>
+  <a onclick="pintarAzul()" class="w3-bar-item w3-button">Azul</a>
+  <a onclick="pintarVerde()" class="w3-bar-item w3-button">Verde</a>
+</div>
+<div class="side-bar">
+  <button id="openNav" class="btn btn-md" onclick="w3_open()">Mas opciones &#9776;</button>
+</div>
+<div class="container" id="main">
 <div class="container">
 <div class="row-fluid" style="background-color: #f0f0f0; border-top-left-radius: 10px; border-top-right-radius: 10px;"><h2><%=@user.name%> <%=@user.last_name%> </h2></div>
-  <div class="container-body ">
+  <div class="container-body " id="container-body">
+    <div class="container">
+    <div class="container">
+      <div class="container">
+      </div>
+    <div class="container">
     <div class="container">
     <h2>Informacion Personal</h2>
     <div class="container">
@@ -162,4 +180,28 @@
   </div>
 </div>
 </div>
+</div>
+</div>
+</div>
+</div>
 <br>
+
+<script>
+function w3_open() {
+  document.getElementById("mySidebar").style.width = "12%";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("mySidebar").style.height ="25%";
+  // document.getElementById("openNav").style.display = 'none';
+}
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("openNav").style.display = "inline-block";
+}
+function pintarVerde(){
+  document.getElementById("container-body").style.backgroundColor = "#66ff99";
+}
+function original(){
+  document.getElementById("container-body").style.backgroundColor = null;
+
+}
+</script>

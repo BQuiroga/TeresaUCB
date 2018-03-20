@@ -63,12 +63,12 @@
               <%=line%><br>
             <%end%>
           </p>
-        	<button type="button" class="btn btn-primary" aria-label="Left Align">
+        	<!-- <button type="button" class="btn btn-primary" aria-label="Left Align">
             <span class=" glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
         	</button>
         	<button type="button" class="btn btn-warning" aria-label="Left Align">
           	<span class=" glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-          </button>
+          </button> -->
 
           <%if current_user.not_me(post.user.id) and (Follow.where(follower:current_user.id,followed:post.user.id).size==0) and !current_user.is_my_friend(post.user.id)%>
             <%= form_for :follow, url: '/follows/new' do |f| %>
