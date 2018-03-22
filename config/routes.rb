@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   get 'skill/edit/:id'=>'skills#edit'
   put 'skill/update'=> 'skills#update'
 
+  get 'usuarios/curriculums/:id' =>'resumes#show_modal'
   get 'experience/edit/:id'=>'experiences#edit'
   post 'course/new' => 'courses#create'
   get 'mycurriculum' => 'resumes#show'

@@ -69,23 +69,31 @@
                     <option>Licenciatura</option>
                     <option>Maestria</option>
                     <option>Doctorado</option>
-                    <option>Postgrado</option>
+                    <option>Diplomado</option>
+                    <option>Especialidad</option>
+                    <option>Post Doctorado</option>
                     <option selected>Todos</option>
                   </select>
                 </div>
                 <br>
                 <%@e=Education.new%>
                 <div id="grado_licenciatura" style="display:none;">
-                  <%= f.select :grado_licenciatura,@e.licenciaturas,{:class=>"selectpicker",:include_blank => true}%>
+                  <%= f.select(:grado_licenciatura,@e.licenciaturas,:class=>"selectpicker",:include_blank => true)%>
                 </div>
-                <div id="grado_postgrado" style="display:none;">
-                  <%= f.select(:grado_postgrado,@e.postgrados,:class=>"selectpicker",:include_blank => true)%>
+                <div id="grado_especialidad" style="display:none;">
+                  <%= f.select(:grado_postgrado,@e.especialidades,:class=>"selectpicker",:include_blank => true)%>
                 </div>
                 <div id="grado_maestria" style="display:none;">
                   <%= f.select(:grado_maestria,@e.maestrias,:class=>"selectpicker",:include_blank => true)%>
                 </div>
                 <div id="grado_doctorado" style="display:none;">
                   <%= f.select(:grado_doctorado,@e.doctorados,:class=>"selectpicker",:include_blank => true)%>
+                </div>
+                <div id="grado_diplomado" style="display:none;">
+                  <%= f.select(:grado_doctorado,@e.diplomados,:class=>"selectpicker",:include_blank => true)%>
+                </div>
+                <div id="grado_postdoctorado" style="display:none;">
+                  <%= f.select(:grado_doctorado,@e.postdoctorados,:class=>"selectpicker",:include_blank => true)%>
                 </div>
 
               </div>
@@ -165,29 +173,67 @@ function closeNav() {
     {
       document.getElementById("grado_licenciatura").style.display="block";
       document.getElementById("grado_maestria").style.display="none";
-      document.getElementById("grado_postgrado").style.display="none";
+      document.getElementById("grado_postdoctorado").style.display="none";
       document.getElementById("grado_doctorado").style.display="none";
+      document.getElementById("grado_diplomado").style.display="none";
+      document.getElementById("grado_especialidad").style.display="none";
+
     }
     if (x=="Maestria")
     {
       document.getElementById("grado_licenciatura").style.display="none";
       document.getElementById("grado_maestria").style.display="block";
-      document.getElementById("grado_postgrado").style.display="none";
+      document.getElementById("grado_postdoctorado").style.display="none";
       document.getElementById("grado_doctorado").style.display="none";
-    }
-    if (x=="Postgrado")
-    {
-      document.getElementById("grado_licenciatura").style.display="none";
-      document.getElementById("grado_maestria").style.display="none";
-      document.getElementById("grado_postgrado").style.display="block";
-      document.getElementById("grado_doctorado").style.display="none";
+      document.getElementById("grado_diplomado").style.display="none";
+      document.getElementById("grado_especialidad").style.display="none";
+
     }
     if (x=="Doctorado")
     {
       document.getElementById("grado_licenciatura").style.display="none";
       document.getElementById("grado_maestria").style.display="none";
-      document.getElementById("grado_postgrado").style.display="none";
-        document.getElementById("grado_doctorado").style.display="blok";
+      document.getElementById("grado_doctorado").style.display="block";
+      document.getElementById("grado_postdoctorado").style.display="none";
+      document.getElementById("grado_especialidad").style.display="none";
+      document.getElementById("grado_diplomado").style.display="none";
+    }
+    if (x=="Postdoctorado")
+    {
+      document.getElementById("grado_licenciatura").style.display="none";
+      document.getElementById("grado_maestria").style.display="none";
+      document.getElementById("grado_postdoctorado").style.display="block";
+      document.getElementById("grado_doctorado").style.display="none";
+      document.getElementById("grado_especialidad").style.display="none";
+      document.getElementById("grado_diplomado").style.display="none";
+    }
+    if (x=="Diplomado")
+    {
+      document.getElementById("grado_licenciatura").style.display="none";
+      document.getElementById("grado_maestria").style.display="none";
+      document.getElementById("grado_postdoctorado").style.display="none";
+      document.getElementById("grado_doctorado").style.display="none";
+      document.getElementById("grado_especialidad").style.display="none";
+      document.getElementById("grado_diplomado").style.display="block";
+    }
+    if (x=="Doctorado")
+    {
+      document.getElementById("grado_licenciatura").style.display="none";
+      document.getElementById("grado_maestria").style.display="none";
+      document.getElementById("grado_postdoctorado").style.display="none";
+      document.getElementById("grado_doctorado").style.display="block";
+      document.getElementById("grado_diplomado").style.display="none";
+      document.getElementById("grado_especialidad").style.display="none";
+    }
+    if (x=="Especialidad")
+    {
+      document.getElementById("grado_licenciatura").style.display="none";
+      document.getElementById("grado_maestria").style.display="none";
+      document.getElementById("grado_postdoctorado").style.display="none";
+      document.getElementById("grado_doctorado").style.display="none";
+      document.getElementById("grado_diplomado").style.display="none";
+      document.getElementById("grado_especialidad").style.display="block";
+
     }
     if (x=="Todos")
     {
@@ -195,6 +241,8 @@ function closeNav() {
       document.getElementById("grado_maestria").style.display="none";
       document.getElementById("grado_postgrado").style.display="none";
       document.getElementById("grado_doctorado").style.display="none";
+      document.getElementById("grado_especialidad").style.display="none";
+      document.getElementById("grado_diplomado").style.display="none";
     }
   }
   $('#check_grados').click(function() {

@@ -31,11 +31,11 @@ class Education < ActiveRecord::Base
     end
   end
   def licenciaturas
-    result=title_list-postgrados-maestrias-doctorados
+    result=title_list-postdoctorados-maestrias-doctorados-especialidades
     result=result+["Todos"]
   end
-  def postgrados
-    result=title_list.select{|x| x.include?("Postgrado")} + title_list.select{|x| x.include?("Diplomado")}
+  def especialidades
+    result=title_list.select{|x| x.include?("Especialidad")}
     result=result+["Todos"]
   end
   def maestrias
@@ -43,9 +43,18 @@ class Education < ActiveRecord::Base
     result=result+["Todos"]
   end
   def doctorados
-    result=title_list.select{|x| x.include?("Doctorado")} + title_list.select{|x| x.include?("Doctor")}
+    result=title_list.select{|x| x.include?("Doctorado")} + title_list.select{|x| x.include?("Doctor")} + title_list.select{|x| x.include?("Ph ")}
     result=result+["Todos"]
   end
+  def postdoctorados
+    result=title_list.select{|x| x.include?("Post Doctorado")}
+    result=result+["Todos"]
+  end
+  def diplomados
+    result=title_list.select{|x| x.include?("Diplomados")}
+    result=result+["Todos"]
+  end
+
   def title_name
     education.try(:title)
   end

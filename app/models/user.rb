@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,:lockable
 
   validates :password, format:{ with: /\A(?=.*[a-z])(?=.*[A-Z])./, message: "o contraseña, debe contener por lo menos una mayúscula, una minúscula y un número"}
-	after_create :send_admin_mail
+	# after_create :send_admin_mail
   after_create :assign_default_role
   after_create :create_dependencies
   after_create :capit
@@ -158,11 +158,27 @@ class User < ActiveRecord::Base
     educations=self.resume.educations
     last=Date.today
     educations.each do |edu|
-      if last>edu.end_date
+      if last<edu.end_date
         last=edu.end_date
       end
     end
     last
+  end
+  def last_education
+    educations=self.resume.educations
+    last=Date.new(1940,10,10)
+    ultima=0
+    educations.each do |edu|
+      if last<edu.end_date
+        last=edu.end_date
+        ultima=edu.id
+      end
+    end
+    if educations.size>0
+      return Education.find(ultima)
+    else
+      return Education.new
+    end
   end
   def not_company_users
     users=User.where(company:false)
