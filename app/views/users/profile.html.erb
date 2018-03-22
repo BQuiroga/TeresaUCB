@@ -17,11 +17,11 @@
 </div>
     <!-- FOTO AVATAR -->
 	<div id="container-avatar">
-	  <div class="hovereffect" id="avatar" >
+	  <div class="hovereffect" >
 	    <%= image_tag ("missing.png")%>
 	        <div class="overlay">
 	          <h2>Actualizar foto de perfil</h2>
-	          <label ><span class="glyphicon glyphicon-camera"></span></label>
+	          <label ><span class="glyphicon glyphicon-camera" id="avatar"></span></label>
 	        </div>
 	  </div>
 	</div>
@@ -33,26 +33,32 @@
 <!-- MODAL PARA FOTO?  -->
 
 <div id="editProfileAvatar" class="modal">
-    <div class="header">
-      Editar foto de perfil
-    </div>
     <div class="modal-content">
-          <img class="ui medium image bordered centered">
-          <div class="ui container center aligned">
-            <div id="avatar_preview" style="display:none"><img id="AvatarPreview" src=""/></div>
-            <button class="btn btn-positive"><label>Logo </label><br/></button>
-            <input type="file" name="AvatarFile" id="AvatarFile" required/>Lel
-            <h4 id='loading' style="display:none">Subiendo..</h4>
-            <div id="message"></div>
-          </div>
+      <span class="close" id="close">&times;</span>
+      <div class="header">
+        <h3>Editar foto de perfil</h3>
+      </div>
+      <div class="">
+        <%= image_tag ("missing.png"), :class=> "img-thumbnail"%>
+      </div>
+      <div class="container">
+        <div id="avatar_preview" style="display:none"></div>
+        <button class="btn btn-positive">
+        <input type="file" name="avatarFile" alt="" id="file-imagen">
+        </input>
+        Subir Foto</button>
+        <!-- <h4 id='loading' style="display:none">Subiendo..</h4> -->
+        <!-- <div id="message"></div> -->
+      </div>
+      <div class="actions">
+
+        <button id="submitAnnouncment" class="btn btn-success">Guardar</button>
+        <a class="btn btn-danger">Cancelar</a>
+      </div>
     </div>
-        <br/>
-        <br>
-    <div class="actions">
-      <button id="submitAnnouncment" class="ui positive button">Guardar</button>
-      <a class="ui cancel red button">Cancelar</a>
-    </div>
-  </div>
+    <br/>
+    <br>
+</div>
 
 
 
@@ -60,41 +66,15 @@
   <script>
   var btn= document.getElementById("avatar")
   var modal = document.getElementById("editProfileAvatar");
+  var span =document.getElementById("close");
+  span.onclick = function() {
+      modal.style.display = "none";
+  }
   btn.onclick =function(){
-    alert("Se presiona");
     modal.style.display ="block";
   };
 
-  window.onclick = function(event) {
-      if (event.target == modal) {
-          modal.style.display = "none";
-      }
-  }
-  //
-  // $(document).ready(function (e) {
-  //   $("#AvatarFile").change(function () {
-  //       var file = this.files[0];
-  //       var imagefile = file.type;
-  //       var match = ["image/jpeg", "image/png", "image/jpg", "image/gif"];
-  //       if (!((imagefile == match[0]) || (imagefile == match[1]) || (imagefile == match[2]) || (imagefile == match[3]))) {
-  //           $('#previewing').attr('src', 'noimage.png');
-  //           $("#message").html("<p id='error'>Por favor seleccione un archivo de imagen válido.</p><span id='error_message'> Los tipos soportados son: jpg, gif y png.</span>");
-  //           return false;
-  //       }
-  //       else {
-  //           var reader = new FileReader();
-  //           reader.onload = imageIsLoaded;
-  //           reader.readAsDataURL(this.files[0]);
-  //       }
-  //   });
-  //
-  //   function imageIsLoaded(e) {
-  //       $("#AvatarFile").css("color", "green");
-  //       $('#avatar_preview').css("display", "block");
-  //       $('#avatarPreview').attr('src', e.target.result);
-  //   }
-  // });
-  //
+
   </script>
 
 
@@ -229,6 +209,15 @@
 </div>
 <br>
 
+<style>
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 45px;
+    font-weight: bold;
+}
+
+</style>
 
 
 
