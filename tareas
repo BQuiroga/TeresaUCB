@@ -86,3 +86,192 @@ experiencia profesional campos unidos+>separar      =OK
 - graficas con porcentaje   =OK
 - arrreglo en NOMBRES DE GRAFICAS DINAMICAS  =OK
 - lista de usuarios en reportes estaticos WE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container-body " id="container-body">
+  <div class="container">
+  <div class="container">
+    <div class="container">
+    </div>
+  <div class="container">
+  <div class="container">
+  <h2>Informacion Personal</h2>
+  <div class="container">
+    <b>Género: </b><%=@personal_info.gender_to_string%><br>
+    <b>Direccion: </b><%=@personal_info.address%><br>
+    <b>Fecha de Nacimiento: </b><%=@personal_info.translate_birthdate_to_string%> <br>
+    <b>Fijo: </b><%=@personal_info.phone%><br>
+    <b>Movil: </b><%=@personal_info.cellphone%><br>
+    <b>e-mail: </b><%=@user.email%><br>
+  </div>
+</div>
+<div class="container">
+  <h2>Formacion Academica </h2>
+  <div class="container">
+  <% if @educations.size >0%>
+  <h5><% @educations.each do |education| %></h5>
+          <div >
+              <p >
+                <h5><b><%=education.title%></b></h5>
+                <%if education.description.size>0%>
+                  <%=education.description%>
+                  <br>
+                <%end%>
+              <%=education.school_name%>&nbsp;
+                <%=education.start_date.year%>&emsp; - &emsp; <%=education.end_date.year%>
+              </p>
+          </div>
+      <%end%>
+   <%end%>
+</div>
+</div>
+
+<div class="container">
+  <h2>Experiencia Profesional </h2>
+  <div class="container">
+      <% if @experiences.size >0%>
+  <h5><% @experiences.each do |experience| %></h5>
+          <div>
+              <p>
+                <h5><b><%=experience.company_name%></b></h5>
+                <%=experience.job_title%><br>
+                <%=experience.start_job_date%>&emsp; - &emsp;
+                <%=experience.finish_job_date%>&emsp;
+              </p>
+          </div>
+      <%end%>
+   <%end%>
+ </div>
+</div>
+<div class="container">
+<h2>Cursos y Seminarios </h2>
+<div class="container">
+      <% if @courses.size >0%>
+  <h5><% @courses.each do |course| %></h5>
+          <div>
+              <p>
+                <b><%=course.date.year%></b>&emsp;
+                <%=course.name%>&emsp;
+                <%=course.given%>&emsp;
+                <%=course.institution%>&emsp;
+                <%=course.workload%>&emsp; Hrs.
+              </p>
+          </div>
+      <%end%>
+   <%end%>
+ </div>
+</div>
+<div class="container">
+   <h2> Conocimientos</h2>
+   <div class="container">
+      <% if @knowledges.size >0%>
+  <h5><% @knowledges.each do |know| %></h5>
+          <div>
+              <p>
+                <b><%=know.area%></b>
+                <%=know.description%>
+              </p>
+          </div>
+      <%end%>
+   <%end%>
+ </div>
+</div>
+<div class="container">
+   <h2> Habilidades</h2>
+   <div class="container">
+      <% if @skills.size >0%>
+  <h5><% @skills.each do |skill| %></h5>
+          <div>
+              <p>
+                <b><%=skill.area%></b>
+                <%=skill.description%>
+              </p>
+          </div>
+      <%end%>
+   <%end%>
+ </div>
+</div>
+<div class="container">
+   <h2> Publicaciones </h2>
+   <div class="container">
+      <% if @publications.size >0%>
+  <h5><% @publications.each do |pub| %></h5>
+          <div>
+              <p>
+                <b><%=pub.publicationType%></b><br>
+                <%=pub.date.year%>&emsp;<b><%=pub.name%></b><br>
+                <%=pub.location%>
+
+              </p>
+          </div>
+      <%end%>
+   <%end%>
+ </div>
+</div>
+<div class="container">
+   <h2> Meritos </h2>
+   <div class="container">
+      <% if @merits.size >0%>
+  <h5><% @merits.each do |merit| %></h5>
+          <div>
+              <p>
+                <b><%=merit.date.year%></b>&emsp;<%=merit.name%><br>
+              </p>
+          </div>
+      <%end%>
+   <%end%>
+ </div>
+</div>
+<div class="container">
+<h2> Membresia </h2>
+<div class="container">
+      <% if @memberships.size >0%>
+  <h5><% @memberships.each do |member| %></h5>
+          <div>
+              <p>
+                <b><%=member.name%> en <%=member.organization%></b><br>
+                desde <%=member.date.year%>&emsp;<br>
+              </p>
+          </div>
+      <%end%>
+   <%end%>
+</div>
+</div>
+<div class="container">
+<h2> Idiomas </h2>
+<div class="container">
+       <% if @languages.size >0%>
+   <h5><% @languages.each do |language| %></h5>
+           <div>
+               <p>
+                 <b><%=language.name%><br></b>
+                    <b>Nivel: </b> <%=language.level%> <br>
+                  <b>  Destreza: </b><%=language.skill%><br>
+               </p>
+           </div>
+       <%end%>
+    <%end%>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>

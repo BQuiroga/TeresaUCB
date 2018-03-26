@@ -169,7 +169,7 @@ class User < ActiveRecord::Base
     last=Date.new(1940,10,10)
     ultima=0
     educations.each do |edu|
-      if last<edu.end_date
+      if last<edu.end_date && edu.title!="Bachiller"
         last=edu.end_date
         ultima=edu.id
       end

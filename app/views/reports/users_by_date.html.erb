@@ -32,6 +32,32 @@
                 <%= bar_chart @date_users, stacked: true, donwload: true%>
               </div>
             </li>
+            <li class="list-group-item" id="lista_usuarios" style="display:none;">
+                <div class="table table-responsive">
+                  <table  class="table table-striped table-bordered" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Correo electronico &nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Telefono &nbsp;</th>
+                      <th></th>
+                    </tr>
+                    <% @users.each do |user|%>
+                      <tr>
+                        <td><%=user.name%></td>
+                        <td><%=user.email%></td>
+                        <td><%=user.phone%></td>
+                        <td>
+                          <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                            Ver Curriculum
+                            <!-- <%=link_to "Ver Curriculum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                          </button>
+                        </td>
+                      </tr>
+                    <%end%>
+                  </table>
+                </div>
+            </li>
         </div>
       </div>
     </div>

@@ -134,18 +134,19 @@ class ReportsController < ApplicationController
       end
       @years=@@r.time_range_hash(@years)
     end
+  end
     def time_in_job
       @experiences=Experience.all
       @jobs_time=Hash.new(0)
       @experiences.each do |e|
-        if (e.time_in_job==-1)
+        if e.time_in_job==-1
           @jobs_time["Continua trabajando"]+=1
         else
           @jobs_time[e.time_in_job] +=1
         end
       end
+      @jobs_time=@jobs_time.sort_by{|x,y| x.to_s}
     end
-  end
   def with_postgrade
     if !current_user.is_director
       throwUnauthorized

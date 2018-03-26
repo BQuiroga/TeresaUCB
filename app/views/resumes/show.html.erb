@@ -4,8 +4,8 @@
   <button class="w3-bar-item w3-button  w3-tiny"style="right:0px;"
   onclick="w3_close()">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&emsp;&emsp;Cerrar &times;</button>
   <a onclick="original()" class="w3-bar-item w3-button">Original</a>
-  <a onclick="pintarAzul()" class="w3-bar-item w3-button">Azul</a>
-  <!-- <a onclick="pintarVerde()" class="w3-bar-item w3-button">Verde</a> -->
+  <a onclick="pintarAzul()" class="w3-bar-item w3-button">Estilo 1 Azul</a>
+  <a onclick="pintarRojo()" class="w3-bar-item w3-button">Estilo 1 Rojo</a>
 </div>
 <div class="side-bar">
   <button id="openNav" class="btn btn-md" onclick="w3_open()">Mas opciones &#9776;</button>
@@ -191,7 +191,7 @@
   <!-- TIPO DE CURRICULUM VERDE -->
 <div class="container">
   <div class="container-body " id="cv-azul">
-          <div class="section-container">
+          <div class="section-container-blue">
             <div class="container">
               <div class="container">
                 <h1 class="cv-title-name"><b><%=current_user.name%> <%=current_user.last_name%></b> </h1>
@@ -199,12 +199,12 @@
               </div>
             </div>
           </div>
-            <div class="section-title">
+            <div class="section-title-blue">
             <h2>Informacion Personal</h2>
            </div>
-          <div class="line-separator">
+          <div class="line-separator-blue">
           </div>
-            <div class="container section-container">
+            <div class="container section-container-blue">
               <br>
               <b>Género: </b><%=@personal_info.gender_to_string%><br>
               <b>Direccion: </b><%=@personal_info.address%><br>
@@ -214,12 +214,12 @@
               <b>e-mail: </b><%=@user.email%><br>
             </div>
             <br>
-  <div class="section-title">
+  <div class="section-title-blue">
     <h2>Formacion Academica </h2>
   </div>
-  <div class="line-separator">
+  <div class="line-separator-blue">
   </div>
-    <div class="container section-container">
+    <div class="container section-container-blue">
       <br>
     <% if @educations.size >0%>
     <h5><% @educations.each do |education| %></h5>
@@ -239,12 +239,12 @@
   </div>
 <br>
 <% if @experiences.size >0%>
-  <div class="section-title">
+  <div class="section-title-blue">
     <h2>Experiencia Profesional </h2>
   </div>
-  <div class="line-separator">
+  <div class="line-separator-blue">
   </div>
-  <div class="container section-container">
+  <div class="container section-container-blue">
     <br>
       <h5><% @experiences.each do |experience| %></h5>
       <div>
@@ -260,12 +260,12 @@
    <br>
    <%end%>
    <% if @courses.size >0%>
-<div class="section-title">
+<div class="section-title-blue">
   <h2>Cursos y Seminarios </h2>
 </div>
-<div class="line-separator">
+<div class="line-separator-blue">
 </div>
-<div class="container section-container">
+<div class="container section-container-blue">
   <br>
     <h5><% @courses.each do |course| %></h5>
             <div>
@@ -283,13 +283,13 @@
    <%end%>
 
    <% if @memberships.size >0%>
-   <div class="section-title">
+   <div class="section-title-blue">
      <h2> Membresia </h2>
    </div>
 
-   <div class="line-separator">
+   <div class="line-separator-blue">
    </div>
-   <div class="container section-container">
+   <div class="container section-container-blue">
      <h5><% @memberships.each do |member| %></h5>
      <div>
        <p>
@@ -302,10 +302,10 @@
    <br>
    <%end%>
    <% if @merits.size >0%>
-   <div class="section-title">
+   <div class="section-title-blue">
      <h3> Meritos </h3>
    </div>
-     <div class="container section-container">
+     <div class="container section-container-blue">
        <h5><% @merits.each do |merit| %></h5>
        <div>
          <p>
@@ -319,11 +319,11 @@
 
    <div class="container">
    <% if @knowledges.size >0%>
-     <div class="section-title vertical-title col-lg-2 col-md-2">
+     <div class="section-title-blue vertical-title col-lg-2 col-md-2">
        <h3> Conocimientos</h3>
     </div>
-   <div class="col-md-4 col-lg-4 vertical-section">
-     <div class="container section-container ">
+   <div class="col-md-4 col-lg-4 vertical-section-blue">
+     <div class="container section-container-blue ">
        <br>
     <h5><% @knowledges.each do |know| %></h5>
             <div>
@@ -338,11 +338,11 @@
    <%end%>
 
    <% if @skills.size >0%>
- <div class="section-title vertical-title col-lg-2 col-md-2">
+ <div class="section-title-blue vertical-title col-lg-2 col-md-2">
      <h3> Habilidades</h3>
    </div>
-   <div class="col-md-4 col-lg-4 vertical-section">
-   <div class="container section-container">
+   <div class="col-md-4 col-lg-4 vertical-section-blue">
+   <div class="container section-container-blue">
     <h5><% @skills.each do |skill| %></h5>
             <div>
                 <p>
@@ -355,11 +355,11 @@
    <%end%>
 
  <% if @languages.size >0%>
-  <div class="section-title vertical-title col-lg-2 col-md-2">
+  <div class="section-title-blue vertical-title col-lg-2 col-md-2">
     <h3> Idiomas </h3>
   </div>
-  <div class="col-md-4 col-lg-4 vertical-section">
-    <div class="container section-container">
+  <div class="col-md-4 col-lg-4 vertical-section-blue">
+    <div class="container section-container-blue">
     <h5><% @languages.each do |language| %></h5>
      <div>
        <p>
@@ -386,37 +386,68 @@ function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
   document.getElementById("openNav").style.display = "inline-block";
 }
-function pintarVerde(){
-  document.getElementById("main").style.display = "none";
-  document.getElementById("cv-azul").style.display = "block";
-  document.getElementById("cv-azul").style.backgroundColor = "#ccffee";
-  // elements = document.getElementsByClassName("section-title");
-  //   for (var i = 0; i < elements.length; i++) {
-  //       elements[i].style.backgroundColor="#00802b";
-  //   }
-  //   elements = document.getElementsByClassName("line-separator");
-  //     for (var i = 0; i < elements.length; i++) {
-  //         elements[i].style.backgroundColor="#00802b";
-  //         elements[i].style.borderBottom="#00802b";
-  //     }
-  //   elements = document.getElementsByClassName("section-container");
-  //     for (var i = 0; i < elements.length; i++) {
-  //         elements[i].style.backgroundColor="#ccffee";
-  //     }
-  //   elements = document.getElementsByClassName("cv-title-name");
-  //     for (var i = 0; i < elements.length; i++) {
-  //         elements[i].style.color="#00ff55";
-  //     }
-        // #00ff55
-}
+
 function pintarAzul(){
     document.getElementById("main").style.display = "none";
     document.getElementById("cv-azul").style.display = "block";
+    var lineasA=document.getElementsByClassName("line-separator-red");
+    var titulosA=document.getElementsByClassName("section-title-red");
+    var seccionesA=document.getElementsByClassName("section-container-red");
+    var complementosA=document.getElementsByClassName("vertical-section-red");
+    var i=0;
+    while(lineasA.length)
+    {
+      lineasA[i].classList.add('line-separator-blue');
+      lineasA[i].classList.remove('line-separator-red');
+    }
+    while(titulosA.length)
+    {
+      titulosA[i].classList.add('section-title-blue');
+      titulosA[i].classList.remove('section-title-red');
+    }
+    while(seccionesA.length)
+    {
+      seccionesA[i].classList.add('section-container-blue');
+      seccionesA[i].classList.remove('section-container-red');
+    }
+    while(complementosA.length)
+    {
+      complementosA[i].classList.add('vertical-section-blue');
+      complementosA[i].classList.remove('vertical-section-red');
+    }
+}
+function pintarRojo(){
+    document.getElementById("main").style.display = "none";
+    document.getElementById("cv-azul").style.display = "block";
+    var lineasA=document.getElementsByClassName("line-separator-blue");
+    var titulosA=document.getElementsByClassName("section-title-blue");
+    var seccionesA=document.getElementsByClassName("section-container-blue");
+    var complementosA=document.getElementsByClassName("vertical-section-blue");
+    var i=0;
+    while(lineasA.length)
+    {
+      lineasA[i].classList.add('line-separator-red');
+      lineasA[i].classList.remove('line-separator-blue');
+    }
+    while(titulosA.length)
+    {
+      titulosA[i].classList.add('section-title-red');
+      titulosA[i].classList.remove('section-title-blue');
+    }
+    while(seccionesA.length)
+    {
+      seccionesA[i].classList.add('section-container-red');
+      seccionesA[i].classList.remove('section-container-blue');
+    }
+    while(complementosA.length)
+    {
+      complementosA[i].classList.add('vertical-section-red');
+      complementosA[i].classList.remove('vertical-section-blue');
+    }
 }
 function original(){
   document.getElementById("main").style.display = "block";
   document.getElementById("cv-azul").style.display = "none";
-
 }
 </script>
 
@@ -424,46 +455,11 @@ function original(){
 #cv-azul{
   display:none;
 }
-.line-separator{
-  height:3px;
-  width:93%;
-  background:#717171;
-  background-color: #000099;
-  border-bottom:1px solid #000099;
-}
-.section-title{
-  display:inline-block;
-  background-color: #000099;
-  padding: 1px;
-  color: #ffffff;
-  width:auto;
-  border-right: :5px solid #000099;
-  padding-rigth: 20px;
-}
-.section-container b{
-  color: #000099;
-}
-.section-container p{
-  color: #000000;
-}
-.section-container{
-  color: 	#00000;
-}
-.section-container h3{
-  color: #1a1aff;
-}
-.cv-title-name{
-  left:5%;
-  position:  auto;
-}
-.vertical-title{
-  writing-mode: vertical-lr;
-  transform: rotate(180deg);
-}
-.vertical-section{
-  right: auto;
-  border: 5px solid #000099;
-  padding-bottom: 21px;
 
+.section-title-red{
+  width:auto;
+}
+.section-title-blue{
+  width:auto;
 }
 </style>
