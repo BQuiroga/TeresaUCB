@@ -1,202 +1,4 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-<div class="w3-sidebar w3-bar-block w3-card w3-black w3-animate-left" style="display:none" id="mySidebar">
-  <button class="w3-bar-item w3-button  w3-tiny"style="right:0px;"
-  onclick="w3_close()">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&emsp;&emsp;Cerrar &times;</button>
-  <a onclick="original()" class="w3-bar-item w3-button">Original</a>
-  <a onclick="pintarAzul()" class="w3-bar-item w3-button">Estilo 1 Azul</a>
-  <a onclick="pintarRojo()" class="w3-bar-item w3-button">Estilo 1 Rojo</a>
-</div>
-<div class="side-bar">
-  <button id="openNav" class="btn btn-md" onclick="w3_open()">Mas opciones &#9776;</button>
-</div>
-
-
-
-
-<div id="original-link">
-<%= link_to 'Create PDF document',resume_path(@resume.id, format: "pdf"), :format => :pdf %>
-</div>
-<div id="azul-link">
-<%= link_to 'Create PDF document2','/resumes/bajar.pdf',:format => :pdf %>
-</div>
-<div id="rojo-link">
-<%= link_to 'Create PDF document3','/resumes/bajar_red.pdf', :format => :pdf %>
-</div>
-<div class="container" id="main">
-<div class="container">
-<div class="row-fluid" style="background-color: #f0f0f0; border-top-left-radius: 10px; border-top-right-radius: 10px;"><h2><%=@user.name%> <%=@user.last_name%> </h2></div>
-  <div class="container-body " id="cv-original">
-    <div class="container">
-    <div class="container">
-      <div class="container">
-      </div>
-    <div class="container">
-    <div class="container">
-    <h2>Informacion Personal</h2>
-    <div class="container">
-      <b>Género: </b><%=@personal_info.gender_to_string%><br>
-      <b>Direccion: </b><%=@personal_info.address%><br>
-      <b>Fecha de Nacimiento: </b><%=@personal_info.translate_birthdate_to_string%> <br>
-      <b>Fijo: </b><%=@personal_info.phone%><br>
-      <b>Movil: </b><%=@personal_info.cellphone%><br>
-      <b>e-mail: </b><%=@user.email%><br>
-    </div>
-  </div>
-  <div class="container">
-    <h2>Formacion Academica </h2>
-    <div class="container">
-    <% if @educations.size >0%>
-    <h5><% @educations.each do |education| %></h5>
-            <div >
-                <p >
-                  <h5><b><%=education.title%></b></h5>
-                  <%if education.description.size>0%>
-                    <%=education.description%>
-                    <br>
-                  <%end%>
-                <%=education.school_name%>&nbsp;
-                  <%=education.start_date.year%>&emsp; - &emsp; <%=education.end_date.year%>
-                </p>
-            </div>
-        <%end%>
-     <%end%>
-  </div>
-</div>
-
-  <div class="container">
-    <h2>Experiencia Profesional </h2>
-    <div class="container">
-        <% if @experiences.size >0%>
-    <h5><% @experiences.each do |experience| %></h5>
-            <div>
-                <p>
-                  <h5><b><%=experience.company_name%></b></h5>
-                  <%=experience.job_title%><br>
-                  <%=experience.start_job_date%>&emsp; - &emsp;
-                  <%=experience.finish_job_date%>&emsp;
-                </p>
-            </div>
-        <%end%>
-     <%end%>
-   </div>
- </div>
- <% if @courses.size >0%>
-<div class="container">
-<h2>Cursos y Seminarios </h2>
-<div class="container">
-    <h5><% @courses.each do |course| %></h5>
-            <div>
-                <p>
-                  <b><%=course.date.year%></b>&emsp;
-                  <%=course.name%>&emsp;
-                  <%=course.given%>&emsp;
-                  <%=course.institution%>&emsp;
-                  <%=course.workload%>&emsp; Hrs.
-                </p>
-            </div>
-        <%end%>
-   </div>
- </div>
- <%end%>
- <% if @knowledges.size >0%>
- <div class="container">
-     <h2> Conocimientos</h2>
-     <div class="container">
-    <h5><% @knowledges.each do |know| %></h5>
-            <div>
-                <p>
-                  <b><%=know.area%></b>
-                  <%=know.description%>
-                </p>
-            </div>
-        <%end%>
-   </div>
- </div>
- <%end%>
- <% if @skills.size >0%>
- <div class="container">
-     <h2> Habilidades</h2>
-     <div class="container">
-    <h5><% @skills.each do |skill| %></h5>
-            <div>
-                <p>
-                  <%=skill.description%>
-                </p>
-            </div>
-        <%end%>
-   </div>
- </div>
- <%end%>
- <% if @publications.size >0%>
- <div class="container">
-     <h2> Publicaciones </h2>
-     <div class="container">
-    <h5><% @publications.each do |pub| %></h5>
-            <div>
-                <p>
-                  <b><%=pub.publicationType%></b><br>
-                  <%=pub.date.year%>&emsp;<b><%=pub.name%></b><br>
-                  <%=pub.location%>
-
-                </p>
-            </div>
-        <%end%>
-   </div>
- </div>
- <%end%>
- <% if @merits.size >0%>
- <div class="container">
-     <h2> Meritos </h2>
-     <div class="container">
-    <h5><% @merits.each do |merit| %></h5>
-            <div>
-                <p>
-                  <b><%=merit.date.year%></b>&emsp;<%=merit.name%><br>
-                </p>
-            </div>
-        <%end%>
-   </div>
- </div>
- <%end%>
- <% if @memberships.size >0%>
- <div class="container">
-<h2> Membresia </h2>
-<div class="container">
-    <h5><% @memberships.each do |member| %></h5>
-            <div>
-                <p>
-                  <b><%=member.name%> en <%=member.organization%></b><br>
-                  desde <%=member.date.year%>&emsp;<br>
-                </p>
-            </div>
-        <%end%>
-</div>
-</div>
-<%end%>
-<% if @languages.size >0%>
-<div class="container">
- <h2> Idiomas </h2>
- <div class="container">
-     <h5><% @languages.each do |language| %></h5>
-             <div>
-                 <p>
-                   <b><%=language.name%><br></b>
-                      <b>Nivel: </b> <%=language.level%> <br>
-                    <b>  Destreza: </b><%=language.skill%><br>
-                 </p>
-             </div>
-         <%end%>
-    </div>
-  </div>
-  <%end%>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-  <!-- TIPO DE CURRICULUM VERDE -->
 <div class="container">
   <div class="container-body " id="cv-azul">
           <div class="section-container-blue">
@@ -461,8 +263,84 @@ function original(){
 
 <style>
 #cv-azul{
-  display:none;
+  display:block;
 }
+
+.line-separator-blue{
+  height:3px;
+  width:93%;
+  background:#717171;
+  background-color: #000099;
+  border-bottom:1px solid #000099;
+}
+.line-separator-red{
+  height:3px;
+  width:93%;
+  background:#7d1c41;
+  background-color: #7d1c41;
+  border-bottom:1px solid #7d1c41;
+}
+.section-title-blue{
+  display:inline-block;
+  background-color: #000099;
+  padding: 1px;
+  color: #ffffff;
+  width:auto;
+  padding-rigth: 20px;
+}
+.section-title-red{
+  display:inline-block;
+  background-color: #7d1c41;
+  padding: 1px;
+  color: #ffffff;
+  width:auto;
+  padding-rigth: 20px;
+}
+.section-container-blue b{
+  color: #000099;
+}
+.section-container-blue p{
+  color: #000000;
+}
+.section-container-blue{
+  color: 	#00000;
+}
+.section-container-blue h3{
+  color: #1a1aff;
+}
+.section-container-red b{
+  color: #7d1c41;
+}
+.section-container-red p{
+  color: #000000;
+}
+.section-container-red{
+  color: 	#000000;
+}
+.section-container-red h3{
+  color: #bf0d19;
+}
+.cv-title-name{
+  left:5%;
+  position:  auto;
+}
+.vertical-title{
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+.vertical-section-blue{
+  right: auto;
+  border: 5px solid #000099;
+  padding-bottom: 21px;
+
+}
+.vertical-section-red{
+  right: auto;
+  border: 5px solid #7d1c41;
+  padding-bottom: 21px;
+
+}
+
 
 .section-title-red{
   width:auto;

@@ -1,0 +1,351 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="container">
+  <div class="container-body " id="cv-azul">
+          <div class="section-container-red">
+            <div class="container">
+              <div class="container">
+                <h1 class="cv-title-name"><b><%=current_user.name%> <%=current_user.last_name%></b> </h1>
+                <h3 class="cv-title-name"><%=@user.last_education.title %></h3>
+              </div>
+            </div>
+          </div>
+            <div class="section-title-red">
+            <h2>Informacion Personal</h2>
+           </div>
+          <div class="line-separator-red">
+          </div>
+            <div class="container section-container-red">
+              <br>
+              <b>Género: </b><%=@personal_info.gender_to_string%><br>
+              <b>Direccion: </b><%=@personal_info.address%><br>
+              <b>Fecha de Nacimiento: </b><%=@personal_info.translate_birthdate_to_string%> <br>
+              <b>Fijo: </b><%=@personal_info.phone%><br>
+              <b>Movil: </b><%=@personal_info.cellphone%><br>
+              <b>e-mail: </b><%=@user.email%><br>
+            </div>
+            <br>
+  <div class="section-title-red">
+    <h2>Formacion Academica </h2>
+  </div>
+  <div class="line-separator-red">
+  </div>
+    <div class="container section-container-red">
+      <br>
+    <% if @educations.size >0%>
+    <h5><% @educations.each do |education| %></h5>
+            <div >
+                <p >
+                  <h5><b><%=education.title%></b></h5>
+                  <%if education.description.size>0%>
+                    <%=education.description%>
+                    <br>
+                  <%end%>
+                <%=education.school_name%>&nbsp;
+                  <%=education.start_date.year%>&emsp; - &emsp; <%=education.end_date.year%>
+                </p>
+            </div>
+        <%end%>
+     <%end%>
+  </div>
+<br>
+<% if @experiences.size >0%>
+  <div class="section-title-red">
+    <h2>Experiencia Profesional </h2>
+  </div>
+  <div class="line-separator-red">
+  </div>
+  <div class="container section-container-red ">
+    <br>
+      <h5><% @experiences.each do |experience| %></h5>
+      <div>
+        <p>
+          <h5><b><%=experience.company_name%></b></h5>
+          <%=experience.job_title%><br>
+          <%=experience.start_job_date%>&emsp; - &emsp;
+          <%=experience.finish_job_date%>&emsp;
+        </p>
+      </div>
+      <%end%>
+   </div>
+   <br>
+   <%end%>
+   <% if @courses.size >0%>
+<div class="section-title-red">
+  <h2>Cursos y Seminarios </h2>
+</div>
+<div class="line-separator-red">
+</div>
+<div class="container section-container-red">
+  <br>
+    <h5><% @courses.each do |course| %></h5>
+            <div>
+                <p>
+                  <b><%=course.date.year%></b>&emsp;
+                  <%=course.name%>&emsp;
+                  <%=course.given%>&emsp;
+                  <%=course.institution%>&emsp;
+                  <%=course.workload%>&emsp; Hrs.
+                </p>
+            </div>
+        <%end%>
+   </div>
+   <br>
+   <%end%>
+
+   <% if @memberships.size >0%>
+   <div class="section-title-red">
+     <h2> Membresia </h2>
+   </div>
+
+   <div class="line-separator-red">
+   </div>
+   <div class="container section-container-red">
+     <h5><% @memberships.each do |member| %></h5>
+     <div>
+       <p>
+         <b><%=member.name%> en <%=member.organization%></b><br>
+         desde <%=member.date.year%>&emsp;<br>
+       </p>
+     </div>
+     <%end%>
+   </div>
+   <br>
+   <%end%>
+   <% if @merits.size >0%>
+   <div class="section-title-red">
+     <h3> Meritos </h3>
+   </div>
+     <div class="container section-container-red">
+       <h5><% @merits.each do |merit| %></h5>
+       <div>
+         <p>
+           <b><%=merit.date.year%></b>&emsp;<%=merit.name%><br>
+         </p>
+       </div>
+       <%end%>
+     </div>
+     <br>
+   <%end%>
+
+   <div class="container">
+   <% if @knowledges.size >0%>
+     <div class="section-title-red vertical-title col-lg-2 col-md-2">
+       <h3> Conocimientos</h3>
+    </div>
+   <div class="col-md-4 col-lg-4 vertical-section-red">
+     <div class="container section-container-red ">
+       <br>
+    <h5><% @knowledges.each do |know| %></h5>
+            <div>
+                <p>
+                  <b><%=know.area%></b>
+                  <%=know.description%>
+                </p>
+            </div>
+        <%end%>
+    </div>
+  </div>
+   <%end%>
+
+   <% if @skills.size >0%>
+ <div class="section-title-red vertical-title col-lg-2 col-md-2">
+     <h3> Habilidades</h3>
+   </div>
+   <div class="col-md-4 col-lg-4 vertical-section-red">
+   <div class="container section-container-red">
+    <h5><% @skills.each do |skill| %></h5>
+            <div>
+                <p>
+                  <%=skill.description%>
+                </p>
+            </div>
+        <%end%>
+   </div>
+ </div>
+   <%end%>
+
+ <% if @languages.size >0%>
+  <div class="section-title-red vertical-title col-lg-2 col-md-2">
+    <h3> Idiomas </h3>
+  </div>
+  <div class="col-md-4 col-lg-4 vertical-section-red">
+    <div class="container section-container-red">
+    <h5><% @languages.each do |language| %></h5>
+     <div>
+       <p>
+        <b><%=language.name%><br></b>
+        <b>Nivel: </b> <%=language.level%> <br>
+        <b>  Destreza: </b><%=language.skill%><br>
+        </p>
+      </div>
+      <%end%>
+    </div>
+  </div>
+  <%end%>
+  </div>
+</div>
+</div>
+<script>
+function w3_open() {
+  document.getElementById("mySidebar").style.width = "12%";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("mySidebar").style.height ="25%";
+  // document.getElementById("openNav").style.display = 'none';
+}
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("openNav").style.display = "inline-block";
+}
+
+function pintarAzul(){
+    document.getElementById("main").style.display = "none";
+    document.getElementById("cv-azul").style.display = "block";
+    var lineasA=document.getElementsByClassName("line-separator-red");
+    var titulosA=document.getElementsByClassName("section-title-red");
+    var seccionesA=document.getElementsByClassName("section-container-red");
+    var complementosA=document.getElementsByClassName("vertical-section-red");
+    var i=0;
+    while(lineasA.length)
+    {
+      lineasA[i].classList.add('line-separator-blue');
+      lineasA[i].classList.remove('line-separator-red');
+    }
+    while(titulosA.length)
+    {
+      titulosA[i].classList.add('section-title-blue');
+      titulosA[i].classList.remove('section-title-red');
+    }
+    while(seccionesA.length)
+    {
+      seccionesA[i].classList.add('section-container-blue');
+      seccionesA[i].classList.remove('section-container-red');
+    }
+    while(complementosA.length)
+    {
+      complementosA[i].classList.add('vertical-section-blue');
+      complementosA[i].classList.remove('vertical-section-red');
+    }
+}
+function pintarRojo(){
+    document.getElementById("main").style.display = "none";
+    document.getElementById("cv-azul").style.display = "block";
+    var lineasA=document.getElementsByClassName("line-separator-blue");
+    var titulosA=document.getElementsByClassName("section-title-blue");
+    var seccionesA=document.getElementsByClassName("section-container-blue");
+    var complementosA=document.getElementsByClassName("vertical-section-blue");
+    var i=0;
+    while(lineasA.length)
+    {
+      lineasA[i].classList.add('line-separator-red');
+      lineasA[i].classList.remove('line-separator-blue');
+    }
+    while(titulosA.length)
+    {
+      titulosA[i].classList.add('section-title-red');
+      titulosA[i].classList.remove('section-title-blue');
+    }
+    while(seccionesA.length)
+    {
+      seccionesA[i].classList.add('section-container-red');
+      seccionesA[i].classList.remove('section-container-blue');
+    }
+    while(complementosA.length)
+    {
+      complementosA[i].classList.add('vertical-section-red');
+      complementosA[i].classList.remove('vertical-section-blue');
+    }
+}
+function original(){
+  document.getElementById("main").style.display = "block";
+  document.getElementById("cv-azul").style.display = "none";
+}
+</script>
+
+<style>
+#cv-azul{
+  display:block;
+}
+
+.line-separator-blue{
+  height:3px;
+  width:93%;
+  background:#717171;
+  background-color: #000099;
+  border-bottom:1px solid #000099;
+}
+.line-separator-red{
+  height:3px;
+  width:93%;
+  background:#7d1c41;
+  background-color: #7d1c41;
+  border-bottom:1px solid #7d1c41;
+}
+.section-title-blue{
+  display:inline-block;
+  background-color: #000099;
+  padding: 1px;
+  color: #ffffff;
+  width:auto;
+  padding-rigth: 20px;
+}
+.section-title-red{
+  display:inline-block;
+  background-color: #7d1c41;
+  padding: 1px;
+  color: #ffffff;
+  width:auto;
+  padding-rigth: 20px;
+}
+.section-container-blue b{
+  color: #000099;
+}
+.section-container-blue p{
+  color: #000000;
+}
+.section-container-blue{
+  color: 	#00000;
+}
+.section-container-blue h3{
+  color: #1a1aff;
+}
+.section-container-red b{
+  color: #7d1c41;
+}
+.section-container-red p{
+  color: #000000;
+}
+.section-container-red{
+  color: 	#000000;
+}
+.section-container-red h3{
+  color: #bf0d19;
+}
+.cv-title-name{
+  left:5%;
+  position:  auto;
+}
+.vertical-title{
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+.vertical-section-blue{
+  right: auto;
+  border: 5px solid #000099;
+  padding-bottom: 21px;
+
+}
+.vertical-section-red{
+  right: auto;
+  border: 5px solid #7d1c41;
+  padding-bottom: 21px;
+
+}
+
+
+.section-title-red{
+  width:auto;
+}
+.section-title-blue{
+  width:auto;
+}
+</style>

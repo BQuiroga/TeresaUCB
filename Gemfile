@@ -18,7 +18,9 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'bootstrap-datepicker-rails'
 gem 'rolify'
 gem 'authority'
-
+#gemas para pdf
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 #devise for user registration and control, and some gems to extends te security
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

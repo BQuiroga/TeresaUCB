@@ -89,6 +89,8 @@ Rails.application.routes.draw do
   get 'reportes/TiempoParaTrabajar'=>'reports#by_time_to_work'
   get 'reportes/DuracionDeTrabajo'=>'reports#time_in_job'
   get 'reportes/ConPostgrado'=> 'reports#with_postgrade'
+  get "resumes/bajar"=>'resumes#show_pdf'
+  get "resumes/bajar_red"=>'resumes#show_pdf_red'
   resources :posts
   resources :educations
   resources :referentials
@@ -102,6 +104,7 @@ Rails.application.routes.draw do
   resources :experiences
   resources :groups
   resources :skills
+  resources :resumes
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
