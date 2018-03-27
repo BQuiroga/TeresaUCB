@@ -11159,14 +11159,14 @@ body {
 }
 
 /* line 98, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/application.css.scss */
-[type="file"] {
+/* [type="file"] {
   width: 0.1px;
   height: 0.1px;
   opacity: 0;
   overflow: hidden;
   position: absolute;
   z-index: -1;
-}
+} */
 
 /* line 106, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/application.css.scss */
 label[for=resume_photos_attributes_0_photo] {

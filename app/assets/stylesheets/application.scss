@@ -95,14 +95,7 @@
    background-image: url(image-path('missing.png'));
    border: 0;
  }
- [type="file"]{
-   width: 0.1px;
-   height: 0.1px;
-   opacity: 0;
-   overflow: hidden;
-   position: absolute;
-   z-index: -1;
- }
+
  label[for=resume_photos_attributes_0_photo]{
    padding-top: 4px;
    cursor: pointer;
