@@ -212,4 +212,38 @@ class User < ActiveRecord::Base
     d=(some_date%365)%30
     y
   end
+
+  #imagenes asociadas al perfil de usuario
+  USERS = File.join Rails.root, 'public', 'image_store'
+  after_save :guardar_imagen
+
+    def image=(file_data)
+      unless file_data.blank?
+        @file_data = file_data
+      end
+    end
+    def image_filename
+      File.join USERS, "#{id}.jpg"
+    end
+
+    def image_path
+      "/image_store/#{id}.jpg"
+    end
+
+    def has_image?
+      File.exists? image_filename
+    end
+
+    private
+    def guardar_imagen
+      if @file_data
+        FileUtils.mkdir_p USERS
+        File.open(image_filename,'wb') do |f|
+          f.write(@file_data.read)
+        end
+        @file_data=nil
+      end
+    end
+
+
 end

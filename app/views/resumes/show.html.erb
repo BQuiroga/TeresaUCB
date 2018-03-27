@@ -12,16 +12,16 @@
 </div>
 
 
-
-
-<div id="original-link">
-<%= link_to 'Create PDF document',resume_path(@resume.id, format: "pdf"), :format => :pdf %>
-</div>
-<div id="azul-link">
-<%= link_to 'Create PDF document2','/resumes/bajar.pdf',:format => :pdf %>
-</div>
-<div id="rojo-link">
-<%= link_to 'Create PDF document3','/resumes/bajar_red.pdf', :format => :pdf %>
+<div style="top:250px; position:fixed;">
+  <div id="original-link" style="display:block">
+  <%= link_to 'Create PDF document',resume_path(@resume.id, format: "pdf"), :format => :pdf,:class=>"btn btn-default" %>
+  </div>
+  <div id="azul-link" style="display:none">
+  <%= link_to 'Create PDF document2','/resumes/bajar.pdf',:format => :pdf %>
+  </div>
+  <div id="rojo-link" style="display:none">
+  <%= link_to 'Create PDF document3','/resumes/bajar_red.pdf', :format => :pdf %>
+  </div>
 </div>
 <div class="container" id="main">
 <div class="container">
@@ -398,6 +398,9 @@ function w3_close() {
 function pintarAzul(){
     document.getElementById("main").style.display = "none";
     document.getElementById("cv-azul").style.display = "block";
+    document.getElementById("rojo-link").style.display ="none";
+    document.getElementById("azul-link").style.display ="block";
+    document.getElementById("original-link").style.display ="none";
     var lineasA=document.getElementsByClassName("line-separator-red");
     var titulosA=document.getElementsByClassName("section-title-red");
     var seccionesA=document.getElementsByClassName("section-container-red");
@@ -427,6 +430,9 @@ function pintarAzul(){
 function pintarRojo(){
     document.getElementById("main").style.display = "none";
     document.getElementById("cv-azul").style.display = "block";
+    document.getElementById("rojo-link").style.display ="block";
+    document.getElementById("azul-link").style.display ="none";
+    document.getElementById("original-link").style.display ="none";
     var lineasA=document.getElementsByClassName("line-separator-blue");
     var titulosA=document.getElementsByClassName("section-title-blue");
     var seccionesA=document.getElementsByClassName("section-container-blue");
@@ -456,6 +462,9 @@ function pintarRojo(){
 function original(){
   document.getElementById("main").style.display = "block";
   document.getElementById("cv-azul").style.display = "none";
+  document.getElementById("rojo-link").style.display ="none";
+  document.getElementById("azul-link").style.display ="none";
+  document.getElementById("original-link").style.display ="block";
 }
 </script>
 

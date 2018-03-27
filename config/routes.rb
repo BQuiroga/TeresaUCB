@@ -91,6 +91,9 @@ Rails.application.routes.draw do
   get 'reportes/ConPostgrado'=> 'reports#with_postgrade'
   get "resumes/bajar"=>'resumes#show_pdf'
   get "resumes/bajar_red"=>'resumes#show_pdf_red'
+  get 'photos'=>'pictures#index'
+  get 'photos/new'=>'pictures#new'
+  resources :pictures
   resources :posts
   resources :educations
   resources :referentials
@@ -105,6 +108,7 @@ Rails.application.routes.draw do
   resources :groups
   resources :skills
   resources :resumes
+  resources :pictures
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
