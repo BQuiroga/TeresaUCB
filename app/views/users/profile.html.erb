@@ -3,7 +3,7 @@
 <div class="container-fluid" style="padding: 30px">
   <div id="container-cover">
     <div class="hovereffect"  >
-				<%= image_tag("Cochabamba2016.jpg"	) %>
+				<%= image_tag("Cochabamba2016.jpg") %>
           <div class="overlay">
             <h2>Actualizar foto de portada</h2>
             <span class="glyphicon glyphicon-camera"></span>
@@ -13,11 +13,11 @@
 </div>
     <!-- FOTO AVATAR -->
 	<div id="container-avatar">
-	  <div class="hovereffect"id="avatar" >
+	  <div class="hovereffect" id="avatar" >
       <%if @picture!=nil%>
-        <%= link_to image_tag(@picture.image.url, class: 'media-object'), @picture.image.url, target: '_blank' %>
+        <%= link_to image_tag(@picture.image.url, class: 'media-object',style:"width:150px;height:150px"), @picture.image.url, target: '_blank' %>
       <%else%>
-        <%= image_tag ("missing.png")%>NO WE NO SALIO
+        <%= image_tag ("missing.png"),:id=>"botonsio"%>
       <%end%>
 	        <div class="overlay" >
 	          <h2>Actualizar foto de perfil</h2>
@@ -62,7 +62,6 @@
         <%f.hidden_field :user_id, :value=>current_user.id%>
         <div class="actions">
           <%= f.submit 'Guardar', class: 'btn btn-success'%>
-          <button class="btn btn-danger">Cancelar</button>
         </div>
 
       <%end%>
@@ -78,14 +77,20 @@
 
 
   <script>
-  var btn= document.getElementById("avatar")
+  var btn= document.getElementById("container-avatar")
   var modal = document.getElementById("editProfileAvatar");
   var span =document.getElementById("close");
+  var botoncio=document.getElementById("botoncio");
   // var btns=document.getElementById("aceptar");
   span.onclick = function() {
       modal.style.display = "none";
   };
   btn.onclick =function(){
+    // alert("algo raro");
+    modal.style.display ="block";
+  };
+
+  botoncio.onclick =function(){
     modal.style.display ="block";
   };
   // btn-s.onclick =function(){

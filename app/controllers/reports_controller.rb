@@ -153,7 +153,7 @@ class ReportsController < ApplicationController
       return
     else
       @educations=Education.where("end_date < ?", Date.today)
-      @egresados=@educations.where(title: "Postgrado")
+      @egresados=@educations.where(title: "Maestria")
       @data=@egresados.group(:title).count
       @ids=[]
       @egresados.each do |edu|

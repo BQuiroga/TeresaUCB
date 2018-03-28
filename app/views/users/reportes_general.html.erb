@@ -1,10 +1,14 @@
+<style>
+</style>
+
+
   <div class="container">
   <h2>Lista de reportes</h2>
     <div class="panel panel-default">
       <div class="panel-heading"><div class="panel-title"><h3>Criterios de busqueda</h3></div></div>
         <div class="panel-body">
           <h3>Reportes estaticos</h3>
-          <span onclick="openNav()"><button class="btn btn-info btn-lg">Ver reportes</button></span>
+          <span onclick="openNav()"><button class="btn btn-info btn-lg ">Ver reportes</button></span>
           <div class="">
           <div id="mySidenav" class="sidenav" style="display:none;">
               <a onclick="closeNav()"><span class="glyphicon glyphicon-remove float-xs-left"></span></a>
@@ -13,44 +17,47 @@
                 <p class="test" tabindex="-1" href="#">Estudiantes registrados <span class="glyphicon glyphicon-chevron-right "></span></p>
                 <ul>
                     <li class="list-group-item">Por fecha
-                      <a href="/reportes/UsuariosPorFecha"><button class="btn btn-warning btn-sm float-xs-right">Ver Reporte Estadístico</button></a>
+                      <a href="/reportes/UsuariosPorFecha"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
                     </li>
                     <li class="list-group-item">Por Género
-                      <a href="/reportes/UsuariosPorGenero"><button class="btn btn-warning btn-sm float-xs-right">Ver Reporte Estadístico</button></a>
+                      <a href="/reportes/UsuariosPorGenero"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
                     </li>
                     <li class="list-group-item">Por Género y Universidad
-                      <a href="/reportes/UsuariosPorGeneroUniversidad"><button class="btn btn-warning btn-sm float-xs-right">Ver Reporte Estadístico</button></a>
+                      <a href="/reportes/UsuariosPorGeneroUniversidad"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
                     </li>
                 </ul>
               </li>
               <li class="list-group-item test">
-                <p class="test" tabindex="-1" href="#">Estudiantes titulados <span class="glyphicon glyphicon-chevron-right"></span></p>
+                <p class="test" tabindex="-1" href="#">Estudiantes titulados <span class="glyphicon glyphicon-chevron-right btn-negro"></span></p>
                 <ul class="submenu">
                   <li class="list-group-item">Por Universidad
-                    <a href="/reportes/UsuariosPorUniversidad"><button class="btn btn-warning btn-sm float-xs-right">Ver Reporte Estadístico</button></a>
+                    <a href="/reportes/UsuariosPorUniversidad"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
                   </li>
                   <li class="list-group-item">Por Carrera
-                    <a href="/reportes/UsuariosPorCarrera"><button class="btn btn-warning btn-sm float-xs-right">Ver Reporte Estadístico</button></a>
+                    <a href="/reportes/UsuariosPorCarrera"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
                   </li>
-                  <li class="list-group-item">Con Postgrado
-                    <a href="/reportes/ConPostgrado"><button class="btn btn-warning btn-sm float-xs-right">Ver Reporte Estadístico</button></a>
-                  </li>
+                  <!-- <li class="list-group-item">Con Maestria
+                    <a href="/reportes/ConPostgrado"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
+                  </li> -->
                 </ul>
               </li>
               <li class="list-group-item">Empresas clasificadas codigo CIUU
-                <a href="/reportes/EmpresasPorcodigoCIUU"><button class="btn btn-warning btn-sm float-xs-right">Ver Reporte Estadístico</button></a>
+                <a href="/reportes/EmpresasPorcodigoCIUU"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
               </li>
               <li class="list-group-item">Trabajos por rango salarial
-                <a href="/reportes/TrabajosPorRangoSalarial"><button class="btn btn-warning btn-sm float-xs-right">Ver Reporte Estadístico</button></a>
+                <a href="/reportes/TrabajosPorRangoSalarial"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
               </li>
                 <li class="list-group-item">Tiempo transcurridos para conseguir un trabajo <br>
-                <a href="/reportes/TiempoParaTrabajar"><button class="btn btn-warning btn-sm float-xs-right">Ver Reporte Estadístico</button></a>
+                <a href="/reportes/TiempoParaTrabajar"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
               </li>
               <li class="list-group-item">Tiempo de permanencia en un trabajo<br>
-                <a href="/reportes/DuracionDeTrabajo"><button class="btn btn-warning btn-sm float-xs-right">Ver Reporte Estadístico</button></a>
+                <a href="/reportes/DuracionDeTrabajo"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
               </li>
             </ul>
           </div>
+          <div>
+          </div>
+
         </div>
         <div class="col-md-4">
         </div>
@@ -149,6 +156,9 @@
   </div>
   </div>
 </div>
+
+
+
   <script>
   function openNav() {
       document.getElementById("mySidenav").style.display="block";

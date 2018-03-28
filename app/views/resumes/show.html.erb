@@ -22,9 +22,13 @@
   <div id="rojo-link" style="display:none">
   <%= link_to 'Exportar como PDF','/resumes/bajar_red.pdf', :format => :pdf,:class=>"btn btn-default",target: '_blank' %>
   </div>
-  <div>
-    <button id="mostrar_todo" onclick="mostrar_todo()">Mostrar CV completo</button>
-    <button id="ocultar_todo" onclick="ocultar_todo()" style="display:none">Mostrar CV resumido</button>
+  <div id="botones_originales">
+    <button id="mostrar_todo" onclick="mostrar_todo()" class="btn btn-primary">Mostrar CV completo</button>
+    <button id="ocultar_todo" onclick="ocultar_todo()" style="display:none" class="btn btn-primary">Mostrar CV resumido</button>
+  </div>
+  <div id="botones_azules" style="display:none">
+    <button id="mostrar_todo_a" onclick="mostrar_todo_a()" class="btn btn-primary">Mostrar CV completo</button>
+    <button id="ocultar_todo_a" onclick="ocultar_todo_a()" style="display:none"class="btn btn-primary">Mostrar CV resumido</button>
   </div>
 </div>
 <div class="container" id="main">
@@ -274,6 +278,10 @@
           <%=experience.job_title%><br>
           <%=experience.start_job_date%>&emsp; - &emsp;
           <%=experience.finish_job_date%>&emsp;
+          <div class="para-completo-a" style="display:none">
+            Actividades a cargo: <%=experience.job_description%><br>
+            Personas bajo mi cargo: <%=experience.in_my_charge%>
+          </div>
         </p>
       </div>
       <%end%>
@@ -411,6 +419,8 @@ function mostrar_todo(){
   var divs=document.getElementsByClassName("para-completo");
   var btn1=document.getElementById("mostrar_todo").style.display="none";
   var btn2=document.getElementById("ocultar_todo").style.display="block";
+  var btn3=document.getElementById("mostrar_todo_a").style.display="none";
+  var btn4=document.getElementById("ocultar_todo_a").style.display="none";
   for (var i=0;i<=divs.length;i++)
   {
     divs[i].style.display="block";
@@ -419,18 +429,48 @@ function mostrar_todo(){
 function ocultar_todo(){
   var btn1=document.getElementById("mostrar_todo").style.display="block";
   var btn2=document.getElementById("ocultar_todo").style.display="none";
+  var btn3=document.getElementById("mostrar_todo_a").style.display="none";
+  var btn4=document.getElementById("ocultar_todo_a").style.display="none";
   var divs=document.getElementsByClassName("para-completo");
   for (var i=0;i<=divs.length;i++)
   {
     divs[i].style.display="none";
   }
 }
+
+
+function mostrar_todo_a(){
+  var divs=document.getElementsByClassName("para-completo-a");
+  var btn1=document.getElementById("mostrar_todo_a").style.display="none";
+  var btn2=document.getElementById("ocultar_todo_a").style.display="block";
+  var btn3=document.getElementById("mostrar_todo").style.display="none";
+  var btn4=document.getElementById("ocultar_todo").style.display="none";
+  for (var i=0;i<=divs.length;i++)
+  {
+    divs[i].style.display="block";
+  }
+}
+function ocultar_todo_a(){
+  var btn1=document.getElementById("mostrar_todo_a").style.display="block";
+  var btn2=document.getElementById("ocultar_todo_a").style.display="none";
+  var btn1=document.getElementById("mostrar_todo").style.display="none";
+  var btn2=document.getElementById("ocultar_todo").style.display="none";
+  var divs=document.getElementsByClassName("para-completo-a");
+  for (var i=0;i<=divs.length;i++)
+  {
+    divs[i].style.display="none";
+  }
+}
+
+
 function pintarAzul(){
     document.getElementById("main").style.display = "none";
     document.getElementById("cv-azul").style.display = "block";
     document.getElementById("rojo-link").style.display ="none";
     document.getElementById("azul-link").style.display ="block";
     document.getElementById("original-link").style.display ="none";
+    document.getElementById("botones_originales").style.display="none";
+    document.getElementById("botones_azules").style.display="block";
     var lineasA=document.getElementsByClassName("line-separator-red");
     var titulosA=document.getElementsByClassName("section-title-red");
     var seccionesA=document.getElementsByClassName("section-container-red");
@@ -463,6 +503,8 @@ function pintarRojo(){
     document.getElementById("rojo-link").style.display ="block";
     document.getElementById("azul-link").style.display ="none";
     document.getElementById("original-link").style.display ="none";
+    document.getElementById("botones_originales").style.display="none";
+    document.getElementById("botones_azules").style.display="block";
     var lineasA=document.getElementsByClassName("line-separator-blue");
     var titulosA=document.getElementsByClassName("section-title-blue");
     var seccionesA=document.getElementsByClassName("section-container-blue");
@@ -495,6 +537,8 @@ function original(){
   document.getElementById("rojo-link").style.display ="none";
   document.getElementById("azul-link").style.display ="none";
   document.getElementById("original-link").style.display ="block";
+  document.getElementById("botones_originales").style.display="block";
+  document.getElementById("botones_azules").style.display="none";
 }
 </script>
 
