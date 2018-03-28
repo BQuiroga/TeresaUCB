@@ -1,4 +1,10 @@
 <div class="container">
+
+  <div class="pull-right">
+    <br><br>
+    <button id="mostrar_todo" onclick="mostrar_todo()" class="btn btn-primary">Mostrar CV completo</button>
+    <button id="ocultar_todo" onclick="ocultar_todo()" style="display:none" class="btn btn-primary">Mostrar CV resumido</button>
+  </div>
   <div>
     <h2><%=@user.name%> <%=@user.last_name%></h2>
   </div>
@@ -45,6 +51,10 @@
               <%=experience.job_title%><br>
               <%=experience.start_job_date%>&emsp; - &emsp;
               <%=experience.finish_job_date%>&emsp;
+              <div class="para-completo" style="display:none">
+                Actividades a cargo: <%=experience.job_description%><br>
+                Personas bajo mi cargo: <%=experience.in_my_charge%>
+            </div>
             </p>
           </div>
         <%end%>
@@ -160,5 +170,25 @@
   </div>
   <%end%>
 </div>
+<script>
+function mostrar_todo(){
+  var divs=document.getElementsByClassName("para-completo");
+  var btn1=document.getElementById("mostrar_todo").style.display="none";
+  var btn2=document.getElementById("ocultar_todo").style.display="block";
+  for (var i=0;i<=divs.length;i++)
+  {
+    divs[i].style.display="block";
+  }
+}
+function ocultar_todo(){
+  var btn1=document.getElementById("mostrar_todo").style.display="block";
+  var btn2=document.getElementById("ocultar_todo").style.display="none";
+  var divs=document.getElementsByClassName("para-completo");
+  for (var i=0;i<=divs.length;i++)
+  {
+    divs[i].style.display="none";
+  }
+}
+</script>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>

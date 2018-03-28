@@ -2,7 +2,7 @@
 <div class="container">
   <div>
     <h2 style="background-color: #f0f0f0; border-top-left-radius: 10px; border-top-right-radius: 10px;"><%=@user.name%> <%=@user.last_name%>
-      <%=image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px")%>
+      <%=wicked_pdf_image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px;float: right!important;") %>
     </h2>
   </div>
   <div class="container-body ">
@@ -48,6 +48,10 @@
               <%=experience.job_title%><br>
               <%=experience.start_job_date%>&emsp; - &emsp;
               <%=experience.finish_job_date%>&emsp;
+              <div class="para-completo" style="display:none">
+                Actividades a cargo: <%=experience.job_description%><br>
+                Personas bajo mi cargo: <%=experience.in_my_charge%>
+              </div>
             </p>
           </div>
         <%end%>
@@ -163,3 +167,140 @@
   </div>
   <%end%>
 </div>
+<script>
+function mostrar_todo(){
+  var divs=document.getElementsByClassName("para-completo");
+  var btn1=document.getElementById("mostrar_todo").style.display="none";
+  var btn2=document.getElementById("ocultar_todo").style.display="block";
+  for (var i=0;i<=divs.length;i++)
+  {
+    divs[i].style.display="block";
+  }
+}
+function ocultar_todo(){
+  var btn1=document.getElementById("mostrar_todo").style.display="block";
+  var btn2=document.getElementById("ocultar_todo").style.display="none";
+  var divs=document.getElementsByClassName("para-completo");
+  for (var i=0;i<=divs.length;i++)
+  {
+    divs[i].style.display="none";
+  }
+}
+</script>
+
+
+<style>
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+.tabcontent {
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.container-cv {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .container-cv {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container-cv {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container-cv {
+    width: 1170px;
+  }
+}
+
+.line-separator-blue{
+  height:3px;
+  width:93%;
+  background:#717171;
+  background-color: #000099;
+  border-bottom:1px solid #000099;
+}
+.line-separator-red{
+  height:3px;
+  width:93%;
+  background:#7d1c41;
+  background-color: #7d1c41;
+  border-bottom:1px solid #7d1c41;
+}
+.section-title-blue{
+  display:inline-block;
+  background-color: #000099;
+  padding: 1px;
+  color: #ffffff;
+  width:auto;
+  padding-rigth: 20px;
+}
+.section-title-red{
+  display:inline-block;
+  background-color: #7d1c41;
+  padding: 1px;
+  color: #ffffff;
+  width:auto;
+  padding-rigth: 20px;
+}
+.section-container-blue b{
+  color: #000099;
+}
+.section-container-blue p{
+  color: #000000;
+}
+.section-container-blue{
+  color: 	#00000;
+}
+.section-container-blue h3{
+  color: #1a1aff;
+}
+.section-container-red b{
+  color: #7d1c41;
+}
+.section-container-red p{
+  color: #000000;
+}
+.section-container-red{
+  color: 	#000000;
+}
+.section-container-red h3{
+  color: #bf0d19;
+}
+.cv-title-name{
+  left:5%;
+  position:  auto;
+}
+.vertical-title{
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+.vertical-section-blue{
+  right: auto;
+  border: 5px solid #000099;
+  padding-bottom: 21px;
+
+}
+.vertical-section-red{
+  right: auto;
+  border: 5px solid #7d1c41;
+  padding-bottom: 21px;
+
+}
+
+</style>

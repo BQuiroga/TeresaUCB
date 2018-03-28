@@ -7,12 +7,12 @@
   <a onclick="pintarAzul()" class="w3-bar-item w3-button">Estilo 1 Azul</a>
   <a onclick="pintarRojo()" class="w3-bar-item w3-button">Estilo 1 Rojo</a>
 </div>
-<div class="side-bar">
-  <button id="openNav" class="btn btn-md" onclick="w3_open()">Mas opciones &#9776;</button>
-</div>
 
 
-<div style="top:250px; position:fixed;">
+<div style="top:150px; position:fixed;">
+  <div class="side-bar">
+    <button id="openNav" class="btn btn-md" onclick="w3_open()">Mas opciones &#9776;</button>
+  </div>
   <div id="original-link" style="display:block">
   <%= link_to 'Exportar como PDF',resume_path(@resume.id, format: "pdf"), :format => :pdf,:class=>"btn btn-default",target: '_blank' %>
   </div>
@@ -21,6 +21,10 @@
   </div>
   <div id="rojo-link" style="display:none">
   <%= link_to 'Exportar como PDF','/resumes/bajar_red.pdf', :format => :pdf,:class=>"btn btn-default",target: '_blank' %>
+  </div>
+  <div>
+    <button id="mostrar_todo" onclick="mostrar_todo()">Mostrar CV completo</button>
+    <button id="ocultar_todo" onclick="ocultar_todo()" style="display:none">Mostrar CV resumido</button>
   </div>
 </div>
 <div class="container" id="main">
@@ -79,6 +83,10 @@
                   <%=experience.job_title%><br>
                   <%=experience.start_job_date%>&emsp; - &emsp;
                   <%=experience.finish_job_date%>&emsp;
+                  <div class="para-completo" style="display:none">
+                    Actividades a cargo: <%=experience.job_description%><br>
+                    Personas bajo mi cargo: <%=experience.in_my_charge%>
+                </div>
                 </p>
             </div>
         <%end%>
@@ -399,7 +407,24 @@ function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
   document.getElementById("openNav").style.display = "inline-block";
 }
-
+function mostrar_todo(){
+  var divs=document.getElementsByClassName("para-completo");
+  var btn1=document.getElementById("mostrar_todo").style.display="none";
+  var btn2=document.getElementById("ocultar_todo").style.display="block";
+  for (var i=0;i<=divs.length;i++)
+  {
+    divs[i].style.display="block";
+  }
+}
+function ocultar_todo(){
+  var btn1=document.getElementById("mostrar_todo").style.display="block";
+  var btn2=document.getElementById("ocultar_todo").style.display="none";
+  var divs=document.getElementsByClassName("para-completo");
+  for (var i=0;i<=divs.length;i++)
+  {
+    divs[i].style.display="none";
+  }
+}
 function pintarAzul(){
     document.getElementById("main").style.display = "none";
     document.getElementById("cv-azul").style.display = "block";

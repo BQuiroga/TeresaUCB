@@ -79,8 +79,7 @@ class ResumesController < ApplicationController
         format.html
         format.pdf do
           render :pdf => "CV.pdf",
-          :template => "resumes/external_show.html.erb",
-          :layout => 'application'
+          :template => "resumes/external_show.html.erb"
         end
       end
   end
