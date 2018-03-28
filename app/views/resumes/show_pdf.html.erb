@@ -2,8 +2,10 @@
 <div class="container">
   <div class="container-body " id="cv-azul">
           <div class="section-container-blue">
+            <!-- <%=image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px")%> -->
             <div class="container">
               <div class="container">
+                <%=wicked_pdf_image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px;float: right!important;") %>
                 <h1 class="cv-title-name"><b><%=current_user.name%> <%=current_user.last_name%></b> </h1>
                 <h3 class="cv-title-name"><%=@user.last_education.title %></h3>
               </div>

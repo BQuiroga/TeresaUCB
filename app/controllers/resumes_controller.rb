@@ -61,6 +61,7 @@ class ResumesController < ApplicationController
   def update
   end
   def show
+    @picture=current_user.picture
     @resume=current_user.resume
     @merits=@resume.merits
     @user=@resume.user
@@ -84,6 +85,7 @@ class ResumesController < ApplicationController
       end
   end
   def show_pdf
+    @picture=current_user.picture
     @resume=current_user.resume
     @merits=@resume.merits
     @user=@resume.user
@@ -107,6 +109,7 @@ class ResumesController < ApplicationController
   end
 
   def show_pdf_red
+    @picture=current_user.picture
     @resume=current_user.resume
     @merits=@resume.merits
     @user=@resume.user
@@ -130,6 +133,7 @@ class ResumesController < ApplicationController
   end
   def external_show
     @user=User.find(params[:id])
+    @picture=@user.picture
     @resume=@user.resume
     @merits=@resume.merits
     @personal_info=@user.personal_information
@@ -144,6 +148,7 @@ class ResumesController < ApplicationController
     @skills=@resume.skills
   end
   def show_modal
+    @picture=current_user.picture
     @user=User.find(params[:id])
     @resume=@user.resume
     @merits=@resume.merits

@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 	def show
 	end
 	def profile
-		@picture=Picture.where(user_id:current_user.id).last
+		@picture=current_user.picture
 		@user=current_user
 		@belongs=@user.group_managers
 		@groups=[]

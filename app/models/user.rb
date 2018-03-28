@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_one :personal_information
   has_one :resume
   has_one :company_information
+  has_one :picture
   has_many :notifications
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,:lockable

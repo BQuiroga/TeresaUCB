@@ -14,18 +14,22 @@
 
 <div style="top:250px; position:fixed;">
   <div id="original-link" style="display:block">
-  <%= link_to 'Create PDF document',resume_path(@resume.id, format: "pdf"), :format => :pdf,:class=>"btn btn-default" %>
+  <%= link_to 'Exportar como PDF',resume_path(@resume.id, format: "pdf"), :format => :pdf,:class=>"btn btn-default",target: '_blank' %>
   </div>
   <div id="azul-link" style="display:none">
-  <%= link_to 'Create PDF document2','/resumes/bajar.pdf',:format => :pdf %>
+  <%= link_to 'Exportar como PDF','/resumes/bajar.pdf',:format => :pdf,:class=>"btn btn-default",target: '_blank' %>
   </div>
   <div id="rojo-link" style="display:none">
-  <%= link_to 'Create PDF document3','/resumes/bajar_red.pdf', :format => :pdf %>
+  <%= link_to 'Exportar como PDF','/resumes/bajar_red.pdf', :format => :pdf,:class=>"btn btn-default",target: '_blank' %>
   </div>
 </div>
 <div class="container" id="main">
 <div class="container">
-<div class="row-fluid" style="background-color: #f0f0f0; border-top-left-radius: 10px; border-top-right-radius: 10px;"><h2><%=@user.name%> <%=@user.last_name%> </h2></div>
+<div class="row-fluid" style="background-color: #f0f0f0; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+  <h2><%=@user.name%> <%=@user.last_name%>
+    <%=image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px")%>
+  </h2>
+</div>
   <div class="container-body " id="cv-original">
     <div class="container">
     <div class="container">
@@ -200,6 +204,7 @@
 <div class="container">
   <div class="container-body " id="cv-azul">
           <div class="section-container-blue">
+            <%=image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px;right:30%;")%>
             <div class="container">
               <div class="container">
                 <h1 class="cv-title-name"><b><%=current_user.name%> <%=current_user.last_name%></b> </h1>

@@ -14,7 +14,7 @@
     <!-- FOTO AVATAR -->
 	<div id="container-avatar">
 	  <div class="hovereffect"id="avatar" >
-      <%if @picture%>
+      <%if @picture!=nil%>
         <%= link_to image_tag(@picture.image.url, class: 'media-object'), @picture.image.url, target: '_blank' %>
       <%else%>
         <%= image_tag ("missing.png")%>NO WE NO SALIO
@@ -33,20 +33,29 @@
 <!-- MODAL PARA FOTO?  -->
 
 <div id="editProfileAvatar" class="modal" >
-    <div class="modal-content" style="width:60%">
+  <%if  @picture%>
+    <div class="modal-content" style="width:70%">
       <%= form_for @picture, html: { multipart: true } do |f| %>
         <span class="close" id="close">&times;</span>
         <div class="header">
           <h3>Editar foto de perfil</h3>
         </div>
-
-        <div class="col-md-6">
-          <%= image_tag ("missing.png"), :class=> "img-thumbnail"%>
+        <div class="col-md-2">
+          <div class="thumbnail">
+            <%= link_to image_tag(@picture.image.url, class: 'media-object '), @picture.image.url, target: '_blank' %>
+            <br><br><br><br><br><br>
+          </div>
+        </div>
+        <div class="col-md-2">
         </div>
         <div class="container">
-          <div id="avatar_preview" style="display:none" class="col-md-6"><img id="avatarPreview" src=""></div>
+          <div id="avatar_preview" style="display:none" class="col-md-2 "><img id="avatarPreview" src=""></div>
           <!-- <input id="avatarFile" name="avatarFile" type="file" class="file" alt="" /> -->
-          <%=f.file_field :image, :id=>"avatarFile"%>
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-1">
+            <%=f.file_field :image, :id=>"avatarFile"%>
+          </div>
           <h4 id='loading' style="display:none">Subiendo..</h4>
           <div id="message"></div>
         </div>
@@ -58,7 +67,7 @@
 
       <%end%>
     </div>
-
+    <%end%>
     <br/>
     <br>
 
