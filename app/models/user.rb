@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   after_create :assign_default_role
   after_create :create_dependencies
   after_create :capit
+  after_create :create_avatar
   def send_admin_mail
     UserMailer.welcome_email(self).deliver_now!
   end
@@ -49,6 +50,9 @@ class User < ActiveRecord::Base
       return "Director de Carrera"
     end
     "Usuario"
+  end
+  def create_avatar
+    Picture.create(:user_id=>self.id)
   end
   def create_dependencies
     Resume.create(:user_id => self.id)

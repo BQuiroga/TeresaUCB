@@ -17,11 +17,11 @@
       <%if @picture!=nil%>
         <%= link_to image_tag(@picture.image.url, class: 'media-object',style:"width:150px;height:150px"), @picture.image.url, target: '_blank' %>
       <%else%>
-        <%= image_tag ("missing.png"),:id=>"botonsio"%>
+        <%= image_tag ("missing.png"),id:"botonsio"%>
       <%end%>
-	        <div class="overlay" >
-	          <h2>Actualizar foto de perfil</h2>
-	          <label ><span class="glyphicon glyphicon-camera" ></span></label>
+	        <div class="overlay"  >
+	          <h2 >Actualizar foto de perfil</h2>
+	          <label ><span class="glyphicon glyphicon-camera" id="overlay"></span></label>
 	        </div>
 	  </div>
 	</div>
@@ -33,8 +33,8 @@
 <!-- MODAL PARA FOTO?  -->
 
 <div id="editProfileAvatar" class="modal" >
-  <%if  @picture%>
     <div class="modal-content" style="width:70%">
+      <%if  @picture%>
       <%= form_for @picture, html: { multipart: true } do |f| %>
         <span class="close" id="close">&times;</span>
         <div class="header">
@@ -63,10 +63,41 @@
         <div class="actions">
           <%= f.submit 'Guardar', class: 'btn btn-success'%>
         </div>
+        <%end%>
+      <%else%>
+      <%= form_for '/photos/new', html: { multipart: true } do |f| %>
+        <span class="close" id="close">&times;</span>
+        <div class="header">
+          <h3>Subir foto de perfil</h3>
+        </div>
+        <div class="col-md-2">
+          <div class="thumbnail">
+            <%=image_tag("missing.png", class: 'media-object ') %>
+            <br><br><br><br><br><br>
+          </div>
+        </div>
+        <div class="col-md-2">
+        </div>
+        <div class="container">
+          <div id="avatar_preview" style="display:none" class="col-md-2 "><img id="avatarPreview" src=""></div>
+          <!-- <input id="avatarFile" name="avatarFile" type="file" class="file" alt="" /> -->
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-1">
+            <%=f.file_field :image, :id=>"avatarFile"%>
+          </div>
+          <h4 id='loading' style="display:none">Subiendo..</h4>
+          <div id="message"></div>
+        </div>
+        <%f.hidden_field :user_id, :value=>current_user.id%>
+        <div class="actions">
+          <%= f.submit 'Guardar', class: 'btn btn-success'%>
+        </div>
 
       <%end%>
-    </div>
+
     <%end%>
+  </div>
     <br/>
     <br>
 
@@ -80,13 +111,12 @@
   var btn= document.getElementById("container-avatar")
   var modal = document.getElementById("editProfileAvatar");
   var span =document.getElementById("close");
-  var botoncio=document.getElementById("botoncio");
+  var botoncio=document.getElementById("botonsio");
   // var btns=document.getElementById("aceptar");
-  span.onclick = function() {
-      modal.style.display = "none";
-  };
+  // span.onclick = function() {
+  //     modal.style.display = "none";
+  // };
   btn.onclick =function(){
-    // alert("algo raro");
     modal.style.display ="block";
   };
 
