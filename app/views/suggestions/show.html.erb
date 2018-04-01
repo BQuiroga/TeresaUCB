@@ -1,0 +1,31 @@
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Gracias por registrar tu comentario</h4>
+    </div>
+    <div class="panel-body">
+      <strong>Comentario:</strong>
+      <%= @suggestion.comment %>
+      <p>
+      <div>
+        <%if @suggestion.sugestion_user(current_user.id)%>
+          <%= link_to 'Editar comentario', edit_suggestion_path(@suggestion) ,:class=>"btn btn-gray"%> |
+        <%else%>
+          <%= link_to 'Volver Atras', suggestions_path ,class:"btn btn-gray"%> |
+
+        <%end%>
+      <%= link_to 'Volver al perfil', '/users/profile', :class=>"btn btn-primary" %>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<style media="screen">
+.btn-gray{
+  background-color: #e7e7e7;
+  color: black;
+  border: 1px solid #028fcc;
+}
+</style>

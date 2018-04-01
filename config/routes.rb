@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :suggestions
   devise_for :users, :controllers => { registrations: 'registrations' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -93,6 +94,7 @@ Rails.application.routes.draw do
   get "resumes/bajar_red"=>'resumes#show_pdf_red'
   get 'photos'=>'pictures#index'
   get 'photos/new'=>'pictures#new'
+  post 'suggestion/create' =>'suggestions#create'
   resources :pictures
   resources :posts
   resources :educations
@@ -109,6 +111,7 @@ Rails.application.routes.draw do
   resources :skills
   resources :resumes
   resources :pictures
+  resources :suggestions
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

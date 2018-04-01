@@ -1,0 +1,6 @@
+<% if @suggestion.valid? %>
+  $(".sugestions").prepend('<%= j(render(@suggestion)) %>'); // make sure you have _track.html.erb
+  // $("ID OR CLASS OF YOUR FORM")[0].reset(); // this will clear your form inputs
+<% else %>
+  alert('Something Went Wrong');
+<% end %>

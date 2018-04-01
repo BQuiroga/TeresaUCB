@@ -73,6 +73,8 @@ nav select {display: none;}
         <li><%= link_to 'Notificaciones', '/mis_notificaciones', :class => 'navbar-link navbar-text' %><span style="color:rgb(255, 255, 255);" class=navbar-text><%=current_user.unreaded_notifications.size%>&emsp;</span></li>
         <%if current_user.is_administrator or current_user.is_secretary?%>
           <li><%= link_to 'Gestion de usuarios', '/users', :class => 'navbar-link navbar-text' %>&emsp;</li>
+          <li><%= link_to 'Sugerencias!', '/suggestions', :class => 'navbar-link navbar-text' %>&emsp;</li>
+
         <%end%>
         <%if current_user.is_director%>
           <li><%= link_to 'Reportes','/reportes',:class=>'navbar-link navbar-text' %>&emsp;</li>
@@ -107,6 +109,7 @@ nav select {display: none;}
       <option value="/mis_notificaciones"><%= link_to 'Notificaciones', '/mis_notificaciones', :class => 'navbar-link' %><span style="color:rgb(255, 255, 255);"><%=current_user.unreaded_notifications.size%>&emsp;</span></option>
       <%if current_user.is_administrator%>
         <option value ="/users"><%= link_to 'Gestion de usuarios', '/users', :class => 'navbar-link' %>&emsp;</option>
+        <option value ="/sugerencias"><%= link_to 'Sugerencias', '/users', :class => 'navbar-link' %>&emsp;</option>
       <%end%>
       <option value"<%=destroy_user_session_path%>"><%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></option>
       <% else %>
@@ -178,18 +181,70 @@ nav select {display: none;}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/boo  tstrap.min.js"></script> -->
+<%if user_signed_in?%>
+<button type="button" class="suggestion-button btn-lg btn-info" id="suggestionButton" title="Agrega tu comentario"><span class="glyphicon glyphicon-comment"></span></button>
 
+<div id="addSuggestion" class="modal" >
+    <div class="modal-content" style="width:50%">
+        <span class="close" id="closeSuggestion">&times;</span>
+        <%= form_for :suggestion, url:'/suggestion/create' do |f| %>
+          <p>Los comentarios son completamente Anonimos</p>
+          <div class="field">
+            <%= f.label :Agrega_tu_comentario_aqui %>:<br>
+            <%= f.text_area :comment, class: "form-control" %>
+          </div>
+          <div class="field">
+            <%= f.hidden_field :user_id, :value=>current_user.id %>
+          </div>
+          <div class="actions">
+            <%= f.submit "Enviar", class: "btn btn-success" %>
+          </div>
+        <% end %>
+
+    </div>
+</div>
+
+<%end%>
 </body>
 </html>
 <style>
+.suggestion-button{
+  top:650px;
+  right:0px;
+  position:fixed;
+}
+.suggestion-button:hover span { display: none; }
+ .suggestion-button:hover:after {
+  content: "Danos tus sugerencias!";
+ }
 .navbar-inverse .navbar-text{
   color: #ffffff;
 }
 .navbar-inverse .navbar-link{
   color: #ffffff;
 }
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 45px;
+    font-weight: bold;
+}
+
 </style>
 <script>
+
+var botonComentario= document.getElementById("suggestionButton")
+var modalComentario = document.getElementById("addSuggestion");
+var spanComentario =document.getElementById("closeSuggestion");
+// var btns=document.getElementById("aceptar");
+spanComentario.onclick = function() {
+    modalComentario.style.display = "none";
+};
+botonComentario.onclick =function(){
+  // alert("algo raro");
+  modalComentario.style.display ="block";
+};
+
 // Create the dropdown base
 // $("<select />").appendTo("nav");
 //
