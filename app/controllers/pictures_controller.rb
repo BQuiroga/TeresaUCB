@@ -23,6 +23,9 @@ class PicturesController < ApplicationController
 		@picture=current_user.picture
 		if @picture.update(picture_params)
 			redirect_to '/users/profile'
+		else
+			throwUnauthorized
+			return
 		end
 	end
   private

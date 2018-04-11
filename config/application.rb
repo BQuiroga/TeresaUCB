@@ -21,6 +21,8 @@ module TeresaV21
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
+    Paperclip.options[:command_path]='C:\Program Files\ImageMagick-6.9.9-Q16'
+
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.enabled=true
   end
