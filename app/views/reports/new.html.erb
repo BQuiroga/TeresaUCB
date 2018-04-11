@@ -2,6 +2,11 @@
 
 
 <a href="/reportes"><button class="btn btn-primary">Volver Atras</button></a>
+<p>
+  Download:
+  <%= link_to "CSV", reporte_nuevo_path(format: "csv") %> |
+  <%= link_to "Excel", reporte_nuevo_path(format: "xls") %>
+</p>
 <div class="container">
   <h2>Lista de reportes</h2>
   <button id="myBtn" style="display:none">Open Modal</button>
