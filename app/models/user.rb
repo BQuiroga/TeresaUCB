@@ -1,3 +1,4 @@
+require 'csv'
 class User < ActiveRecord::Base
   rolify
   # Include default devise modules. Others available are:
@@ -217,6 +218,15 @@ class User < ActiveRecord::Base
     m=(some_date%365)/30
     d=(some_date%365)%30
     y
+  end
+  def generate_xls_report(data,options={})
+    column_names=["Titulo","Estudiantes Egresados"]
+    CSV.generate(options) do |csv|
+      csv << column_names
+      data.keys.each do |row|
+        csv << data[row]
+      end
+    end
   end
 
   #imagenes asociadas al perfil de usuario

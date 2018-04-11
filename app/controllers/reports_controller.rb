@@ -40,8 +40,17 @@ class ReportsController < ApplicationController
       @results=@results.where(resume_id:@user_ids)
       @data_graphic= @results.group(:title).count
     end
+    session[:passed_variable]=@data_graphic
   end
-
+  def new_reporte
+    @data_graphic=session[:passed_variable]
+    puts @data_graphic.class
+    respond_to do |format|
+      format.html
+      format.csv {send_data current_user.generate_xls_report(@data_graphic)}
+      format.xls
+    end
+  end
 
 
   def users_by_date
