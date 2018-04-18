@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   post 'resultados/busqueda'=>'posts#oferta'
   post 'posts/oferta'=> 'posts#publicar'
   get 'newOffer'=> 'posts#offer'
-
+  match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
   get '/inicio'=> 'index#inicio'
   get '/users/profile'=>'users#profile'
   get 'education/edit/:id'=>'educations#edit'
