@@ -71,7 +71,7 @@ class Education < ActiveRecord::Base
   def genders(school)
     e=Array.new
     educations=users(school)
-    educations.map {|user| user.personal_information.gender}
+    educations.select {|user| (user.personal_information!=nil)}.map {|user| user.personal_information.gender}
     # e[0]=educations.count(true)
     # e[1]=educations.count(false)
     # e[2]=educations.count(nil)
