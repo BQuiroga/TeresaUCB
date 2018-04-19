@@ -20,8 +20,6 @@ gem 'rolify'
 gem 'authority'
 gem "carrierwave"
 
-gem 'bootstrap-chosen-rails'
-gem 'chosen-rails'
 #gemas para pdf
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'

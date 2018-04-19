@@ -106,6 +106,14 @@ class UsersController < ApplicationController
 			end
 		end
 	end
+	def destroy
+    @user = current_user
+    @user.destroy
+
+    if @user.destroy
+        redirect_to root_url, notice: "User deleted."
+    end
+  end
 	def new_report
 		@city=report_params[:city]
 		@university=report_params[:university]
