@@ -19,7 +19,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'rolify'
 gem 'authority'
 gem "carrierwave"
-
+gem 'bootstrap-select-rails'
 #gemas para pdf
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'

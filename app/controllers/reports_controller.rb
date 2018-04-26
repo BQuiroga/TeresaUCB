@@ -115,7 +115,9 @@ class ReportsController < ApplicationController
       @companies_by_code=CompanyInformation.group(:ciu_code_id).count
       @companies_names=Hash.new
       @companies_by_code.each do |c|
-        @companies_names[CiuCode.find(c[0]).description]=c[1]
+        if c[0]!=nil
+          @companies_names[CiuCode.find(c[0]).description]=c[1]
+        end
       end
     end
   end

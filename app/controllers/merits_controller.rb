@@ -6,12 +6,7 @@ class MeritsController < ApplicationController
 		else
 			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
 		end
-		if @new.resume.user_id==current_user.id
-    	redirect_to '/users/curriculum/edit'
-		else
-			@v='/curriculum/'+@new.resume.user_id.to_s+'/edit'
-			redirect_to @v
-		end
+	  	redirect_to '/users/curriculum/edit'
 	end
 	def edit
 		@merit=Merit.find(params[:id])
@@ -19,12 +14,8 @@ class MeritsController < ApplicationController
 	def update
 		@merits=Merit.find(merits_params_for_edit[:id])
 		@merits.update(merits_params_for_edit)
-		if @merits.resume.user_id==current_user.id
-    	redirect_to '/users/curriculum/edit'
-		else
-			@v='/curriculum/'+@merits.resume.user_id.to_s+'/edit'
-			redirect_to @v
-		end	end
+		redirect_to '/users/curriculum/edit'
+	end
 	def merits_params
   		params.require(:merit).permit(:name, :resume_id,:date)
   	end

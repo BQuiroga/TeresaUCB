@@ -6,12 +6,8 @@ class CoursesController < ApplicationController
 		else
 			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
 		end
-		if @new.resume.user_id==current_user.id
-			redirect_to '/users/curriculum/edit'
-		else
-			@v='/curriculum/'+@new.resume.user_id.to_s+'/edit'
-			redirect_to @v
-		end
+		redirect_to '/users/curriculum/edit'
+
 	end
 	def edit
 		@course=Course.find(params[:id])
@@ -19,12 +15,7 @@ class CoursesController < ApplicationController
 	def update
 		@course=Course.find(courses_params_for_edit[:id])
 		@course.update(courses_params_for_edit)
-		if @course.resume.user_id==current_user.id
-    	redirect_to '/users/curriculum/edit'
-		else
-			@v='/curriculum/'+@course.resume.user_id.to_s+'/edit'
-			redirect_to @v
-		end
+	 	redirect_to '/users/curriculum/edit'
 	end
 	def courses_params
   		params.require(:course).permit(:date,:resume_id,:name,:given, :workload,:institution)

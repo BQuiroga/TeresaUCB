@@ -40,7 +40,13 @@
           <%= f.label :Grado_academico %>:
           <!-- <%= f.select(:title,["Licenci>atura", "Maestria", "Doctorado", "Post Grado"])%> -->
           <div>
-            <%= f.select :title,@title_list,{},class:"form-control  col-12 col-md-9 col-xs-12"%>
+            <select class="selectpicker" data-live-search="true">
+              <option>Mustard</option>
+              <option>Ketchup</option>
+              <option>Relish</option>
+            </select>
+
+            <%= f.select :title,@title_list,{},class:"form-control  col-12 col-md-9 col-xs-12",:id=>'titulos'%>
           </div>
         </div>
         <div class="field col col-md-3 col-xs-3">
@@ -541,11 +547,19 @@
 </div>
 
 
-
-
-
-
-
+<script>
+$(document).ready(function () {
+            (function ($) {
+                $('#filtrar').keyup(function () {
+                    var rex = new RegExp($(this).val(), 'i');
+                    $('#titulos option').hide();
+                    $('#titulos option').filter(function () {
+                        return rex.test($(this).text());
+                    }).show();
+                })
+            }(jQuery));
+        });
+</script>
 
 
 

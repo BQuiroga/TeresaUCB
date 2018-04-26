@@ -49,13 +49,14 @@ class UsersController < ApplicationController
 		end
 	end
 	def index
-		if !(current_user.is_administrator or current_user.is_secretary?)
+		if !(current_user.is_administrator)
 			throwUnauthorized
 			return
 		else
 			@users=User.all
 		end
 	end
+
 	def reportes_general
 		if !(current_user.is_director)
 			throwUnauthorized
@@ -85,7 +86,9 @@ class UsersController < ApplicationController
 			@companies_by_code=CompanyInformation.group(:ciu_code_id).count
 			@companies_names=Hash.new
 			@companies_by_code.each do |c|
-				@companies_names[CiuCode.find(c[0]).description]=c[1]
+				if (c[0]!=nil)
+					@companies_names[CiuCode.find(c[0]).description]=c[1]
+				end
 			end
 			@years=Hash.new(0)
 			@users.where(company:false).each do |u|
@@ -109,17 +112,21 @@ class UsersController < ApplicationController
 	def destroy
     @user = current_user
     @user.destroy
-
     if @user.destroy
         redirect_to root_url, notice: "User deleted."
     end
   end
 	def new_report
+		if !current_user.is_company?
+			throwUnauthorized
+			return
+		else
 		@city=report_params[:city]
 		@university=report_params[:university]
 		@gender=report_params[:gender]
 		if (@city)
 		end
+	end
 	end
 	def search_params
   	params.require(:user).permit(:name,:last_name)

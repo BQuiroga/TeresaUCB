@@ -6,12 +6,8 @@ class KnowledgesController < ApplicationController
 		else
 			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
 		end
-		if @new.resume.user_id==current_user.id
-			redirect_to '/users/curriculum/edit'
-		else
-			@v='/curriculum/'+@new.resume.user_id.to_s+'/edit'
-			redirect_to @v
-		end
+		redirect_to '/users/curriculum/edit'
+
 	end
 	def edit
 		@knowledge=Knowledge.find(params[:id])
@@ -19,12 +15,8 @@ class KnowledgesController < ApplicationController
 	def update
 		@knowledge=Knowledge.find(knowledges_params_for_edit[:id])
 		@knowledge.update(knowledges_params_for_edit)
-		if @knowledge.resume.user_id==current_user.id
-    	redirect_to '/users/curriculum/edit'
-		else
-			@v='/curriculum/'+@knowledge.resume.user_id.to_s+'/edit'
-			redirect_to @v
-		end	end
+		redirect_to '/users/curriculum/edit'
+	end
 	def knowledges_params
   		params.require(:knowledge).permit(:description,:area,:resume_id)
   	end
