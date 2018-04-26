@@ -15,8 +15,5 @@
 //= require Chart.bundle
 //= require chartkick
 //= require bootstrap
-//= require bootstrap-select
-//= require bootstrap/alert
-//= require bootstrap/dropdown
 //= require turbolinks
 //= require_tree .
