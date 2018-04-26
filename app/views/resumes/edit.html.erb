@@ -40,12 +40,6 @@
           <%= f.label :Grado_academico %>:
           <!-- <%= f.select(:title,["Licenci>atura", "Maestria", "Doctorado", "Post Grado"])%> -->
           <div>
-            <select class="selectpicker" data-live-search="true">
-              <option>Mustard</option>
-              <option>Ketchup</option>
-              <option>Relish</option>
-            </select>
-
             <%= f.select :title,@title_list,{},class:"form-control  col-12 col-md-9 col-xs-12",:id=>'titulos'%>
           </div>
         </div>
@@ -547,7 +541,7 @@
 </div>
 
 
-<script>
+<!-- <script>
 $(document).ready(function () {
             (function ($) {
                 $('#filtrar').keyup(function () {
@@ -559,7 +553,7 @@ $(document).ready(function () {
                 })
             }(jQuery));
         });
-</script>
+</script> -->
 
 
 
