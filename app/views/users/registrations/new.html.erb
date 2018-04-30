@@ -13,6 +13,9 @@ body {
 .sign-in-email{
   background-color : #FFFFFF;
 }
+ #check_company:checked ~ .persona{
+   display: none;
+}
 </style>
 
 
@@ -35,11 +38,12 @@ body {
 <div class= "panel-body">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name),:class=>"form-horizontal") do |f| %>
   <div class="form-group">
-    <%= f.label :nombre,:class=>"control-label col-sm-2" %><br />
+    <%= f.label :nombre,:class=>"control-label col-sm-2 persona" %><br />
+    <%= f.label :nombre_de_la_empresa,:class=>"control-label col-sm-3 empresa",:style=>"display:none" %><br />
     <%= f.text_field :name,:class=>"form-control"%>
   </div>
-  <div class="form-group">
-    <button class="btn-xs btn-default small pull-left" data-toggle="tooltip2" data-placement="right" title="Si desea registrarse como empresa no es necesario que llene este campo"><i class="glyphicon glyphicon-question-sign" aria-hidden="true"></i></button>
+  <div class="form-group persona">
+    <button class="btn-xs btn-default small pull-left" data-toggle="tooltip2" disabled data-placement="right" title="Si desea registrarse como empresa no es necesario que llene este campo"><i class="glyphicon glyphicon-question-sign" aria-hidden="true"></i></button>
     <%= f.label :apellido,:class=>"control-label col-sm-2" %><br />
     <%= f.text_field :last_name,:class=>"form-control"%>
   </div>
@@ -47,9 +51,9 @@ body {
     <%= f.label :correo_electronico,:class=>"control-label col-sm-2" %><br />
     <%= f.email_field :email, autofocus: true,:class=>"form-control sign-in-email" %>
   </div>
-  <button class="btn-xs btn-default small pull-left" data-toggle="tooltip" data-placement="right" title="La contraseña debe contener al menos una mayúscula, una minúscula y un número"><i class="glyphicon glyphicon-question-sign" aria-hidden="true"></i></button>
 
   <div class="form-group">
+    <button class="btn-xs btn-default small pull-left" data-toggle="tooltip1" disabled data-placement="right"  title="La contraseña debe contener al menos una mayúscula, una minúscula y un número"><i class="glyphicon glyphicon-question-sign" aria-hidden="true"></i></button>
     <%= f.label :contraseña,:class=>"control-label col-sm-2" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> caracteres minimo)</em>
@@ -62,19 +66,30 @@ body {
     <%= f.password_field :password_confirmation, autocomplete: "off",:class=>"form-control" %>
   </div>
   <div class="form-group">
-    <%=f.check_box :company%>
+    <%=f.check_box :company, :id=>'check_company'%>
     <%=f.label :quiero_registrarme_como_empresa%>
   </div>
   <div class="actions">
     <%= f.submit "Registrarse" %>
   </div>
 <% end %>
-<%= render "users/shared/links" %>
+<!-- # <%= render "users/shared/links" %> -->
 </div>
 </div>
 
 </div>
+<style>
+ #check_company:checked ~ .persona{
+   display: none;
+}
+</style>
+
 <script>
+
+$('#check_company').click(function() {
+  $('.persona')[this.checked ? "hide" : "show"]();
+  $('.empresa')[this.checked ? "show" : "hide"]();
+});
 // $(function(){
 // $('body').tooltip({ selector: '[data-toggle="tooltip"]' });
 // });

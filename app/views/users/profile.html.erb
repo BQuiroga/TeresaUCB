@@ -208,7 +208,7 @@
           	<span class=" glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
           </button> -->
 
-          <%if current_user.not_me(post.user.id) and (Follow.where(follower:current_user.id,followed:post.user.id).size==0) and !current_user.is_my_friend(post.user.id)%>
+          <%if current_user.not_me(post.user.id) and (Follow.where(follower:current_user.id,followed:post.user.id).size==0) and !current_user.is_my_friend(post.user.id)and post.user.is_company?%>
             <%= form_for :follow, url: '/follows/new' do |f| %>
               <%=f.hidden_field :follower, :value => current_user.id%>
               <%=f.hidden_field :followed, :value => post.user.id%>
@@ -217,24 +217,26 @@
         	    </button>
             <%end%>
           <%else%>
-            <%if (Follow.where(follower:current_user.id,followed:post.user.id).size!=0) %>
+            <%if (Follow.where(follower:current_user.id,followed:post.user.id).size!=0) and post.user.is_company?%>
               <button type="button submit" class="btn btn-default" aria-label="Left Align">
                 <%=link_to "Dejar de seguir", {controller: "follows", action: "dejar", id: Follow.where(follower.current_user.id,followed:post.user.id).first.id}%>
               </button>
             <%end%>
           <%end%>
           <%if (!current_user.is_my_friend(post.user.id))%>
-            <%if current_user.not_me(post.user.id)%>
+            <%if current_user.not_me(post.user.id) and !post.user.is_company?%>
               <button type="button submit" class="btn btn-default" aria-label="Left Align">
                 <%=link_to "Agregar a mis amigos", {controller: "friendships", action: "friend", id: post.user.id}%>
               </button>
             <%end%>
           <%else%>
+          <%if current_user.not_me(post.user.id) and !post.user.is_company?%>
             <button type="button submit" class="btn btn-default" aria-label="Left Align">
               <%=link_to "Dejar de ser amigos", {controller: "friendships", action: "notmine", id: post.user.id}%>
             </button>
           <%end%>
-            <%if current_user.not_me(post.user.id)%>
+          <%end%>
+            <%if current_user.not_me(post.user.id) and post.user.is_company?%>
               <a href="/mis_notificaciones/new/<%=post.id%>">
                <button type="button" class="btn btn-default" aria-label="Left Align">Postular</button>
               </a>
