@@ -40,7 +40,8 @@
           <%= f.label :Grado_academico %>:
           <!-- <%= f.select(:title,["Licenci>atura", "Maestria", "Doctorado", "Post Grado"])%> -->
           <div>
-            <%= f.select :title,@title_list,{},class:"form-control  col-12 col-md-9 col-xs-12",:id=>'titulos'%>
+            <%=f.text_field :title, :id=>'filtrar'%>
+            <%= f.select :lista,@title_list,{},class:"form-control col-12 col-md-9 col-xs-12",:id=>'titulos',:style=>"margin: 10px; width: 200px;height: 170px;",:size=>'10',:name=>'type[]'%>
           </div>
         </div>
         <div class="field col col-md-3 col-xs-3">
@@ -69,7 +70,7 @@
         <div class="actions field col col-md-3 col-xs-3" style="top:10px">
           <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
         </div>
-        <br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br>
       <% end %>
     </div>
   </div>
@@ -541,7 +542,7 @@
 </div>
 
 
-<!-- <script>
+<script>
 $(document).ready(function () {
             (function ($) {
                 $('#filtrar').keyup(function () {
@@ -553,8 +554,13 @@ $(document).ready(function () {
                 })
             }(jQuery));
         });
-</script> -->
-
+</script>
+<script>
+var e=document.getElementById('filtrar');
+$("#titulos").change(function(){
+  $("#filtrar").val(this.value);
+}).change();
+</script>
 
 
 
