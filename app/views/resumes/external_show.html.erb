@@ -2,7 +2,9 @@
 <div class="container">
   <div>
     <h2 style="background-color: #f0f0f0; border-top-left-radius: 10px; border-top-right-radius: 10px;"><%=@user.name%> <%=@user.last_name%>
-      <%=wicked_pdf_image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px;float: right!important;") %>
+      <%if @picture%>
+      <%=image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px;float: right!important;") %>
+      <%end%>
     </h2>
   </div>
   <div class="container-body ">
