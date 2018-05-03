@@ -40,7 +40,7 @@
           <%= f.label :Grado_academico %>:
           <!-- <%= f.select(:title,["Licenci>atura", "Maestria", "Doctorado", "Post Grado"])%> -->
           <div>
-            <%=f.text_field :title, :id=>'filtrar'%>
+            <%=f.text_field :title, :id=>'filtrar', :style=>'width:115%'%>
             <%= f.select :lista,@title_list,{},class:"form-control col-12 col-md-9 col-xs-12",:id=>'titulos',:style=>"margin: 10px; width: 200px;height: 170px;",:size=>'10',:name=>'type[]'%>
           </div>
         </div>

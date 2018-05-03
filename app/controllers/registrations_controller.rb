@@ -3,6 +3,15 @@ class RegistrationsController < Devise::RegistrationsController
   def after_sign_up_path_for(resource)
    '/users/edit'
  end
+
+ def update_password
+   @user = current_user
+    if @user.update(password_update_params)
+      # Sign in the user by passing validation in case their password changed
+      bypass_sign_in(@user)
+    end
+    redirect_to 'users/edit'
+ end
  def delete
    @user=current_user
    current_user.picture.destroy
@@ -16,12 +25,13 @@ class RegistrationsController < Devise::RegistrationsController
    @info.destroy
  end
   private
-
-  def sign_up_params
-    params.require(:user).permit(:name, :last_name, :email, :password, :password_confirmation,:company)
+  def password_update_params
+    params.require(:user).permit(:password,:password_confirmation,:current_password)
   end
-
+  # def sign_up_params
+  #   params.require(:user).permit(:name, :last_name, :email, :password, :password_confirmation,:company)
+  # end
   def account_update_params
-    params.require(:user).permit(:name, :last_name, :email, :password, :password_confirmation, :current_password)
+    params.require(:user).permit(:name, :last_name, :email, :current_password)
   end
 end

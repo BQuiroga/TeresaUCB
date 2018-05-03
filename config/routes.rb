@@ -97,6 +97,8 @@ Rails.application.routes.draw do
   get 'photos'=>'pictures#index'
   get 'photos/new'=>'pictures#new'
   post 'suggestion/create' =>'suggestions#create'
+  get 'user/edit/password'=>'registrations#update_password'
+
   resources :pictures
   resources :posts
   resources :educations
@@ -114,6 +116,7 @@ Rails.application.routes.draw do
   resources :resumes
   resources :pictures
   resources :suggestions
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -162,7 +165,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
   resources :users do
     post 'search',  :on => :collection
   end

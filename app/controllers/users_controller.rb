@@ -127,6 +127,18 @@ class UsersController < ApplicationController
 		if (@city)
 		end
 	end
+	def update_password
+		@user = current_user
+		 if @user.update(password_update_params)
+			 # Sign in the user by passing validation in case their password changed
+			 bypass_sign_in(@user)
+		 end
+		 redirect_to 'users/edit'
+	end
+
+	end
+	def password_update_params
+		params.require(:user).permit(:password,:password_confirmation,:current_password)
 	end
 	def search_params
   	params.require(:user).permit(:name,:last_name)
