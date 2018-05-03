@@ -1,5 +1,5 @@
 <style>
-form {
+/* form {
   border-radius: 5px;
   max-width:700px;
   width:100%;
@@ -25,31 +25,43 @@ input {
 }
 navbar {
     top:0;
-    display: inline;
+    display: inline; */
 }
 </style>
-<h1>Formulario de Oferta de Trabajo</h1>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel panel-heading">
+      <div class="panel-title">
+        <h1>Formulario de Oferta de Trabajo</h1>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer well">
    <div class="info"><a href="" target="_blank"><p> Busca <i class="fa fa-search"></i> lo que necesites </p></a></div>
    	<%= form_for :post, url: '/resultados/busqueda' do |f| %>
     <%= f.hidden_field :user_id,:value => current_user.id%>
-	  <h1>Llena los siguientes campos, como requisito para el puesto laboral :</h1>
-    <div class="contentform">
-  	  <div id="sendmessage"> La oferta fue publicada exitosamente!. Gracias. </div>
-    	<div class="leftcontact">
-			 <div class="form-group">
-			  <p>Titulo academico<span>*</span></p>
-			  <span class="icon-case"><i class="fa fa-male"></i></span>
-        <%=f.text_field :titulo%>
+	  <h2>Llena los siguientes campos, como requisito para el puesto laboral :</h2>
+    <div class="form-horizontal">
+  	  <!-- <div id="sendmessage"> La oferta fue publicada exitosamente!. Gracias. </div> -->
+    	<div class="container col col-md-6">
+		      <div class="form-group">
+            <%= f.label :titulo_academico ,:class=>'form-label'%>
+            <span class="icon-case"><i class="fa fa-male"></i></span></br>
+            <div class="col col-md-9">
+              <%=f.text_field :titulo,:class=>'form-control'%>
+            </div>
 				<!-- <input type="text" name="nom" id="nom" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Nom' doit être renseigné."/> -->
-        <div class="validation"></div>
-       </div>
-      <div class="form-group">
-        <p>Post grado <span>*</span></p>
-        <span class="icon-case"><i class="fa fa-user"></i></span>
-        <%=f.text_field :post_grado%>
-				<!-- <input type="text" name="prenom" id="prenom" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Prénom' doit être renseigné."/> -->
-        <div class="validation"></div>
-			</div>
+            <div class="validation"></div>
+          </div>
+          <div class="form-group">
+            <%= f.label :post_grado ,:class=>'form-label'%></br>
+            <!-- <span class="icon-case"><i class="fa fa-user"></i></span></br> -->
+            <div class="col col-md-9">
+              <%=f.text_field :post_grado,:class=>'form-control'%>
+				        <!-- <input type="text" name="prenom" id="prenom" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Prénom' doit être renseigné."/> -->
+              <div class="validation"></div>
+	           </div>
+           </div>
 			<!-- <div class="form-group">
 			  <p>E-mail de contacto<span>*</span></p>
 			  <span class="icon-case"><i class="fa fa-envelope-o"></i></span>
@@ -57,16 +69,20 @@ navbar {
         <div class="validation"></div>
 			</div> -->
 			<div class="form-group">
-			  <p>Horas de Trabajo <span>*</span></p>
-			  <span class="icon-case"><i class="fa fa-clock-o"></i></span>
-        <%=f.number_field :horas%>
+        <%= f.label :horas_de_Trabajo ,:class=>'form-label'%>
+			  <span class="icon-case"><i class="fa fa-clock-o"></i></span></br>
+        <div class="col col-md-9">
+        <%=f.number_field :horas,:class=>'form-control'%>
+      </div>
 				<!-- <input type="text" name="society" id="society" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Société' doit être renseigné."/> -->
         <div class="validation"></div>
 			</div>
       <div class="form-group">
-        <p>Experiencia en <span>*</span></p>
-        <span class="icon-case"><i class="fa fa-comment-o"></i></span>
-        <%=f.text_field :experiencia%>
+        <%= f.label :experienca_en ,:class=>'form-label'%>
+        <span class="icon-case"><i class="fa fa-comment-o"></i></span></br>
+        <div class="col col-md-9">
+          <%=f.text_field :experiencia,:class=>'form-control'%>
+        </div>
         <!-- <input type="text" name="sujet" id="sujet" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Sujet' doit être renseigné."/> -->
         <div class="validation"></div>
       </div>
@@ -77,38 +93,48 @@ navbar {
         <div class="validation"></div>
 			</div> -->
 	   </div>
-	   <div class="rightcontact">
+	   <div class="container col col-md-6">
 			<div class="form-group">
-			  <p>Ciudad <span>*</span></p>
-			  <span class="icon-case"><i class="fa fa-building-o"></i></span>
-        <%=f.text_field :ciudad %>
+        <%= f.label :ciudad ,:class=>'form-label'%>
+			  <span class="icon-case"><i class="fa fa-building-o"></i></span></br>
+        <div class="col col-md-9">
+        <%=f.text_field :ciudad,:class=>'form-control' %>
+      </div>
 			  <!-- <input type="text" name="ville" id="ville" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Ville' doit être renseigné."/> -->
         <div class="validation"></div>
 			</div>
 			<div class="form-group">
-			  <p>Idiomas<span>*</span></p>
-			  <span class="icon-case"><i class="fa fa-phone"></i></span>
-        <%=f.text_field :idiomas%>
+        <%= f.label :idiomas,:class=>'form-label'%>
+			  <span class="icon-case"><i class="fa fa-phone"></i></span></br>
+        <div class="col col-md-9">
+        <%=f.text_field :idioma,:class=>'form-control'%>
+      </div>
 				<!-- <input type="text" name="phone" id="phone" data-rule="maxlen:10" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Téléphone' doit être renseigné. Minimum 10 chiffres"/> -->
         <div class="validation"></div>
 			</div>
 			<div class="form-group">
-			  <p>Cargo <span>*</span></p>
-			  <span class="icon-case"><i class="fa fa-info"></i></span>
-        <%=f.text_field :cargo%>
+        <%= f.label :cargo,:class=>'form-label'%>
+			  <span class="icon-case"><i class="fa fa-info"></i></span></br>
+        <div class="col col-md-9">
+        <%=f.text_field :cargo,:class=>'form-control'%>
+
+      </div>
         <!-- <input type="text" name="fonction" id="fonction" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Fonction' doit être renseigné."/> -->
         <div class="validation"></div>
 			</div>
 
 			<div class="form-group">
-			  <p>Habilidades <span>*</span></p>
-			  <span class="icon-case"><i class="fa fa-comments-o"></i></span>
-        <%=f.text_field :habilidades%>
+        <%= f.label :habilidades ,:class=>'form-label'%>
+			  <span class="icon-case"><i class="fa fa-comments-o"></i></span></br>
+        <div class="col col-md-9">
+        <%=f.text_field :habilidades,:class=>'form-control'%>
+      </div>
         <!-- <textarea name="message" rows="14" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Message' doit être renseigné."></textarea> -->
         <div class="validation"></div>
 			</div>
 	   </div>
 	  </div>
-    <button type="submit" class="bouton-contact">Send</button>
-
+    <button type="submit" class="btn btn-primary">Buscar</button>
+  </div>
+</div>
 <%end%>

@@ -41,16 +41,27 @@ class PostsController < ApplicationController
       @users=[]
       @count=0
       @post=Post.new
-      @titulos=search_params[:titulo].split(',')
-      @postgrados=search_params[:post_grado].split(',')
-      @cargos=search_params[:cargo].split(',')
-      @experiencias=search_params[:experiencia].split(',')
-      @habilidades=search_params[:habilidades].split(',')
-      @idiomas=search_params[:idiomas].split(',')
-
-      @educations=Education.where(title: [@titulos,@postgrados])
-      @experiences=Experience.where(job_title: @cargos,job_description: @experiencias)
-      @knowledges=Knowledge.where(description: @habilidades)
+      if search_params[:titulo]
+        @titulos=search_params[:titulo].capitalize.split(',')
+      end
+      if search_params[:post_grado]
+        @postgrados=search_params[:post_grado].split(',')
+      end
+      if search_params[:cargo]
+        @cargos=search_params[:cargo].split(',')
+      end
+      if search_params[:experiencia]
+        @experiencias=search_params[:experiencia].split(',')
+      end
+      if search_params[:habilidades]
+        @habilidades=search_params[:habilidades].split(',')
+      end
+      if search_params[:idiomas]
+        @idiomas=search_params[:idiomas].split(',')
+      end
+      @educations=Education.where("title ~* ?", @titulos)+Education.where("title ~* ?",@postgrados)
+      @experiences=Experience.where("job_title ~* ?", @cargos)+Experience.where("job_description ~* ? ",@experiencias)
+      @knowledges=Knowledge.where("description ~* ?",@habilidades)
       @languages=Language.where(name:@idiomas)
       @educations.each do |education|
         @user=User.find(education.user.id)
