@@ -37,7 +37,7 @@ navbar {
     </div>
   </div>
   <div class="panel-footer well">
-   <div class="info"><a href="" target="_blank"><p> Busca <i class="fa fa-search"></i> lo que necesites </p></a></div>
+   <div class="info"><p> Busca <i class="fa fa-search"></i> lo que necesites </p></div>
    	<%= form_for :post, url: '/resultados/busqueda' do |f| %>
     <%= f.hidden_field :user_id,:value => current_user.id%>
 	  <h2>Llena los siguientes campos, como requisito para el puesto laboral :</h2>

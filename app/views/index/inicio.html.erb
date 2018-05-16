@@ -55,14 +55,18 @@
           <div class="caption">
             <h1 class="animated fadeInLeftBig"><span>contactate</span></h1>
             <p class="animated fadeInRightBig carousel-letters">publica - informate - comparte</p>
+            <%if !user_signed_in?%>
             <a data-scroll class="btn btn-start animated fadeInUpBig" href="/users/sign_up">Empezar</a>
+            <%end%>
           </div>
         </div>
         <div class="item" style="background-image: url(red2.jpg)">
           <div class="caption">
             <h1 class="animated fadeInLeftBig"> <span>Unete</span></h1>
             <p class="animated fadeInRightBig carousel-letters">A la mas grande red social de bolivia</p>
+            <%if !user_signed_in?%>
             <a data-scroll class="btn btn-start animated fadeInUpBig" href="/users/sign_up">Unirme</a>
+            <%end%>
           </div>
         </div>
       </div>

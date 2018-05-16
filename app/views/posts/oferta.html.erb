@@ -4,6 +4,7 @@
       <h1 style="border-bottom: 1px solid #A6AAA9; color: #000000;">Personas Calificadas </h1>
       <h3>Se encontraron <%=@users.size%> personas que cumplen su requerimimento</h3>
       <br>
+      <%if @ids.size>0%>
       <%= form_for :post, url: '/posts/oferta' do |f| %>
       <%= f.hidden_field :user_id,:value => current_user.id%>
           <%=f.hidden_field :titulo,:value => @titulos%>
@@ -18,8 +19,9 @@
           <!-- <textarea name="message" rows="14" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Message' doit être renseigné."></textarea> -->
           <div class="validation"></div>
       <div class="container">
-      <button type="submit " class="btn btn-primary">Publicar</button>
-
+      <button type="submit " class="btn btn-primary">Publicar a todos</button>
+      <p><i>(El proceso puede tardar unos pocos minutos debido a que se enviaran notificaciones a los perfiles y a los correos electronicos de los ofertados)</i></p>
+      <%end%>
       <%end%>
       </div>
       <!-- Three columns of text below the carousel -->

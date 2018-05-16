@@ -67,7 +67,13 @@ class Post < ActiveRecord::Base
     if experiencia.size>0
       resp+="  Con experiencia en areas de: "+experiencia+"\n"
     end
-    resp+= "  Si tu curriculum cumple con los anteriores requisitos, comunicate con nosotros\n"+ "Contactacte con: "+contact+" a este numero de referencia: " +fijo+"\n"
+    if !contact
+      contact=""
+    end
+    if !fijo
+      fijo=""
+    end
+    resp+= "  Si tu curriculum cumple con los anteriores requisitos, comunicate con nosotros\n"+ "Contactacte con: "+contact+"\n a este numero de referencia: " +fijo+"\n"
     resp
   end
   def send_notice_mail(user)
