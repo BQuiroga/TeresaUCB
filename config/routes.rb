@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :suggestions
+  resources :posts
   devise_for :users, :controllers => { registrations: 'registrations' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -14,6 +15,8 @@ Rails.application.routes.draw do
   match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
   get '/inicio'=> 'index#inicio'
   get '/users/profile'=>'users#profile'
+  get 'post/:id/edit'=>'posts#edit'
+  put 'post/update'=>'posts#update'
   get 'education/edit/:id'=>'educations#edit'
   put 'education/update'=> 'educations#update'
   get 'experience/edit/:id'=>'experiences#edit'

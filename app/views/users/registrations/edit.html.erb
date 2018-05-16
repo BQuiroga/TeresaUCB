@@ -12,21 +12,21 @@
           <div class="form-group">
             <%= f.label :nombre ,:class=>'form-label'%><br />
             <div class="col col-md-6">
-              <%= f.text_field :name,:class=>'form-control'%>
+              <%= f.text_field :name,:class=>'form-control',:maxlength=>'30'%>
             </div>
           </div>
           <%if !current_user.is_company?%>
             <div class="form-group">
               <%= f.label :apellido,:class=>'form-label' %><br />
               <div class="col col-md-6">
-                <%= f.text_field :last_name,:class=>'form-control'%>
+                <%= f.text_field :last_name,:class=>'form-control',:maxlength=>'30'%>
               </div>
             </div>
           <%end%>
           <div class="form-group">
             <%= f.label :email,:class=>'form-label'  %><br />
             <div class="col col-md-6">
-              <%= f.email_field :email, autofocus: true,:class=>'form-control' %>
+              <%= f.email_field :email, autofocus: true,:class=>'form-control' ,:maxlength=>'50'%>
             </div>
           </div>
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -83,7 +83,7 @@
 <h3>Informacion Empresarial</h3>
 <%= form_for :company_information, url: '/company/update' do |f| %>
   <div class="form-group">
-    <%= f.label :Direccion,:class=>'form-label' %><br />
+    <%= f.label :Direccion,:class=>'form-label' ,:maxlength=>'100'%><br />
     <div class="col col-md-6">
       <%= f.text_field :address,:class=>'form-control'%>
     </div>
@@ -91,13 +91,13 @@
   <div class="form-group">
     <%= f.label :correo_de_contacto,:class=>'form-label' %><br />
     <div class="col col-md-6">
-      <%= f.email_field :contact_email, autofocus: true ,:class=>'form-control'%>
+      <%= f.email_field :contact_email, autofocus: true ,:class=>'form-control',:maxlength=>'50'%>
     </div>
     </div>
     <div class="form-group">
     <%= f.label :nombre_de_contacto,:class=>'form-label' %><br />
     <div class="col col-md-6">
-      <%= f.text_field :contact_name,:class=>'form-control' %>
+      <%= f.text_field :contact_name,:class=>'form-control',:maxlength=>'50' %>
     </div>
     </div>
     <div class="field">
@@ -109,7 +109,7 @@
     <div class="form-group">
     <%= f.label :Telefono_Fijo,:class=>'form-label' %><br/>
     <div class="col col-md-6">
-    <%= f.number_field :phone,:class=>'form-control' %>
+    <%= f.number_field :phone,:class=>'form-control',:max=>'99999999999',:min=>'1000000' %>
   </div>
   </div>
   <div class="form-group">
@@ -122,7 +122,7 @@
   <div class="form-group">
     <%= f.label :descripcion ,:class=>'form-label'%></br>
     <div class="col col-md-6">
-    <%= f.text_area  :description,:class=>'form-control' %><br>
+    <%= f.text_area  :description,:class=>'form-control' ,:maxlength=>'300'%><br>
   </div>
   </div>
       <%= f.hidden_field :user_id, :value => current_user.id%>
@@ -138,19 +138,19 @@
   <div class="form-group">
     <%= f.label :Direccion,:class=>'form-label' %><br />
     <div class="col col-md-6">
-      <%= f.text_field :address,:class=>'form-control'%>
+      <%= f.text_field :address,:class=>'form-control',:maxlength=>'100'%>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :Telefono_Fijo,:class=>'form-label' %><br/>
     <div class="col col-md-6">
-      <%= f.number_field :phone,:class=>'form-control' %>
+      <%= f.number_field :phone,:class=>'form-control',:max=>'999999999999',:min=>'1000000' %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :celular,:class=>'form-label' %><br/>
     <div class="col col-md-6">
-      <%= f.number_field :cellphone,:class=>'form-control' %>
+      <%= f.number_field :cellphone,:class=>'form-control',:max=>'99999999999',:min=>'1000000' %>
     </div>
   </div>
   <div class="form-group">

@@ -92,10 +92,26 @@ class PostsController < ApplicationController
     Post.create(post_params)
     redirect_to '/users/profile'
   end
+  def edit
+    @post=Post.find(params[:id])
+    if current_user.id!= @post.user.id
+      throwUnauthorized
+      return
+    else
+    end
+  end
+  def update
+    @post=Post.find(post_params_for_edit[:id])
+    @post.update(post_params)
+    redirect_to '/users/profile', notice: 'Editado!'
+  end
 
   private
   def post_params
     params.require(:post).permit(:body,:user_id,:requiring)
+  end
+  def post_params_for_edit
+    params.require(:post).permit(:body,:id,:requiring)
   end
   def picture_params
     params.require(:post).permit(:image)

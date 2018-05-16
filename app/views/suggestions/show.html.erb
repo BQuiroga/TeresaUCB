@@ -6,8 +6,9 @@
     </div>
     <div class="panel-body">
       <strong>Comentario:</strong>
+      <p id='texto'>
       <%= @suggestion.comment %>
-      <p>
+    </p>
       <div>
         <%if @suggestion.sugestion_user(current_user.id)%>
           <%= link_to 'Editar comentario', edit_suggestion_path(@suggestion) ,:class=>"btn btn-gray"%> |
@@ -27,5 +28,8 @@
   background-color: #e7e7e7;
   color: black;
   border: 1px solid #028fcc;
+}
+#texto{
+  word-wrap: break-word;
 }
 </style>

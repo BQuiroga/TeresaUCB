@@ -1,0 +1,22 @@
+<%= form_for @post, url: '/post/update', html: { method: :put } do |f| %>
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2>Editar estado</h2>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <%= f.label :estado_anterior,:class=>'form-label' %>
+        <%=f.text_area :body,:class=>'form-control'%>
+      </div>
+      <%=f.hidden_field :user_id, :value => current_user.id%>
+      <%=f.hidden_field :requiring,:value=>false%>
+      <%=f.hidden_field :id, :value => @post.id%>
+      <div class="actions">
+        <%= f.submit "Guardar",:class=>'btn btn-success' %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

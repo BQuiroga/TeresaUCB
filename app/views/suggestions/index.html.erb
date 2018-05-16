@@ -15,8 +15,8 @@
       <tbody>
         <% @suggestions.each do |suggestion| %>
           <tr>
-            <td><%= suggestion.comment %></td>
-            <td><%= suggestion.user.name %></td>
+            <td class="tabla"><%= suggestion.comment %></td>
+            <td><p><%= suggestion.user.name %></p></td>
             <td><%= link_to 'Mostrar Completo', suggestion %></td>
           </tr>
         <% end %>
@@ -28,4 +28,20 @@
 
 <br>
 
-<%= link_to 'New Suggestion', new_suggestion_path %>
+<%= link_to 'Nueva Sugerencia', new_suggestion_path %>
+<script>
+function truncateText(selector, maxLength) {
+    var element = document.querySelector(selector),
+        truncated = element.innerText;
+
+    if (truncated.length > maxLength) {
+        truncated = truncated.substr(0,maxLength) + '...';
+    }
+    return truncated;
+}
+
+var datos = document.getElementsByClassName('tabla')
+for (var i=0; i<datos.length;i++){
+    datos[i].innerHTML = datos[i].innerText.substr(0,50)+'...';
+}
+</script>

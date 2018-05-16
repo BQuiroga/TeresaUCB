@@ -82,7 +82,7 @@ nav select {display: none;}
         <li><%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link navbar-text'  %></li>
         <li class="pull-right">
           <%= form_for :user, url: '/busqueda/usuarios' do |f| %>
-              <%= f.text_field :name,:style=>"height:500%",:id=>"search-box",placeholder:"Buscar"%>
+              <%= f.text_field :name,:style=>"height:500%",:id=>"search-box",placeholder:"Buscar",:maxlength=>30%>
               <%= f.submit "Buscar",:class=>"btn btn-default" %>
           <% end %>
         </li>
@@ -191,13 +191,13 @@ nav select {display: none;}
           <p>Los comentarios son completamente Anonimos</p>
           <div class="field">
             <%= f.label :Agrega_tu_comentario_aqui %>:<br>
-            <%= f.text_area :comment, class: "form-control" %>
+            <%= f.text_area :comment, class: "form-control",:id=>'text_form',:maxlength=>600 %>
           </div>
           <div class="field">
             <%= f.hidden_field :user_id, :value=>current_user.id %>
           </div>
           <div class="actions">
-            <%= f.submit "Enviar", class: "btn btn-success" %>
+            <%= f.submit "Enviar", class: "btn btn-success",:id=>'boton_enviar',:disabled=>true%>
           </div>
         <% end %>
 
@@ -244,7 +244,15 @@ botonComentario.onclick =function(){
   // alert("algo raro");
   modalComentario.style.display ="block";
 };
-
+$(document).ready(function(){
+    $('#boton_enviar').attr('disabled',true);
+    $('#text_form').keyup(function(){
+        if($(this).val().length !=0)
+          $('#boton_enviar').attr('disabled', false);
+        else
+            $('#boton_enviar').attr('disabled',true);
+    })
+});
 // Create the dropdown base
 // $("<select />").appendTo("nav");
 //
