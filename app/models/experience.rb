@@ -1,6 +1,7 @@
 class Experience < ActiveRecord::Base
 	belongs_to :resume
 	before_create :validate_date,:set_anonim_salary
+	before_update :validate_date
 	def set_anonim_salary
 		if salary_range==nil
 			salary_range="Anonimo"

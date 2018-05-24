@@ -68,7 +68,7 @@
         <br>
         <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
         <div class="actions field col col-md-3 col-xs-3" style="top:10px">
-          <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
+          <%= f.submit "Guardar" , :class =>"btn btn-primary",:id=>'boton_academico'%>
         </div>
         <br><br><br><br><br><br><br><br><br><br>
       <% end %>
@@ -107,11 +107,11 @@
     <%= form_for :experience, url: '/experience/new' do |f| %>
     <div class="field col col-md-4">
       <%= f.label :cargo_profesional %>:<br />
-      <%= f.text_field :job_title%>
+      <%= f.text_field :job_title,:id=>'cargo'%>
     </div>
     <div class="field col col-md-4">
       <%= f.label :empresa %>:<br />
-      <%= f.text_field :company_name%>
+      <%= f.text_field :company_name,:id=>'empresa'%>
     </div>
     <div class="field col col-md-4">
       <%= f.label :actividades_a_cargo %>:<br />
@@ -162,7 +162,7 @@
     <div class="actions">
       <br>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <%= f.submit "Guardar", :class =>"btn btn-primary" %>
+      <%= f.submit "Guardar", :class =>"btn btn-primary" ,:id=>'boton_laboral'%>
     </div>
     <% end %>
   </div>
@@ -201,7 +201,7 @@
     <%= form_for :course, url: '/course/new' do |f| %>
       <div class="field col col-md-4 col-xs-4">
         <%= f.label :nombre_del_curso_o_seminario %><br />
-        <%= f.text_field :name%>
+        <%= f.text_field :name, :id=>'nombre_seminario'%>
       </div>
       <div class="field col col-md-4 col-xs-4">
         <%= f.label :fecha %>
@@ -222,7 +222,7 @@
         <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
       <div class="actions">
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
+        <%= f.submit "Guardar" , :class =>"btn btn-primary",:id=>'boton_seminario'%>
       </div>
     <% end %>
   </div>
@@ -259,7 +259,7 @@
       </div>
       <div class="field col col-md-4 col-xs-4">
         <%= f.label :Nombre %><br />
-        <%= f.text_field :name%>
+        <%= f.text_field :name,:id=>'nombre_publicacion'%>
       </div>
       <div class="field col col-md-4 col-xs-4">
         <%= f.label :lugar %><br />
@@ -272,7 +272,7 @@
       </div>
       <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
       <div class="actions">
-        <%= f.submit "Guardar", :class =>"btn btn-primary" %>
+        <%= f.submit "Guardar", :class =>"btn btn-primary",:id=>'boton_publicaciones' %>
       </div>
     <% end %>
   </div>
@@ -302,7 +302,7 @@
     <%= form_for :merit, url: '/merit/new' do |f| %>
     <div class="field col col-md-4 col-xs-4">
       <%= f.label :Merito %>:
-      <%= f.text_field :name%>
+      <%= f.text_field :name, :id=>'merito'%>
 
     </div>
     <div class="field col col-md-4 col-xs-4">
@@ -311,7 +311,7 @@
     </div>
     <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
     <div class="actions">
-      <%= f.submit "Guardar", :class =>"btn btn-primary" %>
+      <%= f.submit "Guardar", :class =>"btn btn-primary" ,:id=>'boton_meritos'%>
     </div>
     <br>
     <% end %>
@@ -342,7 +342,7 @@
     <%= form_for :membership, url: '/member/new' do |f| %>
     <div class="field col col-md-4 col-xs-4">
       <%= f.label :titulo %>:<br />
-      <%= f.text_field :name%>
+      <%= f.text_field :name,:id=>'membresia'%>
     </div>
     <div class="field col col-md-4 col-xs-4">
       <%= f.label :comunidad %>:<br />
@@ -356,7 +356,7 @@
     <br><br><br>
 
     <div class="actions" style="top:20px">
-      <%= f.submit "Guardar", :class =>"btn btn-primary" %>
+      <%= f.submit "Guardar", :class =>"btn btn-primary" ,:id=>'boton_membresias'%>
     </div>
     <br>
     <% end %>
@@ -387,12 +387,12 @@
       <%= form_for :knowledge, url: '/knowledge/new' do |f| %>
       <div class="field">
         <%= f.label :conocimiento %><br />
-        <%= f.text_field :description%>
+        <%= f.text_field :description,:id=>'conocimiento'%>
       </div>
       <br>
       <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
       <div class="actions">
-        <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
+        <%= f.submit "Guardar" , :class =>"btn btn-primary",:id=>'boton_conocimmiento'%>
       </div>
       <% end %>
     </div>
@@ -422,12 +422,12 @@
       <%= form_for :skill, url: '/skill/new' do |f| %>
         <div class="field">
           <%= f.label :habilidad %><br />
-          <%= f.text_field :description%>
+          <%= f.text_field :description,:id=>'habilidad'%>
         </div>
         <br>
             <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
         <div class="actions">
-          <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
+          <%= f.submit "Guardar" , :class =>"btn btn-primary",:id=>'boton_habilidades'%>
         </div>
       <% end %>
     </div>
@@ -465,7 +465,7 @@
     <%= form_for :language, url: '/language/new' do |f| %>
       <div class="field">
         <%= f.label :idioma %><br />
-        <%= f.text_field :name%>
+        <%= f.text_field :name,:id=>'idioma'%>
       </div>
       <br>
       <div>
@@ -483,7 +483,7 @@
           <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
 
       <div class="actions">
-        <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
+        <%= f.submit "Guardar" , :class =>"btn btn-primary",:id=>'boton_idiomas'%>
       </div>
       <% end %>
     </div>
@@ -518,7 +518,7 @@
     <%= form_for :referential, url: '/referential/new' do |f| %>
     <div class="field">
       <%= f.label :nombre_de_la_persona_de_referencia %>:<br />
-      <%= f.text_field :name %>
+      <%= f.text_field :name,:id=>'referencia' %>
     </div>
     <br>
       <div class="field">
@@ -533,13 +533,92 @@
     <br>
     <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
     <div class="actions">
-      <%= f.submit "Guardar", :class =>"btn btn-primary" %>
+      <%= f.submit "Guardar", :class =>"btn btn-primary" ,:id=>'boton_referencias'%>
     </div>
   <% end %>
   </div>
 </div>
 </div>
 </div>
+
+
+
+
+<script>
+$(document).ready(function(){
+    $('#boton_academico').attr('disabled',true);
+    $('#filtrar').keyup(function(){
+        if($(this).val().length !=0)
+          $('#boton_academico').attr('disabled', false);
+        else
+            $('#boton_academico').attr('disabled',true);
+    })
+
+    $('#boton_laboral').attr('disabled',true);
+    $('#cargo').keyup(function(){
+        if($(this).val().length !=0 )
+          $('#boton_laboral').attr('disabled', false);
+        else
+            $('#boton_laboral').attr('disabled',true);
+    })
+    $('#boton_seminario').attr('disabled',true);
+    $('#nombre_seminario').keyup(function(){
+        if($(this).val().length !=0)
+          $('#boton_seminario').attr('disabled', false);
+        else
+            $('#boton_seminario').attr('disabled',true);
+    })
+    $('#boton_publicaciones').attr('disabled',true);
+    $('#nombre_publicacion').keyup(function(){
+        if($(this).val().length !=0)
+          $('#boton_publicaciones').attr('disabled', false);
+        else
+            $('#boton_publicaciones').attr('disabled',true);
+    })
+    $('#boton_meritos').attr('disabled',true);
+    $('#merito').keyup(function(){
+        if($(this).val().length !=0)
+          $('#boton_meritos').attr('disabled', false);
+        else
+            $('#boton_meritos').attr('disabled',true);
+    })
+    $('#boton_membresias').attr('disabled',true);
+    $('#membresia').keyup(function(){
+        if($(this).val().length !=0)
+          $('#boton_membresias').attr('disabled', false);
+        else
+            $('#boton_membresias').attr('disabled',true);
+    })
+    $('#boton_conocimmiento').attr('disabled',true);
+    $('#conocimiento').keyup(function(){
+        if($(this).val().length !=0)
+          $('#boton_conocimmiento').attr('disabled', false);
+        else
+            $('#boton_conocimmiento').attr('disabled',true);
+    })
+    $('#boton_habilidades').attr('disabled',true);
+    $('#habilidad').keyup(function(){
+        if($(this).val().length !=0)
+          $('#boton_habilidades').attr('disabled', false);
+        else
+            $('#boton_habilidades').attr('disabled',true);
+    })
+    $('#boton_idiomas').attr('disabled',true);
+    $('#idioma').keyup(function(){
+        if($(this).val().length !=0)
+          $('#boton_idiomas').attr('disabled', false);
+        else
+            $('#boton_idiomas').attr('disabled',true);
+    })
+    $('#boton_referencias').attr('disabled',true);
+    $('#referencia').keyup(function(){
+        if($(this).val().length !=0)
+          $('#boton_referencias').attr('disabled', false);
+        else
+            $('#boton_referencias').attr('disabled',true);
+    })
+});
+</script>
 
 
 <script>
