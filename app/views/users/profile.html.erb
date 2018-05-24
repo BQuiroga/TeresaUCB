@@ -197,7 +197,7 @@
     <%if (@posts)%>
     	<% @posts.each do |post| %>
         <div class="bs-callout bs-callout-danger"style="background-color: #D8D8D8">
-          <%= link_to '<span class="glyphicon glyphicon-pencil pull-right ">Editar</span>'.html_safe, edit_post_path(post) %>
+          <%= link_to '<button class="glyphicon glyphicon-pencil pull-right "></button>'.html_safe, edit_post_path(post) %>
           <h5><%= post.user_name %></h5>
           <p class="format-text">
             <% post.body.split("\n").each do |line|  %>

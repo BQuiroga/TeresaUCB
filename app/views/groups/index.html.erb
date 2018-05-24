@@ -37,7 +37,7 @@
  <%= form_for :group, url: '/nuevo/grupo' do |f| %>
    <div  class="field col col-xs-3">
      <%= f.label :nombre_del_grupo %>:
-     <%= f.text_field :name%>
+     <%= f.text_field :name,:id=>'nombre'%>
    </div>
 
      <div class="field col-xs-3">
@@ -46,7 +46,7 @@
      <%= f.hidden_field :user_id, :value => current_user.id%>
    </div>
    <div class="actions col-xs-3">
-     <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
+     <%= f.submit "Guardar" , :class =>"btn btn-primary",:id=>'boton_grupos'%>
    </div>
    <div class="container">
      <button class="btn btn-default">
@@ -56,3 +56,12 @@
    <br><br><br><br><br>
  <% end %>
  </div>
+ <script>
+$('#boton_grupos').attr('disabled',true);
+ $('#nombre').keyup(function(){
+     if($(this).val().length !=0)
+       $('#boton_grupos').attr('disabled', false);
+     else
+         $('#boton_grupos').attr('disabled',true);
+ })
+ </script>
