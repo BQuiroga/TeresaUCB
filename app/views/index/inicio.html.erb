@@ -1,3 +1,5 @@
+<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+
 <div class="collapse navbar-collapse navbar-fixed-top navbar-inverse">
 
   <img src="logocato.png" alt="logo" style="width:50px;height:50px;">
@@ -76,21 +78,7 @@
       <a id="tohash" href="#services"><i class="fa fa-angle-down"></i></a>
 
     </div><!--/#home-slider-->
-    <div class="main-nav">
-      <!-- <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="index.html">
-            <h1></h1>
-          </a>
-        </div>
-      </div> -->
-  </div><!--/#main-nav-->
+
 </section>
 
     <section id="services">
@@ -203,3 +191,60 @@
         </div>
       </div>
     </section><!--/#about-us-->
+    <style>
+    #contact-us{
+      background-image:url(contact-bg.jpg);
+    }
+    </style>
+    <section id="contact">
+      <div id="google-map" class="wow fadeIn" data-latitude="-17.3715458" data-longitude="-66.1447186" data-wow-duration="1000ms" data-wow-delay="400ms"></div>
+      <div id="contact-us" class="parallax">
+        <div class="container">
+          <div class="row">
+            <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp service-text" data-wow-duration="1000ms" data-wow-delay="300ms">
+              <h2>Contactanos</h2>
+              <p class="service-text">Si tienes alguna sugerencia, duda o demas puedes aproximarte a nuestras instalaciones o contactarte con nuestro personal tecnico</p>
+            </div>
+          </div>
+          <div class="contact-form wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
+            <div class="row">
+              <div class="col-sm-6">
+                <form id="main-contact-form" name="contact-form" method="post" action="#">
+                  <div class="row  wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Nombre" required="required">
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Correo electronico" required="required">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" name="subject" class="form-control" placeholder="Motivo" required="required">
+                  </div>
+                  <div class="form-group">
+                    <textarea name="message" id="message" class="form-control" rows="4" placeholder="Ingresa tu mensaje" required="required"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn-submit">Enviar</button>
+                  </div>
+                </form>
+              </div>
+              <div class="col-sm-6">
+                <div class="contact-info wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+                  <p class="service-text">Nuestro personal tecnico se encuentra en constante apoyo a los usuarios del sistema, no dudes en llamarlo si tienes algun problema.</p>
+                  <ul class="address">
+                    <li><i class="fa fa-map-marker"></i> <span class="service-text"> Nombre:</span><span style="color:#028fcc"> Brandon Quiroga Gutierrez</span> </li>
+                    <li><i class="fa fa-phone"></i> <span class="service-text"> Celular:</span><span style="color:#028fcc"> 77936031</span>  </li>
+                    <li> <span class="service-text"> Email:</span><span style="color:#028fcc"> b.quirogag95@gmail.com</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!--/#contact-->
