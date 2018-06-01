@@ -146,4 +146,11 @@ class Education < ActiveRecord::Base
     nueva["Aun no ha egresado"]=hash["Aun no ha egresado"]
     nueva.sort_by {|key,value| key}
   end
+  def cato_titles
+    ["Todas las carreras","Bachiller","Antroplogía","Comunicación Social","Derecho",
+      "Filosofía y Letras","Psicología","Ingeniería Ambiental",
+      "Ingeniería Civil","Ingeniería Industrial","Ingeniería Química",
+      "Ingeniería Mecatrónica","Ingeniería de Sistemas","Ingeniería de Telecomunicaciones",
+      "Administración de Empresas","Contaduría Pública","Ingeniería Comercial","Ingeniería Financiera"]
+  end
 end

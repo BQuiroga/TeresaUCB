@@ -1,40 +1,536 @@
 <a href="/reportes"><button class="btn btn-primary">Volver Atras</button></a>
 <div class="container">
-<h1>Lista de reportes</h1>
+  <h2>Lista de reportes</h2>
   <div class="panel panel-default">
-    <div class="panel-heading"><div class="panel-title"><h3>Personas registradas por fecha</h3></div></div>
-      <div class="panel-body">
-        <ul class="list-group">
-          <li class="list-group-item">
-              <button class="btn btn-warning btn-sm pull-right" id="mostrarFecha" onclick="showFecha()" style="display:none; ">Mostrar Gráfica Estadística</button>
-              <button class="btn btn-warning btn-sm pull-right" id="ocultarFecha" onclick="showFecha()">Ocultar Gráfica Estadística</button>
-              <div>
-                <div class="container">
-                  <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover" style="text-align: center;">
-                      <tr>
-                        <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
-                        <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
-                      </tr>
-                      <% @date_users.each do |date|%>
-                        <tr>
-                          <td>&nbsp;<%=date[0]%>&nbsp;</td>
-                          <td ><%= date[1]%></td>
-                        </tr>
-                        <%end%>
-                      </table>
-                    </div>
-                </div>
-              </div>
-            </li>
-              <li class="list-group-item">
-              <div id="by_date">
-                <%= bar_chart @date_users, stacked: true, donwload: true%>
-              </div>
-            </li>
-        </div>
+    <div class="panel-heading">
+      <div class="panel-title">
+        <h3>Personas registradas por fecha</h3>
       </div>
     </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="center-select">
+            <!-- <input type="text" name="title" id='filtrar' style='width:40%'> -->
+            <select id="carrera" onchange="cambioCarreras()">
+              <%@title_list.each do |x|%>
+                <option><%=x%></option>
+                <%end%>
+            </select>
+          </div>
+        </li>
+      <li class="list-group-item">
+          <div >
+            <div class="table-responsive">
+              <div id="Todas las carreras" class="filtro">
+              <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+                </tr>
+                <% @date_users.each do |date|%>
+                <tr>
+                  <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                  <td ><%= date[1]%></td>
+                </tr>
+                <%end%>
+              </table>
+            </div>
+            <div id="Bachiller" style="display:none;" class="filtro">
+            <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+              <tr>
+                <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+              </tr>
+              <%
+              @educations=Education.where("title ~* ?", "Bachiller")
+              @users=Array.new
+              if @educations
+                @educations.each do |edu|
+                  @users=[edu.user] +@users
+                end
+                if @users.size>1
+                  @users=@users.uniq
+                end
+              end
+              %>
+              <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
+              <% @date_users.each do |date|%>
+              <tr>
+                <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                <td ><%= date[1]%></td>
+              </tr>
+              <%end%>
+
+            </table>
+          </div>
+            <div id="Antroplogía" style="display:none;"  class="filtro">
+            <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+              <tr>
+                <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+              </tr>
+              <%
+              @educations=Education.where("title ~* ?", "Antroplogía")
+              @users=Array.new
+              if @educations
+                @educations.each do |edu|
+                  @users=[edu.user] +@users
+                end
+                if @users.size>1
+                  @users=@users.uniq
+                end
+              end
+              %>
+              <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
+              <% @date_users.each do |date|%>
+              <tr>
+                <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                <td ><%= date[1]%></td>
+              </tr>
+              <%end%>
+            </table>
+          </div>
+          <div id="Comunicación Social" style="display:none;" class="filtro">
+          <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+            <tr>
+              <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
+              <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+            </tr>
+            <%
+            @educations=Education.where("title ~* ?", "Comunicación")
+            @users=Array.new
+            if @educations
+              @educations.each do |edu|
+                @users=[edu.user] +@users
+              end
+              if @users.size>1
+                @users=@users.uniq
+              end
+            end
+            %>
+            <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
+            <% @date_users.each do |date|%>
+            <tr>
+              <td>&nbsp;<%=date[0]%>&nbsp;</td>
+              <td ><%= date[1]%></td>
+            </tr>
+            <%end%>
+
+          </table>
+        </div>
+        <div id="Derecho"style="display:none;"   class="filtro">
+        <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+          <tr>
+            <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
+            <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+          </tr>
+          <%
+          @educations=Education.where("title ~* ?", "Derecho") +Education.where("title ~* ?", "Abogad")
+          @users=Array.new
+          if @educations
+            @educations.each do |edu|
+              @users=[edu.user] +@users
+            end
+            if @users.size>1
+              @users=@users.uniq
+            end
+          end
+          %>
+          <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
+          <% @date_users.each do |date|%>
+          <tr>
+            <td>&nbsp;<%=date[0]%>&nbsp;</td>
+            <td ><%= date[1]%></td>
+          </tr>
+          <%end%>
+
+        </table>
+      </div>
+        <div id="Filosofía y Letras"style="display:none;"   class="filtro">
+        <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+          <tr>
+            <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
+            <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+          </tr><%
+          @educations=Education.where("title ~* ?", "Filosofía")
+          @users=Array.new
+          if @educations
+            @educations.each do |edu|
+              @users=[edu.user] +@users
+            end
+            if @users.size>1
+              @users=@users.uniq
+            end
+          end
+          %>
+          <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
+          <% @date_users.each do |date|%>
+          <tr>
+            <td>&nbsp;<%=date[0]%>&nbsp;</td>
+            <td ><%= date[1]%></td>
+          </tr>
+          <%end%>
+
+        </table>
+      </div>  <div id="Psicología" style="display:none;" class="filtro">
+        <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+          <tr>
+            <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
+            <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+          </tr>
+          <%
+          @educations=Education.where("title ~* ?", "Psicología")
+          @users=Array.new
+          if @educations
+            @educations.each do |edu|
+              @users=[edu.user] +@users
+            end
+            if @users.size>1
+              @users=@users.uniq
+            end
+          end
+          %>
+          <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
+          <% @date_users.each do |date|%>
+          <tr>
+            <td>&nbsp;<%=date[0]%>&nbsp;</td>
+            <td ><%= date[1]%></td>
+          </tr>
+          <%end%>
+
+        </table>
+      </div>  <div id="Ingeniería Ambiental" style="display:none;" class="filtro">
+
+        <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+          <tr>
+            <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
+            <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+          </tr>
+          <%
+          @educations=Education.where("title ~* ?", "Ambiental")
+          @users=Array.new
+          if @educations
+            @educations.each do |edu|
+              @users=[edu.user] +@users
+            end
+            if @users.size>1
+              @users=@users.uniq
+            end
+          end
+          %>
+          <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
+          <% @date_users.each do |date|%>
+          <tr>
+            <td>&nbsp;<%=date[0]%>&nbsp;</td>
+            <td ><%= date[1]%></td>
+          </tr>
+          <%end%>
+
+        </table>
+      </div>  <div id="Ingeniería Civil" style="display:none;" class="filtro">
+        <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+          <tr>
+            <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
+            <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+          </tr>
+          <%
+          @educations=Education.where("title ~* ?", "Civil")
+          @users=Array.new
+          if @educations
+            @educations.each do |edu|
+              @users=[edu.user] +@users
+            end
+            if @users.size>1
+              @users=@users.uniq
+            end
+          end
+          %>
+          <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
+          <% @date_users.each do |date|%>
+          <tr>
+            <td>&nbsp;<%=date[0]%>&nbsp;</td>
+            <td ><%= date[1]%></td>
+          </tr>
+          <%end%>
+
+        </table>
+      </div>  <div id="Ingeniería Industrial" style="display:none;" class="filtro">
+        <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+          <tr>
+            <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
+            <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+          </tr>
+          <%
+          @educations=Education.where("title ~* ?", "Industrial")
+          @users=Array.new
+          if @educations
+            @educations.each do |edu|
+              @users=[edu.user] +@users
+            end
+            if @users.size>1
+              @users=@users.uniq
+            end
+          end
+          %>
+          <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
+          <% @date_users.each do |date|%>
+          <tr>
+            <td>&nbsp;<%=date[0]%>&nbsp;</td>
+            <td ><%= date[1]%></td>
+          </tr>
+          <%end%>
+
+        </table>
+      </div>  <div id="Ingeniería Química" style="display:none;" class="filtro">
+        <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+          <tr>
+            <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
+            <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+          </tr>
+          <%
+          @educations=Education.where("title ~* ?", "Quimic")
+          @users=Array.new
+          if @educations
+            @educations.each do |edu|
+              @users=[edu.user] +@users
+            end
+            if @users.size>1
+              @users=@users.uniq
+            end
+          end
+          %>
+          <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
+          <% @date_users.each do |date|%>
+          <tr>
+            <td>&nbsp;<%=date[0]%>&nbsp;</td>
+            <td ><%= date[1]%></td>
+          </tr>
+          <%end%>
+
+        </table>
+      </div> <div id="Ingeniería Mecatrónica" style="display:none;" class="filtro">
+        <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+          <tr>
+            <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
+            <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+          </tr>
+          <%
+          @educations=Education.where("title ~* ?", "Mecatrónic")
+          @users=Array.new
+          if @educations
+            @educations.each do |edu|
+              @users=[edu.user] +@users
+            end
+            if @users.size>1
+              @users=@users.uniq
+            end
+          end
+          %>
+          <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
+          <% @date_users.each do |date|%>
+          <tr>
+            <td>&nbsp;<%=date[0]%>&nbsp;</td>
+            <td ><%= date[1]%></td>
+          </tr>
+          <%end%>
+
+        </table>
+      </div> <div id="Ingeniería de Sistemas" style="display:none;" class="filtro">
+        <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+          <tr>
+            <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
+            <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+          </tr>
+          <%
+          @educations=Education.where("title ~* ?", "Sistemas")
+          @users=Array.new
+          if @educations
+            @educations.each do |edu|
+              @users=[edu.user] +@users
+            end
+            if @users.size>1
+              @users=@users.uniq
+            end
+          end
+          %>
+          <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
+          <% @date_users.each do |date|%>
+          <tr>
+            <td>&nbsp;<%=date[0]%>&nbsp;</td>
+            <td ><%= date[1]%></td>
+          </tr>
+          <%end%>
+
+        </table>
+      </div>  <div id="Ingeniería de Telecomunicaciones" style="display:none;" class="filtro">
+        <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+          <tr>
+            <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
+            <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+          </tr>
+          <%
+          @educations=Education.where("title ~* ?", "Telecomunicaciones")
+          @users=Array.new
+          if @educations
+            @educations.each do |edu|
+              @users=[edu.user] +@users
+            end
+            if @users.size>1
+              @users=@users.uniq
+            end
+          end
+          %>
+          <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
+          <% @date_users.each do |date|%>
+          <tr>
+            <td>&nbsp;<%=date[0]%>&nbsp;</td>
+            <td ><%= date[1]%></td>
+          </tr>
+          <%end%>
+
+        </table>
+      </div>  <div id="Administración de Empresas" style="display:none;" class="filtro">
+        <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+          <tr>
+            <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
+            <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+          </tr>
+          <%
+          @educations=Education.where("title ~* ?", "Administración de Empresas")
+          @users=Array.new
+          if @educations
+            @educations.each do |edu|
+              @users=[edu.user] +@users
+            end
+            if @users.size>1
+              @users=@users.uniq
+            end
+          end
+          %>
+          <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
+          <% @date_users.each do |date|%>
+          <tr>
+            <td>&nbsp;<%=date[0]%>&nbsp;</td>
+            <td ><%= date[1]%></td>
+          </tr>
+          <%end%>
+
+        </table>
+      </div>  <div id="Contaduría Pública" style="display:none;" class="filtro">
+        <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+          <tr>
+            <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
+            <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+          </tr>
+          <%
+          @educations=Education.where("title ~* ?", "Contaduría")+Education.where("title ~* ?", "Contador")+ Education.where("title ~* ?", "Auditor")
+          @users=Array.new
+          if @educations
+            @educations.each do |edu|
+              @users=[edu.user] +@users
+            end
+            if @users.size>1
+              @users=@users.uniq
+            end
+          end
+          %>
+          <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
+          <% @date_users.each do |date|%>
+          <tr>
+            <td>&nbsp;<%=date[0]%>&nbsp;</td>
+            <td ><%= date[1]%></td>
+          </tr>
+          <%end%>
+
+        </table>
+      </div>  <div id="Ingeniería Comercial" style="display:none;" class="filtro">
+        <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+          <tr>
+            <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
+            <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+          </tr>
+          <%
+          @educations=Education.where("title ~* ?", "Comercial")
+          @users=Array.new
+          if @educations
+            @educations.each do |edu|
+              @users=[edu.user] +@users
+            end
+            if @users.size>1
+              @users=@users.uniq
+            end
+          end
+          %>
+          <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
+          <% @date_users.each do |date|%>
+          <tr>
+            <td>&nbsp;<%=date[0]%>&nbsp;</td>
+            <td ><%= date[1]%></td>
+          </tr>
+          <%end%>
+
+        </table>
+      </div> <div id="Ingeniería Financiera" style="display:none;" class="filtro">
+        <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+          <tr>
+            <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
+            <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
+          </tr>
+          <%
+          @educations=Education.where("title ~* ?", "Financier") +Education.where("title ~* ?", "Finanzas")
+          @users=Array.new
+          if @educations
+            @educations.each do |edu|
+              @users=[edu.user] +@users
+            end
+            if @users.size>1
+              @users=@users.uniq
+            end
+          end
+          %>
+          <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
+          <% @date_users.each do |date|%>
+          <tr>
+            <td>&nbsp;<%=date[0]%>&nbsp;</td>
+            <td ><%= date[1]%></td>
+          </tr>
+          <%end%>
+
+        </table>
+      </div>
+            </div>
+          </div>
+          <button class="btn btn-default btn-sm pull-right" id="mostrarFecha" onclick="showFecha()" style="display:none; ">Mostrar Gráfica Estadística</button>
+          <button class="btn btn-default btn-sm pull-right" id="ocultarFecha" onclick="showFecha()">Ocultar Gráfica Estadística</button>
+          <br><br>
+
+        </li>
+        <li class="list-group-item">
+          <div id="by_date">
+
+
+            <%= bar_chart @date_users, stacked: true, donwload: true%>
+
+
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+  <script>
+    function cambioCarreras(){
+      var selected=document.getElementById("carrera").value;
+      var filtros=document.getElementsByClassName("filtro");
+      for (var i=0; i<filtros.length;i++)
+      {
+        filtros[i].style.display="none";
+      }
+      document.getElementById(selected).style.display="block";
+
+    }
+  </script>
 
     <script>
 
@@ -58,9 +554,25 @@
       }
     }
     $('tr').click(function(){
-    alert( $('tr').index(this) + $('tr').val(this)[0]);
     });
     function showUsers(){
 
     }
     </script>
+    <style>
+    .center-select > select  {
+    margin: 50px;
+    width: 400px;
+    padding: 5px 35px 5px 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    height: 34px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    }
+      .center-select{
+        padding-left:25%;
+      left:30%;
+      }
+    </style>

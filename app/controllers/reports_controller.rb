@@ -58,8 +58,9 @@ class ReportsController < ApplicationController
       throwUnauthorized
       return
     else
-    @date_users=User.group_by_month(:created_at).count
-  end
+      @date_users=User.group_by_month(:created_at).count
+      @title_list=@@r.cato_titles
+    end
   end
   def users_by_university
     if !current_user.is_director
