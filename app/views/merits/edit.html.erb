@@ -1,16 +1,25 @@
-<%= form_for :merit, url: '/merit/update', html: { method: :put } do |f| %>
 <div class="container">
-  <div class="field">
-<%= f.label :Merito %><br />
-<%= f.text_field :name%>
-</div>
-<div class="field">
-<%= f.label :fecha %>
-<%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
-</div>
-<%=f.hidden_field :id, :value => @merit.id%>
-  <div class="actions">
-    <%= f.submit "Guardar" %>
+  <div class="panel panel-default">
+    <div class="panel-heading"><div class="panel-title"><h3>Merito</h3></div></div>
+      <div class="panel-body">
+      </div>
+      <div class="panel-footer well">
+        <%= form_for :merit, url: '/merit/update', html: { method: :put } do |f| %>
+        <div class="container">
+          <div class="field field col col-md-4 col-xs-4">
+        <%= f.label :Merito %><br />
+        <%= f.text_field :name,:class=>"form-control"%>
+        </div>
+        <div class="field col col-md-4 col-xs-4">
+        <%= f.label :fecha %>
+        <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+        </div>
+        <%=f.hidden_field :id, :value => @merit.id%>
+          <div class="actions">
+            <%= f.submit "Guardar",:class =>"btn btn-primary"  %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
-<% end %>

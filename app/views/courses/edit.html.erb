@@ -1,30 +1,34 @@
 <div class="container">
-  <div class="container">
-    <%= form_for :course, url: '/course/update', html: { method: :put } do |f| %>
-      <div class="field">
+  <div class="panel panel-default">
+    <div class="panel-heading"><div class="panel-title"><h3>Curso o Seminario </h3></div></div>
+      <div class="panel-body">
+      </div>
+      <div class="panel-footer well">
+      <%= form_for :course, url: '/course/update', html: { method: :put } do |f| %>
+      <div class="container">
+      <div class="field col col-md-4 col-xs-4">
         <%= f.label :nombre %><br />
-        <%= f.text_field :name%>
+        <%= f.text_field :name,:class=>"form-control"%><br>
+        <%= f.label :carga_horaria %>(Hrs)
+        <%= f.number_field :workload,:class=>"form-control"%>
       </div>
-      <div class="field">
-        <%= f.label :fecha %>
-        <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
-      </div>
-      <div>
+      <div class="field col col-md-4 col-xs-4">
+        <%= f.label :institucion %><br />
+        <%= f.text_field :institution,:class=>"form-control"%><br>
         <%=f.label :yo_di_este_seminario_o_curso%>
         <%= f.select(:given, options_for_select(Course.participations)) %>
       </div>
-      <div>
-        <%= f.label :carga_horaria %><br />
-        <%= f.number_field :workload%> Hrs.
+      <div class="field col col-md-4 col-xs-4">
+        <%= f.label :fecha %>
+        <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
       </div>
-      <div>
-        <%= f.label :institucion %><br />
-        <%= f.text_field :institution%>
-      </div>
+
       <%=f.hidden_field :id, :value => @course.id%>
         <div class="actions">
-          <%= f.submit "Guardar" %>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <%= f.submit "Guardar", :class =>"btn btn-primary" %>
         </div>
       <% end %>
     </div>
+</div>
 </div>

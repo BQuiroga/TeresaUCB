@@ -40,17 +40,17 @@
           <%= f.label :Grado_academico %>:
           <!-- <%= f.select(:title,["Licenci>atura", "Maestria", "Doctorado", "Post Grado"])%> -->
           <div>
-            <%=f.text_field :title, :id=>'filtrar', :style=>'width:115%'%>
-            <%= f.select :lista,@title_list,{},class:"form-control col-12 col-md-9 col-xs-12",:id=>'titulos',:style=>"margin: 10px; width: 200px;height: 170px;",:size=>'10',:name=>'type[]'%>
+            <%=f.text_field :title, :id=>'filtrar',:class=>"form-control"%>
+            <%= f.select :lista,@title_list,{},class:"form-control col-12 col-md-9 col-xs-12",:id=>'titulos',:style=>"margin: 10px; width: 230px;height: 170px;",:size=>'10',:name=>'type[]'%>
           </div>
         </div>
         <div class="field col col-md-3 col-xs-3">
           <%= f.label :institucion %>:
-          <%= f.text_field :school_name%>
+          <%= f.text_field :school_name,:class=>"form-control"%>
         </div>
         <div class="field col col-md-3 col-xs-3">
           <%= f.label :descripcion %>:
-          <%= f.text_area :description%>
+          <%= f.text_area :description,:class=>"form-control"%>
         </div>
         <br>
         <div>
@@ -107,36 +107,33 @@
     <%= form_for :experience, url: '/experience/new' do |f| %>
     <div class="field col col-md-4">
       <%= f.label :cargo_profesional %>:<br />
-      <%= f.text_field :job_title,:id=>'cargo'%>
-    </div>
-    <div class="field col col-md-4">
+      <%= f.text_field :job_title,:id=>'cargo',:class=>"form-control"%>
+      <br>
       <%= f.label :empresa %>:<br />
-      <%= f.text_field :company_name,:id=>'empresa'%>
+      <%= f.text_field :company_name,:id=>'empresa',:class=>"form-control"%>
+      <br>
     </div>
     <div class="field col col-md-4">
       <%= f.label :actividades_a_cargo %>:<br />
-      <%= f.text_field :job_description%>
+      <%= f.text_field :job_description,:class=>"form-control"%><br>
+      <%= f.label :personas_bajo_mi_cargo %>:<br />
+      <%= f.number_field :in_my_charge,:class=>"form-control"%>
+    </div>
+    <div class="field col col-md-4">
+      <input type="checkbox" id="checkbox" name="checkbox">Desea agregar una persona de referencia
+      <div id="rest" style="display:none;">
+        <div class="field">
+          <%= f.label :Persona_de_Referencia %>:<br />
+          <%= f.text_field :referential,:class=>"form-control"%>
+        </div>
+        <div class="field">
+          <%= f.label :numero_de_referencia %>:
+          <%= f.number_field :referential_number,:class=>"form-control"%>
+        </div>
+      </div>
     </div>
     <div class="field">
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="checkbox" id="checkbox" name="checkbox">Desea agregar una persona de referencia
-    </div>
-    <div id="rest" style="display:none;">
-      <div class="field">
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <%= f.label :Persona_de_Referencia %>:<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <%= f.text_field :referential%>
-      </div>
-      <div class="field">
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <%= f.label :numero_de_referencia %>:
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <%= f.number_field :referential_number%>
-      </div>
     </div>
     <div class="field pull-right" style="position:relative;">
       ESTA INFORMACION NO ES PUBLICA
@@ -162,6 +159,7 @@
     <div class="actions">
       <br>
       &nbsp;&nbsp;&nbsp;&nbsp;
+      <br><br>
       <%= f.submit "Guardar", :class =>"btn btn-primary" ,:id=>'boton_laboral'%>
     </div>
     <% end %>
@@ -196,28 +194,26 @@
         </ul>
       <%end%>
     </div>
-  </div>
+
   <div class="panel-footer well">
     <%= form_for :course, url: '/course/new' do |f| %>
+    <div class="container">
       <div class="field col col-md-4 col-xs-4">
         <%= f.label :nombre_del_curso_o_seminario %><br />
-        <%= f.text_field :name, :id=>'nombre_seminario'%>
+        <%= f.text_field :name, :id=>'nombre_seminario',:class=>"form-control"%><br>
+        <%= f.label :carga_horaria_ %>(Hrs)
+        <%= f.number_field :workload,:class=>"form-control"%>
       </div>
       <div class="field col col-md-4 col-xs-4">
-        <%= f.label :fecha %>
-        <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
-      </div>
-      <div class="field col col-md-4 col-xs-4">
+        <%= f.label :institucion %><br />
+        <%= f.text_field :institution,:class=>"form-control"%><br>
         <%=f.label :participe_como%>
         <%= f.select(:given, options_for_select(Course.participations)) %>
       </div>
       <div class="field col col-md-4 col-xs-4">
-        <%= f.label :carga_horaria %><br />
-        <%= f.number_field :workload%> Hrs.
-      </div>
-      <div class="field col col-md-4 col-xs-4">
-        <%= f.label :institucion %><br />
-        <%= f.text_field :institution%>
+        <%= f.label :fecha %>
+        <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+        <br>
       </div>
         <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
       <div class="actions">
@@ -226,6 +222,8 @@
       </div>
     <% end %>
   </div>
+  </div>
+</div>
 </div>
 
 <!-- Sector Publicaciones -->
@@ -259,11 +257,11 @@
       </div>
       <div class="field col col-md-4 col-xs-4">
         <%= f.label :Nombre %><br />
-        <%= f.text_field :name,:id=>'nombre_publicacion'%>
+        <%= f.text_field :name,:id=>'nombre_publicacion',:class=>"form-control"%>
       </div>
       <div class="field col col-md-4 col-xs-4">
         <%= f.label :lugar %><br />
-        <%= f.text_field :location%>
+        <%= f.text_field :location,:class=>"form-control"%>
         <br><br>
       </div>
       <div class="field col col-md-4 col-xs-4" style="top:-40px">
@@ -302,7 +300,7 @@
     <%= form_for :merit, url: '/merit/new' do |f| %>
     <div class="field col col-md-4 col-xs-4">
       <%= f.label :Merito %>:
-      <%= f.text_field :name, :id=>'merito'%>
+      <%= f.text_field :name, :id=>'merito',:class=>"form-control"%>
 
     </div>
     <div class="field col col-md-4 col-xs-4">
@@ -342,11 +340,12 @@
     <%= form_for :membership, url: '/member/new' do |f| %>
     <div class="field col col-md-4 col-xs-4">
       <%= f.label :titulo %>:<br />
-      <%= f.text_field :name,:id=>'membresia'%>
+      <%= f.text_field :name,:id=>'membresia',:class=>"form-control"%>
+      <br>
     </div>
     <div class="field col col-md-4 col-xs-4">
       <%= f.label :comunidad %>:<br />
-      <%= f.text_field :organization%>
+      <%= f.text_field :organization,:class=>"form-control"%>
     </div>
     <div class="field col col-md-4 col-xs-4"style="top:20px">
       <%= f.label :fecha %>
@@ -355,7 +354,7 @@
     <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
     <br><br><br>
 
-    <div class="actions" style="top:20px">
+    <div class="actions" >
       <%= f.submit "Guardar", :class =>"btn btn-primary" ,:id=>'boton_membresias'%>
     </div>
     <br>
@@ -385,9 +384,9 @@
 </div>
     <div class="panel-footer well">
       <%= form_for :knowledge, url: '/knowledge/new' do |f| %>
-      <div class="field">
+      <div class="field col col-md-4 col-xs-4">
         <%= f.label :conocimiento %><br />
-        <%= f.text_field :description,:id=>'conocimiento'%>
+        <%= f.text_field :description,:id=>'conocimiento',:class=>"form-control"%>
       </div>
       <br>
       <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
@@ -420,9 +419,9 @@
     </div>
     <div class="panel-footer well">
       <%= form_for :skill, url: '/skill/new' do |f| %>
-        <div class="field">
+        <div class="field col col-md-4 col-xs-4">
           <%= f.label :habilidad %><br />
-          <%= f.text_field :description,:id=>'habilidad'%>
+          <%= f.text_field :description,:id=>'habilidad',:class=>"form-control"%>
         </div>
         <br>
             <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
@@ -463,25 +462,22 @@
   <div class="panel-footer well">
     <div class="container">
     <%= form_for :language, url: '/language/new' do |f| %>
-      <div class="field">
+      <div class="field col col-sm-4 col-md-4 col-xs-4">
         <%= f.label :idioma %><br />
-        <%= f.text_field :name,:id=>'idioma'%>
+        <%= f.text_field :name,:id=>'idioma',:class=>"form-control"%>
       </div>
       <br>
-      <div>
+      <div class="field col col-sm-4 col-md-4 col-xs-4">
         <%=f.label :nivel%>
-
         <%= f.select(:level, options_for_select(Language.levels)) %>
       </div>
-      <Br>
-      <div>
+      <div class="field col col-sm-4 col-md-4 col-xs-4">
         <%=f.label :habilidades%>
-
         <%= f.select(:skill, options_for_select(Language.skills)) %>
       </div>
       <br>
           <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
-
+        <br>
       <div class="actions">
         <%= f.submit "Guardar" , :class =>"btn btn-primary",:id=>'boton_idiomas'%>
       </div>
@@ -516,21 +512,18 @@
 
   <div class="panel-footer well">
     <%= form_for :referential, url: '/referential/new' do |f| %>
-    <div class="field">
+    <div class="field col col-sm-4 col-md-4 col-xs-4">
       <%= f.label :nombre_de_la_persona_de_referencia %>:<br />
-      <%= f.text_field :name,:id=>'referencia' %>
+      <%= f.text_field :name,:id=>'referencia',:class=>"form-control"%>
     </div>
-    <br>
-      <div class="field">
+      <div class="field col col-sm-4 col-md-4 col-xs-4">
       <%= f.label :institucion %>:<br />
-      <%= f.text_field :institution%>
+      <%= f.text_field :institution,:class=>"form-control"%>
     </div>
-    <br>
-      <div class="field">
+      <div class="field col col-sm-4 col-md-4 col-xs-4">
       <%= f.label :numero_de_referencia %>:<br />
-      <%= f.number_field :number%>
+      <%= f.number_field :number,:class=>"form-control"%>
     </div>
-    <br>
     <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
     <div class="actions">
       <%= f.submit "Guardar", :class =>"btn btn-primary" ,:id=>'boton_referencias'%>

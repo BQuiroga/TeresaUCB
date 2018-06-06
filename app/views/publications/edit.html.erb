@@ -1,24 +1,32 @@
-<%= form_for :publication, url: '/publication/update', html: { method: :put } do |f| %>
 <div class="container">
-<div class="field">
-  <%= f.label :tipo_de_publicacion %>
-  <%= f.select( :publicationType, @publicationTypes.map {|a| [a]}) -%>
-</div>
-  <div class="field">
-  <%= f.label :Nombre %><br />
-  <%= f.text_field :name%>
-</div>
-   <div class="field">
-  <%= f.label :lugar %><br />
-  <%= f.text_field :location%>
-</div>
-  <div class="field">
-  <%= f.label :fecha %>
-  <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
-</div>
-<%=f.hidden_field :id, :value => @publication.id%>
-  <div class="actions">
-    <%= f.submit "Guardar" %>
+  <div class="panel panel-default">
+    <div class="panel-heading"><div class="panel-title"><h3>Publicación</h3></div></div>
+      <div class="panel-body">
+      </div>
+      <div class="panel-footer well">
+        <%= form_for :publication, url: '/publication/update', html: { method: :put } do |f| %>
+          <div class="field  col col-md-4 col-xs-4">
+            <%= f.label :tipo_de_publicación %>
+            <%= f.select( :publicationType, @publicationTypes.map {|a| [a]}) -%>
+          </div>
+            <div class="field col col-md-4 col-xs-4">
+            <%= f.label :Nombre %><br />
+            <%= f.text_field :name,:class=>"form-control"%>
+          </div>
+             <div class="field col col-md-4 col-xs-4">
+            <%= f.label :lugar %><br />
+            <%= f.text_field :location,:class=>"form-control"%>
+          </div>
+            <div class="field  col col-md-4 col-xs-4">
+            <%= f.label :fecha %>
+            <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+          </div>
+          <%=f.hidden_field :id, :value => @publication.id%>
+          <br>
+            <div class="actions">
+              <%= f.submit "Guardar",:class =>"btn btn-primary" %>
+            </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
-<% end %>

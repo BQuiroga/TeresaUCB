@@ -1,54 +1,72 @@
-<%= form_for :experience, url: '/experience/update', html: { method: :put } do |f| %>
 <div class="container">
-  <div class="field">
-    <%= f.label :cargo_profesional %><br />
-    <%= f.text_field :job_title%>
-  </div>
-  <div class="field">
-    <%= f.label :empresa %>
-    <%= f.text_field :company_name%>
-  </div>
-  <div class="field">
-    <%= f.label :actividades_a_cargo %>:<br />
-    <%= f.text_field :job_description%>
-  </div>
-  <div class="field">
-    <%= f.label :Fecha_ingreso %>
-    <%= f.date_select :start_date ,:start_year  =>1990, :end_year=>Time.now.year%>
-  </div>
-    <div class="field" id="date" style="display:none;">
-    <%= f.label :fecha_salida %>
-    <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year%>
-  </div>
-  <div class="field">
-      <%=f.label :si_aun_sigue_por_favor_deje_marcada_esta_casilla%>
-      <%= f.check_box :until_now,:id=>"checkboxDate", :checked =>"true"%>
-  </div>
-  <div class="field">
-    <input type="checkbox" id="checkbox" name="checkbox">Desea agregar una persona de referencia
-  </div>
-  <div id="rest" style="display:none;">
-    <div class="field">
-      <%= f.label :Persona_de_Referencia %><br />
-      <%= f.text_field :referential%>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <h3>Experiencia Laboral </h3>
+      </div>
     </div>
-    <div class="field">
-      <%= f.label :numero_de_referencia %>
-      <%= f.number_field :referential_number%>
+    <div class="panel-body">
     </div>
-  </div>
-  <div class="field pull-right" style="position:relative;">
-    ESTA INFORMACION NO ES PUBLICA
-    <%= f.label :rango_salarial %>
-    <%= f.select(:salary_range, options_for_select(Experience.salary_range)) %>
-  </div>
-      <%=f.hidden_field :id, :value => @experience.id%>
 
-  <div class="actions">
-    <%= f.submit "Guardar" %>
+  <div class="panel-footer well">
+    <%= form_for :experience, url: '/experience/update', html: { method: :put } do |f| %>
+      <div class="field col col-md-4">
+        <%= f.label :cargo_profesional %><br />
+        <%= f.text_field :job_title,:class=>"form-control"%>
+        <br>
+        <%= f.label :empresa %>
+        <%= f.text_field :company_name,:class=>"form-control"%>
+        ESTA INFORMACION NO ES PUBLICA<br>
+        <%= f.label :rango_salarial %>
+        <%= f.select(:salary_range, options_for_select(Experience.salary_range)) %>
+      </div>
+      <div class="field col col-md-4">
+        <%= f.label :actividades_a_cargo %>:<br />
+        <%= f.text_field :job_description,:class=>"form-control"%>
+        <br>
+        <%= f.label :personass_bajo_mi_cargo %>:<br />
+        <%= f.text_field :in_my_charge,:class=>"form-control"%>
+      </div>
+      <div class="field col col-md-4">
+        <input type="checkbox" id="checkbox" name="checkbox">Desea agregar una persona de referencia
+        <div id="rest" style="display:none;">
+          <div class="field">
+            <%= f.label :Persona_de_Referencia %><br />
+            <%= f.text_field :referential,:class=>"form-control"%>
+          </div>
+          <div class="field">
+            <%= f.label :numero_de_referencia %>
+            <%= f.number_field :referential_number,:class=>"form-control"%>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        &nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+      <div class="field">
+        <%= f.label :Fecha_ingreso %>
+        <%= f.date_select :start_date ,:start_year  =>1990, :end_year=>Time.now.year%>
+      </div>
+        <div class="field" id="date" style="display:none;">
+        <%= f.label :fecha_salida %>
+        <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year%>
+      </div>
+      <div class="field">
+          <%=f.label :si_aun_sigue_por_favor_deje_marcada_esta_casilla%>
+          <%= f.check_box :until_now,:id=>"checkboxDate", :checked =>"true"%>
+      </div>
+      <%=f.hidden_field :id, :value => @experience.id%>
+      <div class="actions">
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <br><br>
+        <%= f.submit "Guardar",:class =>"btn btn-primary" %>
+
+    </div>
+    <% end %>
   </div>
 </div>
-<% end %>
+</div>
 <script>
 window.onload = function() {
  var checkbox2 = document.getElementById('checkboxDate');

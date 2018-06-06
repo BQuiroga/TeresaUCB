@@ -1,16 +1,21 @@
-<%= form_for :knowledge, url: '/knowledge/update', html: { method: :put } do |f| %>
 <div class="container">
-<div class="field">
-  <%= f.label :area %><br />
-  <%= f.select( :knowledge_area_id, KnowledgeArea.all.collect {|a| [a.name, a.id]}) -%>
-</div>
-  <div class="field">
-  <%= f.label :Nombre %><br />
-  <%= f.text_field :description%>
-</div>
-<%=f.hidden_field :id, :value => @knowledge.id%>
-  <div class="actions">
-    <%= f.submit "Guardar" %>
+  <div class="panel panel-default">
+    <div class="panel-heading"><div class="panel-title"><h3>Conocimiento</h3></div></div>
+      <div class="panel-body">
+      </div>
+      <div class="panel-footer well">
+      <%= form_for :knowledge, url: '/knowledge/update', html: { method: :put } do |f| %>
+      <div class="container">
+      <div class="field col col-md-4 col-xs-4">
+        <%= f.label :Nombre %><br />
+        <%= f.text_field :description,:class=>"form-control"%>
+      </div>
+      <%=f.hidden_field :id, :value => @knowledge.id%>
+        <div class="actions">
+          <%= f.submit "Guardar",:class=>"btn btn-primary" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
   </div>
 </div>
-<% end %>
