@@ -1,12 +1,5 @@
 class UsersController < ApplicationController
-	layout :resolve_layout
-	def resolve_layout
-		if index
-			"application"
-		else
-			"application"
-		end
-	end
+
 	def show
 	end
 	def profile

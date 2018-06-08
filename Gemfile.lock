@@ -172,6 +172,8 @@ GEM
     pg (0.20.0-x64-mingw32)
     pg (0.20.0-x86-mingw32)
     rack (1.6.5)
+    rack-cache (1.7.2)
+      rack (>= 0.4)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.4)
@@ -303,6 +305,7 @@ DEPENDENCIES
   mailboxer
   paperclip (~> 6.0)
   pg (~> 0.15)
+  rack-cache
   rails (= 4.2.4)
   rails_best_practices
   rolify
@@ -321,4 +324,4 @@ DEPENDENCIES
   wkhtmltopdf-binary
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

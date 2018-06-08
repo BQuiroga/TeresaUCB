@@ -1,21 +1,36 @@
 class PublicationsController < ApplicationController
 	def create
 		@new=Publication.new(publications_params)
+		if current_user.id!=@new.user.id
+			throwUnauthorized
+			return
+		else
 		if @new.save
 			flash[:success] = "Asombroso! Cuentanos mas de ti"
 		else
 			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
 		end
 	  	redirect_to '/users/curriculum/edit'
+		end
 	end
 	def edit
 		@publication=Publication.find(params[:id])
-		@publicationTypes=["Articulo","Tesis","Libro","Monografia"]
+		if current_user.id!=@publication.user.id
+			throwUnauthorized
+			return
+		else
+			@publicationTypes=["Articulo","Tesis","Libro","Monografia"]
+		end
 	end
 	def update
 		@publication=Publication.find(publications_params_for_edit[:id])
+		if current_user.id!=@publication.user.id
+			throwUnauthorized
+			return
+		else
 		@publication.update(publications_params_for_edit)
 	  	redirect_to '/users/curriculum/edit'
+		end
 	end
 	def publications_params
   		params.require(:publication).permit(:name, :resume_id,:publicationType,:date,:location)

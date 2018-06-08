@@ -7,8 +7,13 @@ class PersonalInformationsController < ApplicationController
 	end
 	def update
 		@personal=PersonalInformation.find(personal_info_params_for_edit[:id])
-		@personal.update(personal_info_params_for_edit)
-		redirect_to '/users/edit'
+		if current_user.id!=@personal.user.id
+			throwUnauthorized
+			return
+		else
+			@personal.update(personal_info_params_for_edit)
+			redirect_to '/users/edit'
+		end
 	end
 	# def personal_info_params
   # 		params.require(:personal_information).permit(:address,:user_id,:phone,:cellphone,:birthdate)

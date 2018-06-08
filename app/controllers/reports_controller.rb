@@ -44,7 +44,6 @@ class ReportsController < ApplicationController
   end
   def new_reporte
     @data_graphic=session[:passed_variable]
-    puts @data_graphic.class
     respond_to do |format|
       format.html
       format.csv {send_data current_user.generate_xls_report(@data_graphic)}

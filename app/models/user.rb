@@ -159,7 +159,9 @@ class User < ActiveRecord::Base
     resume.educations.map{|education| education.school_name}
   end
   def gender
-    personal_information.gender_to_string
+    if personal_information
+      return personal_information.gender_to_string
+    end
   end
   def last_education_date
     educations=self.resume.educations

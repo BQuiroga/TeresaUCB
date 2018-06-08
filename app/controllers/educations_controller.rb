@@ -1,19 +1,25 @@
 class EducationsController < ApplicationController
 	def create
 		@new=Education.new(educations_params)
+		if current_user.id!=@new.user.id
+			throwUnauthorized
+			return
+		else
 		if @new.save
 			flash[:success] = "Asombroso! Cuentanos mas"
 		else
 			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
 		end
-		if @new.resume.user_id==current_user.id
 			redirect_to '/users/curriculum/edit'
-		else
-			redirect_to '/curriculum/:@new.resume.user_id/edit'
 		end
 	end
 	def edit
 		@education=Education.find(params[:id])
+
+		if current_user.id!=@education.user.id
+			throwUnauthorized
+			return
+		else
 		@titles=Title.all
 		@newA=Array.new
 		@title_list=Array.new
@@ -22,10 +28,16 @@ class EducationsController < ApplicationController
 		end
 		@title_list=@newA
 	end
+	end
 	def update
 		@education=Education.find(educations_params_for_edit[:id])
+		if !current_user.id==@education.user.id
+			throwUnauthorized
+			return
+		else
 		@education.update(educations_params_for_edit)
 			redirect_to '/users/curriculum/edit'
+		end
 	end
 	def educations_params
   		params.require(:education).permit(:start_date,:resume_id,:end_date,:school_name,:title,:description)

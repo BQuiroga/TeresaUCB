@@ -13,27 +13,40 @@ Rails.application.configure do
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
+  config.assets.debug = true
+
+  # Asset digests allow you to set far-future HTTP expiration dates on all assets,
+  # yet still be able to expire them through the digest params.
+  config.assets.digest = true
+
+  # Adds additional error checking when serving assets at runtime.
+  # Checks for improperly declared sprockets dependencies.
+  # Raises helpful error messages.
+  config.assets.raise_runtime_errors = true
+  Paperclip.options[:command_path]='C:\Program Files\ImageMagick-6.9.9-Q16'
+
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
   # For large-scale production use, consider using a caching reverse proxy like
   # NGINX, varnish or squid.
-  # config.action_dispatch.rack_cache = true
+  config.action_dispatch.rack_cache = true
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.serve_static_files = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
+  config.serve_static_assets = true
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
@@ -59,7 +72,7 @@ Rails.application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
-  
+
   config.action_controller.default_url_options = { host: 'bolsadetrabajo.ucbcba.edu.bo' }
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -70,7 +83,18 @@ Rails.application.configure do
   # config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { enable_starttls_auto: true  }
 # SMTP settings for gmail
-
+config.action_mailer.default_url_options = { host: 'bolsadetrabajo.ucbcba.edu.bo', port: 80 }
+config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = true
+ActionMailer::Base.smtp_settings = {
+ :address => "smtp.gmail.com",
+ :port => 587,
+ :domain => "gmail.com",
+ :authentication => 'plain',
+ :user_name => "teresanotificaciones@gmail.com",
+ :password => "bolsadetrabajo123",
+ :enable_starttls_auto => true
+}
 
   config.i18n.fallbacks = true
 

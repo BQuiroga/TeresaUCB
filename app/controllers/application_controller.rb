@@ -9,7 +9,10 @@ class ApplicationController < ActionController::Base
     @users=User.where(name: params[:name], last_name: params[:last_name])
   end
   def throwUnauthorized
-      render html: "no tiene privilegios suficientes para ver esta informacion", status: :unauthorized
+    raise ActionController::RoutingError.new('Not Found')
+  end
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
   end
   protected
 

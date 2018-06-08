@@ -1,0 +1,3640 @@
+/****** Searchable container */
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+@import url(http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+/* line 11, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.title {
+  margin-left: 20px;
+}
+
+/* line 15, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.fa-user {
+  font-size: 80px;
+}
+
+/* line 19, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.searchable-container {
+  margin-top: 40px;
+}
+
+/* line 23, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.glyphicon-lg {
+  font-size: 4em;
+}
+
+/* line 26, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.info-block {
+  border-right: 5px solid #E6E6E6;
+  margin-bottom: 25px;
+}
+
+/* line 29, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.info-block .square-box {
+  width: 120px;
+  min-height: 120px;
+  margin-right: 22px;
+  text-align: center !important;
+  background-color: #676767;
+  padding: 20px 0;
+}
+
+/* line 37, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.info-block:hover .info-block.block-info {
+  border-color: #20819e;
+}
+
+/* line 41, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.info-block.block-info .square-box {
+  background-color: #5bc0de;
+  color: #FFF;
+}
+
+/*   */
+/* line 53, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+body {
+  margin-top: 20px;
+  background: #eee;
+}
+
+/* line 57, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-compose-email {
+  padding: 10px 0px;
+  margin-bottom: 20px;
+}
+
+/* line 62, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-danger {
+  background-color: #E9573F;
+  border-color: #E9573F;
+  color: white;
+}
+
+/* line 68, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.panel-teal .panel-heading {
+  background-color: #37BC9B;
+  border: 1px solid #36b898;
+  color: white;
+}
+
+/* line 74, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.panel .panel-heading {
+  padding: 5px;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  border-bottom: 1px solid #DDD;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+}
+
+/* line 84, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.panel .panel-heading .panel-title {
+  padding: 10px;
+  font-size: 17px;
+}
+
+/* line 89, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+form .form-group {
+  position: relative;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+/* line 95, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.inner-all {
+  padding: 10px;
+}
+
+/* ========================================================================
+ * MAIL
+ * ======================================================================== */
+/* line 102, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.nav-email > li:first-child + li:active {
+  margin-top: 0px;
+}
+
+/* line 105, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.nav-email > li + li {
+  margin-top: 1px;
+}
+
+/* line 108, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.nav-email li {
+  background-color: white;
+}
+
+/* line 111, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.nav-email li.active {
+  background-color: transparent;
+}
+
+/* line 114, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.nav-email li.active .label {
+  background-color: white;
+  color: black;
+}
+
+/* line 118, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.nav-email li a {
+  color: black;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+}
+
+/* line 124, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.nav-email li a:hover {
+  background-color: #EEEEEE;
+}
+
+/* line 127, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.nav-email li a i {
+  margin-right: 5px;
+}
+
+/* line 130, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.nav-email li a .label {
+  margin-top: -1px;
+}
+
+/* line 134, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.table-email tr:first-child td {
+  border-top: none;
+}
+
+/* line 137, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.table-email tr td {
+  vertical-align: top !important;
+}
+
+/* line 140, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.table-email tr td:first-child, .table-email tr td:nth-child(2) {
+  text-align: center;
+  width: 35px;
+}
+
+/* line 144, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.table-email tr.unread, .table-email tr.selected {
+  background-color: #EEEEEE;
+}
+
+/* line 147, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.table-email .media {
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+}
+
+/* line 152, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.table-email .media h4 {
+  margin: 0px;
+  font-size: 14px;
+  line-height: normal;
+}
+
+/* line 157, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.table-email .media-object {
+  width: 35px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+
+/* line 163, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.table-email .media-meta, .table-email .media-attach {
+  font-size: 11px;
+  color: #999;
+  position: absolute;
+  right: 10px;
+}
+
+/* line 169, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.table-email .media-meta {
+  top: 0px;
+}
+
+/* line 172, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.table-email .media-attach {
+  bottom: 0px;
+}
+
+/* line 175, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.table-email .media-attach i {
+  margin-right: 10px;
+}
+
+/* line 178, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.table-email .media-attach i:last-child {
+  margin-right: 0px;
+}
+
+/* line 181, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.table-email .email-summary {
+  margin: 0px 110px 0px 0px;
+}
+
+/* line 184, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.table-email .email-summary strong {
+  color: #333;
+}
+
+/* line 187, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.table-email .email-summary span {
+  line-height: 1;
+}
+
+/* line 190, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.table-email .email-summary span.label {
+  padding: 1px 5px 2px;
+}
+
+/* line 193, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.table-email .ckbox {
+  line-height: 0px;
+  margin-left: 8px;
+}
+
+/* line 197, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.table-email .star {
+  margin-left: 6px;
+}
+
+/* line 200, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.table-email .star.star-checked i {
+  color: goldenrod;
+}
+
+/* line 204, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.nav-email-subtitle {
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #333;
+  margin-bottom: 15px;
+  margin-top: 30px;
+}
+
+/* line 212, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.compose-mail {
+  position: relative;
+  padding: 15px;
+}
+
+/* line 216, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.compose-mail textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #DDD;
+}
+
+/* line 222, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.view-mail {
+  padding: 10px;
+  font-weight: 300;
+}
+
+/* line 227, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.attachment-mail {
+  padding: 10px;
+  width: 100%;
+  display: inline-block;
+  margin: 20px 0px;
+  border-top: 1px solid #EFF2F7;
+}
+
+/* line 234, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.attachment-mail p {
+  margin-bottom: 0px;
+}
+
+/* line 237, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.attachment-mail a {
+  color: #32323A;
+}
+
+/* line 240, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.attachment-mail ul {
+  padding: 0px;
+}
+
+/* line 243, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.attachment-mail ul li {
+  float: left;
+  width: 200px;
+  margin-right: 15px;
+  margin-top: 15px;
+  list-style: none;
+}
+
+/* line 250, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.attachment-mail ul li a.atch-thumb img {
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+/* line 254, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.attachment-mail ul li a.name span {
+  float: right;
+  color: #767676;
+}
+
+@media (max-width: 640px) {
+  /* line 260, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .compose-mail-wrapper .compose-mail {
+    padding: 0px;
+  }
+}
+@media (max-width: 360px) {
+  /* line 265, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .mail-wrapper .panel-sub-heading {
+    text-align: center;
+  }
+
+  /* line 268, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .mail-wrapper .panel-sub-heading .pull-left, .mail-wrapper .panel-sub-heading .pull-right {
+    float: none !important;
+    display: block;
+  }
+
+  /* line 272, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .mail-wrapper .panel-sub-heading .pull-right {
+    margin-top: 10px;
+  }
+
+  /* line 275, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .mail-wrapper .panel-sub-heading img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+  }
+
+  /* line 281, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .mail-wrapper .panel-footer {
+    text-align: center;
+  }
+
+  /* line 284, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .mail-wrapper .panel-footer .pull-right {
+    float: none !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* line 289, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .mail-wrapper .attachment-mail ul {
+    padding: 0px;
+  }
+
+  /* line 292, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .mail-wrapper .attachment-mail ul li {
+    width: 100%;
+  }
+
+  /* line 295, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .mail-wrapper .attachment-mail ul li a.atch-thumb img {
+    width: 100% !important;
+  }
+
+  /* line 298, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .mail-wrapper .attachment-mail ul li .links {
+    margin-bottom: 20px;
+  }
+
+  /* line 302, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .compose-mail-wrapper .search-mail input {
+    width: 130px;
+  }
+
+  /* line 305, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .compose-mail-wrapper .panel-sub-heading {
+    padding: 10px 7px;
+  }
+}
+/*font Awesome http://fontawesome.io*/
+/*Comment List styles*/
+/* line 322, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.comment-list .row {
+  margin-bottom: 0px;
+}
+
+/* line 325, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.comment-list .panel .panel-heading {
+  padding: 4px 15px;
+  position: absolute;
+  border: none;
+  /*Panel-heading border radius*/
+  border-top-right-radius: 0px;
+  top: 1px;
+}
+
+/* line 333, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.comment-list .panel .panel-heading.right {
+  border-right-width: 0px;
+  /*Panel-heading border radius*/
+  border-top-left-radius: 0px;
+  right: 16px;
+}
+
+/* line 339, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.comment-list .panel .panel-heading .panel-body {
+  padding-top: 6px;
+}
+
+/* line 342, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.comment-list figcaption {
+  /*For wrapping text in thumbnail*/
+  word-wrap: break-word;
+}
+
+/* Portrait tablets and medium desktops */
+@media (min-width: 768px) {
+  /* line 348, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .comment-list .arrow:after, .comment-list .arrow:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent;
+  }
+
+  /* line 356, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .comment-list .panel.arrow.left:after, .comment-list .panel.arrow.left:before {
+    border-left: 0;
+  }
+
+  /*****Left Arrow*****/
+  /*Outline effect style*/
+  /* line 361, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .comment-list .panel.arrow.left:before {
+    left: 0px;
+    top: 30px;
+    /*Use boarder color of panel*/
+    border-right-color: inherit;
+    border-width: 16px;
+  }
+
+  /*Background color effect*/
+  /* line 369, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .comment-list .panel.arrow.left:after {
+    left: 1px;
+    top: 31px;
+    /*Change for different outline color*/
+    border-right-color: #FFFFFF;
+    border-width: 15px;
+  }
+
+  /*****Right Arrow*****/
+  /*Outline effect style*/
+  /* line 378, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .comment-list .panel.arrow.right:before {
+    right: -16px;
+    top: 30px;
+    /*Use boarder color of panel*/
+    border-left-color: inherit;
+    border-width: 16px;
+  }
+
+  /*Background color effect*/
+  /* line 386, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .comment-list .panel.arrow.right:after {
+    right: -14px;
+    top: 31px;
+    /*Change for different outline color*/
+    border-left-color: #FFFFFF;
+    border-width: 15px;
+  }
+}
+/* line 394, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.comment-list .comment-post {
+  margin-top: 6px;
+}
+
+/**** resumee ****/
+/* uses font awesome for social icons */
+/* line 409, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.page-header {
+  text-align: center;
+}
+
+/*social buttons*/
+/* line 414, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-social {
+  color: white;
+  opacity: 0.9;
+}
+
+/* line 418, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-social:hover {
+  color: white;
+  opacity: 1;
+}
+
+/* line 422, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-facebook {
+  background-color: #3b5998;
+  opacity: 0.9;
+}
+
+/* line 426, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-twitter {
+  background-color: #00aced;
+  opacity: 0.9;
+}
+
+/* line 430, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-linkedin {
+  background-color: #0e76a8;
+  opacity: 0.9;
+}
+
+/* line 434, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-github {
+  background-color: #000000;
+  opacity: 0.9;
+}
+
+/* line 438, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-google {
+  background-color: #c32f10;
+  opacity: 0.9;
+}
+
+/* line 442, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-stackoverflow {
+  background-color: #D38B28;
+  opacity: 0.9;
+}
+
+/* resume stuff */
+/* line 449, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.bs-callout {
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #eee;
+  border-image: none;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px 1px 1px 5px;
+  margin-bottom: 5px;
+  padding: 20px;
+}
+
+/* line 462, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.bs-callout:last-child {
+  margin-bottom: 0px;
+}
+
+/* line 465, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.bs-callout h4 {
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+/* line 470, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.bs-callout-danger {
+  border-left-color: #d9534f;
+}
+
+/* line 474, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.bs-callout-danger h4 {
+  color: #d9534f;
+}
+
+/* line 478, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.resume .list-group-item:first-child, .resume .list-group-item:last-child {
+  border-radius: 0;
+}
+
+/*makes an anchor inactive(not clickable)*/
+/* line 483, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.inactive-link {
+  pointer-events: none;
+  cursor: default;
+}
+
+/* line 488, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.resume-heading .social-btns {
+  margin-top: 15px;
+}
+
+/* line 491, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.resume-heading .social-btns i.fa {
+  margin-left: -5px;
+}
+
+@media (max-width: 992px) {
+  /* line 498, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .resume-heading .social-btn-holder {
+    padding: 5px;
+  }
+}
+/* skill meter in resume. copy pasted from http://bootsnipp.com/snippets/featured/progress-bar-meter */
+/* line 506, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.progress-bar {
+  text-align: left;
+  white-space: nowrap;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+/* line 515, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.progress-bar > .progress-type {
+  padding-left: 10px;
+}
+
+/* line 519, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.progress-meter {
+  min-height: 15px;
+  border-bottom: 2px solid #a0a0a0;
+  margin-bottom: 15px;
+}
+
+/* line 525, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.progress-meter > .meter {
+  position: relative;
+  float: left;
+  min-height: 15px;
+  border-width: 0px;
+  border-style: solid;
+  border-color: #a0a0a0;
+}
+
+/* line 534, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.progress-meter > .meter-left {
+  border-left-width: 2px;
+}
+
+/* line 538, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.progress-meter > .meter-right {
+  float: right;
+  border-right-width: 2px;
+}
+
+/* line 543, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.progress-meter > .meter-right:last-child {
+  border-left-width: 2px;
+}
+
+/* line 547, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.progress-meter > .meter > .meter-text {
+  position: absolute;
+  display: inline-block;
+  bottom: -20px;
+  width: 100%;
+  font-weight: 700;
+  font-size: 0.85em;
+  color: #a0a0a0;
+  text-align: left;
+}
+
+/* line 558, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.progress-meter > .meter.meter-right > .meter-text {
+  text-align: right;
+}
+
+/**** resume ****/
+/* line 567, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.sign-in-email {
+  background-color: #FFFFFF;
+}
+
+/* The Modal (background) */
+/* line 574, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 30%;
+  top: -160px;
+  width: 100%;
+  /* Full width */
+  height: 120;
+  /* Full hei ght */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+/* line 588, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.modal-content {
+  background-color: #fefefe;
+  margin: 20% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+  /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+/* line 597, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* line 604, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+/* line 652, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.item-menu {
+  background-color: #4285f4;
+  height: 55px;
+  padding: 18px;
+  color: white;
+  width: 100%;
+}
+
+/* line 661, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.boton-enviar {
+  background-color: #4285f4;
+  height: 55px;
+  padding: 18px;
+  color: white;
+  width: 100%;
+  border: 0;
+}
+
+/* line 671, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.boton-enviar:hover {
+  background-color: #e74c3c;
+  color: white;
+  font-size: 1.5em;
+  padding: 13px;
+  cursor: pointer;
+}
+
+/* line 678, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+hr {
+  padding: 0;
+  margin: 0;
+}
+
+/* line 682, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.item-menu:hover, .activo {
+  background-color: #3a539b;
+  color: white;
+  font-size: 1.5em;
+  padding: 13px;
+  cursor: pointer;
+}
+
+/* line 689, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.contenedor-menu {
+  background-color: white;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+
+/* line 699, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+body {
+  background-color: #d8dfea;
+}
+
+/* line 705, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#otro {
+  display: block;
+}
+
+/* line 709, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.informacion-basica, .experiencia-profesional, .formacion-academica {
+  display: none;
+}
+
+/* line 715, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.campo-foto {
+  display: none;
+}
+
+/* line 719, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#imagePreview {
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  padding: 0;
+  margin-top: 7px;
+  margin-bottom: 5px;
+  background-image: url("/assets/missing-174179c6184175247b6db3abe23a4faf.png");
+  border: 0;
+}
+
+/* line 732, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+label[for=resume_photos_attributes_0_photo] {
+  padding-top: 4px;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  margin-left: 185px;
+  margin-right: 185px;
+  margin-bottom: 0px;
+  position: relative;
+  bottom: 2px;
+}
+
+/* line 743, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+label[for=resume_photos_attributes_0_photo]:hover {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  font-size: 1.25em;
+}
+
+/* line 751, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.campo-experiencia {
+  display: none;
+}
+
+/* line 754, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.campo-sitio {
+  display: none;
+}
+
+/* line 757, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.campo-telefono {
+  display: none;
+}
+
+/* line 760, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.campo-nombre {
+  display: none;
+}
+
+/* line 764, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.campo-correo {
+  display: none;
+}
+
+/* line 767, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.campo-formacion {
+  display: none;
+}
+
+/* line 770, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.eliminar-campo-formacion {
+  float: right;
+  cursor: pointer;
+  position: relative;
+  top: -12px;
+  right: 8px;
+  padding-left: 3px;
+  padding-right: 3px;
+  background-color: white;
+}
+
+/* line 780, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.eliminar-campo-formacion:hover {
+  background-color: #f44336;
+  font-size: 15px;
+  border-radius: 50%;
+  color: white;
+  padding: 5px;
+  margin-right: -3px;
+  margin-top: -3px;
+}
+
+/* line 789, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.eliminar-campo-experiencia {
+  float: right;
+  cursor: pointer;
+  position: relative;
+  top: -12px;
+  right: 8px;
+  padding-left: 3px;
+  padding-right: 3px;
+  background-color: white;
+}
+
+/* line 800, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.eliminar-campo-experiencia:hover {
+  background-color: #f44336;
+  font-size: 15px;
+  border-radius: 50%;
+  color: white;
+  padding: 5px;
+  margin-right: -3px;
+  margin-top: -3px;
+}
+
+/* line 810, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.campo-formacion {
+  border: thin solid #95a5a6;
+  padding: 5px 5px 0 5px;
+  margin-bottom: 10px;
+  margin-top: 18px;
+  border-radius: 8px;
+}
+
+/* line 817, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.eliminar-campo-correo,
+.eliminar-campo-nombre,
+.eliminar-campo-telefono,
+.eliminar-campo-sitio,
+.eliminar-campo-foto {
+  float: right;
+  margin-top: 10px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+/* line 828, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.eliminar-campo-correo:hover,
+.eliminar-campo-nombre:hover,
+.eliminar-campo-telefono:hover,
+.eliminar-campo-sitio:hover,
+.eliminar-campo-foto:hover {
+  background-color: #f44336;
+  font-size: 15px;
+  border-radius: 50%;
+  color: white;
+  padding: 5px;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* line 842, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.campo-plano {
+  border-radius: 0;
+  margin-bottom: 15px;
+}
+
+/* line 848, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.eliminar-campo {
+  float: right;
+  margin-top: 10px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+/* line 856, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.eliminar-campo:hover {
+  background-color: #f44336;
+  font-size: 15px;
+  border-radius: 50%;
+  color: white;
+  padding: 5px;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* line 866, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.icon-user {
+  padding-top: 10px;
+}
+
+/* line 870, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.campo-experiencia {
+  border: thin solid #95a5a6;
+  padding: 5px 5px 0 5px;
+  margin-bottom: 10px;
+  margin-top: 18px;
+  border-radius: 8px;
+}
+
+/* line 878, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.stop-phone, .stop-email, .stop-web, .stop-name, .stop-photo, .stop-experiencia, .stop-formacion {
+  display: none;
+}
+
+/* line 883, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.curriculum {
+  background-color: white;
+}
+
+/* line 897, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.curriculum {
+  margin-top: 25px;
+  margin-bottom: 50px;
+}
+
+/* line 902, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#sup-izq {
+  width: 100%;
+  height: 75px;
+  background-color: #730E15;
+}
+
+/* line 907, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#separador-sup {
+  width: 100%;
+  background-color: #730E15;
+  margin-top: 2px;
+  padding-top: 2px;
+}
+
+/* line 914, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.nombre {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  color: #333333;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 75px;
+  text-transform: uppercase;
+}
+
+/* line 923, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#container-photo {
+  max-height: 300px;
+  overflow-y: hidden;
+}
+
+/* line 927, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.photo-resume {
+  width: 100%;
+}
+
+/* line 930, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.inf-izq {
+  background-color: #730E15;
+}
+
+/* line 934, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.inf-izq > span {
+  color: white;
+  padding: 15px;
+  margin: 0;
+}
+
+/* line 941, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.inf-izq > p, .inf-izq > a {
+  display: inline;
+  color: #DADADA;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 18px;
+}
+
+/* line 948, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#separador-inf {
+  width: 100%;
+  background-color: #730E15;
+  padding-top: 2px;
+  position: relative;
+  bottom: 5px;
+}
+
+/* line 955, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.encabezado-cv {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 36px;
+}
+
+/* line 959, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.texto-fecha {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 16px;
+}
+
+/* line 963, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.texto-trabajo {
+  text-transform: uppercase;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 26px;
+}
+
+/* line 968, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.texto-empresa {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 26px;
+}
+
+/* line 972, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.texto-descripcion {
+  text-align: justify;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 16px;
+}
+
+/* line 977, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.space {
+  padding-right: 10px;
+}
+
+/* line 982, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#sup-der {
+  float: right;
+  margin-right: 15px;
+}
+
+/* line 987, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.link-edit {
+  position: fixed;
+  z-index: 1;
+  background-color: rgba(123, 23, 23, 0.3);
+  height: 55px;
+  padding: 18px;
+  color: #730E15;
+}
+
+/* line 995, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#link-edit {
+  text-decoration: none;
+  color: #730E15;
+}
+
+/* line 999, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#link-edit:hover {
+  color: white;
+}
+
+/* line 1003, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#img-prev {
+  display: none;
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  padding: 0;
+  margin-top: 7px;
+  margin-bottom: 5px;
+  border: 0;
+}
+
+/* line 1016, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.img-original {
+  width: 80px;
+  height: 80px;
+  padding: 0;
+  margin-top: 7px;
+  margin-bottom: 5px;
+  border: 0;
+  position: relative;
+  right: -10px;
+}
+
+/* line 1061, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.tt-input {
+  border-radius: 0 !important;
+  width: 100% !important;
+  padding: 1px !important;
+}
+
+/* line 1067, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.typeahead,
+.tt-query,
+.tt-hint {
+  width: 100%;
+  height: 34px;
+  padding: 1px;
+  font-size: 18px;
+  line-height: 30px;
+  outline: none;
+}
+
+/* line 1083, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.typeahead {
+  background-color: #fff;
+}
+
+/* line 1087, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.typeahead:focus {
+  border: 2px solid #0097cf;
+}
+
+/* line 1093, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.tt-query {
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+/* line 1099, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.tt-hint {
+  color: #999;
+}
+
+/* line 1103, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.tt-menu {
+  width: 100%;
+  margin: 12px 0;
+  padding: 8px 0;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* line 1118, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.tt-suggestion {
+  padding: 3px 20px;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+/* line 1124, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.tt-suggestion:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: #0097cf;
+}
+
+/* line 1130, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.tt-suggestion.tt-cursor {
+  color: #fff;
+  background-color: #0097cf;
+}
+
+/* line 1136, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.tt-suggestion p {
+  margin: 0;
+}
+
+/* line 1140, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.gist {
+  font-size: 14px;
+}
+
+/* line 1159, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.format-text {
+  text-align: justify;
+  text-justify: inter-word;
+  padding: 12px;
+}
+
+/* line 1165, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.img-post {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* line 1169, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.welcome {
+  margin-top: 25px;
+  color: #ffffff;
+  font-family: 'Raleway',sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 52px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* line 1181, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.formulario {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 55px;
+  padding: 15px;
+  background-color: rgba(255, 188, 100, 0.8);
+}
+
+/* line 1188, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 1195, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.formulario2 {
+  margin-bottom: 140px;
+}
+
+/* line 1198, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.home {
+  background: url(/images/ciudad.jpg);
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  margin-top: -50px;
+}
+
+/****************************************************************************************************************/
+/* line 1224, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+body {
+  padding-top: 50px;
+}
+
+/* line 1230, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#container-avatar {
+  width: 12%;
+  height: auto;
+  /*position: relative;*/
+  /*left: 50px;*/
+  /*top: -150px;*/
+  float: left;
+  margin-top: -13%;
+  margin-left: 8%;
+  margin-bottom: 5px;
+}
+
+/* line 1242, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#container-avatar img {
+  width: 100%;
+  height: auto;
+}
+
+/* line 1246, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#container-cover {
+  max-height: 350px;
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* line 1254, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#img-cover {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+/* line 1261, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#img-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  position: relative;
+}
+
+/* line 1269, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.img-avatar {
+  width: 30% px;
+  height: auto;
+  /*margin: 8px;*/
+  border-radius: 8px;
+  background-size: contain;
+}
+
+/* line 1277, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#sugerencia-amistad {
+  text-align: center;
+}
+
+/* line 1280, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+/* line 1288, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.hovereffect {
+  width: 100%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+}
+
+/* line 1297, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.hovereffect .overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-transition: all .4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+/* line 1310, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.hovereffect img {
+  width: 100%;
+  display: block;
+  position: relative;
+  -webkit-transition: all .4s linear;
+  transition: all .4s linear;
+}
+
+/* line 1318, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.hovereffect h2 {
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  font-size: 17px;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-transform: translatey(-100px);
+  -ms-transform: translatey(-100px);
+  transform: translatey(-100px);
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  padding: 10px;
+}
+
+/* line 1333, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.hovereffect span {
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  color: #fff;
+  border: 1px solid #fff;
+  background-color: transparent;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  margin: 50px 0 0;
+  padding: 7px 14px;
+}
+
+/* line 1348, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.hovereffect span:hover {
+  box-shadow: 0 0 5px #fff;
+}
+
+/* line 1352, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.hovereffect:hover img {
+  -ms-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+/* line 1358, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.hovereffect:hover .overlay {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+
+/* line 1363, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.hovereffect:hover h2, .hovereffect:hover span {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -ms-transform: translatey(0);
+  -webkit-transform: translatey(0);
+  transform: translatey(0);
+}
+
+/* line 1371, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.hovereffect:hover span {
+  -webkit-transition-delay: .2s;
+  transition-delay: .2s;
+}
+
+/* line 1375, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.container-body > #img-avatar {
+  max-width: 50px;
+  background-color: #321156;
+}
+
+/* line 1379, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.barra-enviar {
+  background-color: white;
+  margin-right: 0;
+  margin-left: 0;
+  margin-top: 1px;
+}
+
+/* line 1387, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn {
+  border-radius: 0;
+}
+
+/* line 1390, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.col-md-3 button {
+  float: right;
+}
+
+/* line 1393, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.col-md-9 span {
+  margin-left: -15px;
+}
+
+/* line 1398, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.cont-btn-publicar {
+  margin-right: 0;
+  padding-right: 0;
+}
+
+/* line 1402, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.container-body {
+  margin-top: 15px;
+  background-color: aliceblue;
+  border-radius: 8px;
+  border: 1px solid blanchedalmond;
+}
+
+/*La fila de estadisticas*/
+/* line 1410, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.container-stat {
+  /*position: relative; top: -50px;*/
+  margin-top: 15px;
+}
+
+/*Los enlaces de estadisticas*/
+/* line 1415, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.container-stat .row {
+  /*background-color: #B00100;*/
+}
+
+/* line 1418, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.container-stat > .row > div {
+  /*height: 55px;*/
+}
+
+/* line 1422, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.enlaces-perfil {
+  display: block;
+  text-decoration: none;
+  background-color: #428bca;
+  height: 55px;
+  padding: 18px;
+  color: white;
+  width: 100%;
+  margin-bottom: 3px;
+  border-radius: 3px;
+}
+
+/* line 1436, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.pull-right-g {
+  float: right !important;
+}
+
+/* line 1439, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.estado {
+  color: #F2F2F2;
+}
+
+/* line 1442, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.enlaces-perfil:hover {
+  text-decoration: none;
+  background-color: #3a539b;
+  color: white;
+  font-size: 1.5em;
+  padding: 13px;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* line 1454, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.contenedor-enlaces {
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* line 1459, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.right-group-menu {
+  position: fixed;
+  align: left;
+}
+
+/* line 1463, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.thumbnail {
+  padding: 0 0 2px 0;
+  border: none;
+  border-radius: 0;
+  width: 90px;
+  height: 90px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* line 1471, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.thumbnail p {
+  margin-top: 15px;
+  color: #555;
+}
+
+/* line 1475, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.img-sugerencia {
+  width: 70px;
+  height: 70px;
+}
+
+/* line 1479, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.contenedor-sugerencia {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  margin: 8px 3px 8px 3px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/* line 1486, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.my-btn {
+  width: 50px;
+}
+
+/* line 1495, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.my-btn:hover, .my-btn:focus {
+  border: 1px solid #333;
+  background-color: #fff;
+  color: #000;
+}
+
+/* line 1503, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.col-derecha {
+  background-color: white;
+  border-radius: 8px;
+}
+
+/* line 1507, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.texto-sugerencias {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 18px;
+}
+
+/* line 1511, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.contenedor-sugerencia p {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 16px;
+}
+
+/* line 1517, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.img-navbar {
+  position: relative;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+/* line 1525, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.prueba {
+  padding: 5px !important;
+  margin: 0 !important;
+}
+
+/* line 1532, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.nav-pills > li > a {
+  border-radius: 0;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  background-color: white;
+  border: thin solid lightgray;
+}
+
+/* line 1540, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.msg-title {
+  background-color: #337ab7;
+  color: white;
+  padding: 15px 15px;
+  margin: 0 0 2px 0;
+}
+
+/* line 1548, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.msg-container {
+  padding: 15px;
+  border-radius: 8px;
+}
+
+/* line 1552, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.item-msg:hover {
+  border-left: 5px solid #337ab7;
+}
+
+/* line 1555, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.list-group-item {
+  border-radius: 0 !important;
+}
+
+/* line 1558, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.email-item:hover {
+  border-left: 3px solid #337ab7;
+  background-color: rgba(51, 122, 183, 0.1);
+}
+
+/* line 1566, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.item-msg-mailbox-active {
+  border-left: 5px solid #337ab7;
+}
+
+/* line 1570, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.paginacion {
+  text-align: center;
+  margin-top: -20px;
+  background-color: white;
+}
+
+/* line 1576, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.pagination {
+  padding-top: 3px;
+  margin: 0 auto;
+}
+
+/* line 1583, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.fix-vertical-align {
+  padding-top: 8px;
+}
+
+/* line 1587, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.icon-trash {
+  margin: 4px 0 0 0;
+  color: #dd4b39;
+}
+
+/* line 1592, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.icon-trash:hover {
+  margin: 4px 0 0 0;
+  border-bottom: 3px solid brown;
+}
+
+/* line 1598, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.is_send {
+  color: #00c0ef;
+  font-size: 1.5em;
+  position: relative;
+  top: 5px;
+  padding-right: 10px;
+}
+
+/* line 1607, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.info-box {
+  display: block;
+  min-height: 70px;
+  background: #fff;
+  width: 100%;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  margin-bottom: 5px;
+}
+
+/* line 1616, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.info-box-icon {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 2px;
+  display: block;
+  float: left;
+  height: 70px;
+  width: 70px;
+  text-align: center;
+  font-size: 45px;
+  line-height: 70px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* line 1630, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.bg-green {
+  color: #fff !important;
+  background-color: #008d4c !important;
+}
+
+/* line 1634, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.bg-yellow {
+  color: #fff !important;
+  background-color: #f39c12 !important;
+}
+
+/* line 1638, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.bg-red {
+  color: #fff !important;
+  background-color: #dd4b39 !important;
+}
+
+/* line 1642, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.bg-aqua {
+  color: #fff !important;
+  background-color: #00c0ef !important;
+}
+
+/* line 1647, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.info-box-content {
+  padding: 5px 10px;
+  margin-left: 70px;
+}
+
+/* line 1651, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.info-box-text {
+  text-transform: uppercase;
+}
+
+/* line 1654, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.info-box-number {
+  display: block;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* line 1660, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.icon-restore {
+  font-size: 0.8em;
+  padding: 0;
+  margin: 0;
+  float: right;
+}
+
+/* line 1668, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.empty-trash {
+  float: right;
+  margin-right: -15px;
+  margin-top: -15px;
+}
+
+/* line 1674, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.empty-trash > a {
+  padding-bottom: 21px;
+  padding-top: 15px;
+}
+
+/* line 1679, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.form-msg {
+  margin: 1px 0 !important;
+  border-radius: 0;
+}
+
+/* line 1685, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.is_read {
+  color: darkgreen;
+  font-size: 1.5em;
+  position: relative;
+  top: 5px;
+  padding-right: 10px;
+}
+
+/* line 1692, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.is_unread {
+  color: orange;
+  font-size: 1.5em;
+  position: relative;
+  top: 5px;
+  padding-right: 10px;
+}
+
+/* line 1699, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.is_trashed {
+  color: #dd4b39;
+  font-size: 1.5em;
+  float: left;
+  top: 10px;
+  padding-right: 15px;
+}
+
+/* line 1707, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.img-participant-first {
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  display: inline;
+}
+
+/* line 1715, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.img-participant-second {
+  height: 38px;
+  width: 38px;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  display: inline;
+}
+
+/* line 1723, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.img-participant-third {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  display: inline;
+}
+
+/* line 1731, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.participant-names {
+  display: inline;
+  float: right;
+  list-style-type: none;
+}
+
+/* line 1737, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.img-participant-others {
+  font-size: 0.8em;
+  border-radius: 50%;
+  padding: 8px;
+  margin: 0;
+  display: inline;
+  background-color: #333333;
+  color: white;
+}
+
+/* line 1750, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.messages {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+/* line 1756, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.contenedor-responder {
+  background-color: white;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 8px;
+}
+
+/* line 1762, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.messages > span {
+  font-size: 0.8em;
+}
+
+/* line 1767, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.contenedor-responder {
+  margin-top: 0;
+  border-radius: 0;
+}
+
+/* line 1778, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.dropdown-menu li {
+  width: 350px;
+  font-size: 0.8em;
+}
+
+/* line 1783, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.dropdown-menu li a {
+  width: 350px;
+  font-size: 0.9em;
+  display: block;
+  text-decoration: none;
+  margin-left: 15px;
+  margin-bottom: 3px;
+}
+
+/* line 1792, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.dropdown-menu li a:hover {
+  width: 335px;
+  font-size: 0.9em;
+  display: block;
+  text-decoration: none;
+  margin-left: 15px;
+  margin-bottom: 3px;
+  border-left: 3px solid #337ab7;
+}
+
+/* line 1801, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.ver-todos {
+  text-align: center;
+}
+
+/* line 1804, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.ver-todos > a {
+  margin-left: 0 !important;
+}
+
+/* line 1807, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.inbox-notify {
+  background: rgba(223, 0, 0, 0.6);
+  position: relative;
+  top: -12px;
+  left: 2px;
+}
+
+/* line 1813, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.dropdown-menu-inbox {
+  max-height: 254px;
+  overflow-y: auto;
+}
+
+/* line 1817, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.ver-todos > a:hover {
+  color: #337ab7 !important;
+  border-left: 0 !important;
+}
+
+/* line 1823, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#messages {
+  display: none;
+}
+
+/* line 1826, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.navbar img {
+  float: left;
+  width: 10px;
+  height: 10px;
+  background: #555;
+}
+
+/* line 1833, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.add-on .input-group-btn > .btn {
+  border-left-width: 0;
+  left: -2px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+/* line 1839, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.form-control {
+  width: 20%;
+}
+
+/* line 1840, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.navbar-nav > li > a {
+  border-right: 1px solid #ddd;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+/* The Modal (background) */
+/* line 1849, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: -160px;
+  width: 100%;
+  /* Full width */
+  height: 120;
+  /* Full hei ght */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+/* line 1863, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.modal-content {
+  background-color: #fefefe;
+  margin: 20% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+/* line 1872, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* line 1879, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* line 1895, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+/* line 1901, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.tabcontent {
+  animation: fadeEffect 1s;
+  /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* line 1911, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.container-cv {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 768px) {
+  /* line 1918, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .container-cv {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  /* line 1923, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .container-cv {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 1928, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .container-cv {
+    width: 1170px;
+  }
+}
+/* line 1933, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.line-separator-blue {
+  height: 3px;
+  width: 93%;
+  background: #717171;
+  background-color: #000099;
+  border-bottom: 1px solid #000099;
+}
+
+/* line 1940, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.line-separator-red {
+  height: 3px;
+  width: 93%;
+  background: #7d1c41;
+  background-color: #7d1c41;
+  border-bottom: 1px solid #7d1c41;
+}
+
+/* line 1947, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.section-title-blue {
+  display: inline-block;
+  background-color: #000099;
+  padding: 1px;
+  color: #ffffff;
+  width: auto;
+  padding-rigth: 20px;
+}
+
+/* line 1955, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.section-title-red {
+  display: inline-block;
+  background-color: #7d1c41;
+  padding: 1px;
+  color: #ffffff;
+  width: auto;
+  padding-rigth: 20px;
+}
+
+/* line 1963, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.section-container-blue b {
+  color: #000099;
+}
+
+/* line 1966, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.section-container-blue p {
+  color: #000000;
+}
+
+/* line 1969, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.section-container-blue {
+  color: #00000;
+}
+
+/* line 1972, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.section-container-blue h3 {
+  color: #1a1aff;
+}
+
+/* line 1975, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.section-container-red b {
+  color: #7d1c41;
+}
+
+/* line 1978, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.section-container-red p {
+  color: #000000;
+}
+
+/* line 1981, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.section-container-red {
+  color: #000000;
+}
+
+/* line 1984, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.section-container-red h3 {
+  color: #bf0d19;
+}
+
+/* line 1987, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.cv-title-name {
+  left: 5%;
+  position: auto;
+}
+
+/* line 1991, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.vertical-title {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+
+/* line 1995, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.vertical-section-blue {
+  right: auto;
+  border: 5px solid #000099;
+  padding-bottom: 21px;
+}
+
+/* line 2001, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.vertical-section-red {
+  right: auto;
+  border: 5px solid #7d1c41;
+  padding-bottom: 21px;
+}
+
+/* line 2017, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.glyphicon-remove {
+  left: 100%;
+}
+
+/* line 2021, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.sidenav {
+  width: 0;
+  position: fixed;
+  z-index: 5;
+  top: 30px;
+  left: 20%;
+  transition: 0.3s;
+  padding-top: 60px;
+}
+
+/* line 2032, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#mySidenav ul {
+  list-style-type: none;
+  text-align: center;
+}
+
+/* line 2037, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#mySidenav > ul li {
+  background: #FFf;
+}
+
+/* line 2089, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.submenu {
+  position: relative;
+  left: -20%;
+}
+
+/* line 2099, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#mySidenav {
+  width: 20vw;
+  margin: 0 1rem;
+}
+
+/* line 2103, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#mySidenav li ul {
+  position: absolute;
+  width: 0;
+  top: 0;
+  left: 100%;
+  overflow: hidden;
+  display: block;
+}
+
+/* line 2111, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#mySidenav li:hover ul, #menu_gral li:focus ul {
+  width: 100%;
+  background: #bbb;
+  z-index: 5;
+}
+
+/* line 2116, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#mySidenav li li {
+  display: block;
+  width: 100%;
+}
+
+/* line 2127, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#mySidenav li li a:hover, #mySidenav li li:focus {
+  background: #8AA9B8;
+}
+
+/* line 2130, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#mySidenav li:hover ul,
+#mySidenav li:focus ul {
+  width: 100%;
+  z-index: 5;
+  background: #bbb;
+}
+
+@media screen and (max-height: 450px) {
+  /* line 2141, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  /* line 2142, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+/* line 2161, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+a,
+#home-slider .caption h1 span,
+#twitter-carousel .item span,
+#footer .footer-bottom,
+#single-portfolio .close-folio-item:hover,
+.single-table.featured .btn.btn-primary,
+.contact-info ul li a:hover,
+#footer .footer-bottom a {
+  color: #028fcc;
+}
+
+/* line 2172, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn.btn-primary:hover,
+.btn-submit:hover {
+  background-color: #027db3;
+}
+
+/* line 2177, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+a:hover, a:focus {
+  color: #027db3;
+}
+
+/* line 2181, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.main-nav,
+.service-icon,
+.progress-bar.progress-bar-primary,
+.single-table.featured,
+.btn.btn-primary,
+.twitter-icon .fa-twitter,
+.twitter-left-control:hover, .twitter-right-control:hover,
+.post-icon,
+.entry-header .date:after,
+.btn-loadmore:hover,
+.btn-submit,
+#footer,
+.caption .btn-start:hover,
+.left-control:hover,
+.right-control:hover,
+.folio-overview a:hover {
+  background-color: #028fcc;
+}
+
+/* line 2200, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.twitter-left-control:hover,
+.twitter-right-control:hover,
+.btn-loadmore:hover {
+  border: 1px solid #028fcc;
+}
+
+/* line 2206, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.caption .btn-start:hover,
+.left-control:hover,
+.right-control:hover {
+  border-color: #028fcc;
+}
+
+/* line 2212, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.twitter-icon .fa-twitter:after {
+  border-color: #028fcc transparent transparent;
+}
+
+/*************************
+********Home CSS**********
+**************************/
+/* line 2220, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#home-slider {
+  overflow: hidden;
+  position: relative;
+}
+
+/* line 2225, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#home-slider .caption {
+  position: absolute;
+  top: 50%;
+  margin-top: -104px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  text-transform: uppercase;
+  z-index: 15;
+  font-size: 18px;
+  font-weight: 300;
+  color: #fff;
+}
+
+/* line 2239, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#home-slider .caption h1 {
+  color: #fff;
+  font-size: 60px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+/* line 2246, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.caption .btn-start {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 14px 40px;
+  border: 1px solid #6e6d6c;
+  border-radius: 4px;
+  margin-top: 40px;
+}
+
+/* line 2256, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.caption .btn-start:hover {
+  color: #fff;
+}
+
+/* line 2260, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.carousel-fade .carousel-inner .item {
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 2037px;
+}
+
+/* line 2269, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.carousel-fade .carousel-inner .item:after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* line 2279, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.carousel-fade .carousel-inner .active {
+  opacity: 1;
+}
+
+/* line 2282, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+}
+
+/* line 2288, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {
+  opacity: 1;
+}
+
+/* line 2292, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.carousel-fade .carousel-control {
+  z-index: 2;
+}
+
+/* line 2295, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.carousel-letters {
+  color: #BDBDBD;
+}
+
+/* line 2298, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.service-text {
+  color: #E6E6E6;
+}
+
+/* line 2301, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.left-control, .right-control {
+  position: absolute;
+  top: 50%;
+  height: 51px;
+  width: 51px;
+  line-height: 48px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  z-index: 20;
+  font-size: 24px;
+  color: #fff;
+  text-align: center;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+/* line 2320, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.left-control {
+  left: -51px;
+}
+
+/* line 2324, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.right-control {
+  right: -51px;
+}
+
+/* line 2328, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.left-control:hover,
+.right-control:hover {
+  color: #fff;
+}
+
+/* line 2333, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#home-slider:hover .left-control {
+  left: 30px;
+}
+
+/* line 2337, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#home-slider:hover .right-control {
+  right: 30px;
+}
+
+/* line 2341, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#home-slider .fa-angle-down {
+  position: absolute;
+  left: 50%;
+  bottom: 50px;
+  color: #fff;
+  display: inline-block;
+  width: 24px;
+  margin-left: -12px;
+  font-size: 24px;
+  line-height: 24px;
+  z-index: 999;
+  -webkit-animation: bounce 3000ms infinite;
+  animation: bounce 3000ms infinite;
+}
+
+/* line 2356, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.navbar-right li a {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+/* line 2365, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.navbar-right li.active a {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 2369, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.navbar-brand h1 {
+  margin-top: 5px;
+}
+
+/*************************
+********Service CSS*******
+**************************/
+/* line 2377, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.service-icon {
+  border-radius: 4px;
+  color: #fff;
+  display: inline-block;
+  font-size: 36px;
+  height: 90px;
+  line-height: 90px;
+  width: 90px;
+  -webkit-transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
+}
+
+/* line 2389, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.our-services .col-sm-4:hover .service-icon {
+  background-color: #333;
+}
+
+/* line 2393, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.our-services .col-sm-4 {
+  border-right: 1px solid #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
+  padding-bottom: 50px;
+}
+
+/* line 2399, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.our-services .col-sm-4:nth-child(4),
+.our-services .col-sm-4:nth-child(5),
+.our-services .col-sm-4:nth-child(6) {
+  border-bottom: 0;
+  padding-top: 60px;
+}
+
+/* line 2406, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.our-services .col-sm-4:nth-child(3),
+.our-services .col-sm-4:nth-child(6) {
+  border-right: 0;
+}
+
+/* line 2411, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.service-info h3 {
+  margin-top: 35px;
+}
+
+/*************************
+********About CSS*******
+**************************/
+/* line 2418, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#about-us {
+  background-image: url(estadistica.jpg);
+  padding: 60px 0;
+}
+
+/* line 2423, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#about-us h2 {
+  margin-top: 0;
+  color: #fff;
+}
+
+/* line 2428, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#about-us .lead {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* line 2433, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#about-us h1 {
+  margin-bottom: 30px;
+}
+
+/* line 2437, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.progress {
+  height: 20px;
+  background-color: #fff;
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  margin-bottom: 25px;
+}
+
+/* line 2446, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.progress-bar {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  text-align: right;
+  padding-right: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* line 2456, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.progress .progress-bar.six-sec-ease-in-out {
+  -webkit-transition: width 2s ease-in-out;
+  transition: width 2s ease-in-out;
+}
+
+/*************************
+********portfolio CSS*****
+**************************/
+/* line 2465, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#portfolio .container-fluid,
+#portfolio .col-sm-3 {
+  overflow: hidden;
+  padding: 0;
+}
+
+/* line 2471, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#portfolio .folio-item {
+  position: relative;
+}
+
+/* line 2475, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#portfolio .overlay {
+  background-color: #000;
+  color: #fff;
+  left: 0;
+  right: 0;
+  bottom: -100%;
+  height: 0;
+  position: absolute;
+  text-align: center;
+  opacity: 0;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+/* line 2489, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.overlay .overlay-content {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+/* line 2495, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.overlay .overlay-text {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/* line 2500, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.overlay .folio-info {
+  opacity: 0;
+  margin-bottom: 75px;
+  margin-top: -75px;
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+
+/* line 2508, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.overlay .folio-info h3 {
+  margin-top: 0;
+  color: #fff;
+}
+
+/* line 2513, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.folio-overview a {
+  font-size: 18px;
+  color: #333;
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: inline-block;
+  margin-top: 20px;
+  margin-right: 5px;
+}
+
+/* line 2526, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.folio-overview a:hover {
+  color: #fff;
+}
+
+/* line 2530, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.folio-overview .folio-expand {
+  margin-top: -500px;
+  margin-left: -500px;
+}
+
+/* line 2535, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.folio-image, .folio-overview .folio-expand {
+  -webkit-transition: all 0.8s ease-in-out;
+  transition: all 0.8s ease-in-out;
+}
+
+/* line 2540, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#portfolio .folio-item:hover .folio-image {
+  -webkit-transform: scale(1.5) rotate(-15deg);
+  transform: scale(1.5) rotate(-15deg);
+}
+
+/* line 2545, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.folio-image img {
+  width: 100%;
+}
+
+/* line 2549, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#portfolio .folio-item:hover .overlay {
+  opacity: 0.8;
+  bottom: 0;
+  height: 100%;
+}
+
+/* line 2555, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#portfolio .folio-item:hover .folio-overview .folio-expand {
+  margin-top: 0;
+  margin-left: 0;
+}
+
+/* line 2560, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#portfolio .folio-item:hover .overlay .folio-info {
+  opacity: 1;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+/* line 2567, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#single-portfolio {
+  padding: 90px 0;
+  background: #f5f5f5;
+  position: relative;
+}
+
+/* line 2573, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#single-portfolio img {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* line 2578, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#single-portfolio .close-folio-item {
+  position: absolute;
+  top: 30px;
+  font-size: 34px;
+  width: 34px;
+  height: 34px;
+  left: 50%;
+  color: #999;
+  margin-left: -17px;
+}
+
+/*************************
+*********Team CSS*********
+**************************/
+/* line 2592, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#team {
+  padding-top: 0;
+}
+
+/* line 2596, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.team-members {
+  margin-bottom: 25px;
+}
+
+/* line 2600, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.social-icons {
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* line 2605, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.social-icons ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+}
+
+/* line 2612, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.social-icons ul li {
+  float: left;
+  margin-right: 8px;
+}
+
+/* line 2617, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.social-icons ul li:last-child {
+  margin-right: 0;
+}
+
+/* line 2621, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.social-icons ul li a {
+  color: #fff;
+  background-color: #d9d9d9;
+  height: 36px;
+  width: 36px;
+  line-height: 36px;
+  display: block;
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+/* line 2632, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.social-icons ul li a:hover {
+  opacity: 1;
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+/* line 2638, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.team-member {
+  text-align: center;
+  color: #333;
+  font-size: 14px;
+}
+
+/* line 2644, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.team-member:hover .social-icons ul li a.facebook {
+  background-color: #3b5999;
+}
+
+/* line 2647, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.team-member:hover .social-icons ul li a.twitter {
+  background-color: #2ac6f7;
+}
+
+/* line 2650, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.team-member:hover .social-icons ul li a.dribbble {
+  background-color: #ff5b92;
+}
+
+/* line 2653, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.team-member:hover .social-icons ul li a.linkedin {
+  background-color: #036dc0;
+}
+
+/* line 2656, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.team-member:hover .social-icons ul li a.rss {
+  background-color: #ff6b00;
+}
+
+/* line 2660, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#team .img-responsive {
+  width: 100%;
+}
+
+/* line 2664, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.member-info h3 {
+  margin-top: 35px;
+}
+
+/* line 2668, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.member-info h4 {
+  font-size: 14px;
+  margin-bottom: 15px;
+  color: #999;
+}
+
+/*************************
+*******Features CSS*******
+**************************/
+/* line 2678, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#features {
+  text-align: center;
+  background-image: url(stat.jpg);
+}
+
+/* line 2683, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#features i {
+  font-size: 48px;
+}
+
+/* line 2687, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#features h3 {
+  margin-top: 15px;
+  font-size: 30px;
+  margin-bottom: 7px;
+  color: #fff;
+}
+
+/* line 2694, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#features .slider-overlay {
+  opacity: 0.8;
+}
+
+/*************************
+*****Pricing Table CSS****
+**************************/
+/* line 2702, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.pricing-table {
+  text-align: center;
+}
+
+/* line 2706, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.single-table {
+  padding: 30px 20px 20px;
+  border: 1px solid #f2f2f2;
+}
+
+/* line 2711, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.single-table h3 {
+  margin-top: 0;
+  padding: 0;
+  font-size: 18px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+/* line 2719, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.price {
+  font-size: 36px;
+  line-height: 36px;
+}
+
+/* line 2724, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.price span {
+  font-size: 14px;
+  line-height: 14px;
+}
+
+/* line 2729, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.single-table ul {
+  list-style: none;
+  padding: 0;
+  margin: 30px 0;
+}
+
+/* line 2735, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.single-table ul li {
+  line-height: 30px;
+}
+
+/* line 2739, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.single-table.featured {
+  color: #fff;
+}
+
+/* line 2743, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.single-table.featured h3 {
+  color: #fff;
+}
+
+/* line 2747, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.single-table.featured .btn.btn-primary {
+  background-color: #fff;
+}
+
+/*************************
+********Twitter CSS*******
+**************************/
+/* line 2754, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#twitter {
+  background-image: url(contratar.jpg);
+}
+
+/* line 2758, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#twitter > div {
+  text-align: center;
+  position: relative;
+}
+
+/* line 2763, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#twitter-carousel {
+  position: relative;
+  z-index: 15;
+}
+
+/* line 2768, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.twitter-icon {
+  position: relative;
+  z-index: 15;
+  color: #fff;
+}
+
+/* line 2774, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.twitter-icon .fa-twitter {
+  font-size: 24px;
+  height: 64px;
+  width: 64px;
+  line-height: 65px;
+  border-radius: 50%;
+  position: relative;
+}
+
+/* line 2783, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.twitter-icon .fa-twitter:after {
+  position: absolute;
+  content: "";
+  border-width: 8px;
+  border-style: solid;
+  left: 24px;
+  bottom: -14px;
+}
+
+/* line 2792, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#twitter-carousel .item {
+  padding: 0 55px;
+}
+
+/* line 2796, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#twitter-carousel .item a {
+  color: #fff;
+}
+
+/* line 2800, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.twitter-icon h4 {
+  text-transform: uppercase;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  color: #fff;
+}
+
+/* line 2807, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.twitter-left-control,
+.twitter-right-control {
+  position: absolute;
+  top: 50%;
+  color: #fff;
+  border: 1px solid #fafafa;
+  height: 34px;
+  width: 34px;
+  line-height: 31px;
+  margin-top: -17px;
+  font-size: 18px;
+  border-radius: 50%;
+  z-index: 15;
+}
+
+/* line 2822, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.twitter-left-control {
+  left: 80px;
+}
+
+/* line 2826, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.twitter-right-control {
+  right: 80px;
+}
+
+/* line 2830, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.twitter-left-control:hover, .twitter-right-control:hover {
+  color: #fff;
+}
+
+/*************************
+**********Blog CSS********
+**************************/
+/* line 2839, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.post-thumb {
+  position: relative;
+}
+
+/* line 2843, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.post-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  border-radius: 4px;
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+}
+
+/* line 2856, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.post-meta {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: #fff;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* line 2866, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.post-meta span {
+  margin-right: 16px;
+}
+
+/* line 2870, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#post-carousel .carousel-indicators {
+  bottom: 3px;
+  left: 90%;
+}
+
+/* line 2875, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.blog-left-control, .blog-right-control {
+  position: absolute;
+  top: 45%;
+  width: 30px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 36px;
+}
+
+/* line 2884, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.blog-left-control {
+  left: 0;
+}
+
+/* line 2888, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.blog-right-control {
+  right: 0;
+}
+
+/* line 2892, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.blog-left-control:hover, .blog-right-control:hover {
+  color: #fff;
+}
+
+/* line 2896, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.entry-header h3 a {
+  line-height: 30px;
+}
+
+/* line 2900, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.entry-header .date,
+.entry-header .cetagory {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  position: relative;
+}
+
+/* line 2910, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.entry-header .date:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -22px;
+  width: 20px;
+  height: 3px;
+}
+
+/* line 2919, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.entry-content {
+  font-size: 14px;
+}
+
+/* line 2923, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.load-more {
+  display: block;
+  text-align: center;
+  margin-top: 70px;
+}
+
+/* line 2929, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-loadmore {
+  border: 1px solid #f2f2f2;
+  color: #666666;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 15px 125px;
+  text-transform: uppercase;
+}
+
+/* line 2938, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-loadmore:hover {
+  color: #fff;
+}
+
+/*************************
+**********Contact CSS*****
+**************************/
+/* line 2946, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#contact {
+  padding-top: 45px;
+  padding-bottom: 0;
+}
+
+/* line 2951, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#google-map {
+  height: 350px;
+}
+
+/* line 2955, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#contact-us {
+  background-image: url(contact-bg.jpg);
+  padding-bottom: 90px;
+}
+
+/* line 2960, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#contact-us .heading {
+  padding-top: 95px;
+}
+
+/* line 2964, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.form-control {
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.1);
+  height: 50px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* line 2972, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+textarea.form-control {
+  min-height: 180px;
+  resize: none;
+}
+
+/* line 2977, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.form-group {
+  margin-bottom: 30px;
+}
+
+/* line 2981, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.contact-info {
+  padding-left: 70px;
+  font-weight: 300;
+}
+
+/* line 2986, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+ul.address {
+  margin-top: 30px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 2993, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.contact-info ul li {
+  margin-bottom: 8px;
+}
+
+/* line 2997, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.contact-info ul li a {
+  color: #fff;
+}
+
+/* line 3001, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-submit {
+  display: block;
+  padding: 12px;
+  width: 100%;
+  color: #fff;
+  border: 0;
+  margin-top: 40px;
+}
+
+/* line 3010, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#footer {
+  color: #fff;
+}
+
+/* line 3014, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.footer-top {
+  position: relative;
+  padding: 30px 0;
+}
+
+/* line 3019, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#footer .footer-bottom {
+  background-color: #fff;
+  padding: 20px 0 10px;
+}
+
+/* line 3024, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#footer .footer-bottom a:hover {
+  text-decoration: underline;
+}
+
+/* line 3028, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.footer-logo {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+/* line 3033, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#footer .social-icons {
+  margin-top: 15px;
+}
+
+/* line 3037, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#footer .social-icons ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 3043, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#footer .social-icons ul li a {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  line-height: 33px;
+}
+
+/* line 3049, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#footer .social-icons ul li a:hover {
+  color: #fff;
+}
+
+/* line 3053, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#footer .social-icons ul li a.envelope:hover {
+  background-color: #CECB26;
+}
+
+/* line 3057, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#footer .social-icons ul li a.facebook:hover {
+  background-color: #3b5999;
+}
+
+/* line 3060, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#footer .social-icons ul li a.twitter:hover {
+  background-color: #2ac6f7;
+}
+
+/* line 3063, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#footer .social-icons ul li a.dribbble:hover {
+  background-color: #ff5b92;
+}
+
+/* line 3066, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#footer .social-icons ul li a.linkedin:hover {
+  background-color: #036dc0;
+}
+
+/* line 3069, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+#footer .social-icons ul li a.tumblr:hover {
+  background-color: #ff6b00;
+}
+
+/*Presets*/
+/* line 3081, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+strong {
+  font-weight: 500;
+}
+
+/* line 3083, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+a, a:hover, a:focus {
+  color: #de615e;
+  text-decoration: none;
+  -o-transition: all .3s;
+  -moz-transition: all .3s;
+  -webkit-transition: all .3s;
+  -ms-transition: all .3s;
+  transition: all .3s;
+}
+
+/* line 3089, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+h1, h2 {
+  margin-top: 10px;
+  font-size: 38px;
+  font-weight: 100;
+  color: #555;
+  line-height: 50px;
+}
+
+/* line 3097, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+h3 {
+  font-size: 22px;
+  font-weight: 300;
+  color: #555;
+  line-height: 30px;
+}
+
+/* line 3104, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+img {
+  max-width: 100%;
+}
+
+/* line 3106, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+::-moz-selection {
+  background: #de615e;
+  color: #fff;
+  text-shadow: none;
+}
+
+/* line 3107, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+::selection {
+  background: #de615e;
+  color: #fff;
+  text-shadow: none;
+}
+
+/* line 3110, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-link-1 {
+  display: inline-block;
+  height: 50px;
+  margin: 5px;
+  padding: 16px 20px 0 20px;
+  background: #de615e;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 16px;
+  color: #fff;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/* line 3122, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-link-1:hover, .btn-link-1:focus, .btn-link-1:active {
+  outline: 0;
+  opacity: 0.6;
+  color: #fff;
+}
+
+/* line 3124, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-link-1.btn-link-1-facebook {
+  background: #4862a3;
+}
+
+/* line 3125, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-link-1.btn-link-1-twitter {
+  background: #55acee;
+}
+
+/* line 3126, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-link-1.btn-link-1-google-plus {
+  background: #dd4b39;
+}
+
+/* line 3128, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-link-1 i {
+  padding-right: 5px;
+  vertical-align: middle;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+/* line 3135, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-link-2 {
+  display: inline-block;
+  height: 50px;
+  margin: 5px;
+  padding: 15px 20px 0 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #fff;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 16px;
+  color: #fff;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/* line 3148, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.btn-link-2:hover, .btn-link-2:focus,
+.btn-link-2:active, .btn-link-2:active:focus {
+  outline: 0;
+  opacity: 0.6;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+/***** Top content *****/
+/* line 3154, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.inner-bg {
+  padding: 100px 0 170px 0;
+}
+
+/* line 3158, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.top-content .text {
+  color: #fff;
+}
+
+/* line 3162, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.top-content .text h1 {
+  color: #fff;
+}
+
+/* line 3164, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.top-content .description {
+  margin: 20px 0 10px 0;
+}
+
+/* line 3168, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.top-content .description p {
+  opacity: 0.8;
+}
+
+/* line 3170, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.top-content .description a {
+  color: #fff;
+}
+
+/* line 3173, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.top-content .description a:hover,
+.top-content .description a:focus {
+  border-bottom: 1px dotted #fff;
+}
+
+/* line 3176, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.form-box {
+  margin-top: 35px;
+}
+
+/* line 3180, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.form-top {
+  overflow: hidden;
+  padding: 0 25px 15px 25px;
+  background: #444;
+  background: rgba(0, 0, 0, 0.35);
+  -moz-border-radius: 4px 4px 0 0;
+  -webkit-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
+  text-align: left;
+}
+
+/* line 3189, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.form-top-left {
+  float: left;
+  width: 75%;
+  padding-top: 25px;
+}
+
+/* line 3195, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.form-top-left h3 {
+  margin-top: 0;
+  color: #fff;
+}
+
+/* line 3196, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.form-top-left p {
+  opacity: 0.8;
+  color: #fff;
+}
+
+/* line 3198, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.form-top-right {
+  float: left;
+  width: 25%;
+  padding-top: 5px;
+  font-size: 66px;
+  color: #fff;
+  line-height: 100px;
+  text-align: right;
+  opacity: 0.3;
+}
+
+/* line 3209, D:/Universidad/pasantia/TeresaUCB/app/assets/stylesheets/users.scss */
+.form-bottom {
+  padding: 25px 25px 30px 25px;
+  background: #444;
+  background: rgba(0, 0, 0, 0.3);
+  -moz-border-radius: 0 0 4px 4px;
+  -webkit-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
+  text-align: left;
+}
