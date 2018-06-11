@@ -1,5 +1,6 @@
 class ReportsController < ApplicationController
   @@r=Education.new
+  @@title_list=@@r.cato_titles
   def new
     if !current_user.is_director
       throwUnauthorized
@@ -83,9 +84,10 @@ class ReportsController < ApplicationController
       throwUnauthorized
       return
     else
+      @title_list=@@r.cato_titles
       @info_charts=Hash.new
       @personal_by_gender=PersonalInformation.group(:gender).count
-      @info_charts={"Hombres"=>@personal_by_gender[true],"Mujeres"=>@personal_by_gender[false],"Empresas"=>@personal_by_gender[nil]}
+      @info_charts={"Hombres"=>@personal_by_gender[true],"Mujeres"=>@personal_by_gender[false]}
     end
   end
   def by_gender_university
@@ -93,6 +95,7 @@ class ReportsController < ApplicationController
       throwUnauthorized
       return
     else
+      @title_list=@@r.cato_titles
       @perso=Education.new
       @used_genders=Hash.new
       @used_schools=@perso.chart_names

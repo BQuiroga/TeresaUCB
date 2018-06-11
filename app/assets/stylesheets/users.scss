@@ -3212,3 +3212,21 @@ img { max-width: 100%; }
 	-moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px;
 	text-align: left;
 }
+
+
+////select!!
+.center-select > select  {
+margin: 50px;
+width: 400px;
+padding: 5px 35px 5px 5px;
+font-size: 16px;
+border: 1px solid #ccc;
+height: 34px;
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+}
+  .center-select{
+    padding-left:25%;
+  left:30%;
+  }

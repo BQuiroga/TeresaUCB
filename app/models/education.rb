@@ -72,15 +72,19 @@ class Education < ActiveRecord::Base
     educations=Education.where(school_name:school)
     educations.map {|education| education.user}
   end
+  def users_by_career(school,career)
+    educations=Education.where(school_name:school).where("title ~* ?",career)
+    educations.map {|education| education.user}
+  end
   def genders(school)
-    e=Array.new
     educations=users(school)
     educations.select {|user| (user.personal_information!=nil)}.map {|user| user.personal_information.gender}
-    # e[0]=educations.count(true)
-    # e[1]=educations.count(false)
-    # e[2]=educations.count(nil)
-    # e
   end
+  def genders_by_career(school,career)
+    educations=users_by_career(school,career)
+    educations.select {|user| (user.personal_information!=nil)}.map {|user| user.personal_information.gender}
+  end
+
   def registro_academico(grado,licen,maestria,postgrado,doctorado)
     if grado=="Todos"
       edu ="Todos los grados academicos"

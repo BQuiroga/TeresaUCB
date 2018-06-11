@@ -1,0 +1,11 @@
+  function cambioCarreras(){
+    var selected=document.getElementById("carrera").value;
+    var filtros=document.getElementsByClassName("filtro");
+    alert("funca");
+    for (var i=0; i<filtros.length;i++)
+    {
+      filtros[i].style.display="none";
+    }
+    document.getElementById(selected).style.display="block";
+
+  }
