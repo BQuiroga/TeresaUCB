@@ -1,16 +1,28 @@
-<h2>Olvidaste tu contraseña?</h2>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <h2>Olvidaste tu contraseña?</h2>
+      </div>
+    </div>
+    <div class="panel panel-body">
+
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+  <div class="field col col-md-6">
+    <%= f.label :email,:class=>'form-label' %>
+    <%= f.email_field :email, autofocus: true ,:class=>'form-control'%>
   </div>
-
+<div class="field col col-md-6">
+</div>
+<br>
   <div class="actions">
-    <%= f.submit "Enviar mail de confirmación" %>
+    <%= f.submit "Enviar mail de confirmación",:class=>'btn btn-primary' %>
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+</div>
+</div>
+</div>

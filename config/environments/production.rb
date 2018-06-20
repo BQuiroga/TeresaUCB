@@ -14,6 +14,7 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
   config.assets.debug = true
+  config.action_mailer.raise_delivery_errors = true
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
@@ -73,7 +74,7 @@ Rails.application.configure do
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
 
-  config.action_controller.default_url_options = { host: 'bolsadetrabajo.ucbcba.edu.bo' }
+  config.action_controller.default_url_options = { host: 'bolsadetrabajo.ucbcba.edu.bo',port:80 }
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
@@ -83,7 +84,7 @@ Rails.application.configure do
   # config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { enable_starttls_auto: true  }
 # SMTP settings for gmail
-config.action_mailer.default_url_options = { host: 'bolsadetrabajo.ucbcba.edu.bo', port: 80 }
+config.action_mailer.default_url_options = { host: 'bolsadetrabajo.ucbcba.edu.bo'}
 config.action_mailer.perform_deliveries = true
 config.action_mailer.raise_delivery_errors = true
 ActionMailer::Base.smtp_settings = {
