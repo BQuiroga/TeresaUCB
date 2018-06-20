@@ -1,19 +1,26 @@
-<h2>Cambiar Contraseña</h2>
+<div class="container">
+  <div class="panel-heading">
+    <div class="panel-title">
+      <h2>Cambiar contraseña</h2>
+    </div>
+  </div>
+  <div class="panel panel-body">
+
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
   <%= f.hidden_field :reset_password_token %>
 
   <div class="field">
-    <%= f.label :password, "New password" %><br />
+    <%= f.label :password, "New password",:class=>'form-label' %>
     <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characteres minimo)</em><br />
         Una mayuscula, una minuscula y un número
     <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+    <%= f.password_field :password, autofocus: true, autocomplete: "off",:class=>'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field col col-md-6">
     <%= f.label :password_confirmation, "Repita la nueva contraseña" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
@@ -22,3 +29,6 @@
     <%= f.submit "Cambiar mi contraseña" %>
   </div>
 <% end %>
+</div>
+</div>
+</div>
