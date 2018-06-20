@@ -12,22 +12,26 @@
   <%= devise_error_messages! %>
   <%= f.hidden_field :reset_password_token %>
 
-  <div class="field col col-md-6">
-    <%= f.label :password, "New password",:class=>'form-label' %>
+  <div class="field col col-md-12">
+    <div class="field col col-md-6">
+    <%= f.label :password, "Nueva contraseña",:class=>'form-label' %>
     <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characteres minimo)</em>
         Una mayuscula, una minuscula y un número
     <% end %>
     <%= f.password_field :password, autofocus: true, autocomplete: "off",:class=>'form-control' %>
+    </div>
   </div>
-  <div class="col col-md-6">
-  </div>
-  <div class="field col col-md-6">
+  <div class="field col col-md-12">
+
+  <div class="field col col-md-6 col-lg-6">
     <%= f.label :password_confirmation, "Repita la nueva contraseña",:class=>'form-label' %>
     <%= f.password_field :password_confirmation, autocomplete: "off",:class=>'form-control' %>
   </div>
-  <br>
-  <div class="actions">
+</div>
+
+  <div class="field actions">
+    <br>
     <%= f.submit "Cambiar mi contraseña",:class=>'btn btn-primary' %>
   </div>
 <% end %>
