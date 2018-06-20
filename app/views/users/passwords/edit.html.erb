@@ -21,12 +21,12 @@
   </div>
 
   <div class="field col col-md-6">
-    <%= f.label :password_confirmation, "Repita la nueva contraseña" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.label :password_confirmation, "Repita la nueva contraseña",:class=>'form-label' %>
+    <%= f.password_field :password_confirmation, autocomplete: "off",:class=>'form-control' %>
   </div>
-
+  <br>
   <div class="actions">
-    <%= f.submit "Cambiar mi contraseña" %>
+    <%= f.submit "Cambiar mi contraseña",:class=>'btn btn-primary' %>
   </div>
 <% end %>
 </div>
