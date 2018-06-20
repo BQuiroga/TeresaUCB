@@ -196,8 +196,8 @@ class User < ActiveRecord::Base
     jobs=self.resume.experiences
     first=Date.today
     jobs.each do |work|
-      if first>work.end_date
-        first=work.end_date
+      if first>work.start_date
+        first=work.start_date
       end
     end
     first

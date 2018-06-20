@@ -1,4 +1,36 @@
 <style>
+ .grado-select  {
+margin: 10px;
+margin-bottom: 0px;
+width: 400px;
+padding: 5px 5px 5px 5px;
+font-size: 16px;
+border: 1px solid #ccc;
+height: 34px;
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+}
+  .center-select{
+    padding-left:25%;
+  left:30%;
+  }
+  .date-select  {
+ margin: 10px;
+ margin-bottom: 0px;
+ width: 50px;
+ padding: 5px 5px 5px 5px;
+ font-size: 16px;
+ border: 1px solid #ccc;
+ height: 20px;
+ -webkit-appearance: none;
+ -moz-appearance: none;
+ appearance: none;
+ }
+ .report-button {
+   position:relative;
+   top:-5px;
+ }
 </style>
 
 
@@ -7,159 +39,232 @@
     <div class="panel panel-default">
       <div class="panel-heading"><div class="panel-title"><h3>Criterios de busqueda</h3></div></div>
         <div class="panel-body">
-          <h3>Reportes estaticos</h3>
-          <span onclick="openNav()"><button class="btn btn-info btn-lg ">Ver reportes</button></span>
-          <div class="">
-          <div id="mySidenav" class="sidenav" style="display:none;">
-              <a onclick="closeNav()"><span class="glyphicon glyphicon-remove float-xs-left"></span></a>
-            <ul>
-              <li class="list-group-item">
-                <p class="test" tabindex="-1" href="#">Estudiantes registrados <span class="glyphicon glyphicon-chevron-right "></span></p>
-                <ul>
-                    <li class="list-group-item">Por fecha
-                      <a href="/reportes/UsuariosPorFecha"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
-                    </li>
-                    <li class="list-group-item">Por Género
-                      <a href="/reportes/UsuariosPorGenero"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
-                    </li>
-                    <li class="list-group-item">Por Género y Universidad
-                      <a href="/reportes/UsuariosPorGeneroUniversidad"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
-                    </li>
-                </ul>
-              </li>
-              <li class="list-group-item test">
-                <p class="test" tabindex="-1" href="#">Estudiantes titulados <span class="glyphicon glyphicon-chevron-right btn-negro"></span></p>
-                <ul class="submenu">
-                  <li class="list-group-item">Por Universidad
-                    <a href="/reportes/UsuariosPorUniversidad"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="panel-title">
+                <h4>Reportes estaticos
+                <span class="glyphicon glyphicon-chevron-right pull-right" id="estaticos_der" onclick="toggleEstaticos()" style="display:none;"></span>
+                <span class="glyphicon glyphicon-chevron-down pull-right" id="estaticos_ab" onclick="toggleEstaticos()"  ></span>
+
+              </h4>
+              </div>
+            </div>
+            <div class="panel panel-body" id="estaticos" style="display:none;">
+              <div class="panel panel-default">
+                <div class="panel panel-heading">
+                  <div class="panel-title" tabindex="-1" href="#">
+                    <h5>Estudiantes registrados </h5>
+                      <span class="glyphicon glyphicon-chevron-right pull-right" id="estaticos_registrados_der" onclick="toggleRegistrados()" style="display:none;"></span>
+                      <span class="glyphicon glyphicon-chevron-down pull-right" id="estaticos_registrados_ab" onclick="toggleRegistrados()"></span>
+                  </div>
+                </div>
+                <ul class="list-group" style="display:none;" id="registrados">
+                  <li class="list-group-item">Por fecha
+                    <a href="/reportes/UsuariosPorFecha"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
                   </li>
-                  <li class="list-group-item">Por Carrera
-                    <a href="/reportes/UsuariosPorCarrera"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
+                  <li class="list-group-item">Por Género
+                    <a href="/reportes/UsuariosPorGenero"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
                   </li>
-                  <!-- <li class="list-group-item">Con Maestria
-                    <a href="/reportes/ConPostgrado"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
-                  </li> -->
+                  <li class="list-group-item">Por Género y Universidad
+                    <a href="/reportes/UsuariosPorGeneroUniversidad"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
+                  </li>
                 </ul>
-              </li>
-              <li class="list-group-item">Empresas clasificadas codigo CIUU
-                <a href="/reportes/EmpresasPorcodigoCIUU"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
-              </li>
-              <li class="list-group-item">Trabajos por rango salarial
-                <a href="/reportes/TrabajosPorRangoSalarial"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
-              </li>
-                <li class="list-group-item">Tiempo transcurridos para conseguir un trabajo <br>
-                <a href="/reportes/TiempoParaTrabajar"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
-              </li>
-              <li class="list-group-item">Tiempo de permanencia en un trabajo<br>
-                <a href="/reportes/DuracionDeTrabajo"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
-              </li>
-            </ul>
-          </div>
-          <div>
+              </div>
+                  <div class="panel panel-default">
+                    <div class="panel panel-heading">
+                      <div class="panel-title" tabindex="-1" href="#">
+                        <h5>Estudiantes titulados </h5>
+                        <span class="glyphicon glyphicon-chevron-right pull-right" id="estaticos_titulados_der" onclick="toggleTitulados()" style="display:none;"></span>
+                        <span class="glyphicon glyphicon-chevron-down pull-right" id="estaticos_titulados_ab" onclick="toggleTitulados()" ></span>
+                      </div>
+                    </div>
+                    <ul class="list-group" style="display:none;" id="titulados">
+                      <li class="list-group-item">Por Universidad
+                        <a href="/reportes/UsuariosPorUniversidad"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
+                      </li>
+                      <li class="list-group-item">Por Carrera
+                        <a href="/reportes/UsuariosPorCarrera"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
+                      </li>
+                      <!-- <li class="list-group-item">Con Maestria
+                      <a href="/reportes/ConPostgrado"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
+                    </li> -->
+                  </ul>
+                </div>
+                <div class="panel panel-default">
+                  <ul class="list-group">
+                <li class="list-group-item">Empresas clasificadas codigo CIUU
+                  <a href="/reportes/EmpresasPorcodigoCIUU"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
+                </li>
+                <li class="list-group-item">Trabajos por rango salarial
+                  <a href="/reportes/TrabajosPorRangoSalarial"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
+                </li>
+                <li class="list-group-item">Tiempo transcurridos para conseguir un trabajo
+                  <a href="/reportes/TiempoParaTrabajar"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
+                </li>
+                <li class="list-group-item">Tiempo de permanencia en un trabajo
+                  <a href="/reportes/DuracionDeTrabajo"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
+                </li>
+              </ul>
+            </div>
+            </div>
+            <div>
+            </div>
           </div>
 
-        </div>
-        <div class="col-md-4">
-        </div>
-        <div class="col-md-8" style="top:-100px;">
-          <h3>Reportes dinamicos</h3>
-          <%= form_for :report, url: '/reporte/nuevo' do |f|%>
-            <div class="container-fluid">
-              <!-- reportes por grado academico -->
-              <div class="col-sm-3 col-md-6 col-lg-6">
-                <div class="field">
-                  <%=f.label :reportes_por_grados %>
-                  <input type="checkbox" id=check_grados name="check_grados" class="field">
+        <!-- Reportes dinamicos -->
+          <div class="panel panel-default" style="left:5px;">
+            <div class="panel-heading">
+              <div class="panel-title">
+                <h3>Reportes dinamicos</h3>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="container">
+                <%= form_for :report, url: '/reporte/nuevo' do |f|%>
+                <div class="container">
+                  <!-- reportes por grado academico -->
+                  <div class="col col-md-5 col-sm-4">
+                    <div class="field">
+                      <%=f.label :reportes_por_grados %>
+                      <input type="checkbox" id=check_grados name="check_grados" class="field">
+                    </div>
+                    <div id="grados" name="grados" style="display:none;" >
+                      <select id="grado" onchange="cambioCarreras()" name="report[grado]" class="grado-select">
+                      <option>Licenciatura</option>
+                      <option>Maestria</option>
+                      <option>Doctorado</option>
+                      <option>Diplomado</option>
+                      <option>Especialidad</option>
+                      <option>Post Doctorado</option>
+                      <option selected>Todos</option>
+                    </select>
+                  </div>
+                  <br>
+                  <%@e=Education.new%>
+                  <div id="grado_licenciatura" style="display:none;">
+                    <%= f.select(:grado_licenciatura,@e.licenciaturas,{},:class=>"grado-select",:include_blank => true)%>
+                  </div>
+                  <div id="grado_especialidad" style="display:none;">
+                    <%= f.select(:grado_postgrado,@e.especialidades,{},:class=>"selectpicker grado-select",:include_blank => true)%>
+                  </div>
+                  <div id="grado_maestria" style="display:none;">
+                    <%= f.select(:grado_maestria,@e.maestrias,{},:class=>"selectpicker grado-select",:include_blank => true)%>
+                  </div>
+                  <div id="grado_doctorado" style="display:none;">
+                    <%= f.select(:grado_doctorado,@e.doctorados,{},:class=>"selectpicker grado-select",:include_blank => true)%>
+                  </div>
+                  <div id="grado_diplomado" style="display:none;">
+                    <%= f.select(:grado_doctorado,@e.diplomados,{},:class=>"selectpicker grado-select",:include_blank => true)%>
+                  </div>
+                  <div id="grado_postdoctorado" style="display:none;">
+                    <%= f.select(:grado_doctorado,@e.postdoctorados,{},:class=>"selectpicker grado-select",:include_blank => true)%>
+                  </div>
+                  <br>
                 </div>
-                <div id="grados" name="grados" style="display:none;" class="field">
-                  <select id="grado" onchange="cambioCarreras()" name="report[grado]">
-                    <option>Licenciatura</option>
-                    <option>Maestria</option>
-                    <option>Doctorado</option>
-                    <option>Diplomado</option>
-                    <option>Especialidad</option>
-                    <option>Post Doctorado</option>
-                    <option selected>Todos</option>
-                  </select>
+
+
+                <div class="col col-md-4   col-sm-3">
+                  <div>
+                    <%=f.label :por_fecha %>
+                    <input type="checkbox" id="check_fecha">
+                    <div id="fecha_inicio" style="display:none;">
+                      <%= f.label :fecha_inicio%>
+                      <%= f.date_select :fecha_inicio,:start_year  =>1990, :end_year=>Time.now.year,:include_blank => true%>
+                    </div>
+                    <div id="fecha_fin" style="display:none;">
+                      <%= f.label :fecha_fin%>
+                      <%= f.date_select :fecha_fin,:start_year  =>1990,:end_year=>Time.now.year,:include_blank => true%>
+                    </div>
+                  </div>
+                </div>
+                <div  class="col col-md-3 col-sm-3">
+                  <div>
+                    <%=f.label :por_genero %>
+                    <input type="checkbox" id="check_genero">
+                    <div id="hombres" style="display:none;">
+                      <%= f.label :hombres%>
+                      <%= f.radio_button :genero,"Masculino"%>
+                    </div>
+                    <div id="mujeres" style="display:none;">
+                      <%= f.label :mujeres%>
+                      <%= f.radio_button :genero,"Femenino"%>
+                    </div>
+                    <div id="ambos" style="display:none;">
+                      <%= f.label :ambos%>
+                      <%= f.radio_button :genero,"Ambos",:checked => true %>
+                    </div>
+                  </div>
+                </div>
+                <div  class="col">
                 </div>
                 <br>
-                <%@e=Education.new%>
-                <div id="grado_licenciatura" style="display:none;">
-                  <%= f.select(:grado_licenciatura,@e.licenciaturas,:class=>"selectpicker",:include_blank => true)%>
+                <div class="actions col-xs-12">
+                  <%= f.submit "Generar" , :class =>"btn btn-primary"%>
                 </div>
-                <div id="grado_especialidad" style="display:none;">
-                  <%= f.select(:grado_postgrado,@e.especialidades,:class=>"selectpicker",:include_blank => true)%>
-                </div>
-                <div id="grado_maestria" style="display:none;">
-                  <%= f.select(:grado_maestria,@e.maestrias,:class=>"selectpicker",:include_blank => true)%>
-                </div>
-                <div id="grado_doctorado" style="display:none;">
-                  <%= f.select(:grado_doctorado,@e.doctorados,:class=>"selectpicker",:include_blank => true)%>
-                </div>
-                <div id="grado_diplomado" style="display:none;">
-                  <%= f.select(:grado_doctorado,@e.diplomados,:class=>"selectpicker",:include_blank => true)%>
-                </div>
-                <div id="grado_postdoctorado" style="display:none;">
-                  <%= f.select(:grado_doctorado,@e.postdoctorados,:class=>"selectpicker",:include_blank => true)%>
-                </div>
-
-              </div>
-
-
-              <div class="col-sm-3 col-md-6 col-lg-3">
                 <div>
-                  <%=f.label :por_fecha %>
-                  <input type="checkbox" id="check_fecha">
-                  <div id="fecha_inicio" style="display:none;">
-                    <%= f.label :fecha_inicio%>
-                    <%= f.date_select :fecha_inicio,:start_year  =>1990, :end_year=>Time.now.year,:include_blank => true%>
-                  </div>
-                  <div id="fecha_fin" style="display:none;">
-                    <%= f.label :fecha_fin%>
-                    <%= f.date_select :fecha_fin,:start_year  =>1990, :end_year=>Time.now.year,:include_blank => true%>
-                  </div>
-                </div>
-              </div>
-              <div  class="col-sm-3 col-md-6 col-lg-3">
-                <div>
-                  <%=f.label :por_genero %>
-                  <input type="checkbox" id="check_genero">
-                  <div id="hombres" style="display:none;">
-                    <%= f.label :hombres%>
-                    <%= f.radio_button :genero,"Masculino"%>
-                  </div>
-                  <div id="mujeres" style="display:none;">
-                    <%= f.label :mujeres%>
-                    <%= f.radio_button :genero,"Femenino"%>
-                  </div>
-                  <div id="ambos" style="display:none;">
-                    <%= f.label :ambos%>
-                    <%= f.radio_button :genero,"Ambos",:checked => true %>
-                  </div>
-                </div>
-              </div>
-              <div  class="col-sm-3 col-md-6 col-lg-4">
-              </div>
-              <br>
-              <div class="actions col-xs-12">
-                <%= f.submit "Generar" , :class =>"btn btn-primary"%>
-              </div>
-            <div>
 
 
+                </div>
+
+                <br><br><br><br><br>
+                <% end %>
+              </div>
             </div>
-
-            <br><br><br><br><br>
-          <% end %>
+          </div>
         </div>
       </div>
-  </div>
-  </div>
 </div>
 
 
 
   <script>
+
+  function toggleEstaticos() {
+    var x = document.getElementById("estaticos");
+    var y = document.getElementById("estaticos_der");
+    var z = document.getElementById("estaticos_ab");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+        z.style.display = "none";
+        y.style.display = "block";
+    } else {
+        x.style.display = "none";
+        z.style.display = "block";
+        y.style.display = "none";
+
+    }
+  };
+
+    function toggleRegistrados() {
+      var x = document.getElementById("registrados");
+      var y = document.getElementById("estaticos_registrados_der");
+      var z = document.getElementById("estaticos_registrados_ab");
+
+      if (x.style.display === "none") {
+        x.style.display = "block";
+        z.style.display = "none";
+        y.style.display = "block";
+      } else {
+        x.style.display = "none";
+        z.style.display = "block";
+        y.style.display = "none";
+      }
+    };
+
+      function toggleTitulados() {
+        var x = document.getElementById("titulados");
+        var y = document.getElementById("estaticos_titulados_der");
+        var z = document.getElementById("estaticos_titulados_ab");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+          z.style.display = "none";
+          y.style.display = "block";
+        } else {
+          x.style.display = "none";
+          z.style.display = "block";
+          y.style.display = "none";
+        }
+      };
   function openNav() {
       document.getElementById("mySidenav").style.display="block";
 };

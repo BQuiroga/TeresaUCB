@@ -6,15 +6,23 @@
       <div class="panel-body">
         <ul class="list-group">
           <li class="list-group-item">
-            <button class="btn btn-warning btn-sm pull-right" id="mostrarEmpresasC" onclick="showEmpresasC()" style="display:none;">Mostrar Reporte Estadístico</button>
-            <button class="btn btn-warning btn-sm pull-right" id="ocultarEmpresasC" onclick="showEmpresasC()">Ocultar Reporte Estadístico</button>
+            <div class="center-select">
+              <!-- <input type="text" name="title" id='filtrar' style='width:40%'> -->
+              <select id="carrera" onchange="cambioCarreras()">
+                <%@title_list.each do |x|%>
+                  <option><%=x%></option>
+                  <%end%>
+              </select>
+            </div>
+          </li>
+          <li class="list-group-item">
             <div>
-              <div class="container">
                 <div class="table-responsive">
+                  <div id="Todas las carreras" class="filtro">
                   <table class="table table-striped table-bordered table-hover" style="text-align: center;">
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Usuarios con trabajos en dicho rango&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
                     </tr>
                     <% @jobs_time.each do |date|%>
                       <tr>
@@ -24,8 +32,674 @@
                       <%end%>
                     </table>
                   </div>
-              </div>
+                  <div id="Bachiller" style="display:none;" class="filtro">
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                    </tr>
+                    <%
+                      @educations=Education.where("title ~* ?", "Bachiller")
+                      @users=Array.new
+                      if @educations
+                        @educations.each do |edu|
+                          @users=[edu.user] +@users
+                        end
+                        if @users.size>1
+                          @users=@users.uniq
+                        end
+                      end
+                      @experiences=Array.new
+                      @jobs_time=Hash.new(0)
+                      @users.each do |user|
+                        @experiences=@experiences +[user.resume.experiences]
+                      end
+                      @experiences.flatten.each do |e|
+                        if e.time_in_job==-1
+                          @jobs_time["Continua trabajando"]+=1
+                        else
+                          @jobs_time[e.time_in_job] +=1
+                        end
+                      end
+                      @jobs_time=@jobs_time.sort_by{|x,y| x.to_s}
+                    %>
+                    <% @jobs_time.each do |date|%>
+                      <tr>
+                        <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                        <td ><%= date[1]%></td>
+                      </tr>
+                      <%end%>
+                    </table>
+                  </div>
+                  <div id="Derecho" style="display:none;" class="filtro">
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                    </tr>
+                    <%
+                      @educations=Education.where("title ~* ?", "Derecho") +Education.where("title ~* ?", "Abogad")
+                      @users=Array.new
+                      if @educations
+                        @educations.each do |edu|
+                          @users=[edu.user] +@users
+                        end
+                        if @users.size>1
+                          @users=@users.uniq
+                        end
+                      end
+                      @experiences=Array.new
+                      @jobs_time=Hash.new(0)
+                      @users.each do |user|
+                        @experiences=@experiences +[user.resume.experiences]
+                      end
+                      @experiences.flatten.each do |e|
+                        if e.time_in_job==-1
+                          @jobs_time["Continua trabajando"]+=1
+                        else
+                          @jobs_time[e.time_in_job] +=1
+                        end
+                      end
+                      @jobs_time=@jobs_time.sort_by{|x,y| x.to_s}
+                    %>
+                    <% @jobs_time.each do |date|%>
+                      <tr>
+                        <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                        <td ><%= date[1]%></td>
+                      </tr>
+                      <%end%>
+                    </table>
+                  </div>
+                  <div id="Antroplogía" style="display:none;" class="filtro">
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                    </tr>
+                    <%
+                    @educations=Education.where("title ~* ?", "Antropolog")
+                      @users=Array.new
+                      if @educations
+                        @educations.each do |edu|
+                          @users=[edu.user] +@users
+                        end
+                        if @users.size>1
+                          @users=@users.uniq
+                        end
+                      end
+                      @experiences=Array.new
+                      @jobs_time=Hash.new(0)
+                      @users.each do |user|
+                        @experiences=@experiences +[user.resume.experiences]
+                      end
+                      @experiences.flatten.each do |e|
+                        if e.time_in_job==-1
+                          @jobs_time["Continua trabajando"]+=1
+                        else
+                          @jobs_time[e.time_in_job] +=1
+                        end
+                      end
+                      @jobs_time=@jobs_time.sort_by{|x,y| x.to_s}
+                    %>
+                    <% @jobs_time.each do |date|%>
+                      <tr>
+                        <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                        <td ><%= date[1]%></td>
+                      </tr>
+                      <%end%>
+                    </table>
+                  </div>
+                  <div id="Filosofía y Letras" style="display:none;" class="filtro">
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                    </tr>
+                    <%
+                    @educations=Education.where("title ~* ?", "Filosofía")
+                        @users=Array.new
+                      if @educations
+                        @educations.each do |edu|
+                          @users=[edu.user] +@users
+                        end
+                        if @users.size>1
+                          @users=@users.uniq
+                        end
+                      end
+                      @experiences=Array.new
+                      @jobs_time=Hash.new(0)
+                      @users.each do |user|
+                        @experiences=@experiences +[user.resume.experiences]
+                      end
+                      @experiences.flatten.each do |e|
+                        if e.time_in_job==-1
+                          @jobs_time["Continua trabajando"]+=1
+                        else
+                          @jobs_time[e.time_in_job] +=1
+                        end
+                      end
+                      @jobs_time=@jobs_time.sort_by{|x,y| x.to_s}
+                    %>
+                    <% @jobs_time.each do |date|%>
+                      <tr>
+                        <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                        <td ><%= date[1]%></td>
+                      </tr>
+                      <%end%>
+                    </table>
+                  </div>
+                  <div id="Psicología" style="display:none;" class="filtro">
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                    </tr>
+                    <%
+                    @educations=Education.where("title ~* ?", "Psicolog")
+                      @users=Array.new
+                      if @educations
+                        @educations.each do |edu|
+                          @users=[edu.user] +@users
+                        end
+                        if @users.size>1
+                          @users=@users.uniq
+                        end
+                      end
+                      @experiences=Array.new
+                      @jobs_time=Hash.new(0)
+                      @users.each do |user|
+                        @experiences=@experiences +[user.resume.experiences]
+                      end
+                      @experiences.flatten.each do |e|
+                        if e.time_in_job==-1
+                          @jobs_time["Continua trabajando"]+=1
+                        else
+                          @jobs_time[e.time_in_job] +=1
+                        end
+                      end
+                      @jobs_time=@jobs_time.sort_by{|x,y| x.to_s}
+                    %>
+                    <% @jobs_time.each do |date|%>
+                      <tr>
+                        <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                        <td ><%= date[1]%></td>
+                      </tr>
+                      <%end%>
+                    </table>
+                  </div>
+                  <div id="Ingeniería Ambiental" style="display:none;" class="filtro">
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                    </tr>
+                    <%
+                    @educations=Education.where("title ~* ?", "Ambiental")+Education.where("title ~* ?", "Ambiente")
+                      @users=Array.new
+                      if @educations
+                        @educations.each do |edu|
+                          @users=[edu.user] +@users
+                        end
+                        if @users.size>1
+                          @users=@users.uniq
+                        end
+                      end
+                      @experiences=Array.new
+                      @jobs_time=Hash.new(0)
+                      @users.each do |user|
+                        @experiences=@experiences +[user.resume.experiences]
+                      end
+                      @experiences.flatten.each do |e|
+                        if e.time_in_job==-1
+                          @jobs_time["Continua trabajando"]+=1
+                        else
+                          @jobs_time[e.time_in_job] +=1
+                        end
+                      end
+                      @jobs_time=@jobs_time.sort_by{|x,y| x.to_s}
+                    %>
+                    <% @jobs_time.each do |date|%>
+                      <tr>
+                        <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                        <td ><%= date[1]%></td>
+                      </tr>
+                      <%end%>
+                    </table>
+                  </div>
+                  <div id="Ingeniería Civil" style="display:none;" class="filtro">
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                    </tr>
+                    <%
+                    @educations=Education.where("title ~* ?", "Civil")
+                      @users=Array.new
+                      if @educations
+                        @educations.each do |edu|
+                          @users=[edu.user] +@users
+                        end
+                        if @users.size>1
+                          @users=@users.uniq
+                        end
+                      end
+                      @experiences=Array.new
+                      @jobs_time=Hash.new(0)
+                      @users.each do |user|
+                        @experiences=@experiences +[user.resume.experiences]
+                      end
+                      @experiences.flatten.each do |e|
+                        if e.time_in_job==-1
+                          @jobs_time["Continua trabajando"]+=1
+                        else
+                          @jobs_time[e.time_in_job] +=1
+                        end
+                      end
+                      @jobs_time=@jobs_time.sort_by{|x,y| x.to_s}
+                    %>
+                    <% @jobs_time.each do |date|%>
+                      <tr>
+                        <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                        <td ><%= date[1]%></td>
+                      </tr>
+                      <%end%>
+                    </table>
+                  </div>
+                  <div id="Ingeniería Industrial" style="display:none;" class="filtro">
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                    </tr>
+                    <%
+                    @educations=Education.where("title ~* ?", "Industria")
+                      @users=Array.new
+                      if @educations
+                        @educations.each do |edu|
+                          @users=[edu.user] +@users
+                        end
+                        if @users.size>1
+                          @users=@users.uniq
+                        end
+                      end
+                      @experiences=Array.new
+                      @jobs_time=Hash.new(0)
+                      @users.each do |user|
+                        @experiences=@experiences +[user.resume.experiences]
+                      end
+                      @experiences.flatten.each do |e|
+                        if e.time_in_job==-1
+                          @jobs_time["Continua trabajando"]+=1
+                        else
+                          @jobs_time[e.time_in_job] +=1
+                        end
+                      end
+                      @jobs_time=@jobs_time.sort_by{|x,y| x.to_s}
+                    %>
+                    <% @jobs_time.each do |date|%>
+                      <tr>
+                        <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                        <td ><%= date[1]%></td>
+                      </tr>
+                      <%end%>
+                    </table>
+                  </div>
+                  <div id="Ingeniería Química" style="display:none;" class="filtro">
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                    </tr>
+                    <%
+                    @educations=Education.where("title ~* ?", "Químic")+ Education.where("title ~* ?", "Quimic")
+                      @users=Array.new
+                      if @educations
+                        @educations.each do |edu|
+                          @users=[edu.user] +@users
+                        end
+                        if @users.size>1
+                          @users=@users.uniq
+                        end
+                      end
+                      @experiences=Array.new
+                      @jobs_time=Hash.new(0)
+                      @users.each do |user|
+                        @experiences=@experiences +[user.resume.experiences]
+                      end
+                      @experiences.flatten.each do |e|
+                        if e.time_in_job==-1
+                          @jobs_time["Continua trabajando"]+=1
+                        else
+                          @jobs_time[e.time_in_job] +=1
+                        end
+                      end
+                      @jobs_time=@jobs_time.sort_by{|x,y| x.to_s}
+                    %>
+                    <% @jobs_time.each do |date|%>
+                      <tr>
+                        <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                        <td ><%= date[1]%></td>
+                      </tr>
+                      <%end%>
+                    </table>
+                  </div>
+                  <div id="Ingeniería Mecatrónica" style="display:none;" class="filtro">
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                    </tr>
+                    <%
+                    @educations=Education.where("title ~* ?", "Mecatrónic")
+                      @users=Array.new
+                      if @educations
+                        @educations.each do |edu|
+                          @users=[edu.user] +@users
+                        end
+                        if @users.size>1
+                          @users=@users.uniq
+                        end
+                      end
+                      @experiences=Array.new
+                      @jobs_time=Hash.new(0)
+                      @users.each do |user|
+                        @experiences=@experiences +[user.resume.experiences]
+                      end
+                      @experiences.flatten.each do |e|
+                        if e.time_in_job==-1
+                          @jobs_time["Continua trabajando"]+=1
+                        else
+                          @jobs_time[e.time_in_job] +=1
+                        end
+                      end
+                      @jobs_time=@jobs_time.sort_by{|x,y| x.to_s}
+                    %>
+                    <% @jobs_time.each do |date|%>
+                      <tr>
+                        <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                        <td ><%= date[1]%></td>
+                      </tr>
+                      <%end%>
+                    </table>
+                  </div>
+                  <div id="Ingeniería de Sistemas" style="display:none;" class="filtro">
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                    </tr>
+                    <%
+                    @educations=Education.where("title ~* ?", "Sistemas")+Education.where("title ~* ?", "Informatica")
+                      @users=Array.new
+                      if @educations
+                        @educations.each do |edu|
+                          @users=[edu.user] +@users
+                        end
+                        if @users.size>1
+                          @users=@users.uniq
+                        end
+                      end
+                      @experiences=Array.new
+                      @jobs_time=Hash.new(0)
+                      @users.each do |user|
+                        @experiences=@experiences +[user.resume.experiences]
+                      end
+                      @experiences.flatten.each do |e|
+                        if e.time_in_job==-1
+                          @jobs_time["Continua trabajando"]+=1
+                        else
+                          @jobs_time[e.time_in_job] +=1
+                        end
+                      end
+                      @jobs_time=@jobs_time.sort_by{|x,y| x.to_s}
+                    %>
+                    <% @jobs_time.each do |date|%>
+                      <tr>
+                        <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                        <td ><%= date[1]%></td>
+                      </tr>
+                      <%end%>
+                    </table>
+                  </div>
+                  <div id="Ingeniería de Telecomunicaciones" style="display:none;" class="filtro">
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                    </tr>
+                    <%
+                    @educations=Education.where("title ~* ?", "Telecomunicaciones")
+                      @users=Array.new
+                      if @educations
+                        @educations.each do |edu|
+                          @users=[edu.user] +@users
+                        end
+                        if @users.size>1
+                          @users=@users.uniq
+                        end
+                      end
+                      @experiences=Array.new
+                      @jobs_time=Hash.new(0)
+                      @users.each do |user|
+                        @experiences=@experiences +[user.resume.experiences]
+                      end
+                      @experiences.flatten.each do |e|
+                        if e.time_in_job==-1
+                          @jobs_time["Continua trabajando"]+=1
+                        else
+                          @jobs_time[e.time_in_job] +=1
+                        end
+                      end
+                      @jobs_time=@jobs_time.sort_by{|x,y| x.to_s}
+                    %>
+                    <% @jobs_time.each do |date|%>
+                      <tr>
+                        <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                        <td ><%= date[1]%></td>
+                      </tr>
+                      <%end%>
+                    </table>
+                  </div>
+                  <div id="Administración de Empresas" style="display:none;" class="filtro">
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                    </tr>
+                    <%
+                    @educations=Education.where("title ~* ?", "Administración de Empresas")
+                      @users=Array.new
+                      if @educations
+                        @educations.each do |edu|
+                          @users=[edu.user] +@users
+                        end
+                        if @users.size>1
+                          @users=@users.uniq
+                        end
+                      end
+                      @experiences=Array.new
+                      @jobs_time=Hash.new(0)
+                      @users.each do |user|
+                        @experiences=@experiences +[user.resume.experiences]
+                      end
+                      @experiences.flatten.each do |e|
+                        if e.time_in_job==-1
+                          @jobs_time["Continua trabajando"]+=1
+                        else
+                          @jobs_time[e.time_in_job] +=1
+                        end
+                      end
+                      @jobs_time=@jobs_time.sort_by{|x,y| x.to_s}
+                    %>
+                    <% @jobs_time.each do |date|%>
+                      <tr>
+                        <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                        <td ><%= date[1]%></td>
+                      </tr>
+                      <%end%>
+                    </table>
+                  </div>
+                  <div id="Contaduría Pública" style="display:none;" class="filtro">
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                    </tr>
+                    <%
+                    @educations=Education.where("title ~* ?", "Contaduría")+Education.where("title ~* ?", "Contador")+ Education.where("title ~* ?", "Auditor")
+                      @users=Array.new
+                      if @educations
+                        @educations.each do |edu|
+                          @users=[edu.user] +@users
+                        end
+                        if @users.size>1
+                          @users=@users.uniq
+                        end
+                      end
+                      @experiences=Array.new
+                      @jobs_time=Hash.new(0)
+                      @users.each do |user|
+                        @experiences=@experiences +[user.resume.experiences]
+                      end
+                      @experiences.flatten.each do |e|
+                        if e.time_in_job==-1
+                          @jobs_time["Continua trabajando"]+=1
+                        else
+                          @jobs_time[e.time_in_job] +=1
+                        end
+                      end
+                      @jobs_time=@jobs_time.sort_by{|x,y| x.to_s}
+                    %>
+                    <% @jobs_time.each do |date|%>
+                      <tr>
+                        <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                        <td ><%= date[1]%></td>
+                      </tr>
+                      <%end%>
+                    </table>
+                  </div>
+                  <div id="Ingeniería Comercial" style="display:none;" class="filtro">
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                    </tr>
+                    <%
+                    @educations=Education.where("title ~* ?", "Comercial")
+                      @users=Array.new
+                      if @educations
+                        @educations.each do |edu|
+                          @users=[edu.user] +@users
+                        end
+                        if @users.size>1
+                          @users=@users.uniq
+                        end
+                      end
+                      @experiences=Array.new
+                      @jobs_time=Hash.new(0)
+                      @users.each do |user|
+                        @experiences=@experiences +[user.resume.experiences]
+                      end
+                      @experiences.flatten.each do |e|
+                        if e.time_in_job==-1
+                          @jobs_time["Continua trabajando"]+=1
+                        else
+                          @jobs_time[e.time_in_job] +=1
+                        end
+                      end
+                      @jobs_time=@jobs_time.sort_by{|x,y| x.to_s}
+                    %>
+                    <% @jobs_time.each do |date|%>
+                      <tr>
+                        <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                        <td ><%= date[1]%></td>
+                      </tr>
+                      <%end%>
+                    </table>
+                  </div>
+                  <div id="Ingeniería Financiera" style="display:none;" class="filtro">
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                    </tr>
+                    <%
+                    @educations=Education.where("title ~* ?", "Financier") +Education.where("title ~* ?", "Finanzas")
+                      @users=Array.new
+                      if @educations
+                        @educations.each do |edu|
+                          @users=[edu.user] +@users
+                        end
+                        if @users.size>1
+                          @users=@users.uniq
+                        end
+                      end
+                      @experiences=Array.new
+                      @jobs_time=Hash.new(0)
+                      @users.each do |user|
+                        @experiences=@experiences +[user.resume.experiences]
+                      end
+                      @experiences.flatten.each do |e|
+                        if e.time_in_job==-1
+                          @jobs_time["Continua trabajando"]+=1
+                        else
+                          @jobs_time[e.time_in_job] +=1
+                        end
+                      end
+                      @jobs_time=@jobs_time.sort_by{|x,y| x.to_s}
+                    %>
+                    <% @jobs_time.each do |date|%>
+                      <tr>
+                        <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                        <td ><%= date[1]%></td>
+                      </tr>
+                      <%end%>
+                    </table>
+                  </div>
+                  <div id="Comunicación Social" style="display:none;" class="filtro">
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                    </tr>
+                    <%
+                    @educations=Education.where("title ~* ?", "Comunica")
+                     @users=Array.new
+                      if @educations
+                        @educations.each do |edu|
+                          @users=[edu.user] +@users
+                        end
+                        if @users.size>1
+                          @users=@users.uniq
+                        end
+                      end
+                      @experiences=Array.new
+                      @jobs_time=Hash.new(0)
+                      @users.each do |user|
+                        @experiences=@experiences +[user.resume.experiences]
+                      end
+                      @experiences.flatten.each do |e|
+                        if e.time_in_job==-1
+                          @jobs_time["Continua trabajando"]+=1
+                        else
+                          @jobs_time[e.time_in_job] +=1
+                        end
+                      end
+                      @jobs_time=@jobs_time.sort_by{|x,y| x.to_s}
+                    %>
+                    <% @jobs_time.each do |date|%>
+                      <tr>
+                        <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                        <td ><%= date[1]%></td>
+                      </tr>
+                      <%end%>
+                    </table>
+                  </div>
+
             </div>
+            <button class="btn btn-default btn-sm pull-right" id="mostrarEmpresasC" onclick="showEmpresasC()" style="display:none;">Mostrar Reporte Estadístico</button>
+            <button class="btn btn-default btn-sm pull-right" id="ocultarEmpresasC" onclick="showEmpresasC()">Ocultar Reporte Estadístico</button>
+            <br><br>
           </li>
           <li class="list-group-item">
             <div id="by_ciu">
@@ -36,6 +710,19 @@
       </div>
     </div>
   </div>
+
+  <script>
+    function cambioCarreras(){
+      var selected=document.getElementById("carrera").value;
+      var filtros=document.getElementsByClassName("filtro");
+      for (var i=0; i<filtros.length;i++)
+      {
+        filtros[i].style.display="none";
+      }
+      document.getElementById(selected).style.display="block";
+
+    }
+  </script>
 <script>
 var empresasC = document.getElementById("by_ciu");
 var botonOcultarEC = document.getElementById("ocultarEmpresasC");
@@ -57,3 +744,21 @@ function showEmpresasC() {
     }
 }
 </script>
+
+<style>
+.center-select > select  {
+margin: 50px;
+width: 400px;
+padding: 5px 35px 5px 5px;
+font-size: 16px;
+border: 1px solid #ccc;
+height: 34px;
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+}
+  .center-select{
+    padding-left:25%;
+  left:30%;
+  }
+</style>
