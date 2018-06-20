@@ -225,8 +225,8 @@ class User < ActiveRecord::Base
     column_names=["Titulo","Estudiantes Egresados"]
     CSV.generate(options) do |csv|
       csv << column_names
-      data.keys.each do |row|
-        csv << data[row]
+      data.each do |row|
+        csv << row
       end
     end
   end

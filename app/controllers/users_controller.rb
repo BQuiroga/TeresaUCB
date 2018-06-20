@@ -106,7 +106,7 @@ class UsersController < ApplicationController
     @user = current_user
     @user.destroy
     if @user.destroy
-        redirect_to root_url, notice: "User deleted."
+        redirect_to root_url, notice: "Usuario Eliminado."
     end
   end
 	def new_report

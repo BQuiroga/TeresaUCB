@@ -3,8 +3,7 @@
 
 <a href="/reportes"><button class="btn btn-primary">Volver Atras</button></a>
 <p>
-  Download:
-  <%= link_to "CSV", reporte_nuevo_path(format: "csv") %> |
+  Descargar Tabla:
   <%= link_to "Excel", reporte_nuevo_path(format: "xls") %>
 </p>
 <div class="container">
@@ -26,10 +25,7 @@
     <div class="panel-body">
       <ul class="list-group">
         <li class="list-group-item">
-          <button class="btn btn-warning btn-sm pull-right" id="mostrarFecha" onclick="showFecha()" style="display:none; ">Mostrar Gráfica Estadística</button>
-          <button class="btn btn-warning btn-sm pull-right" id="ocultarFecha" onclick="showFecha()">Ocultar Gráfica Estadística</button>
           <div>
-            <div class="container">
               <div class="table-responsive">
                 <table  class="table table-striped table-bordered table-hover" style="text-align: center;" id="table_report">
                   <tr>
@@ -43,9 +39,11 @@
                   </tr>
                   <%end%>
                 </table>
-              </div>
             </div>
           </div>
+          <button class="btn btn-default btn-sm pull-right" id="mostrarFecha" onclick="showFecha()" style="display:none; ">Mostrar Gráfica Estadística</button>
+          <button class="btn btn-default btn-sm pull-right" id="ocultarFecha" onclick="showFecha()">Ocultar Gráfica Estadística</button>
+          <br><br>
         </li>
         <li class="list-group-item" id="lista_usuarios" style="display:none;">
             <div class="table table-responsive">
@@ -106,7 +104,7 @@ window.onclick = function(event) {
 }
 $(".botonCV").on("click",function(e) {
   // e.preventDefault();
-  var value= "http://localhost:3000/usuarios/curriculums/" +$(this).val();
+    var value= "http://localhost:3000/usuarios/curriculums/" +$(this).val();
   $('#myModal').show();
   $('#myModal2').load(value);
 });
