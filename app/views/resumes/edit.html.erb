@@ -1,13 +1,13 @@
 <div class="container">
   <div class= "panel panel-default panel-heading">
-    <h1  class="text-center">Curriculum Vitae</h1>
+    <h1  class="text-center">Currículum Vitae</h1>
     <ul class="nav nav-tabs">
-      <li><a class="tablinks" onclick="openSector(event, 'Academico')" id="defaultOpen">Academico</a></li>
+      <li><a class="tablinks" onclick="openSector(event, 'Academico')" id="defaultOpen">Académico</a></li>
       <li><a class="tablinks" onclick="openSector(event, 'Laboral')">Laboral</a></li>
       <li><a class="tablinks" onclick="openSector(event, 'Seminarios')">Seminarios</a></li>
       <li><a class="tablinks" onclick="openSector(event, 'Publicaciones')">Publicaciones</a></li>
       <li><a class="tablinks" onclick="openSector(event, 'Meritos')">Meritos</a></li>
-      <li><a class="tablinks" onclick="openSector(event, 'Membresias')">Membresias</a></li>
+      <li><a class="tablinks" onclick="openSector(event, 'Membresias')">Membresías</a></li>
       <li><a class="tablinks" onclick="openSector(event, 'Conocimientos')">Conocimientos</a></li>
       <li><a class="tablinks" onclick="openSector(event, 'Habilidades')">Habilidades</a></li>
       <li><a class="tablinks" onclick="openSector(event, 'Idiomas')">Idiomas</a></li>
@@ -17,7 +17,7 @@
   <!-- Sector Academico -->
   <div id='Academico' class="tabcontent">
     <div class="panel panel-default">
-      <div class="panel-heading"><div class="panel-title"><h3>Formacion Academica </h3></div></div>
+      <div class="panel-heading"><div class="panel-title"><h3>Formación Académica </h3></div></div>
         <div class="panel-body">
           <% if @educations.size >0%>
           <ul class="list-group">
@@ -37,7 +37,7 @@
     <div class="panel-footer well">
       <%= form_for :education, url: '/education/new' do |f| %>
         <div  class="field col col-md-3 col-xs-3">
-          <%= f.label :Grado_academico %>:
+          <%= f.label :Grado_académico %>:
           <!-- <%= f.select(:title,["Licenci>atura", "Maestria", "Doctorado", "Post Grado"])%> -->
           <div>
             <%=f.text_field :title, :id=>'filtrar',:class=>"form-control"%>
@@ -45,11 +45,11 @@
           </div>
         </div>
         <div class="field col col-md-3 col-xs-3">
-          <%= f.label :institucion %>:
-          <%= f.text_field :school_name,:class=>"form-control"%>
+          <%= f.label :institución %>:
+          <%= f.text_field :school_name,:id=>'filtrar_i',:class=>"form-control"%>
         </div>
         <div class="field col col-md-3 col-xs-3">
-          <%= f.label :descripcion %>:
+          <%= f.label :descripción %>:
           <%= f.text_area :description,:class=>"form-control"%>
         </div>
         <br>
@@ -152,7 +152,7 @@
     </div>
     <div class="field">
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <%=f.label :si_aun_sigue_por_favor_deje_marcada_esta_casilla%>
+      <%=f.label :si_aún_sigue_por_favor_deje_marcada_esta_casilla%>
       <input type="checkbox" id="checkboxDate" name="until_now", checked="true">
     </div>
       <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
@@ -205,7 +205,7 @@
         <%= f.number_field :workload,:class=>"form-control"%>
       </div>
       <div class="field col col-md-4 col-xs-4">
-        <%= f.label :institucion %><br />
+        <%= f.label :institución %><br />
         <%= f.text_field :institution,:class=>"form-control"%><br>
         <%=f.label :participe_como%>
         <%= f.select(:given, options_for_select(Course.participations)) %>
@@ -252,7 +252,7 @@
   <div class="panel-footer well">
     <%= form_for :publication, url: '/publication/new' do |f| %>
       <div class="field col col-md-4 col-xs-4" style="top:10px">
-        <%= f.label :tipo_de_publicacion %>:
+        <%= f.label :tipo_de_publicación %>:
         <%= f.select( :publicationType, @publicationTypes.map {|a| [a]}) -%>
       </div>
       <div class="field col col-md-4 col-xs-4">
@@ -299,7 +299,7 @@
   <div class="panel-footer well">
     <%= form_for :merit, url: '/merit/new' do |f| %>
     <div class="field col col-md-4 col-xs-4">
-      <%= f.label :Merito %>:
+      <%= f.label :Mérito %>:
       <%= f.text_field :name, :id=>'merito',:class=>"form-control"%>
 
     </div>
@@ -318,7 +318,7 @@
 <!-- Sector Membresias -->
 <div id='Membresias' class="tabcontent">
   <div class="panel panel-default">
-    <div class="panel-heading"><div class="panel-title"><h3> Membresia </h3></div></div>
+    <div class="panel-heading"><div class="panel-title"><h3> Membresía </h3></div></div>
     <div class="panel-body">
       <% if @memberships.size >0%>
         <ul class="list-group">
@@ -517,11 +517,11 @@
       <%= f.text_field :name,:id=>'referencia',:class=>"form-control"%>
     </div>
       <div class="field col col-sm-4 col-md-4 col-xs-4">
-      <%= f.label :institucion %>:<br />
+      <%= f.label :institución %>:<br />
       <%= f.text_field :institution,:class=>"form-control"%>
     </div>
       <div class="field col col-sm-4 col-md-4 col-xs-4">
-      <%= f.label :numero_de_referencia %>:<br />
+      <%= f.label :número_de_referencia %>:<br />
       <%= f.number_field :number,:class=>"form-control"%>
     </div>
     <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
@@ -540,7 +540,7 @@
 <script>
 $(document).ready(function(){
     $('#boton_academico').attr('disabled',true);
-    $('#filtrar').keyup(function(){
+    $('#filtrar_i').keyup(function(){
         if($(this).val().length !=0)
           $('#boton_academico').attr('disabled', false);
         else
