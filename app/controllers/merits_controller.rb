@@ -31,6 +31,13 @@ class MeritsController < ApplicationController
 		redirect_to '/users/curriculum/edit'
 		end
 	end
+	def destroy
+		@merit= Merit.find(params[:id])
+		@merit.destroy
+		if @merit.destroy
+				redirect_to '/users/curriculum/edit', notice: "Se han guardado tus cambios con éxito!"
+		end
+	end
 	def merits_params
   		params.require(:merit).permit(:name, :resume_id,:date)
   	end

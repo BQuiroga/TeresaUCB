@@ -5,13 +5,13 @@ class LanguagesController < ApplicationController
       throwUnauthorized
       return
     else
-		if @new.save
-			flash[:success] = "Admirable! cuentanos mas!"
-		else
-			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
-		end
-    redirect_to '/users/curriculum/edit'
-  end
+	    if @new.save
+			   flash[:success] = "Admirable! cuentanos mas!"
+		  else
+			   flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+		  end
+      redirect_to '/users/curriculum/edit'
+    end
 	end
 
   def edit
@@ -32,6 +32,13 @@ class LanguagesController < ApplicationController
       redirect_to '/users/curriculum/edit'
     end
 	end
+  def destroy
+    @language = Language.find(params[:id])
+    @language.destroy
+    if @language.destroy
+        redirect_to '/users/curriculum/edit', notice: "Se han guardado tus cambios con éxito!"
+    end
+  end
   def languages_params
       params.require(:language).permit(:name,:skill,:resume_id,:level)
     end

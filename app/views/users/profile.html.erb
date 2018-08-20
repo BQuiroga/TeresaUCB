@@ -196,8 +196,11 @@
       <br><br>
     <%if (@posts)%>
     	<% @posts.each do |post| %>
-        <div class="bs-callout bs-callout-danger"style="background-color: #D8D8D8">
-          <%= link_to '<button class="glyphicon glyphicon-pencil pull-right "></button>'.html_safe, edit_post_path(post) %>
+        <div class="bs-callout bs-callout-danger" style="background-color: #D8D8D8">
+          <div class="btn-group pull-right" style="left:-5%;">
+          <%= link_to '<button class="glyphicon glyphicon-pencil btn pull-right" ></button>'.html_safe, edit_post_path(post) %>
+          <%= link_to '<button class="glyphicon glyphicon-remove btn btn-danger pull-right"></button>'.html_safe, post , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta publicación?" }%>
+        </div>
           <h5><%= post.user_name %></h5>
           <p class="format-text">
             <% post.body.split("\n").each do |line|  %>

@@ -32,6 +32,13 @@ class PublicationsController < ApplicationController
 	  	redirect_to '/users/curriculum/edit'
 		end
 	end
+	def destroy
+		@publication = Publication.find(params[:id])
+		@publication.destroy
+		if @publication.destroy
+				redirect_to '/users/curriculum/edit', notice: "Se han guardado tus cambios con éxito!"
+		end
+	end
 	def publications_params
   		params.require(:publication).permit(:name, :resume_id,:publicationType,:date,:location)
   	end

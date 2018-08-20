@@ -31,6 +31,13 @@ class MembershipsController < ApplicationController
 		redirect_to '/users/curriculum/edit'
 	end
 	end
+	def destroy
+		@membership = Membership.find(params[:id])
+		@membership.destroy
+		if @membership.destroy
+				redirect_to '/users/curriculum/edit', notice: "Se han guardado tus cambios con éxito!"
+		end
+	end
 	def memberships_params
   		params.require(:membership).permit(:name, :resume_id,:organization,:date)
   	end

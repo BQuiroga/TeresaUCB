@@ -28,9 +28,16 @@ end
 			throwUnauthorized
 			return
 		else
-		@knowledge.update(knowledges_params_for_edit)
-		redirect_to '/users/curriculum/edit'
+			@knowledge.update(knowledges_params_for_edit)
+			redirect_to '/users/curriculum/edit'
+		end
 	end
+	def destroy
+		@knowledge = Knowledge.find(params[:id])
+		@knowledge.destroy
+		if @knowledge.destroy
+				redirect_to '/users/curriculum/edit', notice: "Se han guardado tus cambios con éxito!"
+		end
 	end
 	def knowledges_params
   		params.require(:knowledge).permit(:description,:area,:resume_id)

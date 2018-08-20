@@ -31,6 +31,13 @@ class ReferentialsController < ApplicationController
     redirect_to '/users/curriculum/edit'
   end
   end
+  def destroy
+    @referential = Referential.find(params[:id])
+    @referential.destroy
+    if @referential.destroy
+        redirect_to '/users/curriculum/edit', notice: "Se han guardado tus cambios con éxito!"
+    end
+  end
   def referentials_params
       params.require(:referential).permit(:name,:number,:institution,:resume_id)
   end

@@ -33,6 +33,13 @@ class CoursesController < ApplicationController
 	 	redirect_to '/users/curriculum/edit'
 	end
 	end
+	def destroy
+		@course = Course.find(params[:id])
+		@course.destroy
+		if @course.destroy
+				redirect_to '/users/curriculum/edit', notice: "Se han guardado tus cambios con éxito!"
+		end
+	end
 	def courses_params
   		params.require(:course).permit(:date,:resume_id,:name,:given, :workload,:institution)
   	end

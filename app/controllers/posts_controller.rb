@@ -105,7 +105,13 @@ class PostsController < ApplicationController
     @post.update(post_params)
     redirect_to '/users/profile', notice: 'Editado!'
   end
-
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    if @post.destroy
+        redirect_to '/users/profile', notice: "Se ha eliminado tu post!"
+    end
+  end
   private
   def post_params
     params.require(:post).permit(:body,:user_id,:requiring)

@@ -31,6 +31,13 @@ class SkillsController < ApplicationController
     	redirect_to '/users/curriculum/edit'
     end
 	 end
+   def destroy
+     @skill = Skill.find(params[:id])
+     @skill.destroy
+     if @skill.destroy
+         redirect_to '/users/curriculum/edit', notice: "Se han guardado tus cambios con éxito!"
+     end
+   end
   def skills_params
       params.require(:skill).permit(:name, :resume_id,:description)
     end

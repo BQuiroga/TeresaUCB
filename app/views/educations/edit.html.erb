@@ -1,33 +1,40 @@
 <div class="container">
 <div id='Academico' >
   <div class="panel panel-default">
-    <div class="panel-heading"><div class="panel-title"><h3>Formacion Academica </h3></div></div>
+    <div class="panel-heading"><div class="panel-title"><h3>Formación Académica </h3></div></div>
       <div class="panel-body">
       </div>
       <div class="panel-footer well">
         <%= form_for :education, url: '/education/update', html: { method: :put } do |f| %>
         <div class="container">
           <div class="field col col-md-3 col-xs-3">
-            <%= f.label :grado_academico %><br />
-            <%=f.text_field :title, :id=>'filtrar', :style=>'width:115%'%>
-            <%= f.select :title,@title_list,{},class:"form-control col-12 col-md-9 col-xs-12",:id=>'titulos',:style=>"margin: 10px; width: 200px;height: 170px;",:size=>'10',:name=>'type[]'%>
+            <%= f.label :grado_académico %><br />
+            <div>
+              <%=f.text_field :title, :id=>'filtrar',:class=>"form-control"%>
+              <%= f.select :title,@title_list,{},class:"form-control col-12 col-md-9 col-xs-12",:id=>'titulos',:style=>"margin: 10px; width: 200px;height: 170px;",:size=>'10',:name=>'type[]'%>
+            </div>
           </div>
           <div class="field col col-md-3 col-xs-3">
-            <%= f.label :institucion %>
-            <%= f.text_field :school_name%>
+            <%= f.label :institución %>
+            <%= f.text_field :school_name,:class=>"form-control"%>
           </div>
-          <div class="field">
+          <div class="field col col-md-3 col-xs-3">
+            <%= f.label :descripción %>
+            <%= f.text_area :description,:class=>"form-control"%>
+          </div>
+          <br>
+          <div>
+          </div>
+          <div>
+          </div>
+          <div class="field col col-md-3 col-xs-3" style="top:-20px">
             <%= f.label :Fecha_ingreso %>
             <%= f.date_select :start_date,:start_year  =>1990, :end_year=>Time.now.year+5 %>
           </div>
-            <div class="field">
+            <div class="field col col-md-3 col-xs-3">
             <%= f.label :fecha_egreso %>
             <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year+5%>
           </div>
-          <div class="field col col-md-3 col-xs-3">
-          <%= f.label :descripcion %>
-          <%= f.text_area :description%>
-        </div>
         <%=f.hidden_field :id, :value => @education.id%>
           <div class="actions">
             <%= f.submit "Guardar",:class =>"btn btn-primary" %>
