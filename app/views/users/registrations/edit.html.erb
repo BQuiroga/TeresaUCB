@@ -81,6 +81,8 @@
 <div class="container form-horizontal">
 <%if (current_user.is_company?)%>
 <h3>Informacion Empresarial</h3>
+  <%=@user.name%>
+  <%=@company_info%>
 <%= form_for :company_information, url: '/company/update' do |f| %>
   <div class="form-group">
     <%= f.label :Direccion,:class=>'form-label' ,:maxlength=>'100'%><br />

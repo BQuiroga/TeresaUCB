@@ -4,7 +4,20 @@
       <h1 style="border-bottom: 1px solid #A6AAA9; color: #000000;">Personas Calificadas </h1>
       <h3>Se encontraron <%=@users.size%> personas que cumplen su requerimimento</h3>
       <br>
+
       <%if @ids.size>0%>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="myModal2" class="full reveal" data-reveal>
+            </div>
+          </div>
+          <!--Fin modal CVs -->
+
+        </div>
       <%= form_for :post, url: '/posts/oferta' do |f| %>
       <%= f.hidden_field :user_id,:value => current_user.id%>
           <%=f.hidden_field :titulo,:value => @titulos%>
@@ -19,7 +32,8 @@
           <!-- <textarea name="message" rows="14" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Message' doit être renseigné."></textarea> -->
           <div class="validation"></div>
       <div class="container">
-      <button type="submit " class="btn btn-primary">Publicar a todos</button>
+
+      <button type="submit" class="btn btn-primary btn-publicar">Publicar a todos</button>
       <p><i>(El proceso puede tardar unos pocos minutos debido a que se enviaran notificaciones a los perfiles y a los correos electronicos de los ofertados)</i></p>
       <%end%>
       <%end%>
@@ -36,7 +50,7 @@
 
           <strong>Email: </strong><%= user.email %><br></p>
         <div class="btn btn-group" align='center'>
-          <a href="/curriculums/<%=user.id%>"><button class="btn btn-default">Ver Perfil</button></a>
+          <button class="btn btn-default botonCV" value="<%=user.id%>">Ver Perfil</button>
           <%if true%>
           <%end%>
         </div>
@@ -50,3 +64,61 @@
     </p>
 </div>
 </center>
+<script>
+var modal = document.getElementById('myModal');
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+$(".botonCV").on("click",function(e) {
+  // e.preventDefault();
+    var value= "http://localhost:3000/usuarios/curriculums/" +$(this).val();
+  $('#myModal').show();
+  $('#myModal2').load(value);
+});
+</script>
+<style>
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: -160px;
+    width: 100%; /* Full width */
+    height: 120; /* Full hei ght */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 20% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>

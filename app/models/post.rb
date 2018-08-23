@@ -76,6 +76,9 @@ class Post < ActiveRecord::Base
     resp+= "  Si tu curriculum cumple con los anteriores requisitos, comunicate con nosotros\n"+ "Contactacte con: "+contact+"\n a este numero de referencia: " +fijo+"\n"
     resp
   end
+  def personal_offer(contact,fijo)
+    "Estamos buscando gente capacitada en tu area de experiencia. Si te interesa un puesto en nuestra empresa, porfavor contactate con nuestro personal\nContactate con: "+contact+"\n a este número de referencia: "+fijo+"\n"
+  end
   def send_notice_mail(user)
     UserMailer.notify_email(user).deliver_now!
   end

@@ -32,6 +32,9 @@ class PostsController < ApplicationController
       redirect_to '/users/profile'
     end
   end
+  def oferta_solo
+    
+  end
 
   def oferta
     if !current_user.is_company?

@@ -2,9 +2,54 @@
 
   <div class="pull-right">
     <br><br>
-    <button id="mostrar_todo" onclick="mostrar_todo()" class="btn btn-primary">Mostrar CV completo</button>
-    <button id="ocultar_todo" onclick="ocultar_todo()" style="display:none" class="btn btn-primary">Mostrar CV resumido</button>
+    <button id="mostrar_todo" onclick="mostrar_todo()" class="btn btn-primary button-cv">Mostrar CV completo</button>
+    <button id="ocultar_todo" onclick="ocultar_todo()" style="display:none" class="btn btn-primary button-cv">Mostrar CV resumido</button>
+    <button id="publicar" class="btn btn-success">Publicar</button>
   </div>
+
+  <div id="addSuggestion" class="modal" >
+      <div class="modal-content" style="width:50%">
+          <span class="close" id="closeSuggestion">&times;</span>
+          <%= form_for :post, url:'/posts/oferta' do |f| %>
+            <p>La oferta de trabajo enviada a esta persona se publicará en su muro, al igual que la información de contacto registrado de tu empresa</p>
+            <div class="field">
+              <%= f.label :Agrega_tu_comentario_aqui %>:<br>
+              <%= f.text_area :comment, class: "form-control",:id=>'text_form',:maxlength=>600 %>
+            </div>
+            <div class="field">
+              <%= f.hidden_field :user_id, :value=>current_user.id %>
+            </div>
+            <div class="actions">
+              <%= f.submit "Enviar", class: "btn btn-success",:id=>'boton_enviar',:disabled=>true%>
+            </div>
+          <% end %>
+
+      </div>
+  </div>
+  <script>
+  var botonComentario= document.getElementById("publicar")
+  var modalComentario = document.getElementById("addSuggestion");
+  var spanComentario =document.getElementById("closeSuggestion");
+  // var btns=document.getElementById("aceptar");
+  spanComentario.onclick = function() {
+      modalComentario.style.display = "none";
+  };
+  botonComentario.onclick =function(){
+    // alert("algo raro");
+    modalComentario.style.display ="block";
+  };
+
+  $(document).ready(function(){
+      $('#boton_enviar').attr('disabled',true);
+      $('#text_form').keyup(function(){
+          if($(this).val().length !=0)
+            $('#boton_enviar').attr('disabled', false);
+          else
+              $('#boton_enviar').attr('disabled',true);
+      })
+  });
+  </script>
+
   <div>
     <h2><%=@user.name%> <%=@user.last_name%></h2>
   </div>

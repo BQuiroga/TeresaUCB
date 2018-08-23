@@ -12,6 +12,14 @@ class RegistrationsController < Devise::RegistrationsController
     end
     redirect_to 'users/edit'
  end
+ def edit
+   @user=User.find(19)
+   @company_info=@user.company_information
+   @company_information=current_user.company_information
+   if (@user.is_company?)
+     @t=@user.name
+  end
+ end
  def delete
    @user=current_user
    current_user.picture.destroy

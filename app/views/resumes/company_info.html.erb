@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="container">
+    <div class="container">
+    <div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel panel-body">
+        <div class="row">
+        <div class="col col-md-5 col-xs-5">
+      </div>
+        <div class="col col-md-4 col-xs-4">
+        <%=image_tag(@picture.image.url, class: 'img-thumbnail ',style:"width:150px;height:150px")%>
+      </div>
+      <div class="col col-md-3 col-xs-3">
+      </div>
+    </div>
+        <div class="container">
+            <div class="col col-md-4 col-xs-4">
+            </div>
+            <div class="col col-md-4 col-xs-4">
+              <h3><%=@user.name%></h3>
+              <div class="container">
+                <b>Dirección:</b><%=@company_info.address%><br>
+                <b>Nombre de persona de contacto: </b><%=@company_info.contact_name%><br>
+                <b>Correo de contacto: </b><%=@company_info.contact_email%><br>
+                <b>Codigo CIUU: </b><%=@company_info.ciu_code.ciu%><br>
+                <b>Area de trabajo: </b><%=@company_info.ciu_code.description%><br>
+                <b>Telefono fijo: </b><%=@company_info.phone%><br>
+                <b>NIT: </b><%=@company_info.nit%><br>
+
+                <b>Sobre nosotros:</b>
+                <div class="container">
+                <p id='texto'><%=@company_info.description%></p>
+              </div>
+              </div>
+            </div>
+            <div class="col col-md-3 col-xs-3">
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+<style>
+#texto{
+  word-wrap: break-word;
+  word-break: normal;
+}
+</style>

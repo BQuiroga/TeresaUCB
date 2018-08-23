@@ -16,7 +16,6 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
   <%= stylesheet_link_tag    'users', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -63,6 +62,7 @@ nav select {display: none;}
         </li>
         <%if current_user.is_company?%>
           <li><%= link_to 'Publicar oferta', '/oferta/nueva', :class => 'navbar-link navbar-text' %>&emsp;</li>
+          <li><%= link_to 'Ver información Externa', "/CompanyInformation/"+current_user.id.to_s, :class => 'navbar-link navbar-text' %>&emsp;</li>
         <%elsif !current_user.is_administrator%>
           <li><%= link_to 'Editar CV', '/users/curriculum/edit', :class => 'navbar-link navbar-text' %>&emsp;</li>
           <li><%= link_to 'Curriculum', '/mycurriculum', :class => 'navbar-link navbar-text' %>&emsp;</li>
@@ -100,6 +100,7 @@ nav select {display: none;}
       <%if !current_user.is_company?%>
         <option value='/users/curriculum/edit'><%= link_to 'Editar CV', '/users/curriculum/edit', :class => 'navbar-link' %>&emsp;</option>
         <option value='mycurriculum'><%= link_to 'Curriculum', '/mycurriculum', :class => 'navbar-link' %>&emsp;</option>
+        <option value="Ver informacion Externa"><%= link_to 'Ver información Externa', "/CompanyInformation/"+current_user.id.to_s, :class => 'navbar-link navbar-text' %>&emsp;</option>
       <%else%>
         <option value='/oferta/nueva'><%= link_to 'Publicar oferta', '/oferta/nueva', :class => 'navbar-link' %>&emsp;</option>
       <%end%>

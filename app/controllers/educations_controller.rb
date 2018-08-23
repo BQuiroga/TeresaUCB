@@ -5,13 +5,35 @@ class EducationsController < ApplicationController
 			throwUnauthorized
 			return
 		else
-		if @new.save
-			flash[:success] = "Asombroso! Cuentanos mas"
-		else
-			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+			if @new.save
+				flash[:success] = "Asombroso! Cuentanos mas"
+			else
+				flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+			end
+			respond_to do |f|
+				f.html
+				f.js
+			end
 		end
-			redirect_to '/users/curriculum/edit'
+	end
+	def new
+		@education=Education.new
+		@titles=Title.all
+		@newA=Array.new
+		@title_list=Array.new
+		@titles.each do |title|
+			@newA=@newA+[title.name]
 		end
+		@title_list=@newA
+	end
+	def index
+		@resume=current_user.resume
+		@educations=@resume.educations
+		respond_to do |f|
+			f.html
+			f.json
+		end
+		render :json=>@educations
 	end
 	def edit
 		@education=Education.find(params[:id])

@@ -2,6 +2,7 @@ class CompanyInformationsController < ApplicationController
   def new
   end
   def edit
+    @company_info=current_user.company_information
   end
   def create
   end

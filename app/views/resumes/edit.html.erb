@@ -40,44 +40,13 @@
         </ul>
       </div>
     </div>
+
+
+
     <div class="panel-footer well">
-      <%= form_for :education, url: '/education/new' do |f| %>
-        <div  class="field col col-md-3 col-xs-3">
-          <%= f.label :Grado_académico %>:
-          <!-- <%= f.select(:title,["Licenci>atura", "Maestria", "Doctorado", "Post Grado"])%> -->
-          <div>
-            <%=f.text_field :title, :id=>'filtrar',:class=>"form-control"%>
-            <%= f.select :lista,@title_list,{},class:"form-control col-12 col-md-9 col-xs-12",:id=>'titulos',:style=>"margin: 10px; width: 230px;height: 170px;",:size=>'10',:name=>'type[]'%>
-          </div>
-        </div>
-        <div class="field col col-md-3 col-xs-3">
-          <%= f.label :institución %>:
-          <%= f.text_field :school_name,:id=>'filtrar_i',:class=>"form-control"%>
-        </div>
-        <div class="field col col-md-3 col-xs-3">
-          <%= f.label :descripción %>:
-          <%= f.text_area :description,:class=>"form-control"%>
-        </div>
-        <br>
-        <div>
-        </div>
-        <div>
-        </div>
-        <div class="field col col-md-3 col-xs-3"style="top:-20px">
-          <%= f.label :Fecha_ingreso %>:
-          <%= f.date_select :start_date,:start_year  =>1990, :end_year=>Time.now.year + 5%>
-        </div>
-        <div class="field col col-md-3 col-xs-3">
-          <%= f.label :fecha_egreso %>:
-          <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year + 5%>
-        </div>
-        <br>
-        <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
-        <div class="actions field col col-md-3 col-xs-3" style="top:10px">
-          <%= f.submit "Guardar" , :class =>"btn btn-primary",:id=>'boton_academico'%>
-        </div>
-        <br><br><br><br><br><br><br><br><br><br>
-      <% end %>
+
+      <%=render :partial=>'educations/form'%>
+
     </div>
   </div>
 
@@ -711,6 +680,7 @@ window.onload = function() {
 $('#checkbox').click(function() {
   $('#rest')[this.checked ? "show" : "hide"]();
 });
+
 
 </script>
 <style>

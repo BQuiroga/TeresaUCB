@@ -29,6 +29,10 @@ class ResumesController < ApplicationController
       @newA=@newA+[degree.name]
     end
     @degree_list=@newA
+    respond_to do |f|
+      f.html
+      f.js
+    end
   end
   def external_edit
     @user=User.find(params[:id])
@@ -82,6 +86,11 @@ class ResumesController < ApplicationController
           :template => "resumes/external_show.html.erb"
         end
       end
+  end
+  def company_info
+    @user=User.find(params[:id])
+    @picture=@user.picture
+    @company_info=@user.company_information
   end
   def show_pdf
     @picture=current_user.picture

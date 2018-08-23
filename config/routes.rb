@@ -54,6 +54,7 @@ Rails.application.routes.draw do
   post 'skill/new' => 'skills#create'
   get 'skill/edit/:id'=>'skills#edit'
   put 'skill/update'=> 'skills#update'
+  get 'CompanyInformation/:id'=>'resumes#company_info'
 
   get 'usuarios/curriculums/:id' =>'resumes#show_modal'
   get 'experience/edit/:id'=>'experiences#edit'
@@ -101,10 +102,11 @@ Rails.application.routes.draw do
   get 'photos/new'=>'pictures#new'
   post 'suggestion/create' =>'suggestions#create'
   get 'user/edit/password'=>'registrations#update_password'
+  get 'educations'=>'educations#index'
 
   resources :pictures
   resources :posts
-  resources :educations
+
   resources :referentials
   resources :follows
   resources :languages
@@ -113,6 +115,8 @@ Rails.application.routes.draw do
   resources :knowledges
   resources :publications
   resources :merits
+  resources :educations
+  resources :education
   resources :experiences
   resources :groups
   resources :skills
