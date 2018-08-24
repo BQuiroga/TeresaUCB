@@ -8,16 +8,22 @@
   </div>
 
   <div id="addSuggestion" class="modal" >
-      <div class="modal-content" style="width:50%">
+      <div class="modal-content" >
           <span class="close" id="closeSuggestion">&times;</span>
-          <%= form_for :post, url:'/posts/oferta' do |f| %>
-            <p>La oferta de trabajo enviada a esta persona se publicará en su muro, al igual que la información de contacto registrado de tu empresa</p>
+          <%= form_for :post, url:'/posts/personal' do |f| %>
+            <p><i>La oferta de trabajo enviada a esta persona se publicará en su muro, al igual que la información de contacto registrado de tu empresa</i></p>
             <div class="field">
               <%= f.label :Agrega_tu_comentario_aqui %>:<br>
-              <%= f.text_area :comment, class: "form-control",:id=>'text_form',:maxlength=>600 %>
+              <%= f.text_area :comment, class: "form-control",:id=>'text_form',:maxlength=>600,:style=>"width:100%" %>
             </div>
-            <div class="field">
               <%= f.hidden_field :user_id, :value=>current_user.id %>
+              <%= f.hidden_field :id,:value=>@user.id%>
+              <%= f.hidden_field :contact, :value=>current_user.company_information.contact_name%>
+              <%= f.hidden_field :phone, :value=>current_user.company_information.phone%>
+              <%= f.hidden_field :name, :value=>current_user.name%>
+
+            <div class="row">
+              &nbsp;&nbsp;&nbsp;<p><i>&nbsp;&nbsp;&nbsp;(Tu información de contacto registrada ya se muestra automaticamente, no neecesitas ponerla de nuevo)</i></p>
             </div>
             <div class="actions">
               <%= f.submit "Enviar", class: "btn btn-success",:id=>'boton_enviar',:disabled=>true%>
@@ -25,6 +31,7 @@
           <% end %>
 
       </div>
+
   </div>
   <script>
   var botonComentario= document.getElementById("publicar")

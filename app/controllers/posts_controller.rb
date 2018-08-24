@@ -33,7 +33,19 @@ class PostsController < ApplicationController
     end
   end
   def oferta_solo
-    
+    if !current_user.is_company?
+			throwUnauthorized
+			return
+		else
+      new_post=Post.new
+      # new_post.body=personal_params[:comment]
+      new_post.new_post_body_personal(personal_params)
+      @user=User.find(personal_params[:id])
+      Searched.create(found:@user.id,searched_by: current_user.id)
+      new_post.send_notice_mail(@user)
+      new_post.save
+      redirect_to '/users/profile'
+    end
   end
 
   def oferta
@@ -116,6 +128,9 @@ class PostsController < ApplicationController
     end
   end
   private
+  def personal_params
+    params.require(:post).permit(:id,:comment,:contact,:name,:phone,:user_id)
+  end
   def post_params
     params.require(:post).permit(:body,:user_id,:requiring)
   end

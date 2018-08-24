@@ -1,69 +1,80 @@
-
+<br><br><br>
 <div id="page-content-wrapper">
-<div class="container">
-      <h1 style="border-bottom: 1px solid #A6AAA9; color: #000000;">Personas Calificadas </h1>
-      <h3>Se encontraron <%=@users.size%> personas que cumplen su requerimimento</h3>
-      <br>
-
-      <%if @ids.size>0%>
-
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
-          <!-- Modal content -->
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="myModal2" class="full reveal" data-reveal>
-            </div>
+  <div class="container">
+    <div class="panel panel-default" >
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div clas="panel-footer well">
+            <h1 >Personas Calificadas </h1>
           </div>
-          <!--Fin modal CVs -->
-
         </div>
-      <%= form_for :post, url: '/posts/oferta' do |f| %>
-      <%= f.hidden_field :user_id,:value => current_user.id%>
-          <%=f.hidden_field :titulo,:value => @titulos%>
-          <%=f.hidden_field :post_grado,:value => @postgrados%>
-          <%=f.hidden_field :horas,:value => nil%>
-          <%=f.hidden_field :experiencia,:value => @experiencias%>
-          <%=f.hidden_field :ciudad,:value => nil%>
-          <%=f.hidden_field :idiomas,:value => @idiomas%>
-          <%=f.hidden_field :cargo,:value => @cargos%>
-          <%=f.hidden_field :habilidades,:value => @habilidades%>
-          <%=f.hidden_field :results, :value=> @ids%>
-          <!-- <textarea name="message" rows="14" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Message' doit être renseigné."></textarea> -->
-          <div class="validation"></div>
-      <div class="container">
-
-      <button type="submit" class="btn btn-primary btn-publicar">Publicar a todos</button>
-      <p><i>(El proceso puede tardar unos pocos minutos debido a que se enviaran notificaciones a los perfiles y a los correos electronicos de los ofertados)</i></p>
-      <%end%>
-      <%end%>
       </div>
-      <!-- Three columns of text below the carousel -->
+    <div class="container"  style="width:95%;">
+      <h4>Se encontraron <%=@users.size%> personas que cumplen su requerimiento</h4>
+      <%if @ids.size>0%>
+        <!-- The Modal -->
+      <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div id="myModal2" class="full reveal" data-reveal>
+          </div>
+        </div>
+        <!--Fin modal CVs -->
+      </div>
 
+      <%= form_for :post, url: '/posts/oferta' do |f| %>
+        <%= f.hidden_field :user_id,:value => current_user.id%>
+        <%=f.hidden_field :titulo,:value => @titulos%>
+        <%=f.hidden_field :post_grado,:value => @postgrados%>
+        <%=f.hidden_field :horas,:value => nil%>
+        <%=f.hidden_field :experiencia,:value => @experiencias%>
+        <%=f.hidden_field :ciudad,:value => nil%>
+        <%=f.hidden_field :idiomas,:value => @idiomas%>
+        <%=f.hidden_field :cargo,:value => @cargos%>
+        <%=f.hidden_field :habilidades,:value => @habilidades%>
+        <%=f.hidden_field :results, :value=> @ids%>
+        <!-- <textarea name="message" rows="14" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Message' doit être renseigné."></textarea> -->
+        <div class="container">
+          <center>
+            <button type="submit" class="btn btn-primary btn-lg btn-publicar">Publicar a todos</button>
+          </center>
+          <p><i>(El proceso puede tardar unos pocos minutos debido a que se enviaran notificaciones a los perfiles y a los correos electronicos de los ofertados)</i></p>
+        </div>
+      <%end%>
+      <%end%>
+      <!-- Three columns of text below the carousel -->
       <div class="row">
         <% @users.each do |user| %>
-
-        <div class="col-lg-4" align="center">
-        <br>
-          <h2><td><%= user.name%>   <%=user.last_name%></td></h2>
-          <p><strong>Informacion Personal </strong><br>
-
-          <strong>Email: </strong><%= user.email %><br></p>
-        <div class="btn btn-group" align='center'>
-          <button class="btn btn-default botonCV" value="<%=user.id%>">Ver Perfil</button>
-          <%if true%>
-          <%end%>
+        <div class="col-lg-4 col-md-4" align="center">
+          <div class="panel-footer well">
+            <div class="">
+            <br>
+            <h2><td><%= user.name%>   <%=user.last_name%></td></h2>
+            <p><strong>Informacion Personal </strong><br>
+              <strong>Email: </strong><%= user.email %><br>
+            </p>
+            <div class="btn btn-group" align='center'>
+              <button class="btn btn-default botonCV" value="<%=user.id%>">Ver Perfil</button>
+            </div>
+          </div>
+          </div>
         </div>
+        <% end %>
       </div>
-      <% end %>
+      <br>
+      <center>
+        <div class="btn btn-group" align='center'>
+          <a href="/oferta/nueva"><button class='btn btn-default btn-sm'>Volver a la Busqueda</button></a>
+        </div>
+      </center>
+    </div>
+    </div>
+  </div>
+</div>
 
-</div>
-<br><center>
-  <div class="btn btn-group" align='center'>
-     <a href="/oferta/nueva"><button class='btn btn-default btn-sm'>Volver a la Busqueda</button></a>
-    </p>
-</div>
-</center>
+
+
 <script>
 var modal = document.getElementById('myModal');
 var btn = document.getElementById("myBtn");

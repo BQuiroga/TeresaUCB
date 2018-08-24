@@ -10,9 +10,10 @@ class EducationsController < ApplicationController
 			else
 				flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
 			end
+			@resume=current_user.resume
+			@educations=@resume.educations
 			respond_to do |f|
-				f.html
-				f.js
+				f.html {redirect_to '/users/curriculum/edit' }
 			end
 		end
 	end
@@ -26,6 +27,7 @@ class EducationsController < ApplicationController
 		end
 		@title_list=@newA
 	end
+
 	def index
 		@resume=current_user.resume
 		@educations=@resume.educations
@@ -33,23 +35,26 @@ class EducationsController < ApplicationController
 			f.html
 			f.json
 		end
-		render :json=>@educations
 	end
+
 	def edit
 		@education=Education.find(params[:id])
-
 		if current_user.id!=@education.user.id
 			throwUnauthorized
 			return
 		else
-		@titles=Title.all
-		@newA=Array.new
-		@title_list=Array.new
-		@titles.each do |title|
-			@newA=@newA+[title.name]
+			@titles=Title.all
+			@newA=Array.new
+			@title_list=Array.new
+			@titles.each do |title|
+				@newA=@newA+[title.name]
+			end
+			@title_list=@newA
+			respond_to do |f|
+				f.html {redirect_to '/users/curriculum/edit' }
+				f.json
+			end
 		end
-		@title_list=@newA
-	end
 	end
 	def update
 		@education=Education.find(educations_params_for_edit[:id])
