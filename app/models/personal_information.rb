@@ -32,6 +32,11 @@ class PersonalInformation < ActiveRecord::Base
   	 birthdate=cad_aux
     end
   end
+  def translate_birthday_to_edit
+    h=eval(birthdate)
+    d=Date.new(h[1],h[2],h[3])
+    d
+  end
   def call_center
     response=nil
     if phone
@@ -44,9 +49,6 @@ class PersonalInformation < ActiveRecord::Base
       return cellphone+" - " +phone
     end
   end
-  def literal(fecha)
-   		fecha.day.to_s +" "+ mes(fecha.month) +" "+ fecha.year.to_s
-   	end
    	def mes(mesNumero)
    		case mesNumero
    		when 1

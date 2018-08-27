@@ -81,25 +81,24 @@
 <div class="container form-horizontal">
 <%if (current_user.is_company?)%>
 <h3>Informacion Empresarial</h3>
-  <%=@user.name%>
-  <%=@company_info%>
+  <%@p=current_user.company_information%>
 <%= form_for :company_information, url: '/company/update' do |f| %>
   <div class="form-group">
     <%= f.label :Direccion,:class=>'form-label' ,:maxlength=>'100'%><br />
     <div class="col col-md-6">
-      <%= f.text_field :address,:class=>'form-control'%>
+      <%= f.text_field :address,:class=>'form-control',:value=>@p.address%>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :correo_de_contacto,:class=>'form-label' %><br />
     <div class="col col-md-6">
-      <%= f.email_field :contact_email, autofocus: true ,:class=>'form-control',:maxlength=>'50'%>
+      <%= f.email_field :contact_email, autofocus: true ,:class=>'form-control',:maxlength=>'50',:value=>@p.contact_email%>
     </div>
     </div>
     <div class="form-group">
     <%= f.label :nombre_de_contacto,:class=>'form-label' %><br />
     <div class="col col-md-6">
-      <%= f.text_field :contact_name,:class=>'form-control',:maxlength=>'50' %>
+      <%= f.text_field :contact_name,:class=>'form-control',:maxlength=>'50',:value=>@p.contact_name %>
     </div>
     </div>
     <div class="field">
@@ -111,20 +110,20 @@
     <div class="form-group">
     <%= f.label :Telefono_Fijo,:class=>'form-label' %><br/>
     <div class="col col-md-6">
-    <%= f.number_field :phone,:class=>'form-control',:max=>'99999999999',:min=>'1000000' %>
+    <%= f.number_field :phone,:class=>'form-control',:max=>'99999999999',:min=>'1000000',:value=>@p.phone %>
   </div>
   </div>
   <div class="form-group">
     <%= f.label :nit,:class=>'form-label' %></br>
     <div class="col col-md-6">
-    <%= f.number_field :nit,:class=>'form-control' %>
+    <%= f.number_field :nit,:class=>'form-control',:value=>@p.nit %>
   </div>
   </div>
   <br>
   <div class="form-group">
     <%= f.label :descripcion ,:class=>'form-label'%></br>
     <div class="col col-md-6">
-    <%= f.text_area  :description,:class=>'form-control' ,:maxlength=>'300'%><br>
+    <%= f.text_area  :description,:class=>'form-control' ,:maxlength=>'300',:value=>@p.description%><br>
   </div>
   </div>
       <%= f.hidden_field :user_id, :value => current_user.id%>
@@ -135,32 +134,32 @@
 <% end %>
 <%else%>
 <h3>Informacion Personal</h3>
+<%@u=current_user.personal_information%>
 <%= form_for :personal_information, url: '/personal/update' do |f| %>
   <div class="form-group">
     <%= f.label :Direccion,:class=>'form-label' %><br />
     <div class="col col-md-6">
-      <%= f.text_field :address,:class=>'form-control',:maxlength=>'100'%>
+      <%= f.text_field :address,:class=>'form-control',:maxlength=>'100',:value=>@u.address%>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :Telefono_Fijo,:class=>'form-label' %><br/>
     <div class="col col-md-6">
-      <%= f.number_field :phone,:class=>'form-control',:max=>'999999999999',:min=>'1000000' %>
+      <%= f.number_field :phone,:class=>'form-control',:max=>'999999999999',:min=>'1000000',:value=>@u.phone %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :celular,:class=>'form-label' %><br/>
     <div class="col col-md-6">
-      <%= f.number_field :cellphone,:class=>'form-control',:max=>'99999999999',:min=>'1000000' %>
+      <%= f.number_field :cellphone,:class=>'form-control',:max=>'99999999999',:min=>'1000000',:value=>@u.cellphone %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :Fecha_Nacimiento,:class=>'form-label' %><br />
     <div class="col col-md-12">
-      <%= f.date_select :birthdate,:start_year=> 1970,:end_year=>Time.now.year-10%>
+      <%= f.date_select :birthdate,:start_year=> 1970,:end_year=>Time.now.year-10,:default=>@u.translate_birthday_to_edit%>
     </div>
   </div>
-  <br>
   <div class="checkbox">
     <%= f.label :género%>&nbsp;
     <%= f.label :Hombre%>

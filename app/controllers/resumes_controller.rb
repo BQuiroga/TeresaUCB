@@ -29,10 +29,6 @@ class ResumesController < ApplicationController
       @newA=@newA+[degree.name]
     end
     @degree_list=@newA
-    respond_to do |f|
-      f.html
-      f.js
-    end
   end
   def external_edit
     @user=User.find(params[:id])

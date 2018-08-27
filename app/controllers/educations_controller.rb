@@ -11,9 +11,9 @@ class EducationsController < ApplicationController
 				flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
 			end
 			@resume=current_user.resume
-			@educations=@resume.educations
 			respond_to do |f|
 				f.html {redirect_to '/users/curriculum/edit' }
+				f.js {redirect_to '/users/curriculum/edit'}
 			end
 		end
 	end
@@ -51,7 +51,7 @@ class EducationsController < ApplicationController
 			end
 			@title_list=@newA
 			respond_to do |f|
-				f.html {redirect_to '/users/curriculum/edit' }
+				f.html
 				f.json
 			end
 		end
