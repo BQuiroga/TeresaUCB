@@ -12,8 +12,8 @@ class EducationsController < ApplicationController
 			end
 			@resume=current_user.resume
 			respond_to do |f|
-				f.html {redirect_to '/users/curriculum/edit' }
-				f.js {redirect_to '/users/curriculum/edit'}
+				f.html { }
+				f.js {}
 			end
 		end
 	end
