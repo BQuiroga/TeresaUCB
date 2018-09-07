@@ -2,11 +2,21 @@ class Education < ActiveRecord::Base
   belongs_to :resume
   before_create :validate_date
   before_update :validate_date
+  self.per_page = 7
 	def validate_date
 		start_date<end_date && start_date<Time.now
 	end
   def capit
 
+  end
+  def colleges
+    schools=Array.new
+    educations=Education.all
+    educations.each do |edu|
+      schools=schools + [edu.school_name]
+    end
+    schools=schools.uniq
+    schools
   end
   def user
     resume=self.resume

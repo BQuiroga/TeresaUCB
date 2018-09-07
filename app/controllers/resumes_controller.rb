@@ -3,6 +3,7 @@ class ResumesController < ApplicationController
   def resolve_layout
       "application"
   end
+  @@e=Education.new
   def edit
   	@resume=current_user.resume
   	@personal_info=current_user.personal_information
@@ -18,6 +19,7 @@ class ResumesController < ApplicationController
     @skills=@resume.skills
     @publicationTypes=["Articulo","Tesis","Libro","Monografia"]
     @titles=Title.all
+    @schools=@@e.colleges
     @newA=Array.new
     @title_list=Array.new
     @titles.each do |title|

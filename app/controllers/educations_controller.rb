@@ -46,6 +46,7 @@ class EducationsController < ApplicationController
 			@titles=Title.all
 			@newA=Array.new
 			@title_list=Array.new
+			@schools=@education.colleges
 			@titles.each do |title|
 				@newA=@newA+[title.name]
 			end

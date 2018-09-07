@@ -7,18 +7,19 @@
       <div class="panel-footer well">
         <%= form_for :education, url: '/education/update', html: { method: :put } do |f| %>
         <div class="container">
-          <div class="field col col-md-3 col-xs-3">
+          <div class="field col col-md-5 col-xs-6">
             <%= f.label :grado_académico %><br />
             <div>
               <%=f.text_field :title, :id=>'filtrar',:class=>"form-control"%>
-              <%= f.select :title,@title_list,{},class:"form-control col-12 col-md-9 col-xs-12",:id=>'titulos',:style=>"margin: 10px; width: 200px;height: 170px;",:size=>'10',:name=>'type[]'%>
+              <%= f.select :title,@title_list,{},class:"form-control col-12 col-md-9 col-xs-12",:id=>'titulos',:style=>"margin: 10px; width: 95%;height: 170px;",:size=>'10',:name=>'type[]'%>
             </div>
           </div>
-          <div class="field col col-md-3 col-xs-3">
+          <div class="field col col-md-5 col-xs-6">
             <%= f.label :institución %>
-            <%= f.text_field :school_name,:class=>"form-control"%>
+            <%= f.text_field :school_name,:id=>'filtrar_u',:class=>"form-control"%>
+            <%= f.select :school_name,@schools,{},class:"form-control col-12 col-md-9 col-xs-12",:id=>'universidades',:style=>"margin: 10px; width: 100%;height: 170px;",:size=>'10',:name=>'type[]'%>
           </div>
-          <div class="field col col-md-3 col-xs-3">
+          <div class="field col col-md-4 col-xs-4">
             <%= f.label :descripción %>
             <%= f.text_area :description,:class=>"form-control"%>
           </div>
@@ -27,11 +28,11 @@
           </div>
           <div>
           </div>
-          <div class="field col col-md-3 col-xs-3" style="top:-20px">
+          <div class="field col col-md-4 col-xs-4" >
             <%= f.label :Fecha_ingreso %>
             <%= f.date_select :start_date,:start_year  =>1990, :end_year=>Time.now.year+5 %>
           </div>
-            <div class="field col col-md-3 col-xs-3">
+            <div class="field col col-md-4 col-xs-4">
             <%= f.label :fecha_egreso %>
             <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year+5%>
           </div>
@@ -66,6 +67,20 @@ $(document).ready(function(){
                   })
               }(jQuery));
           });
+    $(document).ready(function () {
+      (function ($) {
+          $('#filtrar_u').keyup(function () {
+              var rex = new RegExp($(this).val(), 'i');
+              $('#universidades option').hide();
+              $('#universidades option').filter(function () {
+                  return rex.test($(this).text());
+              }).show();
+          })
+      }(jQuery));
+  });
+  $("#universidades").change(function(){
+    $("#filtrar_u").val(this.value);
+  }).change();
   var e=document.getElementById('filtrar');
   $("#titulos").change(function(){
     $("#filtrar").val(this.value);

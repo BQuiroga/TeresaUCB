@@ -18,42 +18,36 @@
   <div id='Academico' class="tabcontent">
     <div class="panel panel-default">
       <div class="panel-heading"><div class="panel-title"><h3>Formación Académica </h3></div></div>
-        <div class="panel-body">
-          <% if @educations.size >0%>
-          <ul class="list-group" id="educations_resume">
-            <% @educations.each do |education| %>
-              <li class="list-group-item">
-                <div>
-                  <h4>
-                    <b><%=education.title%>&emsp;</b>
-                    <div class="btn-group pull-right">
-                      <button class="btn btn-danger btn-sm  pull-right"><%=link_to 'Eliminar', education , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
-                    <button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,education], :class=>"button-link"%></button>
-                  </div>
-                  </h4>
-                  <%=education.school_name%>&nbsp;
-                  <%=education.start_date.year%>&emsp; - &emsp; <%=education.end_date.year%>
+      <div class="panel-body">
+        <% if @educations.size >0%>
+        <ul class="list-group" id="educations_resume">
+          <% @educations.each do |education| %>
+            <li class="list-group-item">
+              <div>
+                <h4>
+                  <b><%=education.title%>&emsp;</b>
+                  <div class="btn-group pull-right">
+                    <button class="btn btn-danger btn-sm  pull-right"><%=link_to 'Eliminar', education , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
+                  <button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,education], :class=>"button-link"%></button>
                 </div>
-              </li>
-            <%end%>
+                </h4>
+                <%=education.school_name%>&nbsp;
+                <%=education.start_date.year%>&emsp; - &emsp; <%=education.end_date.year%>
+              </div>
+            </li>
           <%end%>
-        </ul>
-      </div>
+        <%end%>
+      </ul>
     </div>
-
-
-
     <div class="panel-footer well">
-
       <%=render :partial=>'educations/form'%>
       <script>
-      $('#boton_academico').click(function(){
-      });
-
+        $('#boton_academico').click(function(){
+        });
       </script>
-
     </div>
   </div>
+</div>
 
 <!-- Sector Laboral -->
 <div id='Laboral' class="tabcontent">
