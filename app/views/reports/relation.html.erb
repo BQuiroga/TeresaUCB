@@ -24,6 +24,26 @@
             <li class="list-group-item">
               <%=area_chart @egresos,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión para todas las carreras", download: "resumen titulados"%>
             </li>
+            <li class="list-group-item">
+              <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+                </tr>
+              <%[*2010..Date.today.year].each do |anio|%>
+              <tr>
+                <td>&nbsp;<%=anio%>&nbsp;</td>
+                <td>&nbsp;<%=@new_edu.numero_ingresos(anio)%>&nbsp;</td>
+                <td>&nbsp;<%=@new_edu.numero_egresos(anio)%>&nbsp;</td>
+                <td>&nbsp;<%=@new_edu.numero_ingresos(anio-5)%>&nbsp;</td>
+                <td>&nbsp;<%=@new_edu.relacion_acreditacion(anio)%>&nbsp;</td>
+              </tr>
+              <%end%>
+            </table>
+            </li>
         </div>
         <div id="Bachiller" class="filtro" style="display:none;">
           <li class="list-group-item">
@@ -37,162 +57,482 @@
         </div>
         <div id="Antroplogía" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Antroplogía").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Antropología",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=line_chart @new_edu.antropologos.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Antropología",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <%=area_chart  @new_edu.ingresos.where("title ~* ?", "Antroplogía").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Antropología", download: "resumen titulados"%>
+            <%=area_chart  @new_edu.antropologos.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Antropología", download: "resumen titulados"%>
+          </li>
+          <li class="list-group-item">
+            <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+              <tr>
+                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+              </tr>
+            <%[*2010..Date.today.year].each do |anio|%>
+            <tr>
+              <td>&nbsp;<%=anio%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.antropologos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.antropologos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.antropologos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.antropologos)%>&nbsp;</td>
+            </tr>
+            <%end%>
+          </table>
           </li>
         </div>
         <div id="Comunicación Social" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Comunicación").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Comunicación Social",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=line_chart @new_edu.comunicadores.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Comunicación Social",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Comunicación").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Comunicación Social", download: "resumen titulados"%>
+            <%=area_chart  @new_edu.comunicadores.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Comunicación Social", download: "resumen titulados"%>
+          </li>
+          <li class="list-group-item">
+            <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+              <tr>
+                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+              </tr>
+            <%[*2010..Date.today.year].each do |anio|%>
+            <tr>
+              <td>&nbsp;<%=anio%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.comunicadores)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.comunicadores)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.comunicadores)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.comunicadores)%>&nbsp;</td>
+            </tr>
+            <%end%>
+          </table>
           </li>
         </div>
         <div id="Filosofía y Letras" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Filosofía").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Filosofía y Letras",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=line_chart @new_edu.filosofos.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Filosofía y Letras",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Filosofía").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Filosofía y Letras", download: "resumen titulados"%>
+            <%=area_chart  @new_edu.filosofos.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Filosofía y Letras", download: "resumen titulados"%>
+          </li>
+          <li class="list-group-item">
+            <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+              <tr>
+                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+              </tr>
+            <%[*2010..Date.today.year].each do |anio|%>
+            <tr>
+              <td>&nbsp;<%=anio%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.filosofos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.filosofos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.filosofos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.filosofos)%>&nbsp;</td>
+            </tr>
+            <%end%>
+          </table>
           </li>
         </div>
         <div id="Psicología" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Psicología").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión  en la carrera de Psicología",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=line_chart @new_edu.psicologos.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión  en la carrera de Psicología",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Psicología").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Psicología", download: "resumen titulados"%>
+            <%=area_chart  @new_edu.psicologos.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Psicología", download: "resumen titulados"%>
+          </li>
+          <li class="list-group-item">
+            <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+              <tr>
+                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+              </tr>
+            <%[*2010..Date.today.year].each do |anio|%>
+            <tr>
+              <td>&nbsp;<%=anio%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio, @new_edu.psicologos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.psicologos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.psicologos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.psicologos)%>&nbsp;</td>
+            </tr>
+            <%end%>
+          </table>
           </li>
         </div>
         <div id="Ingeniería Ambiental" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Ambiental").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Ambiental",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=line_chart @new_edu.ambientales.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Ambiental",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Ambiental").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Ambiental", download: "resumen titulados"%>
+            <%=area_chart  @new_edu.ambientales.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Ambiental", download: "resumen titulados"%>
+          </li>
+          <li class="list-group-item">
+            <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+              <tr>
+                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+              </tr>
+            <%[*2010..Date.today.year].each do |anio|%>
+            <tr>
+              <td>&nbsp;<%=anio%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio, @new_edu.ambientales)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio, @new_edu.ambientales)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5, @new_edu.ambientales)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio, @new_edu.ambientales)%>&nbsp;</td>
+            </tr>
+            <%end%>
+          </table>
           </li>
         </div>
         <div id="Ingeniería Civil" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Civil").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Civil",ytitle:"Estudiantes ingresados  en la carrera de Filosofía y Letras", download: "resumen Ingreso"%>
+            <%=line_chart @new_edu.civiles.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Civil",ytitle:"Estudiantes ingresados  en la carrera de Filosofía y Letras", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Civil").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Civil", download: "resumen titulados"%>
+            <%=area_chart  @new_edu.civiles.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Civil", download: "resumen titulados"%>
+          </li>
+          <li class="list-group-item">
+            <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+              <tr>
+                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+              </tr>
+            <%[*2010..Date.today.year].each do |anio|%>
+            <tr>
+              <td>&nbsp;<%=anio%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.civiles)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.civiles)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.civiles)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.civiles)%>&nbsp;</td>
+            </tr>
+            <%end%>
+          </table>
           </li>
         </div>
         <div id="Ingeniería Industrial" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Industrial").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Industrial",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=line_chart @new_edu.industriales.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Industrial",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Industrial").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Industrial", download: "resumen titulados"%>
+            <%=area_chart  @new_edu.industriales.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Industrial", download: "resumen titulados"%>
+          </li>
+          <li class="list-group-item">
+            <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+              <tr>
+                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+              </tr>
+            <%[*2010..Date.today.year].each do |anio|%>
+            <tr>
+              <td>&nbsp;<%=anio%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.industriales)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.industriales)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.industriales)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.industriales)%>&nbsp;</td>
+            </tr>
+            <%end%>
+          </table>
           </li>
         </div>
         <div id="Ingeniería Química" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Químic").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Química",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=line_chart @new_edu.quimicos.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Química",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Químic").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Química", download: "resumen titulados"%>
+            <%=area_chart  @new_edu.quimicos.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Química", download: "resumen titulados"%>
+          </li>
+          <li class="list-group-item">
+            <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+              <tr>
+                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+              </tr>
+            <%[*2010..Date.today.year].each do |anio|%>
+            <tr>
+              <td>&nbsp;<%=anio%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.quimicos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.quimicos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.quimicos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.quimicos)%>&nbsp;</td>
+            </tr>
+            <%end%>
+          </table>
           </li>
         </div>
         <div id="Ingeniería Mecatrónica" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Mecatrónic").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Mecatrónica",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=line_chart @new_edu.mecatronicos.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Mecatrónica",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Mecatrónic").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Mecatrónica", download: "resumen titulados"%>
+            <%=area_chart  @new_edu.mecatronicos.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Mecatrónica", download: "resumen titulados"%>
+          </li>
+          <li class="list-group-item">
+            <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+              <tr>
+                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+              </tr>
+            <%[*2010..Date.today.year].each do |anio|%>
+            <tr>
+              <td>&nbsp;<%=anio%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.mecatronicos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.mecatronicos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.mecatronicos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.mecatronicos)%>&nbsp;</td>
+            </tr>
+            <%end%>
+          </table>
           </li>
         </div>
         <div id="Ingeniería de Sistemas" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Sistemas").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión  en la carrera de Ingeniería de Sistemas",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=line_chart @new_edu.sistemas.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión  en la carrera de Ingeniería de Sistemas",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Sistemas").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería de Sistemas", download: "resumen titulados"%>
+            <%=area_chart  @new_edu.sistemas.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería de Sistemas", download: "resumen titulados"%>
+          </li>
+          <li class="list-group-item">
+            <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+              <tr>
+                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+              </tr>
+            <%[*2010..Date.today.year].each do |anio|%>
+            <tr>
+              <td>&nbsp;<%=anio%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.sistemas)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.sistemas)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.sistemas)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.sistemas)%>&nbsp;</td>
+            </tr>
+            <%end%>
+          </table>
           </li>
         </div>
         <div id="Ingeniería de Telecomunicaciones" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Telecomunicaciones").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería de Telecomunicaciones",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=line_chart @new_edu.telecomunicadores.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería de Telecomunicaciones",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Telecomunicaciones").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería de Telecomunicaciones", download: "resumen titulados"%>
+            <%=area_chart  @new_edu.telecomunicadores.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería de Telecomunicaciones", download: "resumen titulados"%>
+          </li>
+          <li class="list-group-item">
+            <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+              <tr>
+                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+              </tr>
+            <%[*2010..Date.today.year].each do |anio|%>
+            <tr>
+              <td>&nbsp;<%=anio%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.telecomunicadores)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.telecomunicadores)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.telecomunicadores)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.telecomunicadores)%>&nbsp;</td>
+            </tr>
+            <%end%>
+          </table>
           </li>
         </div>
         <div id="Administración de Empresas" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Administración de Empresas").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Administración de Empresas",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=line_chart @new_edu.administradores.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Administración de Empresas",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Administración de Empresas").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión  en la carrera de Administración de Empresas", download: "resumen titulados"%>
+            <%=area_chart  @new_edu.administradores.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión  en la carrera de Administración de Empresas", download: "resumen titulados"%>
+          </li>
+          <li class="list-group-item">
+            <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+              <tr>
+                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+              </tr>
+            <%[*2010..Date.today.year].each do |anio|%>
+            <tr>
+              <td>&nbsp;<%=anio%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.administradores)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.administradores)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.administradores)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.administradores)%>&nbsp;</td>
+            </tr>
+            <%end%>
+          </table>
           </li>
         </div>
         <div id="Ingeniería Financiera" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart Education.where(:title => ["Financier","Finanzas"],:school_name=>@new_edu.cato_names).group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Financieras",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=line_chart @new_edu.financieros.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Financieras",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <%=area_chart Education.where(:title => ["Financier","Finanzas"],:school_name=>@new_edu.cato_names).group_by_year(:end_date).count ,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Financiera", download: "resumen titulados"%>
+            <%=area_chart @new_edu.financieros.group_by_year(:end_date).count ,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Financiera", download: "resumen titulados"%>
+          </li>
+          <li class="list-group-item">
+            <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+              <tr>
+                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+              </tr>
+            <%[*2010..Date.today.year].each do |anio|%>
+            <tr>
+              <td>&nbsp;<%=anio%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.financieros)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.financieros)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.financieros)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.financieros)%>&nbsp;</td>
+            </tr>
+            <%end%>
+          </table>
           </li>
         </div>
         <div id="Derecho" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart Education.where(:title => ["Derecho","Abogad"],:school_name=>@new_edu.cato_names).group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Derecho",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=line_chart @new_edu.abogados.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Derecho",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <%=area_chart Education.where(:title => ["Derecho ","Abogad"],:school_name=>@new_edu.cato_names).group_by_year(:end_date).count ,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Derecho", download: "resumen titulados"%>
+            <%=area_chart @new_edu.abogados.group_by_year(:end_date).count ,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Derecho", download: "resumen titulados"%>
+          </li>
+          <li class="list-group-item">
+            <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+              <tr>
+                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+              </tr>
+            <%[*2010..Date.today.year].each do |anio|%>
+            <tr>
+              <td>&nbsp;<%=anio%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio, @new_edu.abogados)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio, @new_edu.abogados)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5, @new_edu.abogados)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio, @new_edu.abogados)%>&nbsp;</td>
+            </tr>
+            <%end%>
+          </table>
           </li>
         </div>
         <div id="Contaduría Pública" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Contador").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Contaduría Pública",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=line_chart @new_edu.contadores.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Contaduría Pública",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Contador").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Contaduría Pública", download: "resumen titulados"%>
+            <%=area_chart  @new_edu.contadores.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Contaduría Pública", download: "resumen titulados"%>
+          </li>
+          <li class="list-group-item">
+            <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+              <tr>
+                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+              </tr>
+            <%[*2010..Date.today.year].each do |anio|%>
+            <tr>
+              <td>&nbsp;<%=anio%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio, @new_edu.contadores)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio, @new_edu.contadores)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5, @new_edu.contadores)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio, @new_edu.contadores)%>&nbsp;</td>
+            </tr>
+            <%end%>
+          </table>
           </li>
         </div>
         <div id="Ingeniería Comercial" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Comercial").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Comercial",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=line_chart @new_edu.comerciales.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Comercial",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Comercial").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Comercial", download: "resumen titulados"%>
+            <%=area_chart  @new_edu.comerciales.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Comercial", download: "resumen titulados"%>
+          </li>
+          <li class="list-group-item">
+            <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+              <tr>
+                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+              </tr>
+            <%[*2010..Date.today.year].each do |anio|%>
+            <tr>
+              <td>&nbsp;<%=anio%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.comerciales)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.comerciales)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.comerciales)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.comerciales)%>&nbsp;</td>
+            </tr>
+            <%end%>
+          </table>
           </li>
         </div>
 

@@ -27,9 +27,7 @@ class Post < ActiveRecord::Base
     user=self.user
     user.name
   end
-  def likes
-    Like.where(post_id: id).count
-  end
+
   def search_params_count(postgrados,educaciones,experiencias,conocimientos,idiomas)
     count=0
     if postgrados.size>0

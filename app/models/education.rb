@@ -12,24 +12,44 @@ class Education < ActiveRecord::Base
   def cato_names
     ["Universidad Catolica Boliviana San Pablo","UCB","UCBSP","Universidad Católica Boliviana 'San Pablo'"]
   end
-  def ingresos(anio)
-    edu=Education.where('extract(year from start_date) =?',anio).where(school_name:cato_names)
-    edu
-  end
   def ingresos
     Education.where(school_name:cato_names)
   end
-  def numero_ingresos(anio)
-    ingresos(anio).count
+  def ingresos_en(anio)
+    edu=Education.where('extract(year from start_date) =?',anio).where(school_name:cato_names)
+    edu
   end
-  def egresos(anio)
+  def numero_ingresos(anio)
+    ingresos_en(anio).count
+  end
+  def numero_ingresos_por(anio,lista)
+    lista.where('extract(year from start_date) =?',anio).where(school_name:cato_names).count
+  end
+  def egresos_en(anio)
     edu=Education.where('extract(year from end_date) =?',anio).where(school_name:cato_names)
     edu
   end
-  def numero_egresos(anio)
-    egresos(anio).count
+  def numero_egresos_por(anio,lista)
+    lista.where('extract(year from end_date) =?',anio).where(school_name:cato_names).count
   end
-  def titulados
+  def numero_egresos(anio)
+    egresos_en(anio).count
+  end
+  def relacion_acreditacion(gestion)
+    if (numero_ingresos(gestion-5)==0)
+      relacion="No es posible obtener este dato"
+    else
+      relacion=numero_egresos(gestion)*100/numero_ingresos(gestion-5)
+    end
+    relacion
+  end
+  def relacion_acreditacion_por(gestion,lista)
+    if (numero_ingresos_por(gestion-5,lista)==0)
+      relacion="No es posible obtener este dato"
+    else
+      relacion=numero_egresos_por(gestion,lista)*100/numero_ingresos_por(gestion-5,lista)
+    end
+    relacion
   end
   def colleges
     schools=Array.new
@@ -92,9 +112,6 @@ class Education < ActiveRecord::Base
     result=result+["Todos"]
   end
 
-  def title_name
-    education.try(:title)
-  end
   def title_name=(name)
     self.education=Education.find_by(title: name) if name.present?
   end
@@ -189,5 +206,54 @@ class Education < ActiveRecord::Base
       "Ingeniería Civil","Ingeniería Industrial","Ingeniería Química",
       "Ingeniería Mecatrónica","Ingeniería de Sistemas","Ingeniería de Telecomunicaciones",
       "Administración de Empresas","Contaduría Pública","Ingeniería Comercial","Ingeniería Financiera"]
+  end
+
+  def antropologos
+    self.ingresos.where("title ~* ?", "Antropolog")
+  end
+  def comunicadores
+    self.ingresos.where("title ~* ?", "Antropolog")
+  end
+  def filosofos
+    self.ingresos.where("title ~* ?", "Filosofía")
+  end
+  def psicologos
+    self.ingresos.where("title ~* ?","Psicología")
+  end
+  def ambientales
+    self.ingresos.where("title ~* ?", "Ambient")
+  end
+  def civiles
+    self.ingresos.where("title ~* ?", "Civil")
+  end
+  def industriales
+    self.ingresos.where("title ~* ?", "Industria")
+  end
+  def quimicos
+    self.ingresos.where("title ~* ?", "Químic")
+  end
+  def mecatronicos
+    self.ingresos.where("title ~* ?","Mecatrónic")
+  end
+  def sistemas
+    self.ingresos.where("title ~* ?", "Sistemas")
+  end
+  def telecomunicadores
+    self.ingresos.where("title ~* ?", "Telecomunicaciones")
+  end
+  def administradores
+    self.ingresos.where("title ~* ?", "Administración de Empresas")
+  end
+  def financieros
+     Education.where(:title => ["Financier","Finanzas"],:school_name=>cato_names)
+  end
+  def abogados
+    Education.where(:title => ["Derecho","Abogad"],:school_name=>cato_names)
+  end
+  def contadores
+    self.ingresos.where("title ~* ?", "Contador")
+  end
+  def comerciales
+    self.ingresos.where("title ~* ?", "Comercial")
   end
 end
