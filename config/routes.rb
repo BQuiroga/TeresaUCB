@@ -86,6 +86,7 @@ Rails.application.routes.draw do
   post '/reportesnuevoReporte'=>'users#new_report'
   post '/reporte/nuevo'=>'reports#new'
   get '/reporte/nuevo'=>'reports#new_reporte'
+  get '/reportes_estaticos'=>'reports#relation'
 
   get 'reportes/UsuariosPorFecha'=>'reports#users_by_date'
   get 'reportes/UsuariosPorUniversidad'=>'reports#users_by_university'

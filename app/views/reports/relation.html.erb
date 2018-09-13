@@ -1,0 +1,235 @@
+<a href="/reportes"><button class="btn btn-primary">Volver Atras</button></a>
+<div class="container">
+<h1>Lista de reportes</h1>
+  <div class="panel panel-default">
+    <div class="panel-heading"><div class="panel-title"><h3>Titulados por gestión</h3></div></div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="center-select">
+              <!-- <input type="text" name="title" id='filtrar' style='width:40%'> -->
+              <select id="carrera" onchange="cambioCarreras()">
+                <%@title_list.each do |x|%>
+                  <option><%=x%></option>
+                  <%end%>
+              </select>
+            </div>
+          </li>
+          <div id="Todas las carreras" class="filtro">
+            <li class="list-group-item">
+              <%=line_chart @ingresos,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión para todas las carreras",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            </li>
+            <li class="list-group-item">
+            </li>
+            <li class="list-group-item">
+              <%=area_chart @egresos,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión para todas las carreras", download: "resumen titulados"%>
+            </li>
+        </div>
+        <div id="Bachiller" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <%=line_chart @ingresos,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes registrados",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+          </li>
+          <li class="list-group-item">
+          </li>
+          <li class="list-group-item">
+            <%=area_chart @egresos,label: "Cantidad",ytitle:"Bachilleres registrados",xtitle:"Gestión",title:"Estudiantes titulados por gestión", download: "resumen titulados"%>
+          </li>
+        </div>
+        <div id="Antroplogía" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Antroplogía").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Antropología",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+          </li>
+          <li class="list-group-item">
+          </li>
+          <li class="list-group-item">
+            <%=area_chart  @new_edu.ingresos.where("title ~* ?", "Antroplogía").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Antropología", download: "resumen titulados"%>
+          </li>
+        </div>
+        <div id="Comunicación Social" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Comunicación").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Comunicación Social",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+          </li>
+          <li class="list-group-item">
+          </li>
+          <li class="list-group-item">
+            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Comunicación").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Comunicación Social", download: "resumen titulados"%>
+          </li>
+        </div>
+        <div id="Filosofía y Letras" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Filosofía").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Filosofía y Letras",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+          </li>
+          <li class="list-group-item">
+          </li>
+          <li class="list-group-item">
+            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Filosofía").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Filosofía y Letras", download: "resumen titulados"%>
+          </li>
+        </div>
+        <div id="Psicología" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Psicología").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión  en la carrera de Psicología",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+          </li>
+          <li class="list-group-item">
+          </li>
+          <li class="list-group-item">
+            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Psicología").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Psicología", download: "resumen titulados"%>
+          </li>
+        </div>
+        <div id="Ingeniería Ambiental" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Ambiental").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Ambiental",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+          </li>
+          <li class="list-group-item">
+          </li>
+          <li class="list-group-item">
+            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Ambiental").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Ambiental", download: "resumen titulados"%>
+          </li>
+        </div>
+        <div id="Ingeniería Civil" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Civil").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Civil",ytitle:"Estudiantes ingresados  en la carrera de Filosofía y Letras", download: "resumen Ingreso"%>
+          </li>
+          <li class="list-group-item">
+          </li>
+          <li class="list-group-item">
+            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Civil").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Civil", download: "resumen titulados"%>
+          </li>
+        </div>
+        <div id="Ingeniería Industrial" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Industrial").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Industrial",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+          </li>
+          <li class="list-group-item">
+          </li>
+          <li class="list-group-item">
+            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Industrial").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Industrial", download: "resumen titulados"%>
+          </li>
+        </div>
+        <div id="Ingeniería Química" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Químic").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Química",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+          </li>
+          <li class="list-group-item">
+          </li>
+          <li class="list-group-item">
+            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Químic").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Química", download: "resumen titulados"%>
+          </li>
+        </div>
+        <div id="Ingeniería Mecatrónica" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Mecatrónic").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Mecatrónica",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+          </li>
+          <li class="list-group-item">
+          </li>
+          <li class="list-group-item">
+            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Mecatrónic").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Mecatrónica", download: "resumen titulados"%>
+          </li>
+        </div>
+        <div id="Ingeniería de Sistemas" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Sistemas").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión  en la carrera de Ingeniería de Sistemas",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+          </li>
+          <li class="list-group-item">
+          </li>
+          <li class="list-group-item">
+            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Sistemas").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería de Sistemas", download: "resumen titulados"%>
+          </li>
+        </div>
+        <div id="Ingeniería de Telecomunicaciones" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Telecomunicaciones").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería de Telecomunicaciones",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+          </li>
+          <li class="list-group-item">
+          </li>
+          <li class="list-group-item">
+            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Telecomunicaciones").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería de Telecomunicaciones", download: "resumen titulados"%>
+          </li>
+        </div>
+        <div id="Administración de Empresas" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Administración de Empresas").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Administración de Empresas",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+          </li>
+          <li class="list-group-item">
+          </li>
+          <li class="list-group-item">
+            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Administración de Empresas").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión  en la carrera de Administración de Empresas", download: "resumen titulados"%>
+          </li>
+        </div>
+        <div id="Ingeniería Financiera" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <%=line_chart Education.where(:title => ["Financier","Finanzas"],:school_name=>@new_edu.cato_names).group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Financieras",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+          </li>
+          <li class="list-group-item">
+          </li>
+          <li class="list-group-item">
+            <%=area_chart Education.where(:title => ["Financier","Finanzas"],:school_name=>@new_edu.cato_names).group_by_year(:end_date).count ,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Financiera", download: "resumen titulados"%>
+          </li>
+        </div>
+        <div id="Derecho" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <%=line_chart Education.where(:title => ["Derecho","Abogad"],:school_name=>@new_edu.cato_names).group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Derecho",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+          </li>
+          <li class="list-group-item">
+          </li>
+          <li class="list-group-item">
+            <%=area_chart Education.where(:title => ["Derecho ","Abogad"],:school_name=>@new_edu.cato_names).group_by_year(:end_date).count ,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Derecho", download: "resumen titulados"%>
+          </li>
+        </div>
+        <div id="Contaduría Pública" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Contador").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Contaduría Pública",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+          </li>
+          <li class="list-group-item">
+          </li>
+          <li class="list-group-item">
+            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Contador").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Contaduría Pública", download: "resumen titulados"%>
+          </li>
+        </div>
+        <div id="Ingeniería Comercial" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <%=line_chart @new_edu.ingresos.where("title ~* ?", "Comercial").group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Comercial",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+          </li>
+          <li class="list-group-item">
+          </li>
+          <li class="list-group-item">
+            <%=area_chart  @new_edu.ingresos.where("title ~* ?","Comercial").group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Comercial", download: "resumen titulados"%>
+          </li>
+        </div>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+
+  function cambioCarreras(){
+    var selected=document.getElementById("carrera").value;
+    var filtros=document.getElementsByClassName("filtro");
+    for (var i=0; i<filtros.length;i++)
+    {
+      filtros[i].style.display="none";
+    }
+    document.getElementById(selected).style.display="block";
+
+  }
+
+  </script>
+  <style>
+  .center-select > select  {
+  margin: 50px;
+  width: 400px;
+  padding: 5px 35px 5px 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  height: 34px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  }
+    .center-select{
+      padding-left:25%;
+    left:30%;
+    }
+  </style>

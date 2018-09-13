@@ -9,6 +9,28 @@ class Education < ActiveRecord::Base
   def capit
 
   end
+  def cato_names
+    ["Universidad Catolica Boliviana San Pablo","UCB","UCBSP","Universidad Católica Boliviana 'San Pablo'"]
+  end
+  def ingresos(anio)
+    edu=Education.where('extract(year from start_date) =?',anio).where(school_name:cato_names)
+    edu
+  end
+  def ingresos
+    Education.where(school_name:cato_names)
+  end
+  def numero_ingresos(anio)
+    ingresos(anio).count
+  end
+  def egresos(anio)
+    edu=Education.where('extract(year from end_date) =?',anio).where(school_name:cato_names)
+    edu
+  end
+  def numero_egresos(anio)
+    egresos(anio).count
+  end
+  def titulados
+  end
   def colleges
     schools=Array.new
     educations=Education.all
@@ -21,6 +43,7 @@ class Education < ActiveRecord::Base
   def user
     resume=self.resume
     user=resume.user
+    user
   end
   def title_list
     list=Array.new

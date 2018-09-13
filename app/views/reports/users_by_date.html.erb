@@ -289,7 +289,7 @@
             <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
           </tr>
           <%
-          @educations=Education.where("title ~* ?", "Quimic")
+          @educations=Education.where("title ~* ?", "Químic")
           @users=Array.new
           if @educations
             @educations.each do |edu|
