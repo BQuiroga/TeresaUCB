@@ -1,0 +1,11 @@
+<%= form_for :knowledge, url: '/knowledge/new',remote: true do |f| %>
+<div class="field col col-md-4 col-xs-4">
+  <%= f.label :conocimiento %><br />
+  <%= f.text_field :description,:id=>'conocimiento',:class=>"form-control"%>
+</div>
+<br>
+<%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+<div class="actions">
+  <%= f.submit "Guardar" , :class =>"btn btn-primary",:id=>'boton_conocimmiento'%>
+</div>
+<% end %>

@@ -6,13 +6,20 @@ class KnowledgesController < ApplicationController
 			throwUnauthorized
 			return
 		else
-		if @new.save
-			flash[:success] = "Genial! ¿Que otras cosas mas sabes?"
-		else
-			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+			if @new.save
+				flash[:success] = "Genial! ¿Que otras cosas mas sabes?"
+			else
+				flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+			end
+			@resume=current_user.resume
+			respond_to do |f|
+				f.html {}
+				f.js {}
+			end
 		end
-		redirect_to '/users/curriculum/edit'
-end
+	end
+	def new
+		@knowledge=Knowledge.new
 	end
 	def edit
 		@knowledge=Knowledge.find(params[:id])

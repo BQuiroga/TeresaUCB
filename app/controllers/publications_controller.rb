@@ -10,8 +10,16 @@ class PublicationsController < ApplicationController
 		else
 			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
 		end
-	  	redirect_to '/users/curriculum/edit'
+			@resume=current_user.resume
+			respond_to do |f|
+				f.html {}
+				f.js {}
+			end
 		end
+	end
+	def new
+		@publicationTypes=["Articulo","Tesis","Libro","Monografia"]
+		@publication=Publication.new
 	end
 	def edit
 		@publication=Publication.find(params[:id])

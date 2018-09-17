@@ -5,13 +5,20 @@ class MembershipsController < ApplicationController
 			throwUnauthorized
 			return
 		else
-		if @new.save
-			flash[:success] = "Asombroso! ¿En que otros grupos mas formas parte?"
-		else
-			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+			if @new.save
+				flash[:success] = "Asombroso! ¿En que otros grupos mas formas parte?"
+			else
+				flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+			end
+			@resume=current_user.resume
+			respond_to do |f|
+				f.html {}
+				f.js {}
+			end
 		end
-		redirect_to '/users/curriculum/edit'
 	end
+	def new
+		@membership=Membership.new
 	end
 	def edit
 		@membership=Membership.find(params[:id])

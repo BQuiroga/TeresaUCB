@@ -1,0 +1,11 @@
+<%= form_for :skill, url: '/skill/new',remote: true do |f| %>
+  <div class="field col col-md-4 col-xs-4">
+    <%= f.label :habilidad %><br />
+    <%= f.text_field :description,:id=>'habilidad',:class=>"form-control"%>
+  </div>
+  <br>
+      <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+  <div class="actions">
+    <%= f.submit "Guardar" , :class =>"btn btn-primary",:id=>'boton_habilidades'%>
+  </div>
+<% end %>

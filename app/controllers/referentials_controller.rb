@@ -5,14 +5,21 @@ class ReferentialsController < ApplicationController
       throwUnauthorized
       return
     else
-		if @new.save
-			flash[:success] = "Fabuloso! ¿Tienes alguien mas en mente?"
-		else
-			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
-		end
-    	redirect_to '/users/curriculum/edit'
+  		if @new.save
+  			flash[:success] = "Fabuloso! ¿Tienes alguien mas en mente?"
+  		else
+  			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+  		end
+      @resume=current_user.resume
+      respond_to do |f|
+        f.html {}
+        f.js {}
+      end
     end
-	 end
+  end
+  def new
+    @referential=Referential.new
+  end
   def edit
     @referential=Referential.find(params[:id])
     if current_user.id!=@referential.user.id

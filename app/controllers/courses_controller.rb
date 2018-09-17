@@ -10,8 +10,15 @@ class CoursesController < ApplicationController
 		else
 			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
 		end
-		redirect_to '/users/curriculum/edit'
+		@resume=current_user.resume
+		respond_to do |f|
+			f.html {}
+			f.js {}
 		end
+		end
+	end
+	def new
+		@course=Course.new
 	end
 	def edit
 		@course=Course.find(params[:id])
@@ -21,6 +28,18 @@ class CoursesController < ApplicationController
 			throwUnauthorized
 			return
 		else
+			@titles=Title.all
+			@newA=Array.new
+			@title_list=Array.new
+			@schools=@education.colleges
+			@titles.each do |title|
+				@newA=@newA+[title.name]
+			end
+			@title_list=@newA
+			respond_to do |f|
+				f.html
+				f.json
+			end
 		end
 	end
 	def update

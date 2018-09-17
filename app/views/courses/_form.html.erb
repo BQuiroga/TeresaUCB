@@ -1,0 +1,24 @@
+<%= form_for :course, url: '/course/new',remote: true do |f| %>
+  <div class="field col col-md-4 col-xs-4">
+    <%= f.label :nombre_del_curso_o_seminario %><br />
+    <%= f.text_field :name, :id=>'nombre_seminario',:class=>"form-control"%><br>
+    <%= f.label :carga_horaria_ %>(Hrs)
+    <%= f.number_field :workload,:class=>"form-control"%>
+  </div>
+  <div class="field col col-md-4 col-xs-4">
+    <%= f.label :institución %><br />
+    <%= f.text_field :institution,:class=>"form-control"%><br>
+    <%=f.label :participe_como%>
+    <%= f.select(:given, options_for_select(Course.participations)) %>
+  </div>
+  <div class="field col col-md-4 col-xs-4">
+    <%= f.label :fecha %>
+    <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+    <br>
+  </div>
+    <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+  <div class="actions">
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <%= f.submit "Guardar" , :class =>"btn btn-primary",:id=>'boton_seminario'%>
+  </div>
+<% end %>

@@ -1,0 +1,21 @@
+<%= form_for :language, url: '/language/new',remote:true do |f| %>
+  <div class="field col col-sm-4 col-md-4 col-xs-4">
+    <%= f.label :idioma %><br />
+    <%= f.text_field :name,:id=>'idioma',:class=>"form-control"%>
+  </div>
+  <br>
+  <div class="field col col-sm-4 col-md-4 col-xs-4">
+    <%=f.label :nivel%>
+    <%= f.select(:level, options_for_select(Language.levels)) %>
+  </div>
+  <div class="field col col-sm-4 col-md-4 col-xs-4">
+    <%=f.label :habilidades%>
+    <%= f.select(:skill, options_for_select(Language.skills)) %>
+  </div>
+  <br>
+      <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+    <br>
+  <div class="actions">
+    <%= f.submit "Guardar" , :class =>"btn btn-primary",:id=>'boton_idiomas'%>
+  </div>
+  <% end %>

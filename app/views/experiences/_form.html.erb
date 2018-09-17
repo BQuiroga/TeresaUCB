@@ -1,0 +1,59 @@
+<%= form_for :experience, url: '/experience/new',remote:true do |f| %>
+<div class="field col col-md-4">
+  <%= f.label :cargo_profesional %>:<br />
+  <%= f.text_field :job_title,:id=>'cargo',:class=>"form-control"%>
+  <br>
+  <%= f.label :empresa %>:<br />
+  <%= f.text_field :company_name,:id=>'empresa',:class=>"form-control"%>
+  <br>
+</div>
+<div class="field col col-md-4">
+  <%= f.label :actividades_a_cargo %>:<br />
+  <%= f.text_field :job_description,:class=>"form-control"%><br>
+  <%= f.label :personas_bajo_mi_cargo %>:<br />
+  <%= f.number_field :in_my_charge,:class=>"form-control"%>
+</div>
+<div class="field col col-md-4">
+  <input type="checkbox" id="checkbox" name="checkbox">Desea agregar una persona de referencia
+  <div id="rest" style="display:none;">
+    <div class="field">
+      <%= f.label :Persona_de_Referencia %>:<br />
+      <%= f.text_field :referential,:class=>"form-control"%>
+    </div>
+    <div class="field">
+      <%= f.label :numero_de_referencia %>:
+      <%= f.number_field :referential_number,:class=>"form-control"%>
+    </div>
+  </div>
+</div>
+<div class="field">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<div class="field pull-right" style="position:relative;">
+  ESTA INFORMACION NO ES PUBLICA
+  <%= f.label :rango_salarial %>
+  <%= f.select(:salary_range, options_for_select(Experience.salary_range)) %>
+</div>
+<div class="field">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <%= f.label :Fecha_ingreso %>
+  <%= f.date_select :start_date ,:start_year  =>1990, :end_year=>Time.now.year%>
+</div>
+<div class="field" id="date" style="display:none;">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <%= f.label :fecha_salida %>
+  <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year%>
+</div>
+<div class="field">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <%=f.label :si_aún_sigue_por_favor_deje_marcada_esta_casilla%>
+  <input type="checkbox" id="checkboxDate" name="until_now", checked="true">
+</div>
+  <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+<div class="actions">
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <br><br>
+  <%= f.submit "Guardar", :class =>"btn btn-primary" ,:id=>'boton_laboral'%>
+</div>
+<% end %>

@@ -5,14 +5,21 @@ class SkillsController < ApplicationController
       throwUnauthorized
       return
     else
-		if @new.save
-			flash[:success] = "Perfecto! ¿Que otras habilidades adquiriste?"
-		else
-			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
-		end
-    redirect_to '/users/curriculum/edit'
+  		if @new.save
+  			flash[:success] = "Perfecto! ¿Que otras habilidades adquiriste?"
+  		else
+  			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+  		end
+      @resume=current_user.resume
+      respond_to do |f|
+        f.html {}
+        f.js {}
+      end
+    end
   end
-	end
+  def new
+    @skill=Skill.new
+  end
   def edit
     @skill=Skill.find(params[:id])
     if current_user.id!=@skill.user.id

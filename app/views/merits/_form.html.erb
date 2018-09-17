@@ -1,0 +1,16 @@
+<%= form_for :merit, url: '/merit/new',remote: true do |f| %>
+<div class="field col col-md-4 col-xs-4">
+  <%= f.label :Mérito %>:
+  <%= f.text_field :name, :id=>'merito',:class=>"form-control"%>
+
+</div>
+<div class="field col col-md-4 col-xs-4">
+  <%= f.label :fecha %>
+  <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+</div>
+<%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+<div class="actions">
+  <%= f.submit "Guardar", :class =>"btn btn-primary" ,:id=>'boton_meritos'%>
+</div>
+<br>
+<% end %>

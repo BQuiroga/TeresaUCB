@@ -41,10 +41,6 @@
     </div>
     <div class="panel-footer well">
       <%=render :partial=>'educations/form'%>
-      <script>
-        $('#boton_academico').click(function(){
-        });
-      </script>
     </div>
   </div>
 </div>
@@ -59,7 +55,7 @@
     </div>
     <div class="panel-body">
       <% if @experiences.size >0%>
-        <ul class="list-group">
+        <ul class="list-group" id="experiencias">
           <% @experiences.each do |experience| %>
           <li class="list-group-item">
           <div>
@@ -82,65 +78,7 @@
     </div>
   </div>
   <div class="panel-footer well">
-    <%= form_for :experience, url: '/experience/new' do |f| %>
-    <div class="field col col-md-4">
-      <%= f.label :cargo_profesional %>:<br />
-      <%= f.text_field :job_title,:id=>'cargo',:class=>"form-control"%>
-      <br>
-      <%= f.label :empresa %>:<br />
-      <%= f.text_field :company_name,:id=>'empresa',:class=>"form-control"%>
-      <br>
-    </div>
-    <div class="field col col-md-4">
-      <%= f.label :actividades_a_cargo %>:<br />
-      <%= f.text_field :job_description,:class=>"form-control"%><br>
-      <%= f.label :personas_bajo_mi_cargo %>:<br />
-      <%= f.number_field :in_my_charge,:class=>"form-control"%>
-    </div>
-    <div class="field col col-md-4">
-      <input type="checkbox" id="checkbox" name="checkbox">Desea agregar una persona de referencia
-      <div id="rest" style="display:none;">
-        <div class="field">
-          <%= f.label :Persona_de_Referencia %>:<br />
-          <%= f.text_field :referential,:class=>"form-control"%>
-        </div>
-        <div class="field">
-          <%= f.label :numero_de_referencia %>:
-          <%= f.number_field :referential_number,:class=>"form-control"%>
-        </div>
-      </div>
-    </div>
-    <div class="field">
-      &nbsp;&nbsp;&nbsp;&nbsp;
-    </div>
-    <div class="field pull-right" style="position:relative;">
-      ESTA INFORMACION NO ES PUBLICA
-      <%= f.label :rango_salarial %>
-      <%= f.select(:salary_range, options_for_select(Experience.salary_range)) %>
-    </div>
-    <div class="field">
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <%= f.label :Fecha_ingreso %>
-      <%= f.date_select :start_date ,:start_year  =>1990, :end_year=>Time.now.year%>
-    </div>
-    <div class="field" id="date" style="display:none;">
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <%= f.label :fecha_salida %>
-      <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year%>
-    </div>
-    <div class="field">
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <%=f.label :si_aún_sigue_por_favor_deje_marcada_esta_casilla%>
-      <input type="checkbox" id="checkboxDate" name="until_now", checked="true">
-    </div>
-      <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
-    <div class="actions">
-      <br>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <br><br>
-      <%= f.submit "Guardar", :class =>"btn btn-primary" ,:id=>'boton_laboral'%>
-    </div>
-    <% end %>
+    <%=render :partial=>'experiences/form'%>
   </div>
 </div>
 
@@ -154,7 +92,7 @@
     </div>
     <div class="panel-body">
     <% if @courses.size >0%>
-      <ul class="list-group">
+      <ul class="list-group" id="cursos">
         <h5><% @courses.each do |course| %></h5>
         <li class="list-group-item">
           <div>
@@ -175,32 +113,9 @@
     </div>
 
   <div class="panel-footer well">
-    <%= form_for :course, url: '/course/new' do |f| %>
     <div class="container">
-      <div class="field col col-md-4 col-xs-4">
-        <%= f.label :nombre_del_curso_o_seminario %><br />
-        <%= f.text_field :name, :id=>'nombre_seminario',:class=>"form-control"%><br>
-        <%= f.label :carga_horaria_ %>(Hrs)
-        <%= f.number_field :workload,:class=>"form-control"%>
-      </div>
-      <div class="field col col-md-4 col-xs-4">
-        <%= f.label :institución %><br />
-        <%= f.text_field :institution,:class=>"form-control"%><br>
-        <%=f.label :participe_como%>
-        <%= f.select(:given, options_for_select(Course.participations)) %>
-      </div>
-      <div class="field col col-md-4 col-xs-4">
-        <%= f.label :fecha %>
-        <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
-        <br>
-      </div>
-        <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
-      <div class="actions">
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <%= f.submit "Guardar" , :class =>"btn btn-primary",:id=>'boton_seminario'%>
-      </div>
-    <% end %>
-  </div>
+    <%=render :partial=>'courses/form'%>
+    </div>
   </div>
 </div>
 </div>
@@ -213,7 +128,7 @@
     </div>
     <div class="panel-body">
       <% if @publications.size >0%>
-      <ul class="list-group">
+      <ul class="list-group" id="publicaciones">
         <h5><% @publications.each do |pub| %></h5>
         <li class="list-group-item">
           <div>
@@ -231,29 +146,7 @@
     </div>
   </div>
   <div class="panel-footer well">
-    <%= form_for :publication, url: '/publication/new' do |f| %>
-      <div class="field col col-md-4 col-xs-4" style="top:10px">
-        <%= f.label :tipo_de_publicación %>:
-        <%= f.select( :publicationType, @publicationTypes.map {|a| [a]}) -%>
-      </div>
-      <div class="field col col-md-4 col-xs-4">
-        <%= f.label :Nombre %><br />
-        <%= f.text_field :name,:id=>'nombre_publicacion',:class=>"form-control"%>
-      </div>
-      <div class="field col col-md-4 col-xs-4">
-        <%= f.label :lugar %><br />
-        <%= f.text_field :location,:class=>"form-control"%>
-        <br><br>
-      </div>
-      <div class="field col col-md-4 col-xs-4" style="top:-40px">
-        <%= f.label :fecha %>:
-        <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
-      </div>
-      <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
-      <div class="actions">
-        <%= f.submit "Guardar", :class =>"btn btn-primary",:id=>'boton_publicaciones' %>
-      </div>
-    <% end %>
+    <%=render :partial=>'publications/form'%>
   </div>
 </div>
 
@@ -263,7 +156,7 @@
     <div class="panel-heading"><div class="panel-title"><h3> Meritos </h3></div></div>
     <div class="panel-body">
       <% if @merits.size >0%>
-        <ul class="list-group">
+        <ul class="list-group" id="meritos">
           <h5><% @merits.each do |merit| %></h5>
           <li class="list-group-item">
             <div>
@@ -280,22 +173,7 @@
     </div>
   </div>
   <div class="panel-footer well">
-    <%= form_for :merit, url: '/merit/new' do |f| %>
-    <div class="field col col-md-4 col-xs-4">
-      <%= f.label :Mérito %>:
-      <%= f.text_field :name, :id=>'merito',:class=>"form-control"%>
-
-    </div>
-    <div class="field col col-md-4 col-xs-4">
-      <%= f.label :fecha %>
-      <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
-    </div>
-    <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
-    <div class="actions">
-      <%= f.submit "Guardar", :class =>"btn btn-primary" ,:id=>'boton_meritos'%>
-    </div>
-    <br>
-    <% end %>
+    <%=render :partial=>'merits/form'%>
   </div>
 </div>
 <!-- Sector Membresias -->
@@ -304,7 +182,7 @@
     <div class="panel-heading"><div class="panel-title"><h3> Membresía </h3></div></div>
     <div class="panel-body">
       <% if @memberships.size >0%>
-        <ul class="list-group">
+        <ul class="list-group" id="membresias">
           <h5><% @memberships.each do |member| %></h5>
           <li class="list-group-item">
             <div>
@@ -322,28 +200,7 @@
     </div>
   </div>
   <div class="panel-footer well">
-    <%= form_for :membership, url: '/member/new' do |f| %>
-    <div class="field col col-md-4 col-xs-4">
-      <%= f.label :titulo %>:<br />
-      <%= f.text_field :name,:id=>'membresia',:class=>"form-control"%>
-      <br>
-    </div>
-    <div class="field col col-md-4 col-xs-4">
-      <%= f.label :comunidad %>:<br />
-      <%= f.text_field :organization,:class=>"form-control"%>
-    </div>
-    <div class="field col col-md-4 col-xs-4"style="top:20px">
-      <%= f.label :fecha %>
-      <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
-    </div>
-    <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
-    <br><br><br>
-
-    <div class="actions" >
-      <%= f.submit "Guardar", :class =>"btn btn-primary" ,:id=>'boton_membresias'%>
-    </div>
-    <br>
-    <% end %>
+    <%=render :partial=>'memberships/form'%>
   </div>
 </div>
 <!-- Sector Conocimientos -->
@@ -352,7 +209,7 @@
   <div class="panel-heading"><div class="panel-title"><h3> Conocimientos</h3></div></div>
   <div class="panel-body">
     <% if @knowledges.size >0%>
-    <ul class="list-group">
+    <ul class="list-group" id="conocimientos">
       <h5><% @knowledges.each do |known| %></h5>
       <li class="list-group-item">
         <div>
@@ -370,17 +227,7 @@
   </div>
 </div>
     <div class="panel-footer well">
-      <%= form_for :knowledge, url: '/knowledge/new' do |f| %>
-      <div class="field col col-md-4 col-xs-4">
-        <%= f.label :conocimiento %><br />
-        <%= f.text_field :description,:id=>'conocimiento',:class=>"form-control"%>
-      </div>
-      <br>
-      <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
-      <div class="actions">
-        <%= f.submit "Guardar" , :class =>"btn btn-primary",:id=>'boton_conocimmiento'%>
-      </div>
-      <% end %>
+      <%=render :partial=>'knowledges/form'%>
     </div>
 </div>
 <!-- Sector Habilidades -->
@@ -389,7 +236,7 @@
       <div class="panel-heading"><div class="panel-title"><h3> Habilidades</h3></div></div>
       <div class="panel-body">
         <% if @skills.size >0%>
-        <ul class="list-group">
+        <ul class="list-group" id="habilidades">
           <h5><% @skills.each do |skill| %></h5>
           <li class="list-group-item">
             <div>
@@ -407,17 +254,7 @@
       </div>
     </div>
     <div class="panel-footer well">
-      <%= form_for :skill, url: '/skill/new' do |f| %>
-        <div class="field col col-md-4 col-xs-4">
-          <%= f.label :habilidad %><br />
-          <%= f.text_field :description,:id=>'habilidad',:class=>"form-control"%>
-        </div>
-        <br>
-            <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
-        <div class="actions">
-          <%= f.submit "Guardar" , :class =>"btn btn-primary",:id=>'boton_habilidades'%>
-        </div>
-      <% end %>
+      <%=render :partial=>'skills/form'%>
     </div>
 </div>
 
@@ -430,7 +267,7 @@
 
     <div class="panel-body">
       <% if @languages.size >0%>
-      <ul class="list-group">
+      <ul class="list-group" id="lenguajes">
         <h5><% @languages.each do |language| %></h5>
         <li class="list-group-item">
           <div>
@@ -452,27 +289,7 @@
 
   <div class="panel-footer well">
     <div class="container">
-    <%= form_for :language, url: '/language/new' do |f| %>
-      <div class="field col col-sm-4 col-md-4 col-xs-4">
-        <%= f.label :idioma %><br />
-        <%= f.text_field :name,:id=>'idioma',:class=>"form-control"%>
-      </div>
-      <br>
-      <div class="field col col-sm-4 col-md-4 col-xs-4">
-        <%=f.label :nivel%>
-        <%= f.select(:level, options_for_select(Language.levels)) %>
-      </div>
-      <div class="field col col-sm-4 col-md-4 col-xs-4">
-        <%=f.label :habilidades%>
-        <%= f.select(:skill, options_for_select(Language.skills)) %>
-      </div>
-      <br>
-          <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
-        <br>
-      <div class="actions">
-        <%= f.submit "Guardar" , :class =>"btn btn-primary",:id=>'boton_idiomas'%>
-      </div>
-      <% end %>
+      <%=render :partial=>'languages/form'%>
     </div>
   </div>
 </div>
@@ -485,7 +302,7 @@
   </div>
   <div class="panel-body">
     <% if @referentials.size >0%>
-    <ul class="list-group">
+    <ul class="list-group" id="referencias">
       <h5><% @referentials.each do |refer| %></h5>
         <li class="list-group-item">
           <div>
@@ -504,24 +321,7 @@
   </div>
 
   <div class="panel-footer well">
-    <%= form_for :referential, url: '/referential/new' do |f| %>
-    <div class="field col col-sm-4 col-md-4 col-xs-4">
-      <%= f.label :nombre_de_la_persona_de_referencia %>:<br />
-      <%= f.text_field :name,:id=>'referencia',:class=>"form-control"%>
-    </div>
-      <div class="field col col-sm-4 col-md-4 col-xs-4">
-      <%= f.label :institución %>:<br />
-      <%= f.text_field :institution,:class=>"form-control"%>
-    </div>
-      <div class="field col col-sm-4 col-md-4 col-xs-4">
-      <%= f.label :número_de_referencia %>:<br />
-      <%= f.number_field :number,:class=>"form-control"%>
-    </div>
-    <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
-    <div class="actions">
-      <%= f.submit "Guardar", :class =>"btn btn-primary" ,:id=>'boton_referencias'%>
-    </div>
-  <% end %>
+    <%=render :partial=>'referentials/form'%>
   </div>
 </div>
 </div>

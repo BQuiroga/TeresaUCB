@@ -5,15 +5,21 @@ class LanguagesController < ApplicationController
       throwUnauthorized
       return
     else
-	    if @new.save
-			   flash[:success] = "Admirable! cuentanos mas!"
+      if @new.save
+		   flash[:success] = "Admirable! cuentanos mas!"
 		  else
-			   flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
+		   flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
 		  end
-      redirect_to '/users/curriculum/edit'
+      @resume=current_user.resume
+			respond_to do |f|
+				f.html {}
+				f.js {}
+			end
     end
-	end
-
+  end
+  def new
+    @language=Language.new
+  end
   def edit
     @language=Language.find(params[:id])
     if current_user.id!=@language.user.id

@@ -10,8 +10,15 @@ class MeritsController < ApplicationController
 		else
 			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
 		end
-	  	redirect_to '/users/curriculum/edit'
+			@resume=current_user.resume
+			respond_to do |f|
+				f.html {}
+				f.js {}
+			end
 		end
+	end
+	def new
+		@merit=Merit.new
 	end
 	def edit
 		@merit=Merit.find(params[:id])

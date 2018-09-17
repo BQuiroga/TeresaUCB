@@ -10,8 +10,15 @@ class ExperiencesController < ApplicationController
 		else
 			flash[:danger] = "Ha ocurrido un error, por favor intentalo nuevamente"
 		end
-			redirect_to '/users/curriculum/edit'
+			@resume=current_user.resume
+			respond_to do |f|
+				f.html {}
+				f.js {}
+			end
 		end
+	end
+	def new
+		@experience=Experience.new
 	end
 	def edit
 		@experience=Experience.find(params[:id])
