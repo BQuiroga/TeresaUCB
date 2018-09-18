@@ -207,7 +207,6 @@ class Education < ActiveRecord::Base
       "Ingeniería Mecatrónica","Ingeniería de Sistemas","Ingeniería de Telecomunicaciones",
       "Administración de Empresas","Contaduría Pública","Ingeniería Comercial","Ingeniería Financiera"]
   end
-
   def antropologos
     self.ingresos.where("title ~* ?", "Antropolog")
   end
@@ -255,5 +254,10 @@ class Education < ActiveRecord::Base
   end
   def comerciales
     self.ingresos.where("title ~* ?", "Comercial")
+  end
+  def impacto_de(carrera)
+    resumes=carrera.map{|education| education.resume_id}.uniq
+    trabajos=Experience.where(resume_id:resumes)
+    trabajos.group(:city).count
   end
 end

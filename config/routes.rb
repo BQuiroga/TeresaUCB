@@ -7,12 +7,11 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+
   root to: 'index#inicio'
+
+  #usuarios
   post 'posts/new'=> 'posts#create'
-  post 'resultados/busqueda'=>'posts#oferta'
-  post 'posts/oferta'=> 'posts#publicar'
-  post 'posts/personal'=>'posts#oferta_solo'
-  get 'newOffer'=> 'posts#offer'
   match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
   get '/inicio'=> 'index#inicio'
   get '/users/profile'=>'users#profile'
@@ -47,7 +46,6 @@ Rails.application.routes.draw do
   get '/users/Amigo/:id'=>'friendships#friend'
   get 'grupos/botar/:id'=>'groups#botar'
   get 'users/curriculum/edit' =>'resumes#edit'
-  post 'company/update'=>'company_informations#update'
   post 'personal/update' =>'personal_informations#update'
   post 'education/new' => 'educations#create'
   get 'curriculum/:id/edit' => 'resumes#external_edit'
@@ -55,8 +53,6 @@ Rails.application.routes.draw do
   post 'skill/new' => 'skills#create'
   get 'skill/edit/:id'=>'skills#edit'
   put 'skill/update'=> 'skills#update'
-  get 'CompanyInformation/:id'=>'resumes#company_info'
-
   get 'usuarios/curriculums/:id' =>'resumes#show_modal'
   get 'experience/edit/:id'=>'experiences#edit'
   post 'course/new' => 'courses#create'
@@ -67,7 +63,6 @@ Rails.application.routes.draw do
   post 'member/new'=>'memberships#create'
   post 'language/new' => 'languages#create'
   get 'curriculums/:id'=>'resumes#external_show'
-  get '/oferta/nueva' => 'posts#offer'
   get 'resultados/busqueda' =>'posts#oferta'
   post '/busqueda/usuarios' => 'users#search'
   get 'grupos/:id/abandonar'=> 'groups#abandonar'
@@ -79,15 +74,26 @@ Rails.application.routes.draw do
   get 'mis_notificaciones/read/:id'=>'notifications#read'
   get 'mis_notificaciones/unread/:id'=>'notifications#unread'
   get 'mis_notificaciones/new/:id'=>'notifications#new'
-  get '/users'=>'users#index'
-  get 'user/:id/bloquear'=>'users#bloquear'
-  get 'user/:id/desbloquear'=>'users#desbloquear'
+  get "resumes/bajar"=>'resumes#show_pdf'
+  get "resumes/bajar_red"=>'resumes#show_pdf_red'
+  get 'photos'=>'pictures#index'
+  get 'photos/new'=>'pictures#new'
+  #empresas
+  post 'company/update'=>'company_informations#update'
+  get 'CompanyInformation/:id'=>'resumes#company_info'
+  post 'resultados/busqueda'=>'posts#oferta'
+  post 'posts/oferta'=> 'posts#publicar'
+  post 'posts/personal'=>'posts#oferta_solo'
+  get 'newOffer'=> 'posts#offer'
+  get '/oferta/nueva' => 'posts#offer'
+
+  #reportes
   get '/reportes'=>'users#reportes_general'
   post '/reportesnuevoReporte'=>'users#new_report'
   post '/reporte/nuevo'=>'reports#new'
   get '/reporte/nuevo'=>'reports#new_reporte'
   get '/reportes_estaticos'=>'reports#relation'
-
+  get '/reportes_actividades'=>'reports#activities'
   get 'reportes/UsuariosPorFecha'=>'reports#users_by_date'
   get 'reportes/UsuariosPorUniversidad'=>'reports#users_by_university'
   get 'reportes/UsuariosPorCarrera'=>'reports#students_by_career'
@@ -98,14 +104,14 @@ Rails.application.routes.draw do
   get 'reportes/TiempoParaTrabajar'=>'reports#by_time_to_work'
   get 'reportes/DuracionDeTrabajo'=>'reports#time_in_job'
   get 'reportes/ConPostgrado'=> 'reports#with_postgrade'
-  get "resumes/bajar"=>'resumes#show_pdf'
-  get "resumes/bajar_red"=>'resumes#show_pdf_red'
-  get 'photos'=>'pictures#index'
-  get 'photos/new'=>'pictures#new'
-  post 'suggestion/create' =>'suggestions#create'
   get 'user/edit/password'=>'registrations#update_password'
   get 'educations'=>'educations#index'
 
+  # administrador
+  post 'suggestion/create' =>'suggestions#create'
+  get '/users'=>'users#index'
+  get 'user/:id/bloquear'=>'users#bloquear'
+  get 'user/:id/desbloquear'=>'users#desbloquear'
   resources :pictures
   resources :posts
 

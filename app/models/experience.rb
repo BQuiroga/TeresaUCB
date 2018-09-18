@@ -60,24 +60,43 @@ class Experience < ActiveRecord::Base
 		def user
 			resume=self.resume
 			user=resume.user
+			user
 		end
-      def self.salary_range
-         ["0-3000","3001-6000","6001-9000","9001-14000","14000-20000","20000+","No quiero decirlo"]
-      end
-			def time_in_job
-				res=Date.new
-				if finish_job_date!="Hasta la fecha"
-		    	res= (end_date - start_date).to_i
-		    	resp=days_into_years(res)
+    def self.salary_range
+       ["0-3000","3001-6000","6001-9000","9001-14000","14000-20000","20000+","No quiero decirlo"]
+    end
+		def time_in_job
+			res=Date.new
+			if finish_job_date!="Hasta la fecha"
+	    	res= (end_date - start_date).to_i
+	    	resp=days_into_years(res)
+			else
+				return -1
+			end
+	    resp
+	  end
+	  def days_into_years(some_date)
+	    y=some_date/365
+	    m=(some_date%365)/30
+	    d=(some_date%365)%30
+	    y
+	  end
+		def local_and_international
+			all_info=Experience.all
+			r=Hash.new
+			r={"Interior"=>0,"Exterior"=>0}
+			all_info.each do |experience|
+				if experience.city=="Bolivia"
+					r["Interior"]+=1
 				else
-					return -1
+					r["Exterior"]+=1
 				end
-		    resp
-		  end
-		  def days_into_years(some_date)
-		    y=some_date/365
-		    m=(some_date%365)/30
-		    d=(some_date%365)%30
-		    y
-		  end
+			end
+			r
+		end
+		def all_cities_for_map
+			r=Array.new
+			all=Experience.group(:city).count
+			r=all.to_a
+		end
 end

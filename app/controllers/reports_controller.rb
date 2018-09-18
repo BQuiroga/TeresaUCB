@@ -201,6 +201,28 @@ class ReportsController < ApplicationController
       end
     end
   end
+  def activities
+    if !current_user.is_director
+      throwUnauthorized
+      return
+    else
+      @experiences=Experience.all
+      @data_chart=@experiences.group(:city).count
+      @new_exp=Experience.new
+      @new_edu=Education.new
+      @educations=Education.all
+      @title_list=@new_edu.cato_titles
+      @edus=@new_edu.ingresos
+      
+      @ingresos=@new_edu.ingresos.group_by_year(:start_date).count
+      @egresos=@new_edu.ingresos.group_by_year(:end_date).count
+      respond_to do |f|
+        f.html {}
+        f.js {}
+      end
+    end
+
+  end
 
   def report_params
     params.require(:report).permit(:grado_licenciatura,:grado_postgrado,:grado_maestria,:grado_doctorado,:grado,:fecha_inicio,:fecha_fin,:genero)

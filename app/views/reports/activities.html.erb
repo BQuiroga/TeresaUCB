@@ -17,20 +17,79 @@
           </li>
           <div id="Todas las carreras" class="filtro">
             <li class="list-group-item">
-              <%=geo_chart PersonalInformation.group(:address).count%>
+              <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+              <script>
+              alert("hola vista");
+              var data_for_map="<%=@new_exp.all_cities_for_map%>";
+              alert(data_for_map);
+              data_for_map=data_for_map.replace(/'/g,'"');
+              alert(data_for_map);
+              google.charts.load('current', {
+                  'packages':['geochart'],
+                  // Note: you will need to get a mapsApiKey for your project.
+                  // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+                  'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+                });
+                google.charts.setOnLoadCallback(drawRegionsMap);
+
+                function drawRegionsMap() {
+                  var data = google.visualization.arrayToDataTable([
+                    ['País', 'Cantidad'],
+                    ['Germany', 200],
+                    ['United States', 300],
+                    ['Brazil', 400],
+                    ['Canada', 500],
+                    ['France', 600],
+                    ['Bolivia',50],
+                    ['RU', 700]
+                  ]);
+
+                  var options = {
+                    colorAxis: {minValue:'white',colors: ['#87CEEB', '#4169e1']}
+                  };
+
+                  var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+                  chart.draw(data, options);
+                }
+              </script>
+              <div id="regions_div"></div>
             </li>
             <li class="list-group-item">
-              <%=line_chart @ingresos,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión para todas las carreras",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+              <div class="row">
+                <div class="col-md-5">
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <tr>
+                      <th style="text-align: center;">&nbsp;Región&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Cantidad&nbsp;</th>
+                    </tr>
+                    <tr>
+                      <td>Interior del país</td>
+                      <td><%=@new_exp.local_and_international["Interior"]%></td>
+                    </tr>
+                    <tr>
+                      <td>Exterior</td>
+                      <td><%=@new_exp.local_and_international["Exterior"]%></td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-primary btn-lg">Detallado</button>
+                </div>
+                <div class="col-md-5">
+                  <%=column_chart @new_exp.local_and_international,label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los egresados",ytitle:"Egresados en las distintas areas", download: "resumen Impacto"%>
+                </div>
+              </div>
             </li>
             <li class="list-group-item">
             </li>
             <li class="list-group-item">
-              <%=area_chart @egresos,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión para todas las carreras", download: "resumen titulados"%>
+              <%=column_chart Experience.group(:city).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"País o región",title:"Estudiantes titulados por gestión para todas las carreras", download: "resumen titulados"%>
             </li>
             <li class="list-group-item">
               <table class="table table-striped table-bordered table-hover" style="text-align: center;">
                 <tr>
-                  <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                   <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                   <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
                   <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
@@ -50,27 +109,24 @@
         </div>
         <div id="Bachiller" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @ingresos,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes registrados",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=line_chart @ingresos,label: "Cantidad",xtitle:"País o región",title:"Estudiantes registrados",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <%=area_chart @egresos,label: "Cantidad",ytitle:"Bachilleres registrados",xtitle:"Gestión",title:"Estudiantes titulados por gestión", download: "resumen titulados"%>
+            <%=area_chart @egresos,label: "Cantidad",ytitle:"Bachilleres registrados",xtitle:"País o región",title:"Estudiantes titulados por gestión", download: "resumen titulados"%>
           </li>
         </div>
         <div id="Antroplogía" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.antropologos.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Antropología",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=column_chart @new_edu.impacto_de(@new_edu.antropologos),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Antropología",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
-          </li>
-          <li class="list-group-item">
-            <%=area_chart  @new_edu.antropologos.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Antropología", download: "resumen titulados"%>
           </li>
           <li class="list-group-item">
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
-                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
@@ -90,17 +146,14 @@
         </div>
         <div id="Comunicación Social" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.comunicadores.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Comunicación Social",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=column_chart @new_edu.impacto_de(@new_edu.comunicadores),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Comunicación Social",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
-          </li>
-          <li class="list-group-item">
-            <%=area_chart  @new_edu.comunicadores.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Comunicación Social", download: "resumen titulados"%>
           </li>
           <li class="list-group-item">
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
-                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
@@ -120,17 +173,14 @@
         </div>
         <div id="Filosofía y Letras" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.filosofos.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Filosofía y Letras",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=column_chart @new_edu.impacto_de(@new_edu.filosofos),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Filosofía y Letras",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
-          </li>
-          <li class="list-group-item">
-            <%=area_chart  @new_edu.filosofos.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Filosofía y Letras", download: "resumen titulados"%>
           </li>
           <li class="list-group-item">
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
-                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
@@ -150,17 +200,14 @@
         </div>
         <div id="Psicología" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.psicologos.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión  en la carrera de Psicología",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=column_chart @new_edu.impacto_de(@new_edu.psicologos).count,label: "Cantidad",xtitle:"País o región",title:"Estudiantes Ingresados por gestión  en la carrera de Psicología",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
-          </li>
-          <li class="list-group-item">
-            <%=area_chart  @new_edu.psicologos.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Psicología", download: "resumen titulados"%>
           </li>
           <li class="list-group-item">
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
-                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
@@ -180,17 +227,14 @@
         </div>
         <div id="Ingeniería Ambiental" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.ambientales.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Ambiental",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=column_chart @new_edu.impacto_de(@new_edu.ambientales),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Ingeniería Ambiental",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
-          </li>
-          <li class="list-group-item">
-            <%=area_chart  @new_edu.ambientales.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Ambiental", download: "resumen titulados"%>
           </li>
           <li class="list-group-item">
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
-                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
@@ -210,17 +254,14 @@
         </div>
         <div id="Ingeniería Civil" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.civiles.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Civil",ytitle:"Estudiantes ingresados  en la carrera de Filosofía y Letras", download: "resumen Ingreso"%>
+            <%=column_chart @new_edu.impacto_de(@new_edu.civiles),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Ingeniería Civil",ytitle:"Titulados  en la carrera de Filosofía y Letras", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
-          </li>
-          <li class="list-group-item">
-            <%=area_chart  @new_edu.civiles.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Civil", download: "resumen titulados"%>
           </li>
           <li class="list-group-item">
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
-                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
@@ -240,17 +281,14 @@
         </div>
         <div id="Ingeniería Industrial" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.industriales.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Industrial",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=column_chart @new_edu.impacto_de(@new_edu.industriales),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Ingeniería Industrial",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
-          </li>
-          <li class="list-group-item">
-            <%=area_chart  @new_edu.industriales.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Industrial", download: "resumen titulados"%>
           </li>
           <li class="list-group-item">
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
-                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
@@ -270,17 +308,15 @@
         </div>
         <div id="Ingeniería Química" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.quimicos.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Química",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=column_chart @new_edu.impacto_de( @new_edu.quimicos),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Ingeniería Química",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
-          <li class="list-group-item">
-            <%=area_chart  @new_edu.quimicos.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Química", download: "resumen titulados"%>
-          </li>
+
           <li class="list-group-item">
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
-                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
@@ -300,17 +336,14 @@
         </div>
         <div id="Ingeniería Mecatrónica" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.mecatronicos.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Mecatrónica",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=column_chart @new_edu.impacto_de(@new_edu.mecatronicos),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Ingeniería Mecatrónica",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
-          </li>
-          <li class="list-group-item">
-            <%=area_chart  @new_edu.mecatronicos.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Mecatrónica", download: "resumen titulados"%>
           </li>
           <li class="list-group-item">
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
-                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
@@ -330,17 +363,14 @@
         </div>
         <div id="Ingeniería de Sistemas" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.sistemas.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión  en la carrera de Ingeniería de Sistemas",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=column_chart @new_edu.impacto_de(@new_edu.sistemas),label: "Cantidad",xtitle:"País o región",title:"Estudiantes Ingresados por gestión  en la carrera de Ingeniería de Sistemas",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
-          </li>
-          <li class="list-group-item">
-            <%=area_chart  @new_edu.sistemas.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería de Sistemas", download: "resumen titulados"%>
           </li>
           <li class="list-group-item">
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
-                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
@@ -360,17 +390,14 @@
         </div>
         <div id="Ingeniería de Telecomunicaciones" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.telecomunicadores.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería de Telecomunicaciones",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=column_chart @new_edu.impacto_de(@new_edu.telecomunicadores),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Ingeniería de Telecomunicaciones",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
-          </li>
-          <li class="list-group-item">
-            <%=area_chart  @new_edu.telecomunicadores.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería de Telecomunicaciones", download: "resumen titulados"%>
           </li>
           <li class="list-group-item">
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
-                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
@@ -390,17 +417,15 @@
         </div>
         <div id="Administración de Empresas" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.administradores.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Administración de Empresas",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=column_chart @new_edu.impacto_de(@new_edu.administradores),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Administración de Empresas",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
-          <li class="list-group-item">
-            <%=area_chart  @new_edu.administradores.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión  en la carrera de Administración de Empresas", download: "resumen titulados"%>
-          </li>
+
           <li class="list-group-item">
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
-                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
@@ -420,17 +445,14 @@
         </div>
         <div id="Ingeniería Financiera" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.financieros.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Financieras",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=column_chart @new_edu.impacto_de(@new_edu.financieros),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Ingeniería Financieras",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
-          </li>
-          <li class="list-group-item">
-            <%=area_chart @new_edu.financieros.group_by_year(:end_date).count ,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Financiera", download: "resumen titulados"%>
           </li>
           <li class="list-group-item">
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
-                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
@@ -450,17 +472,14 @@
         </div>
         <div id="Derecho" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.abogados.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Derecho",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=column_chart @new_edu.impacto_de(@new_edu.abogados),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Derecho",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
-          </li>
-          <li class="list-group-item">
-            <%=area_chart @new_edu.abogados.group_by_year(:end_date).count ,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Derecho", download: "resumen titulados"%>
           </li>
           <li class="list-group-item">
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
-                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
@@ -480,17 +499,14 @@
         </div>
         <div id="Contaduría Pública" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.contadores.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Contaduría Pública",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=column_chart @new_edu.impacto_de(@new_edu.contadores),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Contaduría Pública",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
-          </li>
-          <li class="list-group-item">
-            <%=area_chart  @new_edu.contadores.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Contaduría Pública", download: "resumen titulados"%>
           </li>
           <li class="list-group-item">
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
-                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
@@ -510,17 +526,14 @@
         </div>
         <div id="Ingeniería Comercial" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=line_chart @new_edu.comerciales.group_by_year(:start_date).count,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión en la carrera de Ingeniería Comercial",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
+            <%=column_chart @new_edu.impacto_de(@new_edu.comerciales),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Ingeniería Comercial",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
-          </li>
-          <li class="list-group-item">
-            <%=area_chart  @new_edu.comerciales.group_by_year(:end_date).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"Gestión",title:"Estudiantes titulados por gestión en la carrera de Ingeniería Comercial", download: "resumen titulados"%>
           </li>
           <li class="list-group-item">
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
-                <th style="text-align: center;">&nbsp;Gestión&nbsp;</th>
+                <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
