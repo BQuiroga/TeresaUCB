@@ -5,6 +5,7 @@ class ExperiencesController < ApplicationController
 			throwUnauthorized
 			return
 		else
+			@cities=@new.countries
 		if @new.save
 			flash[:success] = "Muy bien! ¿Que otros retos afrontaste?"
 		else
@@ -19,9 +20,11 @@ class ExperiencesController < ApplicationController
 	end
 	def new
 		@experience=Experience.new
+		@cities=@experience.countries
 	end
 	def edit
 		@experience=Experience.find(params[:id])
+		@cities=@experience.countries
 		if current_user.id!=@experience.user.id
 			throwUnauthorized
 			return

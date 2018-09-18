@@ -212,8 +212,7 @@ class ReportsController < ApplicationController
       @new_edu=Education.new
       @educations=Education.all
       @title_list=@new_edu.cato_titles
-      @edus=@new_edu.ingresos
-      
+      @edus=@new_edu.ingresos  
       @ingresos=@new_edu.ingresos.group_by_year(:start_date).count
       @egresos=@new_edu.ingresos.group_by_year(:end_date).count
       respond_to do |f|

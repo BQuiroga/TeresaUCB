@@ -65,6 +65,9 @@ class Experience < ActiveRecord::Base
     def self.salary_range
        ["0-3000","3001-6000","6001-9000","9001-14000","14000-20000","20000+","No quiero decirlo"]
     end
+		def countries
+			["Bolivia","Argentina","Colombia","Peru","Russia","Ecuador","Venezuela","Mexico"]
+		end
 		def time_in_job
 			res=Date.new
 			if finish_job_date!="Hasta la fecha"

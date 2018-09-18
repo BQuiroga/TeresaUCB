@@ -19,11 +19,20 @@
             <li class="list-group-item">
               <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
               <script>
-              alert("hola vista");
-              var data_for_map="<%=@new_exp.all_cities_for_map%>";
-              alert(data_for_map);
-              data_for_map=data_for_map.replace(/'/g,'"');
-              alert(data_for_map);
+              var data_for_map='<%=@new_exp.all_cities_for_map%>';
+            var data_we= data_for_map.replace(/&quot;/g,'');
+            var par1=data_we.indexOf('[');
+            var par2=data_we.lastIndexOf(']');
+            data_we=data_we.substring(par1+2,par2-1);
+            data_we=data_we.split('], [');
+            var results=[['Pais','Cantidad']];
+            for (var i=0;i<data_we.length;i++)
+            {
+              var sub=data_we[i].substring(0,data_we[i].length);
+              sub=sub.split(', ');
+              sub[1]=parseInt(sub[1]);
+              results.push(sub);
+              }
               google.charts.load('current', {
                   'packages':['geochart'],
                   // Note: you will need to get a mapsApiKey for your project.
@@ -31,18 +40,9 @@
                   'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
                 });
                 google.charts.setOnLoadCallback(drawRegionsMap);
-
+                var mapa=results;
                 function drawRegionsMap() {
-                  var data = google.visualization.arrayToDataTable([
-                    ['País', 'Cantidad'],
-                    ['Germany', 200],
-                    ['United States', 300],
-                    ['Brazil', 400],
-                    ['Canada', 500],
-                    ['France', 600],
-                    ['Bolivia',50],
-                    ['RU', 700]
-                  ]);
+                  var data = google.visualization.arrayToDataTable(mapa);
 
                   var options = {
                     colorAxis: {minValue:'white',colors: ['#87CEEB', '#4169e1']}

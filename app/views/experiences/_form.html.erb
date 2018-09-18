@@ -14,6 +14,11 @@
   <%= f.number_field :in_my_charge,:class=>"form-control"%>
 </div>
 <div class="field col col-md-4">
+  <%@exp=Experience.new%>
+  <%= f.label :Pais_o_region %>:<br />
+  <%=f.select :city, @exp.countries,{},:class=>"selector"%>
+</div>
+<div class="field col col-md-4">
   <input type="checkbox" id="checkbox" name="checkbox">Desea agregar una persona de referencia
   <div id="rest" style="display:none;">
     <div class="field">
@@ -26,25 +31,29 @@
     </div>
   </div>
 </div>
+<div class="field col col-md-4">
+</div>
 <div class="field">
   &nbsp;&nbsp;&nbsp;&nbsp;
 </div>
-<div class="field pull-right" style="position:relative;">
-  ESTA INFORMACION NO ES PUBLICA
+<div class="field">
+  (ESTA INFORMACION NO ES PUBLICA)<br>
   <%= f.label :rango_salarial %>
-  <%= f.select(:salary_range, options_for_select(Experience.salary_range)) %>
+  <%= f.select :salary_range, options_for_select(Experience.salary_range),{},:class=>'selector' %>
 </div>
 <div class="field">
   &nbsp;&nbsp;&nbsp;&nbsp;
   <%= f.label :Fecha_ingreso %>
   <%= f.date_select :start_date ,:start_year  =>1990, :end_year=>Time.now.year%>
 </div>
+<div class="field col col-md-4">
+</div>
 <div class="field" id="date" style="display:none;">
   &nbsp;&nbsp;&nbsp;&nbsp;
   <%= f.label :fecha_salida %>
   <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year%>
 </div>
-<div class="field">
+<div class="field col col-md-4">
   &nbsp;&nbsp;&nbsp;&nbsp;
   <%=f.label :si_aún_sigue_por_favor_deje_marcada_esta_casilla%>
   <input type="checkbox" id="checkboxDate" name="until_now", checked="true">
@@ -57,3 +66,22 @@
   <%= f.submit "Guardar", :class =>"btn btn-primary" ,:id=>'boton_laboral'%>
 </div>
 <% end %>
+
+
+<style>
+.selector{
+  width: 120px;
+  padding: 5px 35px 5px 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  height: 32px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  }
+    .center-select{
+      padding-left:25%;
+    left:30%;
+    }
+}
+</style>
