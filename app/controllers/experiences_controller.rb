@@ -49,9 +49,9 @@ class ExperiencesController < ApplicationController
 		end
 	end
 	def experiences_params
-  		params.require(:experience).permit(:start_date,:resume_id,:end_date,:job_title,:company_name,:key_words,:job_description,:referential,:referential_number,:salary_range,:until_now,:in_my_charge)
+  		params.require(:experience).permit(:start_date,:resume_id,:end_date,:job_title,:company_name,:key_words,:job_description,:referential,:referential_number,:salary_range,:until_now,:in_my_charge,:city)
   	end
   	def experiences_params_for_edit
-  		params.require(:experience).permit(:id,:job_title,:company_name,:key_words,:job_description,:start_date,:end_date,:referential,:referential_number,:salary_range,:until_now,:in_my_charge)
+  		params.require(:experience).permit(:id,:job_title,:company_name,:key_words,:job_description,:start_date,:end_date,:referential,:referential_number,:salary_range,:until_now,:in_my_charge,:city)
   	end
 end

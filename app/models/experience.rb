@@ -66,7 +66,7 @@ class Experience < ActiveRecord::Base
        ["0-3000","3001-6000","6001-9000","9001-14000","14000-20000","20000+","No quiero decirlo"]
     end
 		def countries
-			["Bolivia","Argentina","Colombia","Peru","Russia","Ecuador","Venezuela","Mexico"]
+			["Bolivia","Argentina","Colombia","Peru","Russia","Ecuador","Venezuela","Mexico","Republica Dominicana"]
 		end
 		def time_in_job
 			res=Date.new
@@ -89,6 +89,21 @@ class Experience < ActiveRecord::Base
 			r=Hash.new
 			r={"Interior"=>0,"Exterior"=>0}
 			all_info.each do |experience|
+				if experience.city=="Bolivia"
+					r["Interior"]+=1
+				else
+					r["Exterior"]+=1
+				end
+			end
+			r
+		end
+		def paises_de(lista)
+			lista.group(:city).count
+		end
+		def por_regiones(lista)
+			r=Hash.new
+			r={"Interior"=>0,"Exterior"=>0}
+			lista.each do |experience|
 				if experience.city=="Bolivia"
 					r["Interior"]+=1
 				else

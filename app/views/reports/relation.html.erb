@@ -17,9 +17,6 @@
           </li>
           <div id="Todas las carreras" class="filtro">
             <li class="list-group-item">
-              <%=geo_chart PersonalInformation.group(:address).count%>
-            </li>
-            <li class="list-group-item">
               <%=line_chart @ingresos,label: "Cantidad",xtitle:"Gestión",title:"Estudiantes Ingresados por gestión para todas las carreras",ytitle:"Estudiantes ingresados", download: "resumen Ingreso"%>
             </li>
             <li class="list-group-item">
@@ -41,7 +38,7 @@
                 <td>&nbsp;<%=anio%>&nbsp;</td>
                 <td>&nbsp;<%=@new_edu.numero_ingresos(anio)%>&nbsp;</td>
                 <td>&nbsp;<%=@new_edu.numero_egresos(anio)%>&nbsp;</td>
-                <td>&nbsp;<%=@new_edu.numero_ingresos(anio-5)%>&nbsp;</td>
+                <td>&nbsp;<%=@new_edu.numero_ingresos(anio-4)%>&nbsp;</td>
                 <td>&nbsp;<%=@new_edu.relacion_acreditacion(anio)%>&nbsp;</td>
               </tr>
               <%end%>
@@ -81,7 +78,7 @@
               <td>&nbsp;<%=anio%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.antropologos)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.antropologos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.antropologos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-4,@new_edu.antropologos)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.antropologos)%>&nbsp;</td>
             </tr>
             <%end%>
@@ -111,7 +108,7 @@
               <td>&nbsp;<%=anio%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.comunicadores)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.comunicadores)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.comunicadores)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-4,@new_edu.comunicadores)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.comunicadores)%>&nbsp;</td>
             </tr>
             <%end%>
@@ -141,7 +138,7 @@
               <td>&nbsp;<%=anio%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.filosofos)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.filosofos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.filosofos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-4,@new_edu.filosofos)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.filosofos)%>&nbsp;</td>
             </tr>
             <%end%>
@@ -171,7 +168,7 @@
               <td>&nbsp;<%=anio%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio, @new_edu.psicologos)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.psicologos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.psicologos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-4,@new_edu.psicologos)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.psicologos)%>&nbsp;</td>
             </tr>
             <%end%>
@@ -201,7 +198,7 @@
               <td>&nbsp;<%=anio%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio, @new_edu.ambientales)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_egresos_por(anio, @new_edu.ambientales)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5, @new_edu.ambientales)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-4, @new_edu.ambientales)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio, @new_edu.ambientales)%>&nbsp;</td>
             </tr>
             <%end%>
@@ -231,7 +228,7 @@
               <td>&nbsp;<%=anio%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.civiles)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.civiles)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.civiles)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-4,@new_edu.civiles)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.civiles)%>&nbsp;</td>
             </tr>
             <%end%>
@@ -261,7 +258,7 @@
               <td>&nbsp;<%=anio%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.industriales)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.industriales)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.industriales)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-4,@new_edu.industriales)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.industriales)%>&nbsp;</td>
             </tr>
             <%end%>
@@ -291,7 +288,7 @@
               <td>&nbsp;<%=anio%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.quimicos)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.quimicos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.quimicos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-4,@new_edu.quimicos)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.quimicos)%>&nbsp;</td>
             </tr>
             <%end%>
@@ -321,7 +318,7 @@
               <td>&nbsp;<%=anio%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.mecatronicos)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.mecatronicos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.mecatronicos)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-4,@new_edu.mecatronicos)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.mecatronicos)%>&nbsp;</td>
             </tr>
             <%end%>
@@ -351,7 +348,7 @@
               <td>&nbsp;<%=anio%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.sistemas)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.sistemas)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.sistemas)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-4,@new_edu.sistemas)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.sistemas)%>&nbsp;</td>
             </tr>
             <%end%>
@@ -381,7 +378,7 @@
               <td>&nbsp;<%=anio%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.telecomunicadores)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.telecomunicadores)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.telecomunicadores)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-4,@new_edu.telecomunicadores)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.telecomunicadores)%>&nbsp;</td>
             </tr>
             <%end%>
@@ -411,7 +408,7 @@
               <td>&nbsp;<%=anio%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.administradores)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.administradores)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.administradores)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-4,@new_edu.administradores)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.administradores)%>&nbsp;</td>
             </tr>
             <%end%>
@@ -441,7 +438,7 @@
               <td>&nbsp;<%=anio%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.financieros)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.financieros)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.financieros)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-4,@new_edu.financieros)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.financieros)%>&nbsp;</td>
             </tr>
             <%end%>
@@ -471,7 +468,7 @@
               <td>&nbsp;<%=anio%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio, @new_edu.abogados)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_egresos_por(anio, @new_edu.abogados)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5, @new_edu.abogados)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-4, @new_edu.abogados)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio, @new_edu.abogados)%>&nbsp;</td>
             </tr>
             <%end%>
@@ -501,7 +498,7 @@
               <td>&nbsp;<%=anio%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio, @new_edu.contadores)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_egresos_por(anio, @new_edu.contadores)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5, @new_edu.contadores)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-4, @new_edu.contadores)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio, @new_edu.contadores)%>&nbsp;</td>
             </tr>
             <%end%>
@@ -531,7 +528,7 @@
               <td>&nbsp;<%=anio%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.comerciales)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.comerciales)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.comerciales)%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-4,@new_edu.comerciales)%>&nbsp;</td>
               <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.comerciales)%>&nbsp;</td>
             </tr>
             <%end%>

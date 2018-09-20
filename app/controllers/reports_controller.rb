@@ -207,12 +207,12 @@ class ReportsController < ApplicationController
       return
     else
       @experiences=Experience.all
-      @data_chart=@experiences.group(:city).count
+      @all_in_world=@experiences.group(:city).count
       @new_exp=Experience.new
       @new_edu=Education.new
+      @industria_graph=@new_edu.region_de(@new_edu.industriales)
       @educations=Education.all
       @title_list=@new_edu.cato_titles
-      @edus=@new_edu.ingresos  
       @ingresos=@new_edu.ingresos.group_by_year(:start_date).count
       @egresos=@new_edu.ingresos.group_by_year(:end_date).count
       respond_to do |f|

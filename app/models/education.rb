@@ -10,7 +10,7 @@ class Education < ActiveRecord::Base
 
   end
   def cato_names
-    ["Universidad Catolica Boliviana San Pablo","UCB","UCBSP","Universidad Católica Boliviana 'San Pablo'"]
+    ["Universidad Catolica Boliviana San Pablo","UCB","UCBSP","Universidad Católica Boliviana 'San Pablo'","Universidad Catolica San Pablo"]
   end
   def ingresos
     Education.where(school_name:cato_names)
@@ -36,18 +36,18 @@ class Education < ActiveRecord::Base
     egresos_en(anio).count
   end
   def relacion_acreditacion(gestion)
-    if (numero_ingresos(gestion-5)==0)
+    if (numero_ingresos(gestion-4)==0)
       relacion="No es posible obtener este dato"
     else
-      relacion=numero_egresos(gestion)*100/numero_ingresos(gestion-5)
+      relacion=numero_egresos(gestion)*100/numero_ingresos(gestion-4)
     end
     relacion
   end
   def relacion_acreditacion_por(gestion,lista)
-    if (numero_ingresos_por(gestion-5,lista)==0)
+    if (numero_ingresos_por(gestion-4,lista)==0)
       relacion="No es posible obtener este dato"
     else
-      relacion=numero_egresos_por(gestion,lista)*100/numero_ingresos_por(gestion-5,lista)
+      relacion=(numero_egresos_por(gestion,lista)*100.0/numero_ingresos_por(gestion-4,lista)).round(2)
     end
     relacion
   end
@@ -259,5 +259,36 @@ class Education < ActiveRecord::Base
     resumes=carrera.map{|education| education.resume_id}.uniq
     trabajos=Experience.where(resume_id:resumes)
     trabajos.group(:city).count
+  end
+  def total(carrera)
+    todos=impacto_de(carrera)
+    cant=0
+    todos.keys.each do |pais|
+      cant+=todos[pais]
+    end
+    cant
+  end
+  def para_porcentaje(lista,pais)
+    total=total(lista)
+    cantidad=impacto_de(lista)[pais]
+    if total!=0
+      resp=(cantidad*100.0/total).round(2)
+    else
+      resp="Aun no se puede obtener este dato"
+    end
+    resp
+  end
+  def region_de(carrera)
+    todos=impacto_de(carrera)
+    r=Hash.new
+    r={"Interior"=>0,"Exterior"=>0}
+    todos.keys.each do |pais|
+      if pais=="Bolivia"
+        r["Interior"]+=todos[pais]
+      else
+        r["Exterior"]+=todos[pais]
+      end
+    end
+    r
   end
 end

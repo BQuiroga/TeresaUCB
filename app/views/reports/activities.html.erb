@@ -19,21 +19,21 @@
             <li class="list-group-item">
               <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
               <script>
-              var data_for_map='<%=@new_exp.all_cities_for_map%>';
-            var data_we= data_for_map.replace(/&quot;/g,'');
-            var par1=data_we.indexOf('[');
-            var par2=data_we.lastIndexOf(']');
-            data_we=data_we.substring(par1+2,par2-1);
-            data_we=data_we.split('], [');
-            var results=[['Pais','Cantidad']];
-            for (var i=0;i<data_we.length;i++)
-            {
-              var sub=data_we[i].substring(0,data_we[i].length);
-              sub=sub.split(', ');
-              sub[1]=parseInt(sub[1]);
-              results.push(sub);
-              }
-              google.charts.load('current', {
+                var data_for_map='<%=@new_exp.all_cities_for_map%>';
+                var data_we= data_for_map.replace(/&quot;/g,'');
+                var par1=data_we.indexOf('[');
+                var par2=data_we.lastIndexOf(']');
+                data_we=data_we.substring(par1+2,par2-1);
+                data_we=data_we.split('], [');
+                var results=[['Pais','Cantidad']];
+                for (var i=0;i<data_we.length;i++)
+                {
+                  var sub=data_we[i].substring(0,data_we[i].length);
+                  sub=sub.split(', ');
+                  sub[1]=parseInt(sub[1]);
+                  results.push(sub);
+                }
+                google.charts.load('current', {
                   'packages':['geochart'],
                   // Note: you will need to get a mapsApiKey for your project.
                   // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
@@ -74,34 +74,30 @@
                   </table>
                 </div>
                 <div class="col-md-2">
-                  <button class="btn btn-primary btn-lg">Detallado</button>
+                  <button class="btn btn-primary btn-lg" id="detallado_todos">Detallado</button>
                 </div>
                 <div class="col-md-5">
-                  <%=column_chart @new_exp.local_and_international,label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los egresados",ytitle:"Egresados en las distintas areas", download: "resumen Impacto"%>
+                  <%=column_chart @new_exp.local_and_international,label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de todos los egresados",ytitle:"Egresados en las distintas areas", download: "resumen Impacto"%>
                 </div>
               </div>
             </li>
             <li class="list-group-item">
             </li>
             <li class="list-group-item">
-              <%=column_chart Experience.group(:city).count,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"País o región",title:"Estudiantes titulados por gestión para todas las carreras", download: "resumen titulados"%>
+              <%=column_chart @all_in_world,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"País o región",title:"Estudiantes titulados por gestión para todas las carreras", download: "resumen titulados"%>
             </li>
             <li class="list-group-item">
               <table class="table table-striped table-bordered table-hover" style="text-align: center;">
                 <tr>
                   <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
-                  <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                   <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
-                  <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
-                  <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Porcentaje(%)&nbsp;</th>
                 </tr>
-              <%[*2010..Date.today.year].each do |anio|%>
+              <%@all_in_world.keys.each do |pais|%>
               <tr>
-                <td>&nbsp;<%=anio%>&nbsp;</td>
-                <td>&nbsp;<%=@new_edu.numero_ingresos(anio)%>&nbsp;</td>
-                <td>&nbsp;<%=@new_edu.numero_egresos(anio)%>&nbsp;</td>
-                <td>&nbsp;<%=@new_edu.numero_ingresos(anio-5)%>&nbsp;</td>
-                <td>&nbsp;<%=@new_edu.relacion_acreditacion(anio)%>&nbsp;</td>
+                <td>&nbsp;<%=pais%>&nbsp;</td>
+                <td>&nbsp;<%=@all_in_world[pais]%>&nbsp;</td>
+                <td>&nbsp;<%=(@all_in_world[pais]*100.0/@experiences.size).round(2)%>&nbsp;</td>
               </tr>
               <%end%>
             </table>
@@ -119,6 +115,32 @@
         </div>
         <div id="Antroplogía" class="filtro" style="display:none;">
           <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-5">
+                <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                  <tr>
+                    <th style="text-align: center;">&nbsp;Región&nbsp;</th>
+                    <th style="text-align: center;">&nbsp;Cantidad&nbsp;</th>
+                  </tr>
+                  <tr>
+                    <td>Interior del país</td>
+                    <td><%=@new_edu.region_de(@new_edu.antropologos)["Interior"]%></td>
+                  </tr>
+                  <tr>
+                    <td>Exterior</td>
+                    <td><%=@new_edu.region_de(@new_edu.antropologos)["Exterior"]%></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary btn-lg" id="detallado_antropoloogia">Detallado</button>
+              </div>
+              <div class="col-md-5">
+                <%=column_chart @new_edu.region_de(@new_edu.antropologos),label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los egresados",ytitle:"Egresados en las distintas areas", download: "resumen Impacto"%>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
             <%=column_chart @new_edu.impacto_de(@new_edu.antropologos),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Antropología",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
@@ -127,24 +149,46 @@
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Porcentaje(%)&nbsp;</th>
               </tr>
-            <%[*2010..Date.today.year].each do |anio|%>
+            <%@new_edu.impacto_de(@new_edu.antropologos).keys.each do |pais|%>
             <tr>
-              <td>&nbsp;<%=anio%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.antropologos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.antropologos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.antropologos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.antropologos)%>&nbsp;</td>
+              <td>&nbsp;<%=pais%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.impacto_de(@new_edu.antropologos)[pais]%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.para_porcentaje(@new_edu.antropologos,pais)%>&nbsp;</td>
             </tr>
             <%end%>
           </table>
           </li>
         </div>
         <div id="Comunicación Social" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-5">
+                <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                  <tr>
+                    <th style="text-align: center;">&nbsp;Región&nbsp;</th>
+                    <th style="text-align: center;">&nbsp;Cantidad&nbsp;</th>
+                  </tr>
+                  <tr>
+                    <td>Interior del país</td>
+                    <td><%=@new_edu.region_de(@new_edu.comunicadores)["Interior"]%></td>
+                  </tr>
+                  <tr>
+                    <td>Exterior</td>
+                    <td><%=@new_edu.region_de(@new_edu.comunicadores)["Exterior"]%></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary btn-lg" id="detallado_comunicacion">Detallado</button>
+              </div>
+              <div class="col-md-5">
+                <%=column_chart @new_edu.region_de(@new_edu.comunicadores),label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los egresados",ytitle:"Egresados en las distintas areas", download: "resumen Impacto"%>
+              </div>
+            </div>
+          </li>
           <li class="list-group-item">
             <%=column_chart @new_edu.impacto_de(@new_edu.comunicadores),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Comunicación Social",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
@@ -154,24 +198,46 @@
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Porcentaje(%)&nbsp;</th>
               </tr>
-            <%[*2010..Date.today.year].each do |anio|%>
+            <%@new_edu.impacto_de(@new_edu.comunicadores).keys.each do |pais|%>
             <tr>
-              <td>&nbsp;<%=anio%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.comunicadores)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.comunicadores)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.comunicadores)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.comunicadores)%>&nbsp;</td>
+              <td>&nbsp;<%=pais%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.impacto_de(@new_edu.comunicadores)[pais]%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.para_porcentaje(@new_edu.comunicadores,pais)%>&nbsp;</td>
             </tr>
             <%end%>
           </table>
           </li>
         </div>
         <div id="Filosofía y Letras" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-5">
+                <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                  <tr>
+                    <th style="text-align: center;">&nbsp;Región&nbsp;</th>
+                    <th style="text-align: center;">&nbsp;Cantidad&nbsp;</th>
+                  </tr>
+                  <tr>
+                    <td>Interior del país</td>
+                    <td><%=@new_edu.region_de(@new_edu.filosofos)["Interior"]%></td>
+                  </tr>
+                  <tr>
+                    <td>Exterior</td>
+                    <td><%=@new_edu.region_de(@new_edu.filosofos)["Exterior"]%></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary btn-lg" id="detallado_filosofia">Detallado</button>
+              </div>
+              <div class="col-md-5">
+                <%=column_chart @new_edu.region_de(@new_edu.filosofos),label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los egresados",ytitle:"Egresados en las distintas areas", download: "resumen Impacto"%>
+              </div>
+            </div>
+          </li>
           <li class="list-group-item">
             <%=column_chart @new_edu.impacto_de(@new_edu.filosofos),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Filosofía y Letras",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
@@ -181,24 +247,46 @@
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Porcentaje(%)&nbsp;</th>
               </tr>
-            <%[*2010..Date.today.year].each do |anio|%>
+            <%@new_edu.impacto_de(@new_edu.filosofos).keys.each do |pais|%>
             <tr>
-              <td>&nbsp;<%=anio%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.filosofos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.filosofos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.filosofos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.filosofos)%>&nbsp;</td>
+              <td>&nbsp;<%=pais%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.impacto_de(@new_edu.filosofos)[pais]%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.para_porcentaje(@new_edu.filosofos,pais)%>&nbsp;</td>
             </tr>
             <%end%>
           </table>
           </li>
         </div>
         <div id="Psicología" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-5">
+                <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                  <tr>
+                    <th style="text-align: center;">&nbsp;Región&nbsp;</th>
+                    <th style="text-align: center;">&nbsp;Cantidad&nbsp;</th>
+                  </tr>
+                  <tr>
+                    <td>Interior del país</td>
+                    <td><%=@new_edu.region_de(@new_edu.psicologos)["Interior"]%></td>
+                  </tr>
+                  <tr>
+                    <td>Exterior</td>
+                    <td><%=@new_edu.region_de(@new_edu.psicologos)["Exterior"]%></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary btn-lg" id="detallado_psicologia">Detallado</button>
+              </div>
+              <div class="col-md-5">
+                <%=column_chart @new_edu.region_de(@new_edu.psicologos),label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los egresados",ytitle:"Egresados en las distintas areas", download: "resumen Impacto"%>
+              </div>
+            </div>
+          </li>
           <li class="list-group-item">
             <%=column_chart @new_edu.impacto_de(@new_edu.psicologos).count,label: "Cantidad",xtitle:"País o región",title:"Estudiantes Ingresados por gestión  en la carrera de Psicología",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
@@ -208,24 +296,46 @@
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Porcentaje(%)&nbsp;</th>
               </tr>
-            <%[*2010..Date.today.year].each do |anio|%>
+            <%@new_edu.impacto_de(@new_edu.psicologos).keys.each do |pais|%>
             <tr>
-              <td>&nbsp;<%=anio%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio, @new_edu.psicologos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.psicologos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.psicologos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.psicologos)%>&nbsp;</td>
+              <td>&nbsp;<%=pais%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.impacto_de(@new_edu.psicologos)[pais]%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.para_porcentaje(@new_edu.psicologos,pais)%>&nbsp;</td>
             </tr>
             <%end%>
           </table>
           </li>
         </div>
         <div id="Ingeniería Ambiental" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-5">
+                <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                  <tr>
+                    <th style="text-align: center;">&nbsp;Región&nbsp;</th>
+                    <th style="text-align: center;">&nbsp;Cantidad&nbsp;</th>
+                  </tr>
+                  <tr>
+                    <td>Interior del país</td>
+                    <td><%=@new_edu.region_de(@new_edu.ambientales)["Interior"]%></td>
+                  </tr>
+                  <tr>
+                    <td>Exterior</td>
+                    <td><%=@new_edu.region_de(@new_edu.ambientales)["Exterior"]%></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary btn-lg" id="detallado_ambiental">Detallado</button>
+              </div>
+              <div class="col-md-5">
+                <%=column_chart @new_edu.region_de(@new_edu.ambientales),label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los egresados",ytitle:"Egresados en las distintas areas", download: "resumen Impacto"%>
+              </div>
+            </div>
+          </li>
           <li class="list-group-item">
             <%=column_chart @new_edu.impacto_de(@new_edu.ambientales),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Ingeniería Ambiental",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
@@ -235,24 +345,46 @@
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Porcentaje(%)&nbsp;</th>
               </tr>
-            <%[*2010..Date.today.year].each do |anio|%>
+            <%@new_edu.impacto_de(@new_edu.ambientales).keys.each do |pais|%>
             <tr>
-              <td>&nbsp;<%=anio%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio, @new_edu.ambientales)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio, @new_edu.ambientales)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5, @new_edu.ambientales)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio, @new_edu.ambientales)%>&nbsp;</td>
+              <td>&nbsp;<%=pais%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.impacto_de(@new_edu.ambientales)[pais]%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.para_porcentaje(@new_edu.ambientales,pais)%>&nbsp;</td>
             </tr>
             <%end%>
           </table>
           </li>
         </div>
         <div id="Ingeniería Civil" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-5">
+                <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                  <tr>
+                    <th style="text-align: center;">&nbsp;Región&nbsp;</th>
+                    <th style="text-align: center;">&nbsp;Cantidad&nbsp;</th>
+                  </tr>
+                  <tr>
+                    <td>Interior del país</td>
+                    <td><%=@new_edu.region_de(@new_edu.civiles)["Interior"]%></td>
+                  </tr>
+                  <tr>
+                    <td>Exterior</td>
+                    <td><%=@new_edu.region_de(@new_edu.civiles)["Exterior"]%></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary btn-lg" id="detallado_civil">Detallado</button>
+              </div>
+              <div class="col-md-5">
+                <%=column_chart @new_edu.region_de(@new_edu.civiles),label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los egresados",ytitle:"Egresados en las distintas areas", download: "resumen Impacto"%>
+              </div>
+            </div>
+          </li>
           <li class="list-group-item">
             <%=column_chart @new_edu.impacto_de(@new_edu.civiles),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Ingeniería Civil",ytitle:"Titulados  en la carrera de Filosofía y Letras", download: "resumen Ingreso"%>
           </li>
@@ -262,24 +394,46 @@
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Porcentaje(%)&nbsp;</th>
               </tr>
-            <%[*2010..Date.today.year].each do |anio|%>
+            <%@new_edu.impacto_de(@new_edu.civiles).keys.each do |pais|%>
             <tr>
-              <td>&nbsp;<%=anio%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.civiles)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.civiles)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.civiles)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.civiles)%>&nbsp;</td>
+              <td>&nbsp;<%=pais%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.impacto_de(@new_edu.civiles)[pais]%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.para_porcentaje(@new_edu.civiles,pais)%>&nbsp;</td>
             </tr>
             <%end%>
           </table>
           </li>
         </div>
         <div id="Ingeniería Industrial" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-5">
+                <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                  <tr>
+                    <th style="text-align: center;">&nbsp;Región&nbsp;</th>
+                    <th style="text-align: center;">&nbsp;Cantidad&nbsp;</th>
+                  </tr>
+                  <tr>
+                    <td>Interior del país</td>
+                    <td><%=@new_edu.region_de(@new_edu.industriales)["Interior"]%></td>
+                  </tr>
+                  <tr>
+                    <td>Exterior</td>
+                    <td><%=@new_edu.region_de(@new_edu.industriales)["Exterior"]%></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary btn-lg" id="detallado_industrial">Detallado</button>
+              </div>
+              <div class="col-md-5">
+                <%=column_chart @industria_graph,label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los egresados",ytitle:"Egresados en las distintas areas", download: "resumen Impacto"%>
+              </div>
+            </div>
+          </li>
           <li class="list-group-item">
             <%=column_chart @new_edu.impacto_de(@new_edu.industriales),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Ingeniería Industrial",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
@@ -289,24 +443,46 @@
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Porcentaje(%)&nbsp;</th>
               </tr>
-            <%[*2010..Date.today.year].each do |anio|%>
+            <%@new_edu.impacto_de(@new_edu.industriales).keys.each do |pais|%>
             <tr>
-              <td>&nbsp;<%=anio%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.industriales)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.industriales)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.industriales)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.industriales)%>&nbsp;</td>
+              <td>&nbsp;<%=pais%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.impacto_de(@new_edu.industriales)[pais]%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.para_porcentaje(@new_edu.industriales,pais)%>&nbsp;</td>
             </tr>
             <%end%>
           </table>
           </li>
         </div>
         <div id="Ingeniería Química" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-5">
+                <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                  <tr>
+                    <th style="text-align: center;">&nbsp;Región&nbsp;</th>
+                    <th style="text-align: center;">&nbsp;Cantidad&nbsp;</th>
+                  </tr>
+                  <tr>
+                    <td>Interior del país</td>
+                    <td><%=@new_edu.region_de(@new_edu.quimicos)["Interior"]%></td>
+                  </tr>
+                  <tr>
+                    <td>Exterior</td>
+                    <td><%=@new_edu.region_de(@new_edu.quimicos)["Exterior"]%></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary btn-lg" id="detallado_quimica">Detallado</button>
+              </div>
+              <div class="col-md-5">
+                <%=column_chart @new_edu.region_de(@new_edu.quimicos),label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los egresados",ytitle:"Egresados en las distintas areas", download: "resumen Impacto"%>
+              </div>
+            </div>
+          </li>
           <li class="list-group-item">
             <%=column_chart @new_edu.impacto_de( @new_edu.quimicos),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Ingeniería Química",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
@@ -317,24 +493,46 @@
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Porcentaje(%)&nbsp;</th>
               </tr>
-            <%[*2010..Date.today.year].each do |anio|%>
+            <%@new_edu.impacto_de(@new_edu.quimicos).keys.each do |pais|%>
             <tr>
-              <td>&nbsp;<%=anio%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.quimicos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.quimicos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.quimicos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.quimicos)%>&nbsp;</td>
+              <td>&nbsp;<%=pais%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.impacto_de(@new_edu.quimicos)[pais]%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.para_porcentaje(@new_edu.quimicos,pais)%>&nbsp;</td>
             </tr>
             <%end%>
           </table>
           </li>
         </div>
         <div id="Ingeniería Mecatrónica" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-5">
+                <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                  <tr>
+                    <th style="text-align: center;">&nbsp;Región&nbsp;</th>
+                    <th style="text-align: center;">&nbsp;Cantidad&nbsp;</th>
+                  </tr>
+                  <tr>
+                    <td>Interior del país</td>
+                    <td><%=@new_edu.region_de(@new_edu.mecatronicos)["Interior"]%></td>
+                  </tr>
+                  <tr>
+                    <td>Exterior</td>
+                    <td><%=@new_edu.region_de(@new_edu.mecatronicos)["Exterior"]%></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary btn-lg" id="detallado_mecatronica">Detallado</button>
+              </div>
+              <div class="col-md-5">
+                <%=column_chart @new_edu.region_de(@new_edu.mecatronicos),label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los egresados",ytitle:"Egresados en las distintas areas", download: "resumen Impacto"%>
+              </div>
+            </div>
+          </li>
           <li class="list-group-item">
             <%=column_chart @new_edu.impacto_de(@new_edu.mecatronicos),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Ingeniería Mecatrónica",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
@@ -344,24 +542,46 @@
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Porcentaje(%)&nbsp;</th>
               </tr>
-            <%[*2010..Date.today.year].each do |anio|%>
+            <%@new_edu.impacto_de(@new_edu.mecatronicos).keys.each do |pais|%>
             <tr>
-              <td>&nbsp;<%=anio%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.mecatronicos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.mecatronicos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.mecatronicos)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.mecatronicos)%>&nbsp;</td>
+              <td>&nbsp;<%=pais%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.impacto_de(@new_edu.mecatronicos)[pais]%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.para_porcentaje(@new_edu.mecatronicos,pais)%>&nbsp;</td>
             </tr>
             <%end%>
           </table>
           </li>
         </div>
         <div id="Ingeniería de Sistemas" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-5">
+                <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                  <tr>
+                    <th style="text-align: center;">&nbsp;Región&nbsp;</th>
+                    <th style="text-align: center;">&nbsp;Cantidad&nbsp;</th>
+                  </tr>
+                  <tr>
+                    <td>Interior del país</td>
+                    <td><%=@new_edu.region_de(@new_edu.sistemas)["Interior"]%></td>
+                  </tr>
+                  <tr>
+                    <td>Exterior</td>
+                    <td><%=@new_edu.region_de(@new_edu.sistemas)["Exterior"]%></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary btn-lg" id="detallado_sistemas">Detallado</button>
+              </div>
+              <div class="col-md-5">
+                <%=column_chart @new_edu.region_de(@new_edu.sistemas),label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los egresados",ytitle:"Egresados en las distintas areas", download: "resumen Impacto"%>
+              </div>
+            </div>
+          </li>
           <li class="list-group-item">
             <%=column_chart @new_edu.impacto_de(@new_edu.sistemas),label: "Cantidad",xtitle:"País o región",title:"Estudiantes Ingresados por gestión  en la carrera de Ingeniería de Sistemas",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
@@ -371,24 +591,46 @@
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Porcentaje(%)&nbsp;</th>
               </tr>
-            <%[*2010..Date.today.year].each do |anio|%>
+            <%@new_edu.impacto_de(@new_edu.sistemas).keys.each do |pais|%>
             <tr>
-              <td>&nbsp;<%=anio%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.sistemas)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.sistemas)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.sistemas)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.sistemas)%>&nbsp;</td>
+              <td>&nbsp;<%=pais%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.impacto_de(@new_edu.sistemas)[pais]%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.para_porcentaje(@new_edu.sistemas,pais)%>&nbsp;</td>
             </tr>
             <%end%>
           </table>
           </li>
         </div>
         <div id="Ingeniería de Telecomunicaciones" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-5">
+                <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                  <tr>
+                    <th style="text-align: center;">&nbsp;Región&nbsp;</th>
+                    <th style="text-align: center;">&nbsp;Cantidad&nbsp;</th>
+                  </tr>
+                  <tr>
+                    <td>Interior del país</td>
+                    <td><%=@new_edu.region_de(@new_edu.telecomunicadores)["Interior"]%></td>
+                  </tr>
+                  <tr>
+                    <td>Exterior</td>
+                    <td><%=@new_edu.region_de(@new_edu.telecomunicadores)["Exterior"]%></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary btn-lg" id="detallado_telecomunicacion">Detallado</button>
+              </div>
+              <div class="col-md-5">
+                <%=column_chart @new_edu.region_de(@new_edu.telecomunicadores),label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los egresados",ytitle:"Egresados en las distintas areas", download: "resumen Impacto"%>
+              </div>
+            </div>
+          </li>
           <li class="list-group-item">
             <%=column_chart @new_edu.impacto_de(@new_edu.telecomunicadores),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Ingeniería de Telecomunicaciones",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
@@ -398,24 +640,46 @@
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Porcentaje(%)&nbsp;</th>
               </tr>
-            <%[*2010..Date.today.year].each do |anio|%>
+            <%@new_edu.impacto_de(@new_edu.telecomunicadores).keys.each do |pais|%>
             <tr>
-              <td>&nbsp;<%=anio%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.telecomunicadores)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.telecomunicadores)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.telecomunicadores)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.telecomunicadores)%>&nbsp;</td>
+              <td>&nbsp;<%=pais%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.impacto_de(@new_edu.telecomunicadores)[pais]%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.para_porcentaje(@new_edu.telecomunicadores,pais)%>&nbsp;</td>
             </tr>
             <%end%>
           </table>
           </li>
         </div>
         <div id="Administración de Empresas" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-5">
+                <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                  <tr>
+                    <th style="text-align: center;">&nbsp;Región&nbsp;</th>
+                    <th style="text-align: center;">&nbsp;Cantidad&nbsp;</th>
+                  </tr>
+                  <tr>
+                    <td>Interior del país</td>
+                    <td><%=@new_edu.region_de(@new_edu.administradores)["Interior"]%></td>
+                  </tr>
+                  <tr>
+                    <td>Exterior</td>
+                    <td><%=@new_edu.region_de(@new_edu.administradores)["Exterior"]%></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary btn-lg" id="detallado_administracion">Detallado</button>
+              </div>
+              <div class="col-md-5">
+                <%=column_chart @new_edu.region_de(@new_edu.administradores),label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los egresados",ytitle:"Egresados en las distintas areas", download: "resumen Impacto"%>
+              </div>
+            </div>
+          </li>
           <li class="list-group-item">
             <%=column_chart @new_edu.impacto_de(@new_edu.administradores),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Administración de Empresas",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
@@ -426,18 +690,14 @@
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Porcentaje(%)&nbsp;</th>
               </tr>
-            <%[*2010..Date.today.year].each do |anio|%>
+            <%@new_edu.impacto_de(@new_edu.administradores).keys.each do |pais|%>
             <tr>
-              <td>&nbsp;<%=anio%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.administradores)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.administradores)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.administradores)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.administradores)%>&nbsp;</td>
+              <td>&nbsp;<%=pais%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.impacto_de(@new_edu.administradores)[pais]%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.para_porcentaje(@new_edu.administradores,pais)%>&nbsp;</td>
             </tr>
             <%end%>
           </table>
@@ -445,7 +705,33 @@
         </div>
         <div id="Ingeniería Financiera" class="filtro" style="display:none;">
           <li class="list-group-item">
-            <%=column_chart @new_edu.impacto_de(@new_edu.financieros),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Ingeniería Financieras",ytitle:"Titulados", download: "resumen Ingreso"%>
+            <div class="row">
+              <div class="col-md-5">
+                <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                  <tr>
+                    <th style="text-align: center;">&nbsp;Región&nbsp;</th>
+                    <th style="text-align: center;">&nbsp;Cantidad&nbsp;</th>
+                  </tr>
+                  <tr>
+                    <td>Interior del país</td>
+                    <td><%=@new_edu.region_de(@new_edu.financieros)["Interior"]%></td>
+                  </tr>
+                  <tr>
+                    <td>Exterior</td>
+                    <td><%=@new_edu.region_de(@new_edu.financieros)["Exterior"]%></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary btn-lg" id="detallado_financiera">Detallado</button>
+              </div>
+              <div class="col-md-5">
+                <%=column_chart @new_edu.region_de(@new_edu.financieros),label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los egresados",ytitle:"Egresados en las distintas areas", download: "resumen Impacto"%>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <%=column_chart @new_edu.impacto_de(@new_edu.financieros),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Ingeniería Financiera",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
           <li class="list-group-item">
           </li>
@@ -453,24 +739,46 @@
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Porcentaje(%)&nbsp;</th>
               </tr>
-            <%[*2010..Date.today.year].each do |anio|%>
+            <%@new_edu.impacto_de(@new_edu.financieros).keys.each do |pais|%>
             <tr>
-              <td>&nbsp;<%=anio%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.financieros)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.financieros)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.financieros)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.financieros)%>&nbsp;</td>
+              <td>&nbsp;<%=pais%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.impacto_de(@new_edu.financieros)[pais]%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.para_porcentaje(@new_edu.financieros,pais)%>&nbsp;</td>
             </tr>
             <%end%>
           </table>
           </li>
         </div>
         <div id="Derecho" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-5">
+                <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                  <tr>
+                    <th style="text-align: center;">&nbsp;Región&nbsp;</th>
+                    <th style="text-align: center;">&nbsp;Cantidad&nbsp;</th>
+                  </tr>
+                  <tr>
+                    <td>Interior del país</td>
+                    <td><%=@new_edu.region_de(@new_edu.abogados)["Interior"]%></td>
+                  </tr>
+                  <tr>
+                    <td>Exterior</td>
+                    <td><%=@new_edu.region_de(@new_edu.abogados)["Exterior"]%></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary btn-lg" id="detallado_derecho">Detallado</button>
+              </div>
+              <div class="col-md-5">
+                <%=column_chart @new_edu.region_de(@new_edu.abogados),label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los egresados",ytitle:"Egresados en las distintas areas", download: "resumen Impacto"%>
+              </div>
+            </div>
+          </li>
           <li class="list-group-item">
             <%=column_chart @new_edu.impacto_de(@new_edu.abogados),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Derecho",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
@@ -480,24 +788,46 @@
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Porcentaje(%)&nbsp;</th>
               </tr>
-            <%[*2010..Date.today.year].each do |anio|%>
+            <%@new_edu.impacto_de(@new_edu.abogados).keys.each do |pais|%>
             <tr>
-              <td>&nbsp;<%=anio%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio, @new_edu.abogados)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio, @new_edu.abogados)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5, @new_edu.abogados)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio, @new_edu.abogados)%>&nbsp;</td>
+              <td>&nbsp;<%=pais%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.impacto_de(@new_edu.abogados)[pais]%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.para_porcentaje(@new_edu.abogados,pais)%>&nbsp;</td>
             </tr>
             <%end%>
           </table>
           </li>
         </div>
         <div id="Contaduría Pública" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-5">
+                <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                  <tr>
+                    <th style="text-align: center;">&nbsp;Región&nbsp;</th>
+                    <th style="text-align: center;">&nbsp;Cantidad&nbsp;</th>
+                  </tr>
+                  <tr>
+                    <td>Interior del país</td>
+                    <td><%=@new_edu.region_de(@new_edu.contadores)["Interior"]%></td>
+                  </tr>
+                  <tr>
+                    <td>Exterior</td>
+                    <td><%=@new_edu.region_de(@new_edu.contadores)["Exterior"]%></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary btn-lg" id="detallado_contaduria">Detallado</button>
+              </div>
+              <div class="col-md-5">
+                <%=column_chart @new_edu.region_de(@new_edu.contadores),label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los egresados",ytitle:"Egresados en las distintas areas", download: "resumen Impacto"%>
+              </div>
+            </div>
+          </li>
           <li class="list-group-item">
             <%=column_chart @new_edu.impacto_de(@new_edu.contadores),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Contaduría Pública",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
@@ -507,24 +837,46 @@
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Porcentaje(%)&nbsp;</th>
               </tr>
-            <%[*2010..Date.today.year].each do |anio|%>
+            <%@new_edu.impacto_de(@new_edu.contadores).keys.each do |pais|%>
             <tr>
-              <td>&nbsp;<%=anio%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio, @new_edu.contadores)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio, @new_edu.contadores)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5, @new_edu.contadores)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio, @new_edu.contadores)%>&nbsp;</td>
+              <td>&nbsp;<%=pais%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.impacto_de(@new_edu.contadores)[pais]%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.para_porcentaje(@new_edu.contadores,pais)%>&nbsp;</td>
             </tr>
             <%end%>
           </table>
           </li>
         </div>
         <div id="Ingeniería Comercial" class="filtro" style="display:none;">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-5">
+                <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                  <tr>
+                    <th style="text-align: center;">&nbsp;Región&nbsp;</th>
+                    <th style="text-align: center;">&nbsp;Cantidad&nbsp;</th>
+                  </tr>
+                  <tr>
+                    <td>Interior del país</td>
+                    <td><%=@new_edu.region_de(@new_edu.comerciales)["Interior"]%></td>
+                  </tr>
+                  <tr>
+                    <td>Exterior</td>
+                    <td><%=@new_edu.region_de(@new_edu.comerciales)["Exterior"]%></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary btn-lg" id="detallado_comercial">Detallado</button>
+              </div>
+              <div class="col-md-5">
+                <%=column_chart @new_edu.region_de(@new_edu.comerciales),label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los egresados",ytitle:"Egresados en las distintas areas", download: "resumen Impacto"%>
+              </div>
+            </div>
+          </li>
           <li class="list-group-item">
             <%=column_chart @new_edu.impacto_de(@new_edu.comerciales),label: "Cantidad",xtitle:"País o región",title:"Ubicación laboral de los titulados de Ingeniería Comercial",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
@@ -534,18 +886,14 @@
             <table class="table table-striped table-bordered table-hover" style="text-align: center;">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Estudiantes nuevos&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Ingresos hace 5 años&nbsp;</th>
-                <th style="text-align: center;">&nbsp;Relación(%)&nbsp;</th>
+                <th style="text-align: center;">&nbsp;Porcentaje(%)&nbsp;</th>
               </tr>
-            <%[*2010..Date.today.year].each do |anio|%>
+            <%@new_edu.impacto_de(@new_edu.comerciales).keys.each do |pais|%>
             <tr>
-              <td>&nbsp;<%=anio%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio,@new_edu.comerciales)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_egresos_por(anio,@new_edu.comerciales)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.numero_ingresos_por(anio-5,@new_edu.comerciales)%>&nbsp;</td>
-              <td>&nbsp;<%=@new_edu.relacion_acreditacion_por(anio,@new_edu.comerciales)%>&nbsp;</td>
+              <td>&nbsp;<%=pais%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.impacto_de(@new_edu.comerciales)[pais]%>&nbsp;</td>
+              <td>&nbsp;<%=@new_edu.para_porcentaje(@new_edu.comerciales,pais)%>&nbsp;</td>
             </tr>
             <%end%>
           </table>
