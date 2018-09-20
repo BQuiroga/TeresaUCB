@@ -4,9 +4,11 @@
     <br><br>
     <button id="mostrar_todo" onclick="mostrar_todo()" class="btn btn-primary button-cv">Mostrar CV completo</button>
     <button id="ocultar_todo" onclick="ocultar_todo()" style="display:none" class="btn btn-primary button-cv">Mostrar CV resumido</button>
-    <button id="publicar" class="btn btn-success">Publicar</button>
+    <%if current_user.is_company?%>
+      <button id="publicar" class="btn btn-success">Publicar</button>
+    <%end%>
   </div>
-
+<%if current_user.is_company?%>
   <div id="addSuggestion" class="modal" >
       <div class="modal-content" >
           <span class="close" id="closeSuggestion">&times;</span>
@@ -33,6 +35,7 @@
       </div>
 
   </div>
+  <%end%>
   <script>
   var botonComentario= document.getElementById("publicar")
   var modalComentario = document.getElementById("addSuggestion");
