@@ -220,9 +220,11 @@ class ReportsController < ApplicationController
         f.js {}
       end
     end
-
   end
-
+  def activities_map_all
+    @new_exp=Experience.new
+    render json: @ew_exp.all_cities_for_map
+  end
   def report_params
     params.require(:report).permit(:grado_licenciatura,:grado_postgrado,:grado_maestria,:grado_doctorado,:grado,:fecha_inicio,:fecha_fin,:genero)
   end

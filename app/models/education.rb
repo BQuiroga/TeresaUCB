@@ -140,20 +140,33 @@ class Education < ActiveRecord::Base
       edu ="Todos los grados academicos"
       results=Education.all
     else
-      edu=[licen,maestria,postgrado,doctorado].join
-      if edu=="Todos"
-        data=self.grade([licen,maestria,postgrado,doctorado])
-        if data.class==Array
-          results=Education.where.not(title:data)
-        else
-          results=Education.where(title:data)
-        end
-      else
-        results=Education.where(title:edu)
+      case grado
+      when "Todos"
+        results=Education.all
+      when "Licenciatura"
+        results=Education.where(title:licen)
+      when "Maestria"
+        results=Education.where(title:maestria)
+      when "Postgrado"
+        results=Education.where(title:postgrado)
+      when "Doctorado"
+        results=Education.where(title:doctoradoo)
+      # end
+      # edu=[licen,maestria,postgrado,doctorado].join
+      # if edu=="Todos"
+      #   data=self.grade([licen,maestria,postgrado,doctorado])
+      #   if data.class==Array
+      #     results=Education.where.not(title:data)
+      #   else
+      #     results=Education.where(title:data)
+      #   end
+      # else
+      #   results=Education.where(title:edu)
+      # end
       end
     end
-    results
-  end
+      results
+    end
   def entre_fechas(inicio,fin,query)
     if inicio=="Invalido" and fin=="Invalido"
       return query

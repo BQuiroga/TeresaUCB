@@ -33,8 +33,12 @@ class PersonalInformation < ActiveRecord::Base
     end
   end
   def translate_birthday_to_edit
-    h=eval(birthdate)
-    d=Date.new(h[1],h[2],h[3])
+    if (birthdate)
+      h=eval(birthdate)
+      d=Date.new(h[1],h[2],h[3])
+    else
+      d=Date.today
+    end
     d
   end
   def call_center

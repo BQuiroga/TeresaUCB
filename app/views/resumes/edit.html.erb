@@ -19,8 +19,8 @@
     <div class="panel panel-default">
       <div class="panel-heading"><div class="panel-title"><h3>Formación Académica </h3></div></div>
       <div class="panel-body">
-        <% if @educations.size >0%>
         <ul class="list-group" id="educations_resume">
+          <% if @educations.size >0%>
           <% @educations.each do |education| %>
             <li class="list-group-item">
               <div>
@@ -54,8 +54,8 @@
       </div>
     </div>
     <div class="panel-body">
-      <% if @experiences.size >0%>
         <ul class="list-group" id="experiencias">
+          <% if @experiences.size >0%>
           <% @experiences.each do |experience| %>
           <li class="list-group-item">
           <div>
@@ -73,8 +73,8 @@
           </div>
           </li>
           <%end%>
+          <%end%>
         </ul>
-      <%end%>
     </div>
   </div>
   <div class="panel-footer well">
@@ -91,8 +91,8 @@
       </div>
     </div>
     <div class="panel-body">
-    <% if @courses.size >0%>
       <ul class="list-group" id="cursos">
+    <% if @courses.size >0%>
         <h5><% @courses.each do |course| %></h5>
         <li class="list-group-item">
           <div>
@@ -108,8 +108,8 @@
           </div>
           </li>
           <%end%>
-        </ul>
       <%end%>
+    </ul>
     </div>
 
   <div class="panel-footer well">
@@ -127,8 +127,8 @@
       <div class="panel-title"><h3> Publicaciones </h3></div>
     </div>
     <div class="panel-body">
-      <% if @publications.size >0%>
       <ul class="list-group" id="publicaciones">
+      <% if @publications.size >0%>
         <h5><% @publications.each do |pub| %></h5>
         <li class="list-group-item">
           <div>
@@ -155,8 +155,8 @@
   <div class="panel panel-default">
     <div class="panel-heading"><div class="panel-title"><h3> Meritos </h3></div></div>
     <div class="panel-body">
+      <ul class="list-group" id="meritos">
       <% if @merits.size >0%>
-        <ul class="list-group" id="meritos">
           <h5><% @merits.each do |merit| %></h5>
           <li class="list-group-item">
             <div>
@@ -168,8 +168,8 @@
             </div>
           </li>
           <%end%>
+        <%end%>
         </ul>
-      <%end%>
     </div>
   </div>
   <div class="panel-footer well">
@@ -181,8 +181,8 @@
   <div class="panel panel-default">
     <div class="panel-heading"><div class="panel-title"><h3> Membresía </h3></div></div>
     <div class="panel-body">
-      <% if @memberships.size >0%>
         <ul class="list-group" id="membresias">
+          <% if @memberships.size >0%>
           <h5><% @memberships.each do |member| %></h5>
           <li class="list-group-item">
             <div>
@@ -195,8 +195,8 @@
             </div>
           </li>
           <%end%>
+          <%end%>
         </ul>
-      <%end%>
     </div>
   </div>
   <div class="panel-footer well">
@@ -208,8 +208,8 @@
   <div class="panel panel-default">
   <div class="panel-heading"><div class="panel-title"><h3> Conocimientos</h3></div></div>
   <div class="panel-body">
-    <% if @knowledges.size >0%>
     <ul class="list-group" id="conocimientos">
+    <% if @knowledges.size >0%>
       <h5><% @knowledges.each do |known| %></h5>
       <li class="list-group-item">
         <div>
@@ -222,8 +222,8 @@
         </div>
       </li>
       <% end %>
-    </ul>
     <% end %>
+  </ul>
   </div>
 </div>
     <div class="panel-footer well">
@@ -235,8 +235,8 @@
     <div class="panel panel-default">
       <div class="panel-heading"><div class="panel-title"><h3> Habilidades</h3></div></div>
       <div class="panel-body">
-        <% if @skills.size >0%>
         <ul class="list-group" id="habilidades">
+        <% if @skills.size >0%>
           <h5><% @skills.each do |skill| %></h5>
           <li class="list-group-item">
             <div>
@@ -249,8 +249,8 @@
             </div>
           </li>
           <% end %>
-        </ul>
         <% end %>
+      </ul>
       </div>
     </div>
     <div class="panel-footer well">
@@ -266,8 +266,8 @@
     </div>
 
     <div class="panel-body">
-      <% if @languages.size >0%>
       <ul class="list-group" id="lenguajes">
+      <% if @languages.size >0%>
         <h5><% @languages.each do |language| %></h5>
         <li class="list-group-item">
           <div>
