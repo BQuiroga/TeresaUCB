@@ -1,23 +1,30 @@
 <%= form_for :publication, url: '/publication/new',remote: true do |f| %>
-  <div class="field col col-md-4 col-xs-4" style="top:10px">
-    <%= f.label :tipo_de_publicación %>:
-    <%= f.select( :publicationType, @publicationTypes.map {|a| [a]}) -%>
+  <div class="row">
+    <div class="field col col-md-6">
+      <%= f.label :Nombre %><br />
+      <%= f.text_field :name,:id=>'nombre_publicacion',:class=>"form-control"%>
+    </div>
+    <div class="field col col-md-6">
+      <%= f.label :lugar %><br />
+      <%= f.text_field :location,:class=>"form-control"%>
+    </div>
   </div>
-  <div class="field col col-md-4 col-xs-4">
-    <%= f.label :Nombre %><br />
-    <%= f.text_field :name,:id=>'nombre_publicacion',:class=>"form-control"%>
+  <br>
+  <div class="row">
+    <div class="field col col-md-6">
+      <%= f.label :tipo_de_publicación %>:
+      <%= f.select( :publicationType, @publicationTypes.map {|a| [a]},{},:class=>"selector") -%>
+    </div>
+    <br>
+    <div class="field col col-md-6">
+      <%= f.label :fecha %>:
+      <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+    </div>
   </div>
-  <div class="field col col-md-4 col-xs-4">
-    <%= f.label :lugar %><br />
-    <%= f.text_field :location,:class=>"form-control"%>
-    <br><br>
-  </div>
-  <div class="field col col-md-4 col-xs-4" style="top:-40px">
-    <%= f.label :fecha %>:
-    <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
-  </div>
+
   <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
   <div class="actions">
-    <%= f.submit "Guardar", :class =>"btn btn-primary",:id=>'boton_publicaciones' %>
+    <%= f.submit "Guardar", :class =>"btn btn-primary pull-right",:id=>'boton_publicaciones' %>
   </div>
+  <br>
 <% end %>

@@ -1,40 +1,42 @@
 <%= form_for :education,url:'/education/new', remote: true do |f| %>
-  <div  class="field col col-md-3 col-xs-3">
-    <%= f.label :Grado_académico %>:
-    <!-- <%= f.select(:title,["Licenci>atura", "Maestria", "Doctorado", "Post Grado"])%> -->
-    <div>
-      <%=f.text_field :title, :id=>'filtrar',:class=>"form-control"%>
-      <%= f.select :lista,@title_list,{},class:"form-control col-12 col-md-9 col-xs-12",:id=>'titulos',:style=>"margin: 10px; width: 230px;height: 170px;",:size=>'10',:name=>'type[]'%>
+  <div class="row">
+    <div  class="col col-md-6">
+      <%= f.label :Grado_académico %>
+      <div>
+        <%=f.text_field :title, :id=>'filtrar',:class=>"form-control"%>
+        <%= f.select :lista,@title_list,{},class:"form-control col-12 col-md-12 col-xs-12",:id=>'titulos',:style=>"margin-top: 10px;height: 170px;",:size=>'10',:name=>'type[]'%>
+      </div>
+    </div>
+    <div class="col col-md-6">
+      <%= f.label :institución %>
+      <%= f.text_field :school_name,:id=>'filtrar_u',:class=>"form-control"%>
+      <%= f.select :school_name,@schools,{},class:"form-control col-12 col-md-12 col-xs-12",:id=>'universidades',:style=>"margin-top: 10px;;height: 170px;",:size=>'10',:name=>'type[]'%>
     </div>
   </div>
-  <div class="field col col-md-3 col-xs-3">
-    <%= f.label :institución %>:
-    <%= f.text_field :school_name,:id=>'filtrar_u',:class=>"form-control"%>
-    <%= f.select :school_name,@schools,{},class:"form-control col-12 col-md-9 col-xs-12",:id=>'universidades',:style=>"margin: 10px; width: 230px;height: 170px;",:size=>'10',:name=>'type[]'%>
-  </div>
-  <div class="field col col-md-3 col-xs-3">
-    <%= f.label :descripción %>:
-    <%= f.text_area :description,:class=>"form-control"%>
+  <br>
+  <div class="row">
+    <div class="field col col-md-6 col-xs-6">
+      <%= f.label :Fecha_ingreso %>:
+      <%= f.date_select :start_date,:start_year  =>1990, :end_year=>Time.now.year + 5%>
+    </div>
+    <div class="field col col-md-6 col-xs-6" >
+      <%= f.label :fecha_egreso %>:
+      <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year + 5%>
+    </div>
   </div>
   <br>
-  <div>
+  <div class="">
+    <%= f.label :descripción %>:
+    <%= f.text_area :description,:class=>"form-control",:rows=>1%>
   </div>
-  <div>
-  </div>
-  <div class="field col col-md-3 col-xs-3"style="top:-20px">
-    <%= f.label :Fecha_ingreso %>:
-    <%= f.date_select :start_date,:start_year  =>1990, :end_year=>Time.now.year + 5%>
-  </div>
-  <div class="field col col-md-3 col-xs-3">
-    <%= f.label :fecha_egreso %>:
-    <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year + 5%>
-  </div>
+  <br>
+
   <br>
   <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
-  <div class="actions field col col-md-3 col-xs-3" style="top:10px">
-    <%= f.submit "Guardar" , :class =>"btn btn-primary",:id=>'boton_academico'%>
+  <div class="actions" style="">
+    <%= f.submit "Guardar" , :class =>"btn btn-primary pull-right",:id=>'boton_academico'%>
   </div>
-  <br><br><br><br><br><br><br><br><br><br>
+
 <% end %>
 
 

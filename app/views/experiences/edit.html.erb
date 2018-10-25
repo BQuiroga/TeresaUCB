@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="margin-top:25px">
   <div class="panel panel-default">
     <div class="panel-heading">
       <div class="panel-title">
@@ -10,63 +10,82 @@
 
   <div class="panel-footer well">
     <%= form_for :experience, url: '/experience/update', html: { method: :put } do |f| %>
-      <div class="field col col-md-4">
-        <%= f.label :cargo_profesional %><br />
-        <%= f.text_field :job_title,:class=>"form-control"%>
-        <br>
-        <%= f.label :empresa %>
-        <%= f.text_field :company_name,:class=>"form-control"%>
-        ESTA INFORMACION NO ES PUBLICA<br>
-        <%= f.label :rango_salarial %>
-        <%= f.select(:salary_range, options_for_select(Experience.salary_range)) %>
+      <div class="row">
+        <div class="col col-md-6">
+          <%= f.label :empresa %>
+          <%= f.text_field :company_name,:class=>"form-control"%>
+        </div>
+        <div class="field col col-md-6">
+          <%@exp=Experience.new%>
+          <%= f.label :Pais_o_region %>:<br />
+          <%=f.select :city, @exp.countries,{},:class=>"selector"%>
+        </div>
       </div>
-      <div class="field col col-md-4">
-        <%= f.label :actividades_a_cargo %>:<br />
-        <%= f.text_field :job_description,:class=>"form-control"%>
-        <br>
-        <%= f.label :personass_bajo_mi_cargo %>:<br />
-        <%= f.text_field :in_my_charge,:class=>"form-control"%>
+      <br>
+      <div class="row">
+        <div class="field col col-md-6">
+          <%= f.label :cargo_profesional %><br />
+          <%= f.text_field :job_title,:class=>"form-control"%>
+        </div>
+        <div class="field col col-md-6">
+          <%= f.label :actividades_a_cargo %>:<br />
+          <%= f.text_field :job_description,:class=>"form-control"%>
+        </div>
       </div>
-      <div class="field col col-md-4">
-        <%@exp=Experience.new%>
-        <%= f.label :Pais_o_region %>:<br />
-        <%=f.select :city, @exp.countries,{},:class=>"selector"%>
+      <br>
+      <div class="row">
+        <div class="col col-md-6">
+          <%= f.label :personass_bajo_mi_cargo %>:<br />
+          <%= f.text_field :in_my_charge,:class=>"form-control"%>
+        </div>
+        <div class="col col-md-6">
+          <%= f.label :rango_salarial %><br>
+          <%= f.select(:salary_range, options_for_select(Experience.salary_range),{} ,:class=>"selector")%><br>
+          <em>Nota: Esta información no es publica</em>
+        </div>
       </div>
-      <div class="field col col-md-4">
-        <input type="checkbox" id="checkbox" name="checkbox">Desea agregar una persona de referencia
+      <br>
+      <div class="row">
+        <div class="col col-md-6">
+          <%= f.label :Fecha_ingreso %>
+          <%= f.date_select :start_date ,:start_year  =>1990, :end_year=>Time.now.year%>
+        </div>
+        <div class="col col-md-6" id="date" style="display:none;">
+          <%= f.label :fecha_salida %>
+          <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-md-6">
+          <%=f.label :a_la_fecha_sigue_trabajando_en_la_empresa%>
+          <%= f.check_box :until_now,:id=>"checkboxDate", :checked =>"true"%>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col col-md-6">
+          Desea agregar una persona de referencia <input type="checkbox" id="checkbox" name="checkbox">
+        </div>
+      </div>
+      <div class="row">
         <div id="rest" style="display:none;">
-          <div class="field">
+          <div class="col col-md-6">
             <%= f.label :Persona_de_Referencia %><br />
             <%= f.text_field :referential,:class=>"form-control"%>
           </div>
-          <div class="field">
+          <div class="col col-md-6">
             <%= f.label :numero_de_referencia %>
             <%= f.number_field :referential_number,:class=>"form-control"%>
           </div>
         </div>
       </div>
-      <div class="field">
-        &nbsp;&nbsp;&nbsp;&nbsp;
-      </div>
-      <div class="field">
-        <%= f.label :Fecha_ingreso %>
-        <%= f.date_select :start_date ,:start_year  =>1990, :end_year=>Time.now.year%>
-      </div>
-        <div class="field" id="date" style="display:none;">
-        <%= f.label :fecha_salida %>
-        <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year%>
-      </div>
-      <div class="field">
-          <%=f.label :si_aun_sigue_por_favor_deje_marcada_esta_casilla%>
-          <%= f.check_box :until_now,:id=>"checkboxDate", :checked =>"true"%>
-      </div>
+      <br>
+
       <%=f.hidden_field :id, :value => @experience.id%>
       <div class="actions">
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <br><br>
-        <%= f.submit "Guardar",:class =>"btn btn-primary" %>
 
+        <%= f.submit "Guardar",:class =>"btn btn-primary pull-right" %>
+        <br>
     </div>
     <% end %>
   </div>
@@ -102,3 +121,22 @@ $('#checkbox').click(function() {
 });
 
 </script>
+
+
+<style>
+.selector{
+  width: 120px;
+  padding: 5px 35px 5px 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  height: 32px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  }
+    .center-select{
+      padding-left:25%;
+    left:30%;
+    }
+}
+</style>

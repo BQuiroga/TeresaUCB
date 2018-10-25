@@ -1,34 +1,62 @@
-<div class="container">
+<div class="container" style="margin-top:25px">
   <div class="panel panel-default">
     <div class="panel-heading"><div class="panel-title"><h3>Curso o Seminario </h3></div></div>
       <div class="panel-body">
       </div>
       <div class="panel-footer well">
       <%= form_for :course, url: '/course/update', html: { method: :put } do |f| %>
-      <div class="container">
-      <div class="field col col-md-4 col-xs-4">
-        <%= f.label :nombre %><br />
-        <%= f.text_field :name,:class=>"form-control"%><br>
-        <%= f.label :carga_horaria %>(Hrs)
-        <%= f.number_field :workload,:class=>"form-control"%>
-      </div>
-      <div class="field col col-md-4 col-xs-4">
-        <%= f.label :institucion %><br />
-        <%= f.text_field :institution,:class=>"form-control"%><br>
-        <%=f.label :yo_di_este_seminario_o_curso%>
-        <%= f.select(:given, options_for_select(Course.participations)) %>
-      </div>
-      <div class="field col col-md-4 col-xs-4">
-        <%= f.label :fecha %>
-        <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
-      </div>
-
-      <%=f.hidden_field :id, :value => @course.id%>
-        <div class="actions">
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <%= f.submit "Guardar", :class =>"btn btn-primary" %>
+      <div class="row">
+        <div class="col col-md-6">
+          <%= f.label :nombre %><br />
+          <%= f.text_field :name,:class=>"form-control"%>
         </div>
+        <div class="field col col-md-4 col-xs-4">
+          <%= f.label :institucion %><br />
+          <%= f.text_field :institution,:class=>"form-control"%>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col col-md-6">
+          <%= f.label :carga_horaria %>(Hrs)
+          <%= f.number_field :workload,:class=>"form-control"%>
+        </div>
+        <div class="col col-md-6">
+          <%=f.label :participe_como%><br>
+          <%= f.select(:given, options_for_select(Course.participations),{},:class=>"selector") %>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="field col col-md-4 col-xs-4">
+          <%= f.label :fecha %>
+          <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year %>
+        </div>
+      </div>
+      <%=f.hidden_field :id, :value => @course.id%>
+      <div class="actions">
+        <%= f.submit "Guardar", :class =>"btn btn-primary pull-right" %>
+      </div>
       <% end %>
+      <br>
     </div>
+  </div>
 </div>
-</div>
+
+<style>
+.selector{
+  width: 120px;
+  padding: 5px 35px 5px 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  height: 32px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  }
+    .center-select{
+      padding-left:25%;
+    left:30%;
+    }
+}
+</style>

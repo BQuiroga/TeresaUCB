@@ -92,7 +92,7 @@
     </div>
     <div class="panel-body">
       <ul class="list-group" id="cursos">
-    <% if @courses.size >0%>
+        <% if @courses.size >0%>
         <h5><% @courses.each do |course| %></h5>
         <li class="list-group-item">
           <div>
@@ -103,19 +103,17 @@
               <%=course.institution%>&emsp;
               <%=course.workload%> Hrs.
               <button class="btn btn-danger btn-sm  pull-right"><%=link_to 'Eliminar', course , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
-              &emsp;<button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,course], :class=>"button-link"%></button>
+              <button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,course], :class=>"button-link"%></button>
             </p>
           </div>
-          </li>
-          <%end%>
-      <%end%>
-    </ul>
+        </li>
+        <%end%>
+        <%end%>
+      </ul>
     </div>
 
   <div class="panel-footer well">
-    <div class="container">
     <%=render :partial=>'courses/form'%>
-    </div>
   </div>
 </div>
 </div>
@@ -136,12 +134,12 @@
               <b><%=pub.date.year%></b>&emsp;<%=pub.name%>&emsp;<%=pub.publicationType%>
               <button class="btn btn-danger btn-sm  pull-right"><%=link_to 'Eliminar', pub , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
               <button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,pub], :class=>"button-link"%></button><br>
-              <%=pub.location%>
+              <%=pub.location %>
             </p>
           </div>
         </li>
         <%end%>
-      <%end%>
+      <%end %>
       </ul>
     </div>
   </div>
@@ -288,9 +286,7 @@
   </div>
 
   <div class="panel-footer well">
-    <div class="container">
       <%=render :partial=>'languages/form'%>
-    </div>
   </div>
 </div>
 

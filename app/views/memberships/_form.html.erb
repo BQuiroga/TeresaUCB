@@ -1,22 +1,22 @@
 <%= form_for :membership, url: '/member/new',remote: true do |f| %>
-<div class="field col col-md-4 col-xs-4">
+<div class="col col-md-4">
   <%= f.label :titulo %>:<br />
   <%= f.text_field :name,:id=>'membresia',:class=>"form-control"%>
   <br>
 </div>
-<div class="field col col-md-4 col-xs-4">
+<div class="col col-md-4">
   <%= f.label :comunidad %>:<br />
   <%= f.text_field :organization,:class=>"form-control"%>
 </div>
-<div class="field col col-md-4 col-xs-4"style="top:20px">
-  <%= f.label :fecha %>
+<div class="col col-md-4">
+  <%= f.label :fecha %><br>
   <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
 </div>
 <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
 <br><br><br>
 
 <div class="actions" >
-  <%= f.submit "Guardar", :class =>"btn btn-primary" ,:id=>'boton_membresias'%>
+  <%= f.submit "Guardar", :class =>"btn btn-primary pull-right" ,:id=>'boton_membresias'%>
 </div>
 <br>
 <% end %>

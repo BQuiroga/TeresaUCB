@@ -1,24 +1,53 @@
 <%= form_for :course, url: '/course/new',remote: true do |f| %>
-  <div class="field col col-md-4 col-xs-4">
-    <%= f.label :nombre_del_curso_o_seminario %><br />
-    <%= f.text_field :name, :id=>'nombre_seminario',:class=>"form-control"%><br>
-    <%= f.label :carga_horaria_ %>(Hrs)
-    <%= f.number_field :workload,:class=>"form-control"%>
+  <div class="row">
+    <div class="col col-md-6">
+      <%= f.label :nombre_del_curso_o_seminario %><br />
+      <%= f.text_field :name, :id=>'nombre_seminario',:class=>"form-control"%>
+    </div>
+    <div class="col col-md-6">
+      <%= f.label :institución %><br />
+      <%= f.text_field :institution,:class=>"form-control"%>
+    </div>
   </div>
-  <div class="field col col-md-4 col-xs-4">
-    <%= f.label :institución %><br />
-    <%= f.text_field :institution,:class=>"form-control"%><br>
-    <%=f.label :participe_como%>
-    <%= f.select(:given, options_for_select(Course.participations)) %>
+  <br>
+  <div class="row">
+    <div class="col col-md-6">
+      <%= f.label :carga_horaria_ %>(Hrs)
+      <%= f.number_field :workload,:class=>"form-control"%>
+    </div>
+    <div class="col col-md-6">
+      <%=f.label :participe_como%><br>
+      <%= f.select(:given, options_for_select(Course.participations),{},:class=>"selector") %>
+    </div>
   </div>
-  <div class="field col col-md-4 col-xs-4">
-    <%= f.label :fecha %>
-    <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
-    <br>
-  </div>
+  <br>
+  <div class="row">
+    <div class="col col-md-4">
+      <%= f.label :fecha %>
+      <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+    </div>
     <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+  </div>
   <div class="actions">
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <%= f.submit "Guardar" , :class =>"btn btn-primary",:id=>'boton_seminario'%>
+    <%= f.submit "Guardar" , :class =>"btn btn-primary pull-right",:id=>'boton_seminario'%>
   </div>
 <% end %>
+
+<style>
+.selector{
+  width: 120px;
+  padding: 5px 35px 5px 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  height: 32px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  }
+    .center-select{
+      padding-left:25%;
+    left:30%;
+    }
+}
+</style>

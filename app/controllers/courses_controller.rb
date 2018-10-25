@@ -24,6 +24,7 @@ class CoursesController < ApplicationController
 		@course=Course.find(params[:id])
 		puts current_user.id
 		puts @course.user.id
+		@education=Education.new
 		if current_user.id!=@course.user.id
 			throwUnauthorized
 			return
@@ -60,9 +61,9 @@ class CoursesController < ApplicationController
 		end
 	end
 	def courses_params
-  		params.require(:course).permit(:date,:resume_id,:name,:given, :workload,:institution)
-  	end
-  	def courses_params_for_edit
-  		params.require(:course).permit(:id,:name,:date,:given, :workload,:institution)
-  	end
+		params.require(:course).permit(:date,:resume_id,:name,:given, :workload,:institution)
+	end
+	def courses_params_for_edit
+		params.require(:course).permit(:id,:name,:date,:given, :workload,:institution)
+	end
 end

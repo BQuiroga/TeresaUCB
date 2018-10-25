@@ -1,70 +1,82 @@
 <%= form_for :experience, url: '/experience/new',remote:true do |f| %>
-<div class="field col col-md-4">
-  <%= f.label :cargo_profesional %>:<br />
-  <%= f.text_field :job_title,:id=>'cargo',:class=>"form-control"%>
+  <div class="row">
+    <div class="col col-md-6">
+      <%= f.label :empresa %>:<br />
+      <%= f.text_field :company_name,:id=>'empresa',:class=>"form-control"%>
+    </div>
+    <div class="field col col-md-4">
+      <%@exp=Experience.new%>
+      <%= f.label :Pais_o_region %>:<br />
+      <%=f.select :city, @exp.countries,{},:class=>"selector"%>
+    </div>
+  </div>
   <br>
-  <%= f.label :empresa %>:<br />
-  <%= f.text_field :company_name,:id=>'empresa',:class=>"form-control"%>
+  <div class="row">
+    <div class="field col col-md-6">
+      <%= f.label :cargo_profesional %>:<br />
+      <%= f.text_field :job_title,:id=>'cargo',:class=>"form-control"%>
+    </div>
+    <div class="field col col-md-6">
+      <%= f.label :actividades_a_cargo %>:<br />
+      <%= f.text_field :job_description,:class=>"form-control"%>
+    </div>
+  </div>
   <br>
+  <div class="row">
+    <div class="col col-md-6">
+      <%= f.label :personas_bajo_mi_cargo %>:<br />
+      <%= f.number_field :in_my_charge,:class=>"form-control"%>
+    </div>
+    <div class="col col-md-6">
+      <%= f.label :rango_salarial %><br>
+      <%= f.select :salary_range, options_for_select(Experience.salary_range),{},:class=>'selector' %>
+      <em>Nota: Esta información no es publica</em>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col col-md-6">
+      <%= f.label :Fecha_ingreso %>
+      <%= f.date_select :start_date ,:start_year  =>1990, :end_year=>Time.now.year%>
+    </div>
+    <div class="col col-md-6" id="date" style="display:none;">
+      <%= f.label :fecha_salida,:class=>'form-label' %>
+      <%= f.date_select :end_date ,:start_year=>1990, :end_year=>Time.now.year %>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col col-md-6">
+      <%=f.label :a_la_fecha_sigue_trabajando_en_la_empresa%>
+      <input type="checkbox" id="checkboxDate" name="until_now", checked="true">
+    </div>
+  </div>
+  <br>
+<div class="row">
+  <div class="col col-md-6">
+    Desea agregar una persona de referencia <input type="checkbox" id="checkbox" name="checkbox">
+  </div>
+  <div class="col col-md-6">
+  </div>
 </div>
-<div class="field col col-md-4">
-  <%= f.label :actividades_a_cargo %>:<br />
-  <%= f.text_field :job_description,:class=>"form-control"%><br>
-  <%= f.label :personas_bajo_mi_cargo %>:<br />
-  <%= f.number_field :in_my_charge,:class=>"form-control"%>
-</div>
-<div class="field col col-md-4">
-  <%@exp=Experience.new%>
-  <%= f.label :Pais_o_region %>:<br />
-  <%=f.select :city, @exp.countries,{},:class=>"selector"%>
-</div>
-<div class="field col col-md-4">
-  <input type="checkbox" id="checkbox" name="checkbox">Desea agregar una persona de referencia
-  <div id="rest" style="display:none;">
-    <div class="field">
+<div class="row">
+  <div id="rest"  style="display:none;">
+    <div class="col col-md-6">
       <%= f.label :Persona_de_Referencia %>:<br />
       <%= f.text_field :referential,:class=>"form-control"%>
     </div>
-    <div class="field">
+    <div class="col col-md-6">
       <%= f.label :numero_de_referencia %>:
       <%= f.number_field :referential_number,:class=>"form-control"%>
     </div>
   </div>
 </div>
-<div class="field col col-md-4">
-</div>
-<div class="field">
-  &nbsp;&nbsp;&nbsp;&nbsp;
-</div>
-<div class="field">
-  (ESTA INFORMACION NO ES PUBLICA)<br>
-  <%= f.label :rango_salarial %>
-  <%= f.select :salary_range, options_for_select(Experience.salary_range),{},:class=>'selector' %>
-</div>
-<div class="field">
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <%= f.label :Fecha_ingreso %>
-  <%= f.date_select :start_date ,:start_year  =>1990, :end_year=>Time.now.year%>
-</div>
-<div class="field col col-md-4">
-</div>
-<div class="field" id="date" style="display:none;">
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <%= f.label :fecha_salida %>
-  <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year%>
-</div>
-<div class="field col col-md-4">
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <%=f.label :si_aún_sigue_por_favor_deje_marcada_esta_casilla%>
-  <input type="checkbox" id="checkboxDate" name="until_now", checked="true">
-</div>
+<br>
   <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
 <div class="actions">
-  <br>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <br><br>
-  <%= f.submit "Guardar", :class =>"btn btn-primary" ,:id=>'boton_laboral'%>
+  <%= f.submit "Guardar", :class =>"btn btn-primary pull-right" ,:id=>'boton_laboral'%>
 </div>
+<Br>
 <% end %>
 
 

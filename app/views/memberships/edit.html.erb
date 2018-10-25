@@ -5,7 +5,7 @@
       </div>
       <div class="panel-footer well">
         <%= form_for :membership, url: '/membership/update', html: { method: :put } do |f| %>
-        <div class="container">
+        <div class="row">
           <div class="field col col-md-4 col-xs-4">
             <%= f.label :titulo %><br />
             <%= f.text_field :name,:class=>"form-control"%>
@@ -16,13 +16,13 @@
         <%= f.text_field :organization,:class=>"form-control"%>
         </div>
         <div class="field col col-md-4 col-xs-4">
-        <%= f.label :fecha %>
+        <%= f.label :fecha %><br>
         <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
         </div>
           <br><br><br>
         <%=f.hidden_field :id, :value => @membership.id%>
           <div class="actions">
-            <%= f.submit "Guardar", :class =>"btn btn-primary" %>
+            <%= f.submit "Guardar", :class =>"btn btn-primary pull-right" %>
           </div>
         </div>
         <% end %>
