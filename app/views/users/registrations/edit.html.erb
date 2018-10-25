@@ -1,189 +1,192 @@
-<div class="container">
+<div class="container" style="margin-top:25px;">
   <div class="panel panel-default">
-    <div class="panel-heading"><div class="panel-title"><h3>Editar Perfil </h3></div></div>
-    <div  class="panel-body"></div>
-    <div class="panel panel-footer well">
-      <%= link_to "Atras", "/users/profile",:class=>'btn btn-info' %>
-      <div class="container form-horizontal">
-        <div class="col col-md-6">
-        <h3>Datos de la cuenta</h3>
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <%= devise_error_messages! %>
-          <div class="form-group">
-            <%= f.label :nombre ,:class=>'form-label'%><br />
-            <div class="col col-md-6">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <h3>Editar Perfil </h3>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="col col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3>Datos de la cuenta</h3>
+          </div>
+          <div class="panel-body">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%= devise_error_messages! %>
+            <div class="form-group">
+              <%= f.label :nombres ,:class=>'form-label'%><br />
               <%= f.text_field :name,:class=>'form-control',:maxlength=>'30'%>
             </div>
-          </div>
-          <%if !current_user.is_company?%>
-            <div class="form-group">
-              <%= f.label :apellido,:class=>'form-label' %><br />
-              <div class="col col-md-6">
+            <%if !current_user.is_company?%>
+              <div class="form-group">
+                <%= f.label :apellidos,:class=>'form-label' %><br />
                 <%= f.text_field :last_name,:class=>'form-control',:maxlength=>'30'%>
               </div>
-            </div>
-          <%end%>
-          <div class="form-group">
-            <%= f.label :email,:class=>'form-label'  %><br />
-            <div class="col col-md-6">
+            <%end%>
+            <div class="form-group">
+              <%= f.label :email,:class=>'form-label'  %><br />
               <%= f.email_field :email, autofocus: true,:class=>'form-control' ,:maxlength=>'50'%>
             </div>
-          </div>
-          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-          <% end %>
-          <div class="form-group">
-            <%= f.label :contraseña_actual,:class=>'form-label' %> <i>(es obligatorio ingresar la contraseña para cambiar los datos)</i><br />
-            <div class="col col-md-6">
-              <%= f.password_field :current_password, autocomplete: "off",:class=>'form-control' %>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
+            <div class="form-group">
+              <%= f.label :contraseña_actual,:class=>'form-label' %> <br />
+              <div class="">
+                <%= f.password_field :current_password, autocomplete: "off",:class=>'form-control' %>
+              </div>
+              <i>Nota: Es obligatorio ingresar la contraseña para cambiar los datos</i>
             </div>
-          </div>
-          <div class="actions">
-            <%= f.submit "Actualizar Informacion Personal",:class=>'btn btn-primary ' %>
-          </div>
-        <% end %>
-      </div>
-        <div class="col col-md-6">
-          <h3>Cambiar contraseña</h3>
-          <i>(dejelo vacia esta parte si no va a cambiarla)</i>
-          <div class="form-group">
-            <%=form_for(@user, url: 'user/edit/password' ) do |f|%>
-            <%= f.label :contraseña,:class=>'form-label' %> <br />
-            <div class="col col-md-6">
-              <%= f.password_field :password, autocomplete: "off",:class=>'form-control' %>
+            <div class="actions">
+              <%= f.submit "Actualizar Informacion Personal",:class=>'btn btn-primary pull-right' %>
             </div>
-            <% if @minimum_password_length %>
-            <em><%= @minimum_password_length %> caracteres minimo</em>
             <% end %>
           </div>
-          <div class="form-group">
-            <%= f.label :confirmacion_contraseña,:class=>'form-label' %><br />
-            <div class="col col-md-6">
+        </div>
+      </div>
+      <div class="col col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3>Cambiar contraseña</h3>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <%=form_for(@user, url: 'user/edit/password' ) do |f|%>
+              <%= f.label :contraseña,:class=>'form-label' %> <br />
+              <%= f.password_field :password, autocomplete: "off",:class=>'form-control' %>
+                <% if @minimum_password_length %>
+                  <em>Nota:<%= @minimum_password_length %> caracteres minimo, por lo menos una mayuscula, una minuscula y un caracter</em>
+                <% end %>
+            </div>
+            <div class="form-group">
+              <%= f.label :confirmacion_contraseña,:class=>'form-label' %><br />
               <%= f.password_field :password_confirmation, autocomplete: "off" ,:class=>'form-control'%>
             </div>
-          </div>
-          <div class="form-group">
-            <%= f.label :contraseña_actual,:class=>'form-label' %> <i>(es obligatorio ingresar la contraseña para cambiar los datos)</i><br />
-            <div class="col col-md-6">
+            <div class="form-group">
+              <%= f.label :contraseña_actual,:class=>'form-label' %> <br />
               <%= f.password_field :current_password, autocomplete: "off",:class=>'form-control' %>
+              <i>Nota: Es obligatorio ingresar la contraseña para cambiar los datos</i>
+            </div>
+            <div class="actions">
+              <%= f.submit "Cambiar Contraseña",:class=>'btn btn-primary pull-right' %>
+            </div>
+              <% end %>
+          </div>
+        </div>
+      </div>
+  <br>
+  <div class="col col-md-12">
+    <div class="panel panel-default">
+      <%if (current_user.is_company?)%>
+        <div class="panel-heading">
+          <h3>Informacion Empresarial</h3>
+        </div>
+        <%@p=current_user.company_information%>
+        <%= form_for :company_information, url: '/company/update' do |f| %>
+        <%= link_to "Atras", "/users/profile",:class=>'btn btn-default' %>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col col-md-6">
+              <%= f.label :correo_de_contacto,:class=>'form-label' %><br />
+              <%= f.email_field :contact_email, autofocus: true ,:class=>'form-control',:maxlength=>'50',:value=>@p.contact_email%>
+            </div>
+            <div class="col col-md-6">
+              <%= f.label :nombre_de_contacto,:class=>'form-label' %><br />
+              <%= f.text_field :contact_name,:class=>'form-control',:maxlength=>'50',:value=>@p.contact_name %>
             </div>
           </div>
+          <br>
+          <div class="row">
+            <div class="col col-md-6">
+              <%= f.label :Telefono_Fijo,:class=>'form-label' %><br/>
+              <%= f.number_field :phone,:class=>'form-control',:max=>'99999999999',:min=>'1000000',:value=>@p.phone %>
+            </div>
+            <div class="col col-md-6">
+              <%= f.label :nit,:class=>'form-label' %></br>
+              <%= f.number_field :nit,:class=>'form-control',:value=>@p.nit %>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <%= f.label :Direccion,:class=>'form-label' ,:maxlength=>'100'%><br />
+            <%= f.text_field :address,:class=>'form-control',:value=>@p.address%>
+          </div>
+          <div class="form-group">
+            <%= f.label :codigo_ciuu,:class=>'form-label' %><br />
+            <%= collection_select(:company_information,:ciu_code_id,CiuCode.all,:id,:description,{:class=>'form-control'},{:multiple => false}) %>
+          </div>
+          <br>
+          <div class="form-group">
+            <%= f.label :descripcion ,:class=>'form-label'%></br>
+            <%= f.text_area  :description,:class=>'form-control' ,:maxlength=>'300',:value=>@p.description%><br>
+          </div>
+          <%= f.hidden_field :user_id, :value => current_user.id%>
+          <%=f.hidden_field :id, :value => current_user.company_information.id%>
           <div class="actions">
-            <%= f.submit "Cambiar Contraseña",:class=>'btn btn-primary' %>
-        </div>
+            <%= f.submit "Guardar" ,:class=>'btn btn-primary pull-right'%>
+          </div>
         <% end %>
+        </div>
+      <%else%>
+        <div class="panel-heading">
+          <h3>Informacion Personal</h3>
+        </div>
+        <div class="panel-body">
+          <%@u=current_user.personal_information%>
+          <%= form_for :personal_information, url: '/personal/update' do |f| %>
+          <div class="row">
+            <div class="col col-md-6">
+              <%= f.label :Telefono_Fijo,:class=>'form-label' %><br/>
+              <%= f.number_field :phone,:class=>'form-control',:max=>'999999999999',:min=>'1000000',:value=>@u.phone %>
+            </div>
+            <div class="col col-md-6">
+              <%= f.label :celular,:class=>'form-label' %><br/>
+              <%= f.number_field :cellphone,:class=>'form-control',:max=>'99999999999',:min=>'1000000',:value=>@u.cellphone %>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <%= f.label :Direccion,:class=>'form-label' %><br />
+            <%= f.text_field :address,:class=>'form-control',:maxlength=>'100',:value=>@u.address%>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col col-md-6">
+              <%= f.label :Fecha_Nacimiento,:class=>'form-label' %><br />
+              <%= f.date_select :birthdate,:start_year=> 1970,:end_year=>Time.now.year-10,:default=>@u.translate_birthday_to_edit%>
+            </div>
+            <div class="col col-md-6">
+              <div class="checkbox">
+                <b><%= f.label :género%>:</b>&nbsp;
+                <%= f.label :Hombre%>
+                <%= f.radio_button :gender, true, :checked=>true%>
+                <%= f.label :Mujer%>
+                <%= f.radio_button :gender, false%>
+              </div>
+            </div>
+          </div>
+          <%= f.hidden_field :user_id, :value => current_user.id%>
+          <%=f.hidden_field :id, :value => current_user.personal_information.id%>
+          <div class="actions">
+            <%= f.submit "Guardar",:class=>'btn btn-primary pull-right' %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <%end%>
+    </div>
+    <div class="col col-md-12">
+    <div  class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Eliminar mi cuenta</h3>
+      </div>
+<!-- # <%= link_to "Destroy", admin_destroy_user_path(current_user), method: :delete, data: { confirm: "You sure?" } %> -->
+      <div class="panel-body">
+        <p>Ya no quieres ser parte de nuestra red? <%= button_to "Eliminar mi cuenta", registration_path(resource_name), data: { confirm: "Estas seguro?" }, method: :delete ,:class=>'btn btn-danger pull-right'%></p>
       </div>
     </div>
   </div>
-<div  class="panel-body"></div>
-<div class="panel panel-footer well">
-  <%= link_to "Atras", "/users/profile",:class=>'btn btn-info' %>
-<div class="container form-horizontal">
-<%if (current_user.is_company?)%>
-<h3>Informacion Empresarial</h3>
-  <%@p=current_user.company_information%>
-<%= form_for :company_information, url: '/company/update' do |f| %>
-  <div class="form-group">
-    <%= f.label :Direccion,:class=>'form-label' ,:maxlength=>'100'%><br />
-    <div class="col col-md-6">
-      <%= f.text_field :address,:class=>'form-control',:value=>@p.address%>
-    </div>
   </div>
-  <div class="form-group">
-    <%= f.label :correo_de_contacto,:class=>'form-label' %><br />
-    <div class="col col-md-6">
-      <%= f.email_field :contact_email, autofocus: true ,:class=>'form-control',:maxlength=>'50',:value=>@p.contact_email%>
-    </div>
-    </div>
-    <div class="form-group">
-    <%= f.label :nombre_de_contacto,:class=>'form-label' %><br />
-    <div class="col col-md-6">
-      <%= f.text_field :contact_name,:class=>'form-control',:maxlength=>'50',:value=>@p.contact_name %>
-    </div>
-    </div>
-    <div class="field">
-    <%= f.label :codigo_ciuu,:class=>'form-label' %><br />
-    <div class="">
-      <%= collection_select(:company_information,:ciu_code_id,CiuCode.all,:id,:description,{:class=>'form-control'},{:multiple => false}) %>
-    </div>
-    </div>
-    <div class="form-group">
-    <%= f.label :Telefono_Fijo,:class=>'form-label' %><br/>
-    <div class="col col-md-6">
-    <%= f.number_field :phone,:class=>'form-control',:max=>'99999999999',:min=>'1000000',:value=>@p.phone %>
-  </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :nit,:class=>'form-label' %></br>
-    <div class="col col-md-6">
-    <%= f.number_field :nit,:class=>'form-control',:value=>@p.nit %>
-  </div>
-  </div>
-  <br>
-  <div class="form-group">
-    <%= f.label :descripcion ,:class=>'form-label'%></br>
-    <div class="col col-md-6">
-    <%= f.text_area  :description,:class=>'form-control' ,:maxlength=>'300',:value=>@p.description%><br>
-  </div>
-  </div>
-      <%= f.hidden_field :user_id, :value => current_user.id%>
-      <%=f.hidden_field :id, :value => current_user.company_information.id%>
-  <div class="actions">
-    <%= f.submit "Guardar" ,:class=>'btn btn-primary'%>
-  </div>
-<% end %>
-<%else%>
-<h3>Informacion Personal</h3>
-<%@u=current_user.personal_information%>
-<%= form_for :personal_information, url: '/personal/update' do |f| %>
-  <div class="form-group">
-    <%= f.label :Direccion,:class=>'form-label' %><br />
-    <div class="col col-md-6">
-      <%= f.text_field :address,:class=>'form-control',:maxlength=>'100',:value=>@u.address%>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :Telefono_Fijo,:class=>'form-label' %><br/>
-    <div class="col col-md-6">
-      <%= f.number_field :phone,:class=>'form-control',:max=>'999999999999',:min=>'1000000',:value=>@u.phone %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :celular,:class=>'form-label' %><br/>
-    <div class="col col-md-6">
-      <%= f.number_field :cellphone,:class=>'form-control',:max=>'99999999999',:min=>'1000000',:value=>@u.cellphone %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :Fecha_Nacimiento,:class=>'form-label' %><br />
-    <div class="col col-md-12">
-      <%= f.date_select :birthdate,:start_year=> 1970,:end_year=>Time.now.year-10,:default=>@u.translate_birthday_to_edit%>
-    </div>
-  </div>
-  <div class="checkbox">
-    <%= f.label :género%>&nbsp;
-    <%= f.label :Hombre%>
-    <%= f.radio_button :gender, true, :checked=>true%>
-    <%= f.label :Mujer%>
-    <%= f.radio_button :gender, false%>
-  </div>
-      <%= f.hidden_field :user_id, :value => current_user.id%>
-      <%=f.hidden_field :id, :value => current_user.personal_information.id%>
-  <div class="actions">
-    <%= f.submit "Guardar",:class=>'btn btn-primary' %>
-  </div>
-<% end %>
-<%end%>
-</div>
-</div>
-
-<div  class="panel-body"></div>
-<div class="panel panel-footer well">
-<div class="container">
-<h3>Eliminar mi cuenta</h3>
-<!-- # <%= link_to "Destroy", admin_destroy_user_path(current_user), method: :delete, data: { confirm: "You sure?" } %> -->
-<p>Ya no quieres ser parte de nuestra red? <%= button_to "Eliminar mi cuenta", registration_path(resource_name), data: { confirm: "Estas seguro?" }, method: :delete ,:class=>'btn btn-danger'%></p>
-</div>
-</div>
 </div>
 </div>
