@@ -121,13 +121,12 @@ appearance: none;
           <div class="panel panel-default" style="left:5px;">
             <div class="panel-heading">
               <div class="panel-title">
-                <h3>Filtros dinamicos</h3>
+                <h4>Filtros dinamicos</h4>
               </div>
             </div>
             <div class="panel-body">
-              <div class="container">
                 <%= form_for :report, url: '/reporte/nuevo' do |f|%>
-                <div class="container">
+                <div class="row">
                   <!-- reportes por grado academico -->
                   <div class="col col-md-5 col-sm-4">
                     <div class="field">
@@ -173,13 +172,13 @@ appearance: none;
                   <div>
                     <%=f.label :por_fecha %>
                     <input type="checkbox" id="check_fecha">
-                    <div id="fecha_inicio" style="display:none;">
-                      <%= f.label :fecha_inicio%>
+                    <div id="fecha_inicio" style="display:none; margin-left:10px;">
+                      Fecha inicio:
                       <%= f.date_select :fecha_inicio,:start_year  =>1990, :end_year=>Time.now.year,:include_blank => true%>
                     </div>
-                    <div id="fecha_fin" style="display:none;">
-                      <%= f.label :fecha_fin%>
-                      <%= f.date_select :fecha_fin,:start_year  =>1990,:end_year=>Time.now.year,:include_blank => true%>
+                    <div id="fecha_fin" style="display:none; margin-left:10px;">
+                      Fecha fin:
+                      &nbsp;&nbsp;&nbsp;&nbsp;<%= f.date_select :fecha_fin,:start_year  =>1990,:end_year=>Time.now.year,:include_blank => true%>
                     </div>
                   </div>
                 </div>
@@ -187,16 +186,16 @@ appearance: none;
                   <div>
                     <%=f.label :por_genero %>
                     <input type="checkbox" id="check_genero">
-                    <div id="hombres" style="display:none;">
-                      <%= f.label :hombres%>
+                    <div id="hombres" style="display:none;margin-left:10px;">
+                      Hombres
                       <%= f.radio_button :genero,"Masculino"%>
                     </div>
-                    <div id="mujeres" style="display:none;">
-                      <%= f.label :mujeres%>
+                    <div id="mujeres" style="display:none;margin-left:10px;">
+                      Mujeres
                       <%= f.radio_button :genero,"Femenino"%>
                     </div>
-                    <div id="ambos" style="display:none;">
-                      <%= f.label :ambos%>
+                    <div id="ambos" style="display:none;margin-left:10px;">
+                      Ambos
                       <%= f.radio_button :genero,"Ambos",:checked => true %>
                     </div>
                   </div>
@@ -204,14 +203,11 @@ appearance: none;
                 <div  class="col">
                 </div>
                 <br>
-                <div class="actions col-xs-12">
-                  <%= f.submit "Generar" , :class =>"btn btn-primary"%>
+                <div class="actions col col-md-12">
+                  <%= f.submit "Generar" , :class =>"btn btn-primary pull-right"%>
                 </div>
                 <div>
-
-
                 </div>
-
                 <br><br><br><br><br>
                 <% end %>
               </div>

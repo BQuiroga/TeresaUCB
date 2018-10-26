@@ -19,7 +19,7 @@
             <div >
               <div class="table-responsive">
                 <div id="Todas las carreras" class="filtro">
-                <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                <table class="table table-striped table-bordered table-hover" >
                   <tr>
                     <th style="text-align: center;">&nbsp;Género&nbsp;</th>
                     <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
@@ -27,7 +27,7 @@
                   <% @info_charts.each do |date|%>
                   <tr>
                     <td>&nbsp;<%=date[0]%>&nbsp;</td>
-                    <td ><%= date[1]%></td>
+                    <td style="text-align: center;"><%= date[1]%></td>
                   </tr>
                   <%end%>
                 </table>

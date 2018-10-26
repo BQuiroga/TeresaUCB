@@ -2,12 +2,11 @@
 
 
 <a href="/reportes"><button class="btn btn-primary">Volver Atras</button></a>
-<p>
-  Descargar Tabla:
-  <%= link_to "Excel", reporte_nuevo_path(format: "xls") %>
-</p>
 <div class="container">
-  <h2>Lista de reportes</h2>
+  <h2>Lista de reportes
+    <%= link_to "Descargar Excel", reporte_nuevo_path(format: "xls") ,:class=>"btn btn-default pull-right"%>
+  </h2>
+
   <button id="myBtn" style="display:none">Open Modal</button>
 
   <!-- The Modal -->
@@ -27,7 +26,7 @@
         <li class="list-group-item">
           <div>
               <div class="table-responsive">
-                <table  class="table table-striped table-bordered table-hover" style="text-align: center;" id="table_report">
+                <table  class="table table-striped table-bordered table-hover" id="table_report">
                   <tr>
                     <th style="text-align: center;">&nbsp;Titulo&nbsp;</th>
                     <th style="text-align: center;">&nbsp;Estudiantes egresados &nbsp;</th>

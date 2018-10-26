@@ -14,12 +14,12 @@
               <%= form_for(resource, as: resource_name, :class=>"login-form" ,url: session_path(resource_name)) do |f| %>
               <div class="col col-md-12">
                 <%= f.label :correo,:class=>"form-label" %><br />
-                <%= f.email_field :email, autofocus: true ,:class=>"form-username form-control",:style=>"background-color: #ffffff"%>
+                <%= f.email_field :email, autofocus: true ,:class=>"form-control",:style=>"background-color: #ffffff"%>
               </div>
             <br>
               <div class="col col-md-12">
                 <%= f.label :contraseña,:class=>"form-label"  %><br />
-                <%= f.password_field :password, autocomplete: "off", :class=>"form-password form-control" %>
+                <%= f.password_field :password, autocomplete: "off", :class=>"form-control" %>
               </div>
               <% if devise_mapping.rememberable? -%>
                 <div class="col col-md-12">
