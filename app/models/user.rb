@@ -56,11 +56,11 @@ class User < ActiveRecord::Base
     Picture.create(:user_id=>self.id)
   end
   def create_dependencies
-    Resume.create(:user_id => self.id)
     if self.is_company?
       CompanyInformation.create(:user_id=>self.id)
     else
       PersonalInformation.create(:user_id => self.id)
+      Resume.create(:user_id => self.id)
     end
   end
   def phone

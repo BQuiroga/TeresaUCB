@@ -24,16 +24,16 @@
     <%= f.label :nombre_de_la_empresa,:class=>"control-label empresa",:style=>"display:none" %>
     <%= f.text_field :name,:class=>"form-control"%>
   </div>
-  <div class="col col-md-6">
+  <div class="col col-md-6" id="apellidos">
     <%= f.label :apellidos,:class=>"control-label col-sm-2" %><br />
-    <%= f.text_field :last_name,:class=>"form-control"%>
+    <%= f.text_field :last_name,:class=>"form-control" %>
   </div>
 </div>
 <br>
   <div class="">
     <div clss="">
       <%= f.label :correo_electronico,:class=>"control-label" %><br />
-      <%= f.email_field :email, autofocus: true,:class=>"form-control sign-in-email" %>
+      <%= f.email_field :email, autofocus: true,:class=>"form-control " %>
     </div>
   </div>
   <br>
@@ -76,6 +76,7 @@
 $('#check_company').click(function() {
   $('.persona')[this.checked ? "hide" : "show"]();
   $('.empresa')[this.checked ? "show" : "hide"]();
+  $('#apellidos')[this.checked ? "hide" : "show"]();
 });
 // $(function(){
 // $('body').tooltip({ selector: '[data-toggle="tooltip"]' });
