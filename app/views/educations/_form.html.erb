@@ -21,7 +21,7 @@
     </div>
     <div class="field col col-md-6 col-xs-6" >
       <%= f.label :fecha_egreso %>:
-      <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year + 5%>
+      <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year + 5,:class=>'form-control',:id=>'date'%>
     </div>
   </div>
   <br>
@@ -53,4 +53,8 @@ $(document).ready(function () {
 $("#universidades").change(function(){
 $("#filtrar_u").val(this.value);
 }).change();
+
+$(".date-picker").datepicker( {
+   dateFormat: 'd/m/yy'
+  });
 </script>
