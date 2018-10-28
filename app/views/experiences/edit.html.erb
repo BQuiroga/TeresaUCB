@@ -57,14 +57,14 @@
       </div>
       <div class="row">
         <div class="col col-md-6">
-          <%=f.label :a_la_fecha_sigue_trabajando_en_la_empresa%>
           <%= f.check_box :until_now,:id=>"checkboxDate", :checked =>"true"%>
+          <%=f.label :a_la_fecha_sigue_trabajando_en_la_empresa%>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="col col-md-6">
-          Desea agregar una persona de referencia <input type="checkbox" id="checkbox" name="checkbox">
+          <input type="checkbox" id="checkbox" name="checkbox"> Desea agregar una persona de referencia
         </div>
       </div>
       <div class="row">
@@ -79,7 +79,7 @@
           </div>
         </div>
       </div>
-      <br>
+      <br><br>
 
       <%=f.hidden_field :id, :value => @experience.id%>
       <div class="actions">

@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :null_session
   before_action :authenticate_user!, :except => [:inicio]
-
+  def after_sign_in_path_for(resource)
+    '/users/profile'
+  end
   def search
     @users=User.where(name: params[:name], last_name: params[:last_name])
   end

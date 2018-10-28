@@ -1,35 +1,43 @@
-
-<div class="panel panel-default">
-  <div class="panel-heading"><div class="panel-title"><h3>Todos los Grupos </h3></div></div>
-  <div class="panel-body">
-  <% if @grupos.size >0%>
-  <ul class="list-group">
-  <% @grupos.each do |group| %>
-    <li class="list-group-item">
-      <div>
-        <h4>  <b><%=group.name%>&emsp;</b>
-          <a href="/grupos/<%=group.id%>/miembros">
-            <button class="btn btn-default btn-sm pull-right">Ver Miembros</button>
-          </a>
-
-          <button class="btn btn-warning btn-sm pull-right">
-            <%if current_user.is_my_group(group.id)%>
-              <%=link_to "Borrar grupo", {controller: "groups",action:"abandonar",id:group.id}%>
-            <%else%>
-              <%if current_user.is_in_this_group(group)%>
-                <%=link_to "Salir", {controller: "groups",action:"abandonar",id:group.id}%>
-              <%else%>
-                <%=link_to "Unirme",{controller: "groups",action:"unirme",id:group.id}%>
-              <%end%>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading"><div class="panel-title"><h3>Todos los Grupos </h3></div></div>
+      <div class="panel-body">
+      <% if @grupos.size >0 %>
+        <div class=table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <th>Nombre del grupo</th>
+            <th>Descripción</th>
+            <th>Miembros</th>
+            <th>Acciones</th>
+          </thead>
+          <tbody>
+            <% @grupos.each do |group| %>
+            <tr class="">
+              <td><%=group.name %></td>
+              <td><%=group.description %>&nbsp;</td>
+              <td><%=group.members %></td>
+              <td>
+                <a href="/grupos/<%=group.id %>/miembros"><button class="btn btn-default btn-sm pull-right">Ver Miembros</button></a>
+                <button class="btn btn-warning btn-sm pull-right">
+                  <%if current_user.is_my_group(group.id) %>
+                    <%=link_to "Borrar grupo", {controller: "groups",action:"abandonar",id:group.id} %>
+                  <%else %>
+                    <%if current_user.is_in_this_group(group) %>
+                      <%=link_to "Salir", {controller: "groups",action:"abandonar",id:group.id} %>
+                    <%else %>
+                      <%=link_to "Unirme",{controller: "groups",action:"unirme",id:group.id} %>
+                    <%end %>
+                  <%end %>
+                </button>
+              </td>
+            </tr>
             <%end%>
-          </button>
-        </h4>
-        <%=group.description%>&nbsp;
-        <%=group.members%>
-      </div>
-    </li>
+          </tbody>
+        </table>
+        </div>
       <%end%>
-   <%end%>
- </ul>
- </div>
+      </div>
+    </div>
+  </div>
  </div>

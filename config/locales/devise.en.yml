@@ -7,14 +7,14 @@ en:
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
     failure:
-      already_authenticated: "Ya iniciaste sesion anteriormente."
+      already_authenticated: ""
       inactive: "Tu cuenta aun no se encuentra activa."
       invalid: "Correo o contraseña invalidos."
       locked: "Tu cuenta se encuentra bloqueada."
       last_attempt: "Tienes una ultimo intento antes de que tu cuenta sea bloqueada."
       not_found_in_database: "Correo o contraseña invalidos."
       timeout: "Expiro tu tiempo de actividad. Porfavor inicia sesion nuevamente para continuar."
-      unauthenticated: "Necesitas iniciar sesion o registrarte para continuar."
+      unauthenticated: ""
       unconfirmed: "Debes confirmar tu correo para continuar."
     mailer:
       confirmation_instructions:
@@ -65,3 +65,13 @@ en:
       not_saved:
         one: "existe 1 error que no nos permite continuar:"
         other: " existe %{count} errores que no nos permiten continuar:"
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: " no puede estar vacio"
+            password:
+              blank: "o contraseña no puede estar vacio"

@@ -29,13 +29,11 @@
     <%= f.label :descripción %>:
     <%= f.text_area :description,:class=>"form-control",:rows=>1%>
   </div>
-  <br>
-
-  <br>
   <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
   <div class="actions" style="">
     <%= f.submit "Guardar" , :class =>"btn btn-primary pull-right",:id=>'boton_academico'%>
   </div>
+  <br><br>
 
 <% end %>
 

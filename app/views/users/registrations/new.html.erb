@@ -4,14 +4,16 @@
 
 
 
-   <%if devise_error_messages!.size>0%>
-<div class="alert alert-danger alert-dismissable fade in">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <%= devise_error_messages! %>
-</div>
+
+<div class="container" style="margin-top:15px;">
+  <%if devise_error_messages!.size>0%>
+  <div class="alert alert-danger alert-dismissable fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+
+    <%= devise_error_messages! %>
+  </div>
 <%end%>
 
-<div class="container" style="margin-top:25px;">
 <div class="panel panel-default">
 <div class="panel-heading">
 <h2>Registro</h2>
