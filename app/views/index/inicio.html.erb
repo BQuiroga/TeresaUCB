@@ -1,8 +1,7 @@
-<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
 
-<div class="collapse navbar-collapse navbar-fixed-top navbar-inverse">
+<div class="collapse navbar-collapse navbar-fixed-top navbar-inverse" style="height:20%"">
 
-  <img src="logocato.png" alt="logo" style="width:50px;height:50px;">
+  <img src="/logocato.png" alt="logo" style="width:50px;height:50px;">
   <ul class="nav navbar-nav navbar-right">
     <li class="scroll active" id="home-li"><a href="#home" >Inicio</a></li>
     <li class="scroll" id="services-li"><a href="#services" >Servicios</a></li>
@@ -13,12 +12,11 @@
     <!-- <li class="scroll"><a href="">Detras</a></li> -->
     <!-- <li class="scroll"><a href="">Por que Bolsa de Trabajo?</a></li> -->
     <li class="scroll">
-        <a href="/users/profile">
           <%if user_signed_in?%>
-            Perfil
-            <%else%>
-            Ingresa
-            <%end%>
+            <%= link_to 'Perfil', users_profile_path%>
+          <%else %>
+            <%= link_to 'Ingresar', users_profile_path%>
+          <%end %>
         </a>
       </li>
   </ul>
@@ -45,14 +43,14 @@
           <div class="caption">
             <h1 class="animated fadeInLeftBig"> <span>bolsa de Trabajo</span></h1>
             <p class="animated fadeInRightBig carousel-letters">donde podras publicar y recibir ofertas laborales</p>
-            <a data-scroll class="btn btn-start animated fadeInUpBig" href="/users/profile">Ingresar</a>
+            <%=link_to 'Ingresar',users_profile_path,:class=>'btn btn-start animated fadeInUpBig' %>
           </div>
         </div>
         <div class="item" style="background-image: url(fila3.jpg)">
           <div class="caption">
             <h1 class="animated fadeInLeftBig">no hagas<span> filas</span></h1>
             <p class="animated fadeInRightBig carousel-letters">contactate con las empresas y profesionales de manera mas rapida</p>
-            <a data-scroll class="btn btn-start animated fadeInUpBig" href="/users/profile">Ingresar</a>
+            <%=link_to 'Ingresar',users_profile_path,:class=>'btn btn-start animated fadeInUpBig' %>
           </div>
         </div>
         <div class="item" style="background-image: url(red.jpg)">
@@ -61,6 +59,7 @@
             <p class="animated fadeInRightBig carousel-letters">publica - informate - comparte</p>
             <%if !user_signed_in?%>
             <a data-scroll class="btn btn-start animated fadeInUpBig" href="/users/sign_up">Empezar</a>
+
             <%end%>
           </div>
         </div>
@@ -203,7 +202,6 @@
         <h2>Donde encontrarnos</h2>
         <div id="map-us"></div>
         <br><br>
-        <div id="google-map" class="wow fadeIn" data-latitude="-17.3715458" data-longitude="-66.1447186" data-wow-duration="1000ms" data-wow-delay="400ms"></div>
       </div>
       </section>
     <section id="contact">
@@ -217,8 +215,8 @@
           </div>
           <div class="contact-form wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
             <div class="row">
-              <div class="col-sm-6">
-              
+              <div class="col-sm-3">
+
               </div>
               <div class="col-sm-6">
                 <div class="contact-info wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">

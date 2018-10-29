@@ -48,7 +48,7 @@ en:
         blank: "El campo de Correo no debe estar vacio"
         taken: "El correo electronico ya esta registrado"
     sessions:
-      signed_in: "Iniciaste sesion!."
+      signed_in: "Bienvenido de nuevo!"
       signed_out: "Registro satisfactorio"
       already_signed_out: "Registro satisfactorio."
     unlocks:

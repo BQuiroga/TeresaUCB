@@ -6,10 +6,10 @@
       <div class="table-responsive">
         <table class="table table-bordered">
           <thead>
-            <th>Nombre del grupo</th>
-            <th>Descripción</th>
-            <th>Miembros</th>
-            <th>Acciones</th>
+            <th class="info">Nombre del grupo</th>
+            <th class="info">Descripción</th>
+            <th class="info">Miembros</th>
+            <th class="info">Acciones</th>
           </thead>
           <tbody>
             <% @groups.each do |group| %>
@@ -21,7 +21,7 @@
                 <a href="/grupos/<%=group.id%>/miembros"><button class="btn btn-default btn-sm pull-right">Ver Miembros</button></a>
                 <button class="btn btn-warning btn-sm pull-right">
                   <%if current_user.is_my_group(group.id)%>
-                    <%=link_to "Borrar grupo", {controller: "groups",action:"abandonar",id:group.id}%>
+                    <%=link_to "Borrar", {controller: "groups",action:"abandonar",id:group.id}%>
                   <%else%>
                     <%if current_user.is_in_this_group(group)%>
                       <%=link_to "Salir", {controller: "groups",action:"abandonar",id:group.id}%>

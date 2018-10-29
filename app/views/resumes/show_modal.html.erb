@@ -1,12 +1,12 @@
 <div class="container">
 
-  <div class="pull-right">
+  <div class="btn-group pull-right">
     <br><br>
+    <%if current_user.is_company?%>
+    <button id="publicar" class="btn btn-success">Publicar</button>
+    <%end%>
     <button id="mostrar_todo" onclick="mostrar_todo()" class="btn btn-primary button-cv">Mostrar CV completo</button>
     <button id="ocultar_todo" onclick="ocultar_todo()" style="display:none" class="btn btn-primary button-cv">Mostrar CV resumido</button>
-    <%if current_user.is_company?%>
-      <button id="publicar" class="btn btn-success">Publicar</button>
-    <%end%>
   </div>
 <%if current_user.is_company?%>
   <div id="addSuggestion" class="modal" >
@@ -28,7 +28,7 @@
               &nbsp;&nbsp;&nbsp;<p><i>&nbsp;&nbsp;&nbsp;(Tu información de contacto registrada ya se muestra automaticamente, no neecesitas ponerla de nuevo)</i></p>
             </div>
             <div class="actions">
-              <%= f.submit "Enviar", class: "btn btn-success",:id=>'boton_enviar',:disabled=>true%>
+              <%= f.submit "Enviar", class: "btn btn-success pull-right",:id=>'boton_enviar',:disabled=>true%>
             </div>
           <% end %>
 

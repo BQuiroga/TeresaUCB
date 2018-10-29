@@ -558,7 +558,9 @@
    //border: 3px solid red;
    //overflow: hidden;
  }
-
+ body {
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif  !important;
+ }
  .formulario2{
    margin-bottom: 140px;
  }
@@ -787,18 +789,18 @@
  }
  //ESTILOS PARA PROFILE
  .enlaces-perfil{
-   display: block;
-   text-decoration: none;
-   //background-color: #4285f4;
-   background-color: rgb(66,139,202);
-   height: 55px;
-   padding: 18px;
-   //margin-top: 15px;
-   //margin-right: 32px;
-   color: white;
-   width: 110%;
-   margin-bottom: 3px;
-   border-radius: 3px;
+   // display: block;
+   // text-decoration: none;
+   // //background-color: #4285f4;
+   // background-color: rgb(66,139,202);
+   // height: 55px;
+   // padding: 18px;
+   // //margin-top: 15px;
+   // //margin-right: 32px;
+   // color: white;
+   // width: 110%;
+   // margin-bottom: 3px;
+   // border-radius: 3px;
  }
  .pull-right-g {
   float: right !important;
@@ -807,13 +809,13 @@
   color: #F2F2F2;
 }
  .enlaces-perfil:hover{
-   text-decoration: none;
-   background-color: rgb(58, 83, 155);
-   color: white;
-   font-size: 1em;
-   padding: 13px;
-   cursor: pointer;
-   box-shadow: 0 0 5px rgba(0,0,0,0.5);
+   // text-decoration: none;
+   // background-color: rgb(58, 83, 155);
+   // color: white;
+   // font-size: 12px;
+   // padding: 13px;
+   // cursor: pointer;
+   // box-shadow: 0 0 5px rgba(0,0,0,0.5);
  }
  .btn{
    //border-radius: 0;

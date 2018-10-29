@@ -8,9 +8,10 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <title>Bolsa de Trabajo</title>
   <!-- Latest compiled and minified CSS -->
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js">
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -19,10 +20,9 @@
   <%= csrf_meta_tags %>
  <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
  <script src="http://canvg.googlecode.com/svn/trunk/canvg.js"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
 
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js">
 
  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.9.0/css/lightbox.min.css">
@@ -30,9 +30,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/responsive-elements/1.0.2/responsive-elements.min.js">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
 <!-- jQuery library -->
-<link rel="shortcut icon" type="image/png" href="logocato-favi.png">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff"></script>
 
 <!-- Offers form css -->
 <style>
@@ -45,7 +42,7 @@ nav select {display: none;}
 </style>
 </head>
 <body >
-  <nav class="navbar navbar-inverse navbar-fixed-top collapse navbar-collapse" style="top:0px;position:absolute;">
+  <nav class="navbar navbar-inverse navbar-fixed-top collapse navbar-collapse" style="background-color:#1a5a8f;top:0px;position:absolute;">
       <ul id="menu">
         <li>  <%= link_to 'Bolsa de Trabajo', '/', :class=>'navbar-text pull-left'%></li>
         <% if user_signed_in? %>
@@ -62,7 +59,7 @@ nav select {display: none;}
         <li><%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link navbar-text' %>&emsp;</li>
         <li><%= link_to 'Ver grupos', '/grupos/todos', :class => 'navbar-link navbar-text' %>&emsp;</li>
         <li><%= link_to 'Mis grupos', '/grupos/mis_grupos', :class => 'navbar-link navbar-text' %>&emsp;</li>
-        <li><%= link_to 'Notificaciones', '/mis_notificaciones', :class => 'navbar-link navbar-text' %><span style="color:rgb(255, 255, 255);" class=navbar-text><%=current_user.unreaded_notifications.size%>&emsp;</span></li>
+        <li><%= link_to 'Notificaciones', '/mis_notificaciones', :class => 'navbar-link navbar-text',:style=>'padding-right:0px' %><span style="color:rgb(255, 255, 255);" class="navbar-text"><%=current_user.unreaded_notifications.size%>&emsp;</span></li>
         <%if current_user.is_administrator or current_user.is_secretary?%>
           <li><%= link_to 'Gestion de usuarios', '/users', :class => 'navbar-link navbar-text' %>&emsp;</li>
           <li><%= link_to 'Sugerencias!', '/suggestions', :class => 'navbar-link navbar-text' %>&emsp;</li>
@@ -74,8 +71,14 @@ nav select {display: none;}
         <li><%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link navbar-text'  %></li>
         <li class="pull-right">
           <%= form_for :user, url: '/busqueda/usuarios' do |f| %>
-              <%= f.text_field :name,:style=>"height:500%",:id=>"search-box",placeholder:"Buscar",:maxlength=>30%>
-              <%= f.submit "Buscar",:class=>"btn btn-default" %>
+          <div class="row input-group" style="vertical-align:middle;margin-top:7px" >
+            <div class="col col-md-10" style="align-left; padding-right:0px;">
+              <%= f.text_field :name,:class=>"form-control",:id=>"search-box",placeholder:"Buscar",:maxlength=>30%>
+            </div>
+            <div class="col col-md-2" style="padding-left:0px">
+              <button type="submit" class="btn" ><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+          </div>
           <% end %>
         </li>
         <% else %>
@@ -188,8 +191,9 @@ nav select {display: none;}
             <%= f.hidden_field :user_id, :value=>current_user.id %>
           </div>
           <div class="actions">
-            <%= f.submit "Enviar", class: "btn btn-success",:id=>'boton_enviar',:disabled=>true%>
+            <%= f.submit "Enviar", class: "btn btn-primary pull-right",:id=>'boton_enviar',:disabled=>true%>
           </div>
+          <br>
         <% end %>
 
     </div>
@@ -211,6 +215,9 @@ nav select {display: none;}
 .navbar-inverse .navbar-text{
   color: #ffffff;
   font-size: 14px;
+}
+.navbar {
+  background:#1a5a8f;
 }
 .navbar-inverse .navbar-link{
   color: #ffffff;

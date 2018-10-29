@@ -5,7 +5,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <div clas="panel-footer well">
-            <h1 >Personas Calificadas </h1>
+            <h2 >&nbsp;Personas Calificadas </h2>
           </div>
         </div>
       </div>
@@ -33,14 +33,12 @@
         <%=f.hidden_field :idiomas,:value => @idiomas%>
         <%=f.hidden_field :cargo,:value => @cargos%>
         <%=f.hidden_field :habilidades,:value => @habilidades%>
-        <%=f.hidden_field :results, :value=> @ids%>
+        <%=f.hidden_field :results, :value=> @ids %>
         <!-- <textarea name="message" rows="14" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Message' doit être renseigné."></textarea> -->
-        <div class="container">
           <center>
-            <button type="submit" class="btn btn-primary btn-lg btn-publicar">Publicar a todos</button>
+            <button type="submit" class="btn btn-primary btn-lg btn-publicar pull-right">Publicar a todos</button>
           </center>
           <p><i>(El proceso puede tardar unos pocos minutos debido a que se enviaran notificaciones a los perfiles y a los correos electronicos de los ofertados)</i></p>
-        </div>
       <%end%>
       <%end%>
       <!-- Three columns of text below the carousel -->

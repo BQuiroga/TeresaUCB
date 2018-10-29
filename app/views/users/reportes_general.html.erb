@@ -73,8 +73,8 @@ appearance: none;
                   <div class="panel panel-default">
                     <div class="panel panel-heading">
                       <div class="panel-title" tabindex="-1" href="#">
-                        <span class="btn btn-default pull-right" id="estaticos_titulados_der" onclick="toggleTitulados()" style="display:none;">Mostrar más</span>
-                        <span class="btn btn-default pull-right" id="estaticos_titulados_ab" onclick="toggleTitulados()" >Mostrar menos</span>
+                        <span class="btn btn-default pull-right" id="estaticos_titulados_der" onclick="toggleTitulados()" style="display:none;">Mostrar menos</span>
+                        <span class="btn btn-default pull-right" id="estaticos_titulados_ab" onclick="toggleTitulados()" >Mostrar más</span>
                         <h5>Estudiantes titulados </h5>
                       </div>
                     </div>
@@ -130,8 +130,8 @@ appearance: none;
                   <!-- reportes por grado academico -->
                   <div class="col col-md-5 col-sm-4">
                     <div class="field">
-                      <%=f.label :reportes_por_grados %>
                       <input type="checkbox" id=check_grados name="check_grados" class="field">
+                      <%=f.label :reportes_por_grados %>
                     </div>
                     <div id="grados" name="grados" style="display:none;" >
                       <select id="grado" onchange="cambioCarreras()" name="report[grado]" class="grado-select">
@@ -170,8 +170,8 @@ appearance: none;
 
                 <div class="col col-md-4   col-sm-3">
                   <div>
-                    <%=f.label :por_fecha %>
                     <input type="checkbox" id="check_fecha">
+                    <%=f.label :por_fecha %>
                     <div id="fecha_inicio" style="display:none; margin-left:10px;">
                       Fecha inicio:
                       <%= f.date_select :fecha_inicio,:start_year  =>1990, :end_year=>Time.now.year,:include_blank => true%>
@@ -184,19 +184,19 @@ appearance: none;
                 </div>
                 <div  class="col col-md-3 col-sm-3">
                   <div>
-                    <%=f.label :por_genero %>
                     <input type="checkbox" id="check_genero">
+                    <%=f.label :por_genero %>
                     <div id="hombres" style="display:none;margin-left:10px;">
-                      Hombres
                       <%= f.radio_button :genero,"Masculino"%>
+                      Hombres
                     </div>
                     <div id="mujeres" style="display:none;margin-left:10px;">
-                      Mujeres
                       <%= f.radio_button :genero,"Femenino"%>
+                      Mujeres
                     </div>
                     <div id="ambos" style="display:none;margin-left:10px;">
-                      Ambos
                       <%= f.radio_button :genero,"Ambos",:checked => true %>
+                      Ambos
                     </div>
                   </div>
                 </div>
