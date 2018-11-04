@@ -32,22 +32,47 @@
 <!-- jQuery library -->
 
 <!-- Offers form css -->
-<style>
-ul#menu li{display: inline;}
-nav select {display: none;}
-@media (max-width: 960px) {
-  nav ul#menu { display: none; }
-  nav select { display: inline-block; }
-}
-</style>
+  <style>
+    nav select {display: none;}
+    ul#menu li{display: inline;}
+    @media screen and (min-width: 960px){
+      ul#menu {display:block;}
+      ul#icon-menu {display:none;}
+      #input-buscar{
+        display:none;
+      }
+      #btn-search{
+        top:0;
+      }
+
+    }
+    @media screen and (max-width: 1132px) {
+      ul#icon-menu li{display: inline}
+      nav ul#menu { display: none; }
+      nav ul#icon-menu {display: inline-block;}
+      #input-buscar{display:none;}
+      #btn-search{
+        top:0px;
+        right:0px;
+        position:absolute;
+      }
+    }
+    @media screen and (max-width:760px){
+      ul#icon-menu li{display: inline}
+      nav ul#menu { display: none; }
+      nav ul#icon-menu {display: inline-block;}
+      #input-buscar{display:none;}
+    }
+  </style>
 </head>
 <body >
-  <nav class="navbar navbar-inverse navbar-fixed-top collapse navbar-collapse" style="background-color:#1a5a8f;top:0px;position:absolute;">
+  <nav class="navbar navbar-inverse navbar-fixed-top navbar-collapse" style="background-color:#1a5a8f;top:0px;position:absolute;">
       <ul id="menu">
+        <!-- <li><img src="/logocato.gif" style="width:2%;height:2%"></li> -->
         <li>  <%= link_to 'Bolsa de Trabajo', '/', :class=>'navbar-text pull-left'%></li>
         <% if user_signed_in? %>
         <li>
-            <%= link_to 'Perfil', '/users/profile', :class => 'navbar-link navbar-text' %>&emsp;
+            <%= link_to 'Perfil', '/users/profile', :class => 'navbar-link navbar-text' %> &emsp;
         </li>
         <%if current_user.is_company?%>
           <li><%= link_to 'Publicar oferta', '/oferta/nueva', :class => 'navbar-link navbar-text' %>&emsp;</li>
@@ -113,6 +138,50 @@ nav select {display: none;}
       <option value="/users_sign_in"><%= link_to "Iniciar Sesion", new_user_session_path, :class => 'navbar-link'  %></option>
       <% end %>
     </select>
+    <ul id="icon-menu" style="background-color:#1a5a8f;top:0px;position:absolute;">
+      <li>  <%= link_to '<span class="glyphicon glyphicon-asterisk"></span>'.html_safe, '/', :class=>'navbar-text pull-left'%>&emsp;</li>
+      <% if user_signed_in? %>
+      <li>
+          <%= link_to '<span class="glyphicon glyphicon-home"></span>'.html_safe, '/users/profile', :class => 'navbar-link navbar-text' %> &emsp;
+      </li>
+      <%if current_user.is_company?%>
+        <li><%= link_to 'Publicar oferta', '/oferta/nueva', :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <li><%= link_to 'Ver información Externa', "/CompanyInformation/"+current_user.id.to_s, :class => 'navbar-link navbar-text' %>&emsp;</li>
+      <%elsif !current_user.is_administrator%>
+        <li><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, '/users/curriculum/edit', :class => 'navbar-link navbar-text ' %>&emsp;</li>
+        <li><%= link_to '<span class="glyphicon glyphicon-briefcase"></span>'.html_safe, '/mycurriculum', :class => 'navbar-link navbar-text' %>&emsp;</li>
+      <%end%>
+      <li><%= link_to '<span class="glyphicon glyphicon-user"></span>'.html_safe, edit_user_registration_path, :class => 'navbar-link navbar-text' %>&emsp;</li>
+      <li><%= link_to '<span class="glyphicon glyphicon-th"></span>'.html_safe, '/grupos/todos', :class => 'navbar-link navbar-text' %>&emsp;</li>
+      <li><%= link_to '<span class="glyphicon glyphicon-th-list"></span>'.html_safe, '/grupos/mis_grupos', :class => 'navbar-link navbar-text' %>&emsp;</li>
+      <li><%= link_to '<span class="glyphicon glyphicon-envelope"></span>'.html_safe, '/mis_notificaciones', :class => 'navbar-link navbar-text',:style=>'padding-right:0px' %><span style="color:rgb(255, 255, 255);" class="navbar-text"><%=current_user.unreaded_notifications.size%>&emsp;</span></li>
+      <%if current_user.is_administrator or current_user.is_secretary?%>
+        <li><%= link_to 'Gestion de usuarios', '/users', :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <li><%= link_to 'Sugerencias!', '/suggestions', :class => 'navbar-link navbar-text' %>&emsp;</li>
+
+      <%end%>
+      <%if current_user.is_director%>
+        <li><%= link_to '<span class="glyphicon glyphicon-signal"></span>'.html_safe,'/reportes',:class=>'navbar-link navbar-text' %>&emsp;</li>
+      <%end%>
+      <li><%= link_to '<span class="glyphicon glyphicon-log-out"></span>'.html_safe, destroy_user_session_path, method: :delete, :class => 'navbar-link navbar-text'  %>&emsp;</li>
+
+      <% else %>
+      <li><%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link navbar-text'  %>  </li>
+      <li><%= link_to "Iniciar Sesion", new_user_session_path, :class => 'navbar-link navbar-text'  %></li>
+      <% end %>
+      <li id="form-buscar">
+        <%= form_for :user, url: '/busqueda/usuarios' do |f| %>
+        <div class="row input-group pull-right" style="vertical-align:middle;margin-top:7px;" >
+          <div class="col col-md-10" style="align-left; padding-right:0;" id="input-buscar">
+            <%= f.text_field :name,:class=>"form-control",:id=>"search-box",placeholder:"Buscar",:maxlength=>30%>
+          </div>
+          <div class="col col-md-2" style="padding-left:0px">
+            <button type="submit" class="btn" id="btn-search"><i class="glyphicon glyphicon-search"></i></button>
+          </div>
+        </div>
+        <% end %>
+      </li>
+     </ul>
   </nav>
 <!-- <div class="navbar navbar-inverse navbar-fixed-top collapse navbar-collapse"style="position:fixed;top:0px;">
   <%= link_to 'Bolsa de Trabajo', '/', :class=>'navbar-text pull-left'%>
@@ -169,6 +238,7 @@ nav select {display: none;}
  </div>
  <%end%>
  </div>
+
 <%= yield %>
 <!--
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
