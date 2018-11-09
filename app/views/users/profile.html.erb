@@ -1,13 +1,10 @@
+<style>
+</style>
 
-
-<div class="container-fluid" style="padding: 30px">
+<div class="container-fluid" style="padding:0px">
   <div id="container-cover">
     <div class="hovereffect"  >
 			<%= image_tag("Cochabamba2016.jpg") %>
-        <div class="overlay">
-          <h2>Actualizar foto de portada</h2>
-          <span class="glyphicon glyphicon-camera"></span>
-        </div>
     </div>
   </div>
 </div>
@@ -170,18 +167,13 @@
             <%=f.hidden_field :requiring,:value=>false%>
 		      </div>
 	      </div>
-      	<div class="row barra-enviar">
-      		<div class="col-md-9 col-sm-8 col-xs-4">
-      			<label for="post_image">
-              <!-- <span class="glyphicon glyphicon-camera btn btn-primary" aria-hidden="true"></span> -->
-            </label>
-      		</div>
-      		<div class="col-md-3  col-sm-4  col-xs-8 cont-btn-publicar">
-      			<button type="submit" class="btn btn-primary" id="boton_estado">
-      				Publicar <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
-      			</button>
-      		</div>
-      	</div>
+        <div class="row">
+          <div class="cont-btn-publicar col-md-12">
+            <button type="submit" class="btn btn-primary pull-right" id="boton_estado">
+              Publicar <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
 	     <% end %>
       <br><br>
     <%if (@posts)%>
