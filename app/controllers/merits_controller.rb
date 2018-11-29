@@ -30,7 +30,7 @@ class MeritsController < ApplicationController
 	end
 	def update
 		@merits=Merit.find(merits_params_for_edit[:id])
-		if current_user.id!=@merit.user.id
+		if current_user.id!=@merits.user.id
 			throwUnauthorized
 			return
 		else

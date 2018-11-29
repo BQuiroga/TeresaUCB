@@ -77,7 +77,7 @@ Rails.application.routes.draw do
   get "resumes/bajar"=>'resumes#show_pdf'
   get "resumes/bajar_red"=>'resumes#show_pdf_red'
   get 'photos'=>'pictures#index'
-  get 'photos/new'=>'pictures#new'
+  post 'photos/new'=>'pictures#new'
   #empresas
   post 'company/update'=>'company_informations#update'
   get 'CompanyInformation/:id'=>'resumes#company_info'

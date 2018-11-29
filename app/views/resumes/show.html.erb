@@ -35,8 +35,12 @@
 <div class="container" id="main">
 <div class="container">
 <div class="row-fluid" style="background-color: #f0f0f0; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-  <h2><%=@user.name%> <%=@user.last_name%>
-    <%=image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px")%>
+  <h2><%=@user.name %> <%=@user.last_name %>
+    <%if @picture!=nil%>
+      <%=image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px")%>
+    <% else %>
+    <%=image_tag("missing.png", class: 'img-thumbnail pull-right',style:"width:150px;height:150px") %>
+    <% end %>
   </h2>
 </div>
   <div class="container-body " id="cv-original">
@@ -217,7 +221,11 @@
 <div class="container">
   <div class="container-body " id="cv-azul">
           <div class="section-container-blue">
+            <%if @picture!=nil%>
             <%=image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px;right:30%;")%>
+            <% else %>
+            <%=image_tag("missing.png", class: 'img-thumbnail pull-right',style:"width:150px;height:150px;right:30%;") %>
+            <% end %>
             <div class="container">
               <div class="container">
                 <h1 class="cv-title-name"><b><%=current_user.name%> <%=current_user.last_name%></b> </h1>

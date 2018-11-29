@@ -9,6 +9,7 @@
             <div class="center-select">
               <!-- <input type="text" name="title" id='filtrar' style='width:40%'> -->
               <select id="carrera" onchange="cambioCarreras()">
+                <%@title_list.delete("Bachiller")%>
                 <%@title_list.each do |x|%>
                   <option><%=x%></option>
                   <%end%>

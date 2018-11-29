@@ -1,5 +1,3 @@
-<style>
-</style>
 
 <div class="container-fluid" style="padding:0px">
   <div id="container-cover">
@@ -59,7 +57,8 @@
         <br>
         <% end %>
       <% else %>
-      <%= form_for '/photos/new', html: { multipart: true } do |f| %>
+      <% @picture=Picture.new%>
+      <%= form_for @picture, html: { multipart: true } do |f| %>
         <span class="close" id="close">&times;</span>
         <div class="header">
           <h3>Subir foto de perfil</h3>
@@ -91,7 +90,23 @@
     <br/>
     <br>
 
+<script type="text/javascript">
+  var btn= document.getElementById("container-avatar")
+  var modal = document.getElementById("editProfileAvatar");
+  var span =document.getElementById("close");
+  var span2 =document.getElementById("close2");
+  // var btns=document.getElementById("aceptar");
+  // span.onclick = function() {
+  //     modal.style.display = "none";
+  // };
+  btn.onclick =function(){
+    modal.style.display ="block";
+  };
+  span.onclick =function(){
+    modal.style.display ="none";
+  };
 
+</script>
 </div>
 
 
@@ -101,6 +116,7 @@
   var btn= document.getElementById("container-avatar")
   var modal = document.getElementById("editProfileAvatar");
   var span =document.getElementById("close");
+  var span2 =document.getElementById("close2");
   // var btns=document.getElementById("aceptar");
   // span.onclick = function() {
   //     modal.style.display = "none";
@@ -108,7 +124,13 @@
   btn.onclick =function(){
     modal.style.display ="block";
   };
+  span.onclick =function(){
+    modal.style.display ="none";
+  };
 
+  span2.onclick =function(){
+    modal.style.display ="none";
+  };
   // btn-s.onclick =function(){
   //   window.location.href="/users/profile"
   // };
@@ -143,21 +165,22 @@
 
 
 	<div class="container-fluid">
-		<div class="row ">
+		<div class="row" style="padding-top:5%">
 		 <div class="col-md-2 col-sm-3">
-    		<div class="contenedor-enlaces">
+    		<div class="panel panel-default">
+          <div class="panel-body">
       		<%if current_user.is_company?%>
-      	<%= link_to '<span class="glyphicon glyphicon-pencil"></span> Crear oferta'.html_safe,'/oferta/nueva' ,class: 'enlaces-perfil'%>
-        <%= link_to '<span class="glyphicon glyphicon-envelope"></span> Notificaciones'.html_safe,'/mis_notificaciones' ,class: 'enlaces-perfil'%>
-        <%= link_to '<span class="glyphicon glyphicon-user"></span> Información Externa'.html_safe, "/CompanyInformation/"+current_user.id.to_s, :class => 'enlaces-perfil' %>
-        <%else%>
-        <%= link_to '<span class="glyphicon glyphicon-user"></span> Ver Curriculum'.html_safe,  '/mycurriculum',class: 'enlaces-perfil'%>
-        <%= link_to '<span class="glyphicon glyphicon-pencil"></span> Editar Curriculum'.html_safe,'/users/curriculum/edit' ,class: 'enlaces-perfil'%>
-      	<%end%>
-        <%= link_to '<span class="glyphicon glyphicon-th-list"></span> Mis Grupos'.html_safe, '/grupos/mis_grupos', class: 'enlaces-perfil'%>
+      	   <%= link_to '<span class="glyphicon glyphicon-pencil"></span> Crear oferta'.html_safe,'/oferta/nueva' ,class: 'btn btn-primary'%><br><br>
+           <%= link_to '<span class="glyphicon glyphicon-envelope"></span> Notificaciones'.html_safe,'/mis_notificaciones' ,class: 'btn btn-primary'%><br><br>
+           <%= link_to '<span class="glyphicon glyphicon-user"></span> Información Externa'.html_safe, "/CompanyInformation/"+current_user.id.to_s, :class => 'btn btn-primary' %><br><br>
+          <%else%>
+            <%= link_to '<span class="glyphicon glyphicon-user"></span> Ver Curriculum    '.html_safe,  '/mycurriculum',class: 'btn btn-primary'%><br><br>
+            <%= link_to '<span class="glyphicon glyphicon-pencil"></span> Editar Curriculum'.html_safe,'/users/curriculum/edit' ,class: 'btn btn-primary'%><br><br>
+    	    <%end%>
+          <%= link_to '<span class="glyphicon glyphicon-th-list"></span> Mis Grupos'.html_safe, '/grupos/mis_grupos', class: 'btn btn-primary'%><br><br>
+        </div>
     	 </div>
   	 </div>
-		 <br><br>
      <div class="col-md-6 col-sm-6">
 	     <%= form_for :post, url: '/posts/new' do |f| %>
 	      <div class="row">

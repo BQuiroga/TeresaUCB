@@ -224,13 +224,13 @@ class Education < ActiveRecord::Base
     self.ingresos.where("title ~* ?", "Antropolog")
   end
   def comunicadores
-    self.ingresos.where("title ~* ?", "Antropolog")
+    self.ingresos.where("title ~* ?", "Comunica")
   end
   def filosofos
-    self.ingresos.where("title ~* ?", "Filosofía")
+    self.ingresos.where("title ~* ?", "Filosof")
   end
   def psicologos
-    self.ingresos.where("title ~* ?","Psicología")
+    self.ingresos.where("title ~* ?","Psicolog")
   end
   def ambientales
     self.ingresos.where("title ~* ?", "Ambient")
@@ -254,16 +254,16 @@ class Education < ActiveRecord::Base
     self.ingresos.where("title ~* ?", "Telecomunicaciones")
   end
   def administradores
-    self.ingresos.where("title ~* ?", "Administración de Empresas")
+    self.ingresos.where("title ~* ?", "Administrador de Empresas")
   end
   def financieros
-     Education.where(:title => ["Financier","Finanzas"],:school_name=>cato_names)
+     Education.where(:school_name=>cato_names).where("title~* ?","Financ")
   end
   def abogados
-    Education.where(:title => ["Derecho","Abogad"],:school_name=>cato_names)
+    Education.where(:title => ["Derecho","Abogado"],:school_name=>cato_names)
   end
   def contadores
-    self.ingresos.where("title ~* ?", "Contador")
+    self.ingresos.where("title ~* ?", "Contad")
   end
   def comerciales
     self.ingresos.where("title ~* ?", "Comercial")

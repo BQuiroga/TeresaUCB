@@ -13,10 +13,9 @@ class PicturesController < ApplicationController
    @picture = Picture.new(picture_params)
 	 @picture.user_id=current_user.id
    if @picture.save
-    flash[:notice] = "Successfully added new photo!"
 		redirect_to '/users/profile'
    else
-    flash[:alert] = "Error adding new photo!"
+    flash[:alert] = "Hubo un error, por favor vuelva a intentarlo"
    end
   end
 	def update
