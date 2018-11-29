@@ -52,7 +52,7 @@ gem 'rails_best_practices'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+gem 'activerecord-session_store'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
