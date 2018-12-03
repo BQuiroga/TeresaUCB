@@ -147,8 +147,8 @@
           <%= link_to '<span class="glyphicon glyphicon-home"></span>'.html_safe, '/users/profile', :class => 'navbar-link navbar-text' %> &emsp;
       </li>
       <%if current_user.is_company?%>
-        <li><%= link_to 'Publicar oferta', '/oferta/nueva', :class => 'navbar-link navbar-text' %>&emsp;</li>
-        <li><%= link_to 'Ver información Externa', "/CompanyInformation/"+current_user.id.to_s, :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <li><%= link_to '<span class="glyphicon glyphicon-share-alt"></span>'.html_safe, '/oferta/nueva', :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <li><%= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, "/CompanyInformation/"+current_user.id.to_s, :class => 'navbar-link navbar-text' %>&emsp;</li>
       <%elsif !current_user.is_administrator%>
         <li><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, '/users/curriculum/edit', :class => 'navbar-link navbar-text ' %>&emsp;</li>
         <li><%= link_to '<span class="glyphicon glyphicon-briefcase"></span>'.html_safe, '/mycurriculum', :class => 'navbar-link navbar-text' %>&emsp;</li>

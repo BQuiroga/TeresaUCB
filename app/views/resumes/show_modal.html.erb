@@ -14,7 +14,8 @@
           <span class="close" id="closeSuggestion">&times;</span>
           <%= form_for :post, url:'/posts/personal' do |f| %>
             <p><i>La oferta de trabajo enviada a esta persona se publicará en su muro, al igual que la información de contacto registrado de tu empresa</i></p>
-            <div class="field">
+
+            <div class="col col-md-6">
               <%= f.label :Agrega_tu_comentario_aqui %>:<br>
               <%= f.text_area :comment, class: "form-control",:id=>'text_form',:maxlength=>600,:style=>"width:100%" %>
             </div>
@@ -23,7 +24,20 @@
               <%= f.hidden_field :contact, :value=>current_user.company_information.contact_name%>
               <%= f.hidden_field :phone, :value=>current_user.company_information.phone%>
               <%= f.hidden_field :name, :value=>current_user.name%>
-
+              <div class="col col-md-6">
+                Así es como quedarátu mensaje:<br>
+                <i>De: <%= current_user.name%><br>
+                  <p id="contexto"></p>
+                Si te interesa un puesto en nuestra empresa, porfavor contactate con nuestro personal<br>
+                <% if current_user.company_information.contact_name.size>0%>
+                  Contactate con: <%= current_user.company_information.contact_name %><br>
+                <% end%>
+                <%if current_user.company_information.phone.size>0%>
+                  a este número de referencia: <%= current_user.company_information.phone%><br>
+                <%end%>
+                </i>
+                <br><br>
+              </div>
             <div class="row">
               &nbsp;&nbsp;&nbsp;<p><i>&nbsp;&nbsp;&nbsp;(Tu información de contacto registrada ya se muestra automaticamente, no neecesitas ponerla de nuevo)</i></p>
             </div>
@@ -57,6 +71,11 @@
               $('#boton_enviar').attr('disabled',true);
       })
   });
+    $(document).ready(function() {
+      $("#text_form").keyup(function() {
+	       $('#contexto').html($('#text_form').val());
+       });
+     });
   </script>
   <%end%>
 
@@ -244,6 +263,7 @@ function ocultar_todo(){
     divs[i].style.display="none";
   }
 }
+
 </script>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>

@@ -233,6 +233,9 @@ class User < ActiveRecord::Base
       end
     end
   end
+  def empresas
+    User.where(company:true).size
+  end
 
   #imagenes asociadas al perfil de usuario
   USERS = File.join Rails.root, 'public', 'image_store'

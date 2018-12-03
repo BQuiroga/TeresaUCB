@@ -1,5 +1,5 @@
 
-<div class="collapse navbar-collapse navbar-fixed-top navbar-inverse" style="height:20%"">
+<div class="collapse navbar-collapse navbar-fixed-top navbar-inverse" style="height:20%;">
 
   <img src="/logocato.gif" style="width:50px;height:60px;">
   <ul class="nav navbar-nav navbar-right">
@@ -161,24 +161,27 @@
               <p>Somos un equipo de trabajo de la Universidad Catolica Boliviana "San Pablo" interesados en extender el servicio y la vinculación con los titulados de nuestras carreras, esperamos lograr este objetívo, mediante la presente plataforma Bolsa de Trabajo.</p>
             </div>
           </div>
+          <%@edu=Education.new%>
+          <%@user=User.new%>
+          <%@total=@edu.universitarios+@user.empresas+@edu.titulados%>
           <div class="col-sm-6">
             <div class="our-skills wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
               <div class="single-skill wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
-                <p class="lead service-text">Estudiantes universitarios</p>
+                <p class="lead service-text">Estudiantes universitarios </p>
                 <div class="progress">
-                  <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  aria-valuetransitiongoal="95">95%</div>
+                  <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  aria-valuetransitiongoal="<%= @edu.universitarios*100/@total%>"><%= @edu.universitarios*100/@total%>%</div>
                 </div>
               </div>
               <div class="single-skill wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="400ms">
                 <p class="lead service-text">Estudiantes egresados</p>
                 <div class="progress">
-                  <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  aria-valuetransitiongoal="75">75%</div>
+                  <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  aria-valuetransitiongoal="<%= @edu.titulados*100/@total%>"><%= @edu.titulados*100/@total%>%</div>
                 </div>
               </div>
               <div class="single-skill wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="500ms">
                 <p class="lead service-text">Empresas asociadas</p>
                 <div class="progress">
-                  <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  aria-valuetransitiongoal="60">60%</div>
+                  <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  aria-valuetransitiongoal="<%= @user.empresas*100/@total%>"><%= @user.empresas*100/@total%>%</div>
                 </div>
               </div>
               <div class="single-skill wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">

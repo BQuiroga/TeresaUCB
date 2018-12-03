@@ -304,4 +304,22 @@ class Education < ActiveRecord::Base
     end
     r
   end
+  def universitarios
+    usuarios=Array.new
+    edu=Education.where("school_name ~*?","Universidad").where("end_date>?",Date.today)
+    edu.each do |education|
+      usuarios.push(education.resume.user)
+    end
+    usuarios.uniq!
+    return usuarios.size
+  end
+  def titulados
+    usuarios=Array.new
+    edu=Education.where("school_name ~*?","Universidad").where("end_date<?",Date.today)
+    edu.each do |education|
+      usuarios.push(education.resume.user)
+    end
+    usuarios.uniq!
+    usuarios.size
+  end
 end
