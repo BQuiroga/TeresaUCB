@@ -2,6 +2,26 @@ class UsersController < ApplicationController
 
 	def show
 	end
+	def add_director
+		if !current_user.is_administrator
+			throwUnauthorized
+			return
+		else
+			@user=User.find(params[:id])
+			@user.add_role :director
+			redirect_to "/users"
+		end
+	end
+	def remove_director
+		if !current_user.is_administrator
+			throwUnauthorized
+			return
+		else
+			@user=User.find(params[:id])
+			@user.remove_role :director
+			redirect_to "/users"
+		end
+	end
 	def profile
 		@picture=current_user.picture
 		@user=current_user
@@ -15,12 +35,14 @@ class UsersController < ApplicationController
 		@posts=@posts+current_user.follows_posts+current_user.searched_people_posts+current_user.my_friends_posts
 		@posts=@posts.uniq
 	end
+
 	def search
 		@busqueda_param=search_params[:name]
 		@busqueda_param=@busqueda_param.split(' ')
 		@users=current_user.search(@busqueda_param)
   	@users=@users.uniq
 	end
+
 	def bloquear
 		if !current_user.is_administrator
 			throwUnauthorized
@@ -31,6 +53,7 @@ class UsersController < ApplicationController
 			redirect_to '/users'
 		end
 	end
+
 	def desbloquear
 		if !current_user.is_administrator
 			throwUnauthorized
@@ -41,6 +64,7 @@ class UsersController < ApplicationController
 			redirect_to '/users'
 		end
 	end
+
 	def index
 		if !(current_user.is_administrator)
 			throwUnauthorized
@@ -102,13 +126,15 @@ class UsersController < ApplicationController
 			end
 		end
 	end
+
 	def destroy
     @user = current_user
     @user.destroy
     if @user.destroy
-        redirect_to root_url, notice: "Usuario Eliminado."
+      redirect_to root_url, notice: "Usuario Eliminado."
     end
   end
+
 	def new_report
 		if !current_user.is_company?
 			throwUnauthorized
@@ -117,9 +143,9 @@ class UsersController < ApplicationController
 		@city=report_params[:city]
 		@university=report_params[:university]
 		@gender=report_params[:gender]
-		if (@city)
-		end
+
 	end
+
 	def update_password
 		@user = current_user
 		 if @user.update(password_update_params)

@@ -170,14 +170,14 @@
     		<div class="panel panel-default">
           <div class="panel-body">
       		<%if current_user.is_company?%>
-      	   <%= link_to '<span class="glyphicon glyphicon-pencil"></span> Crear oferta'.html_safe,'/oferta/nueva' ,class: 'btn btn-primary'%><br><br>
-           <%= link_to '<span class="glyphicon glyphicon-envelope"></span> Notificaciones'.html_safe,'/mis_notificaciones' ,class: 'btn btn-primary'%><br><br>
-           <%= link_to '<span class="glyphicon glyphicon-user"></span> Información Externa'.html_safe, "/CompanyInformation/"+current_user.id.to_s, :class => 'btn btn-primary' %><br><br>
+      	   <%= link_to '<span class="glyphicon glyphicon-pencil"></span> Crear oferta'.html_safe,'/oferta/nueva' ,class: 'btn btn-primary btn-block'%><br>
+           <%= link_to '<span class="glyphicon glyphicon-envelope"></span> Notificaciones'.html_safe,'/mis_notificaciones' ,class: 'btn btn-primary btn-block'%><br>
+           <%= link_to '<span class="glyphicon glyphicon-user"></span> Información Externa'.html_safe, "/CompanyInformation/"+current_user.id.to_s, :class => 'btn btn-primary btn-block' %><br>
           <%else%>
-            <%= link_to '<span class="glyphicon glyphicon-user"></span> Ver Curriculum    '.html_safe,  '/mycurriculum',class: 'btn btn-primary'%><br><br>
-            <%= link_to '<span class="glyphicon glyphicon-pencil"></span> Editar Curriculum'.html_safe,'/users/curriculum/edit' ,class: 'btn btn-primary'%><br><br>
+            <%= link_to '<span class="glyphicon glyphicon-user"></span> Ver Curriculum    '.html_safe,  '/mycurriculum',class: 'btn btn-primary btn-block'%> <br>
+            <%= link_to '<span class="glyphicon glyphicon-pencil"></span> Editar Curriculum'.html_safe,'/users/curriculum/edit' ,class: 'btn btn-primary btn-block'%><br>
     	    <%end%>
-          <%= link_to '<span class="glyphicon glyphicon-th-list"></span> Mis Grupos'.html_safe, '/grupos/mis_grupos', class: 'btn btn-primary'%><br><br>
+          <%= link_to '<span class="glyphicon glyphicon-th-list"></span> Mis Grupos'.html_safe, '/grupos/mis_grupos', class: 'btn btn-primary btn-block'%>
         </div>
     	 </div>
   	 </div>

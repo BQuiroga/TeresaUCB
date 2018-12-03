@@ -20,13 +20,22 @@
             <button class="btn btn-warning btn-sm pull-right">
 
               <%if ( !usuario.access_locked?)%>
-                <%=link_to "Bloquar usuario", {controller: "users",action:"bloquear",id:usuario.id}%>
+                <%=link_to "Bloquear usuario", {controller: "users",action:"bloquear",id:usuario.id}%>
               <%else%>
                   <%=link_to "Desbloquear", {controller: "users",action:"desbloquear",id:usuario.id}%>
               <%end%>
 
             <%end%>
             </button>
+            <%if (!usuario.access_locked? and !usuario.is_company? )%>
+              <button class="btn btn-primary btn-sm pull-right">
+                <%if (!usuario.access_locked? and usuario.is_student? and !usuario.is_director)%>
+                  <%=link_to "Hacer director", {controller: "users",action:"add_director",id:usuario.id},:style=>'color:white'%>
+                <%else%>
+                  <%=link_to "Quitar rol de director", {controller: "users",action:"remove_director",id:usuario.id},:style=>'color:white'%>
+                <%end%>
+            </button>
+            <%end%>
             <%end%>
           </h4>&nbsp;
           <%=usuario.email%>&nbsp;

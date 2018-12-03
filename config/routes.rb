@@ -112,9 +112,11 @@ Rails.application.routes.draw do
   get '/users'=>'users#index'
   get 'user/:id/bloquear'=>'users#bloquear'
   get 'user/:id/desbloquear'=>'users#desbloquear'
+  get 'users/:id/director'=>'users#add_director'
+  get 'users/:id/no_director'=>'users#remove_director'
+  resources :users
   resources :pictures
   resources :posts
-
   resources :referentials
   resources :follows
   resources :languages

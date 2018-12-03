@@ -36,6 +36,9 @@ class User < ActiveRecord::Base
   def is_director
     has_role? :director
   end
+  def is_student?
+    has_role? :user
+  end
   def capit
     self.name.capitalize!
     self.last_name.capitalize!
