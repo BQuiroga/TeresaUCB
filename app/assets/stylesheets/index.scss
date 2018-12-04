@@ -37,23 +37,23 @@ a:hover, a:focus {
 .left-control:hover,
 .right-control:hover,
 .folio-overview a:hover {
-  background-color:#028fcc;
+  background-color:#052845;
 }
 
 .twitter-left-control:hover,
 .twitter-right-control:hover,
 .btn-loadmore:hover  {
-	border: 1px solid #028fcc;
+	border: 1px solid #052845;
 }
 
 .caption .btn-start:hover,
 .left-control:hover,
 .right-control:hover {
-	border-color: #028fcc;
+	border-color: #052845;
 }
 
 .twitter-icon .fa-twitter:after {
-	border-color: #028fcc transparent transparent;
+	border-color: #052845 transparent transparent;
 }
 
 
@@ -256,10 +256,7 @@ a:hover, a:focus {
 /*************************
 ********About CSS*******
 **************************/
-#about-us {
-  background-image: url(estadistica.jpg);
-  padding: 60px 0;
-}
+
 
 #about-us h2 {
   margin-top: 0;
@@ -799,7 +796,7 @@ a:hover, a:focus {
 }
 
 #contact-us .heading {
-  padding-top: 95px;
+  padding-top: 0px;
 }
 
 .form-control {

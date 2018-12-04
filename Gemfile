@@ -7,6 +7,7 @@ gem 'compass-rails', '~> 2.0.4'
 gem 'mailboxer'
 gem 'tzinfo-data', platforms:[:mingw,:mswin,:x64_mingw]
 gem 'thin'
+gem 'font-awesome-sass'
 gem 'bootstrap-will_paginate'
 gem 'will_paginate'
 gem 'faker', '~> 1.6', '>= 1.6.1'
