@@ -75,7 +75,7 @@ li a{
             <%end%>
           </div>
         </div>
-        <div class="item" style="background-image: url(red2.jpg)">
+        <div class="item" style="background-image: url(IMG_1004.jpg)">
           <div class="caption">
             <h1 class="animated fadeInLeftBig"> <span>Unete</span></h1>
             <p class="animated fadeInRightBig carousel-letters">A la mas grande red profesional de bolivia</p>
@@ -99,7 +99,7 @@ li a{
         <div class="heading wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
           <div class="row">
             <div class="text-center col-sm-8 col-sm-offset-2">
-              <h2>SERVICIOS</h2>
+              <h2><b>SERVICIOS</b></h2>
               <p style="font-size:16px">Esta plataforma fue desarrollada por la Universidad Católica Boliviana "San Pablo" a fin de facilitar el contacto entre sus titulados y las empresas del medio. Tratando de satisfacer las necesidades de ambos. Las empresas requieren profesionales y las personas necesitan una plataforma que les permita una mayor vinculación con el medio, mediante un registro historico de sus actividades profesionales y laborales online. </p>
             </div>
           </div>
@@ -175,7 +175,7 @@ li a{
     </style>
     <style media="screen">
       #about-us {
-        background-image: url(Frontis.jpg);
+        background-image: url(Imagen8.png);
         background-repeat: no-repeat;
         background-size: cover;
         padding: 60px 0;
@@ -185,39 +185,41 @@ li a{
     <section id="about-us" class="parallax">
       <div class="container">
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-md-2">
+            </div>
+          <div class="col-sm-6 col-md-5">
             <div class="about-info wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
-              <h2>SOBRE NOSOTROS</h2>
-              <p>Somos un equipo de trabajo de la Universidad Catolica Boliviana "San Pablo" interesados en extender el servicio y la vinculación con los titulados de nuestras carreras, esperamos lograr este objetívo, mediante la presente plataforma Bolsa de Trabajo.</p>
+              <h2><b>SOBRE NOSOTROS</b></h2>
+              <p style="color:white;">Somos un equipo de trabajo de la Universidad Catolica Boliviana "San Pablo" interesados en extender el servicio y la vinculación con los titulados de nuestras carreras, esperamos lograr este objetívo, mediante la presente plataforma Bolsa de Trabajo.</p>
             </div>
           </div>
           <%@edu=Education.new%>
           <%@user=User.new%>
           <%@total=@edu.universitarios+@user.empresas+@edu.titulados%>
-          <div class="col-sm-6">
+          <div class="col-sm-6 col-md-5">
             <div class="our-skills wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
               <div class="single-skill wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
-                <p class="lead service-text">Estudiantes universitarios </p>
+                <p class="lead service-text"style="color:white">Estudiantes universitarios </p>
                 <div class="progress">
-                  <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  aria-valuetransitiongoal="<%= @edu.universitarios*100/@total%>"><%= @edu.universitarios*100/@total%>%</div>
+                  <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  aria-valuetransitiongoal="<%= @edu.universitarios*100/@total%>" style="background-color:#1a5a8f"><%= @edu.universitarios*100/@total%>%</div>
                 </div>
               </div>
               <div class="single-skill wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="400ms">
-                <p class="lead service-text">Estudiantes egresados</p>
+                <p class="lead service-text"style="color:white">Estudiantes egresados</p>
                 <div class="progress">
-                  <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  aria-valuetransitiongoal="<%= @edu.titulados*100/@total%>"><%= @edu.titulados*100/@total%>%</div>
+                  <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  aria-valuetransitiongoal="<%= @edu.titulados*100/@total%>" style="background-color:#1a5a8f"><%= @edu.titulados*100/@total%>%</div>
                 </div>
               </div>
               <div class="single-skill wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="500ms">
-                <p class="lead service-text">Empresas asociadas</p>
+                <p class="lead service-text" style="color:white">Empresas asociadas</p>
                 <div class="progress">
-                  <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  aria-valuetransitiongoal="<%= @user.empresas*100/@total%>"><%= @user.empresas*100/@total%>%</div>
+                  <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  aria-valuetransitiongoal="<%= @user.empresas*100/@total%>" style="background-color:#1a5a8f"><%= @user.empresas*100/@total%>%</div>
                 </div>
               </div>
               <div class="single-skill wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-                <p class="lead carousel-letters">ofertas de trabajo</p>
+                <p class="lead service-text" style="color:white">Ofertas de trabajo</p>
                 <div class="progress">
-                  <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  aria-valuetransitiongoal="85">85%</div>
+                  <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  aria-valuetransitiongoal="85" style="background-color:#1a5a8f">85%</div>
                 </div>
               </div>
             </div>

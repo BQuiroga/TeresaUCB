@@ -2,7 +2,7 @@
   <div class="panel panel-default">
     <div class="panel-heading"><div class="panel-title"><h3>Mis Grupos </h3></div></div>
     <div class="panel-body">
-      <% if @groups.size >0%>
+      <% if @groups.size >0 %>
       <div class="table-responsive">
         <table class="table table-bordered">
           <thead>
@@ -14,11 +14,11 @@
           <tbody>
             <% @groups.each do |group| %>
             <tr>
-              <td><%=group.name%>&emsp;</td>
-              <td><%=group.description%></td>
-              <td><%=group.members%></td>
+              <td><%=group.name %>&emsp;</td>
+              <td><%=group.description %></td>
+              <td><%=group.members %></td>
               <td>
-                <a href="/grupos/<%=group.id%>/miembros"><button class="btn btn-default btn-sm pull-right">Ver Miembros</button></a>
+                <a href="/grupos/<%=group.id %>/miembros"><button class="btn btn-default btn-sm pull-right">Ver Miembros</button></a>
                 <button class="btn btn-warning btn-sm pull-right">
                   <%if current_user.is_my_group(group.id)%>
                     <%=link_to "Borrar", {controller: "groups",action:"abandonar",id:group.id}%>
@@ -58,6 +58,7 @@
         </div>
       <% end %>
    </div>
+</div>
 </div>
 </div>
  <script>

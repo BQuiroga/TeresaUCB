@@ -1,6 +1,21 @@
 <!-- Curriculum usuarios -->
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style media="screen">
+  @media(max-width:979px){
+    #opciones {
+      display:block;
+    }
+    #menu_opt{
+      display:none;
+    }
+  }
+  @media (min-width:980px){
 
+    #opciones{
+      display:none;
+    }
+  }
+</style>
 <div class="w3-sidebar w3-bar-block w3-card w3-black w3-animate-left" style="display:none" id="mySidebar">
   <button class="w3-bar-item w3-button  w3-tiny"style="right:0px;"
   onclick="w3_close()">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&emsp;&emsp;Cerrar &times;</button>
@@ -10,9 +25,10 @@
 </div>
 
 
-<div style="top:150px; position:fixed;">
-  <div class="side-bar btn-group-vertical">
-    <button id="openNav" class="btn btn-md" onclick="w3_open()">Mas opciones &#9776;&emsp;</button>
+<button class="btn btn-default fa fa-bars" id="opciones" onclick="opciones()" style="top:120px;position:fixed"></button>
+<div style="top:150px; position:fixed;" id="menu_opt">
+  <div class="side-bar btn-group-vertical btn-block">
+    <button id="openNav" class="btn btn-md" onclick="w3_open()"><span>Otros colores</span></button>
   </div>
   <div id="original-link" style="display:block" class="btn-group-vertical">
     <%= link_to 'Exportar a PDF',resume_path(@resume.id, format: "pdf"), :format => :pdf,:class=>"btn btn-default",target: '_blank' %>
@@ -23,7 +39,7 @@
   <div id="rojo-link" style="display:none" class="btn-group-vertical">
     <%= link_to 'Exportar a PDF','/resumes/bajar_red.pdf', :format => :pdf,:class=>"btn btn-default",target: '_blank' %>
   </div>
-  <div id="botones_originales" class="btn-group-vertical">
+  <div id="botones_originales" class="btn-group-vertical btn-block">
     <button id="mostrar_todo" onclick="mostrar_todo()" class="btn btn-primary">Mostrar completo</button>
     <button id="ocultar_todo" onclick="ocultar_todo()" style="display:none" class="btn btn-primary">Mostrar resumido</button>
   </div>
@@ -343,6 +359,8 @@
    <div class="section-title-blue">
      <h3> Meritos </h3>
    </div>
+   <div class="line-separator-blue">
+   </div>
      <div class="container section-container-blue">
        <h5><% @merits.each do |merit| %></h5>
        <div>
@@ -356,47 +374,51 @@
    <%end%>
 
    <div class="container">
+     <div class="row">
    <% if @knowledges.size >0%>
-     <div class="section-title-blue vertical-title col-lg-2 col-md-2">
+     <div class="section-title-blue vertical-title col col-lg-2 col-md-1 col-sm-2">
        <h3> Conocimientos</h3>
-    </div>
-   <div class="col-md-4 col-lg-4 vertical-section-blue">
-     <div class="container section-container-blue ">
-       <br>
-    <h5><% @knowledges.each do |know| %></h5>
-            <div>
-                <p>
-                  <b><%=know.area%></b>
-                  <%=know.description%>
-                </p>
-            </div>
-        <%end%>
-    </div>
-  </div>
+     </div>
+     <div class="col col-md-4 col-lg-4 vertical-section-blue">
+       <div class="container section-container-blue ">
+         <br>
+         <h5><% @knowledges.each do |know| %></h5>
+          <div>
+            <p>
+              <b><%=know.area%></b>
+              <%=know.description%>
+            </p>
+          </div>
+          <%end%>
+       </div>
+     </div>
    <%end%>
-
+   <div class="col-md-1">
+   </div>
    <% if @skills.size >0%>
- <div class="section-title-blue vertical-title col-lg-2 col-md-2">
-     <h3> Habilidades</h3>
-   </div>
-   <div class="col-md-4 col-lg-4 vertical-section-blue">
-   <div class="container section-container-blue">
-    <h5><% @skills.each do |skill| %></h5>
-            <div>
-                <p>
-                  <%=skill.description%>
-                </p>
-            </div>
-        <%end%>
-   </div>
- </div>
+     <div class="section-title-blue vertical-title col col-lg-2 col-md-2 col-sm-10">
+         <h3> Habilidades</h3>
+       </div>
+       <div class="col col-md-4 col-lg-4 vertical-section-blue">
+       <div class="container section-container-blue">
+        <h5><% @skills.each do |skill| %></h5>
+                <div>
+                    <p>
+                      <%=skill.description%>
+                    </p>
+                </div>
+            <%end%>
+       </div>
+     </div>
    <%end%>
-
+   </div>
+   <br>
+   <div class="row">
  <% if @languages.size >0%>
-  <div class="section-title-blue vertical-title col-lg-2 col-md-2">
+  <div class="section-title-blue vertical-title col col-lg-2 col-md-2">
     <h3> Idiomas </h3>
   </div>
-  <div class="col-md-4 col-lg-4 vertical-section-blue">
+  <div class="col col-md-4 col-lg-4 vertical-section-blue">
     <div class="container section-container-blue">
     <h5><% @languages.each do |language| %></h5>
      <div>
@@ -409,16 +431,26 @@
       <%end%>
     </div>
   </div>
+  </div>
   <%end%>
   </div>
 </div>
 </div>
 <script>
 function w3_open() {
-  document.getElementById("mySidebar").style.width = "12%";
   document.getElementById("mySidebar").style.display = "block";
   document.getElementById("mySidebar").style.height ="25%";
   // document.getElementById("openNav").style.display = 'none';
+}
+function opciones(){
+  var menu = document.getElementById("menu_opt");
+  if (menu.style.display=="block"){
+    menu.style.display="none";
+  }
+  else{
+    menu.style.display="block";
+  }
+
 }
 function w3_close() {
   document.getElementById("mySidebar").style.display = "none";

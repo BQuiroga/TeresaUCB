@@ -1,3 +1,21 @@
+<style media="screen">
+  @media (min-width: 980px){
+  .link-eliminar{
+    display:none;
+  }
+  .button-eliminar{
+    display:block;
+  }
+}
+@media (max-width: 979px){
+.link-eliminar{
+  display:block;
+}
+.button-eliminar{
+  display:none;
+}
+}
+</style>
 <div class="container">
   <div class= "panel panel-default panel-heading">
     <h1  class="text-center">Currículum Vitae</h1>
@@ -27,8 +45,12 @@
                 <h4>
                   <b><%=education.title%>&emsp;</b>
                   <div class="btn-group pull-right">
-                    <button class="btn btn-danger btn-sm  pull-right"><%=link_to 'Eliminar', education , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
-                  <button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,education], :class=>"button-link"%></button>
+                    <button class="btn btn-danger btn-sm pull-right button-eliminar"><%=link_to 'Eliminar', education , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
+                    <%=link_to '<i class="fa fa-times-circle btn-lg pull-right text-danger"style="padding-left:0;padding-right:0;" ></i>'.html_safe, education , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link link-eliminar"%>
+                </div>
+                <div class="btn-group pull-right">
+                  <button class="btn btn-warning btn-sm pull-right button-eliminar" style="position:relative;"><%=link_to "Editar", [:edit,education], :class=>"button-link"%></button>
+                  <%=link_to '<i class="fa fa-pencil btn-lg pull-right text-primary" style="padding-left:0;padding-right:0;" ></i>'.html_safe, [:edit,education], :class=>"button-link link-eliminar"%>
                 </div>
                 </h4>
                 <%=education.school_name%>&nbsp;
@@ -62,8 +84,10 @@
             <p>
               <h5><b><%=experience.company_name%></b></h5>
               <%=experience.job_title%>&emsp;
-              <button class="btn btn-danger btn-sm  pull-right"><%=link_to 'Eliminar', experience , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
-              <button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,experience], :class=>"button-link"%></button>
+              <button class="btn btn-danger btn-sm  pull-right button-eliminar"><%=link_to 'Eliminar', experience , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
+              <%=link_to '<i class="fa fa-times-circle btn-lg pull-right text-danger"style="padding-left:0;padding-right:0;" ></i>'.html_safe, experience , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link link-eliminar"%>
+              <button class="btn btn-warning btn-sm pull-right button-eliminar" style="position:relative;"><%=link_to "Editar", [:edit,experience], :class=>"button-link"%></button>
+              <%=link_to '<i class="fa fa-pencil btn-lg pull-right text-primary" style="padding-left:0;padding-right:0;" ></i>'.html_safe, [:edit,experience], :class=>"button-link link-eliminar"%>
 
               <br>
               <%=experience.start_job_date%>&emsp; - &emsp;
@@ -97,13 +121,15 @@
         <li class="list-group-item">
           <div>
             <p>
+              <button class="btn btn-danger btn-sm pull-right button-eliminar"><%=link_to 'Eliminar', course , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
+              <%=link_to '<i class="fa fa-times-circle btn-lg pull-right text-danger"style="padding-left:0;padding-right:0;" ></i>'.html_safe, course , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link link-eliminar"%>
+              <button class="btn btn-warning btn-sm pull-right button-eliminar" style="position:relative;"><%=link_to "Editar", [:edit,course], :class=>"button-link"%></button>
+              <%=link_to '<i class="fa fa-pencil btn-lg pull-right text-primary" style="padding-left:0;padding-right:0;" ></i>'.html_safe, [:edit,course], :class=>"button-link link-eliminar"%>
               <b><%=course.date.year%></b>&emsp;
               <%=course.name%>&emsp;
               <%=course.given%>&emsp;
               <%=course.institution%>&emsp;
               <%=course.workload%> Hrs.
-              <button class="btn btn-danger btn-sm  pull-right"><%=link_to 'Eliminar', course , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
-              <button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,course], :class=>"button-link"%></button>
             </p>
           </div>
         </li>
@@ -131,9 +157,11 @@
         <li class="list-group-item">
           <div>
             <p>
+              <button class="btn btn-danger btn-sm  pull-right button-eliminar"><%=link_to 'Eliminar', pub , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
+              <%=link_to '<i class="fa fa-times-circle btn-lg pull-right text-danger"style="padding-left:0;padding-right:0;" ></i>'.html_safe, pub , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link link-eliminar"%>
+              <button class="btn btn-warning btn-sm pull-right button-eliminar" style="position:relative;"><%=link_to "Editar", [:edit,pub], :class=>"button-link"%></button>
+              <%=link_to '<i class="fa fa-pencil btn-lg pull-right text-primary" style="padding-left:0;padding-right:0;" ></i>'.html_safe, [:edit,pub], :class=>"button-link link-eliminar"%>
               <b><%=pub.date.year%></b>&emsp;<%=pub.name%>&emsp;<%=pub.publicationType%>
-              <button class="btn btn-danger btn-sm  pull-right"><%=link_to 'Eliminar', pub , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
-              <button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,pub], :class=>"button-link"%></button><br>
               <%=pub.location %>
             </p>
           </div>
@@ -159,9 +187,11 @@
           <li class="list-group-item">
             <div>
               <p>
+                <button class="btn btn-danger btn-sm  pull-right button-eliminar"><%=link_to 'Eliminar', merit , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
+                <%=link_to '<i class="fa fa-times-circle btn-lg pull-right text-danger"style="padding-left:0;padding-right:0;" ></i>'.html_safe, merit , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link link-eliminar"%>
+                <button class="btn btn-warning btn-sm pull-right button-eliminar" style="position:relative;"><%=link_to "Editar", [:edit,merit], :class=>"button-link"%></button>
+                <%=link_to '<i class="fa fa-pencil btn-lg pull-right text-primary" style="padding-left:0;padding-right:0;" ></i>'.html_safe, [:edit,merit], :class=>"button-link link-eliminar"%>
                 <b><%=merit.date.year%></b>&emsp;<%=merit.name%>&emsp;
-                <button class="btn btn-danger btn-sm  pull-right"><%=link_to 'Eliminar', merit , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
-                <button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,merit], :class=>"button-link"%></button><br>
               </p>
             </div>
           </li>
@@ -185,9 +215,11 @@
           <li class="list-group-item">
             <div>
               <p>
+                <button class="btn btn-danger btn-sm  pull-right button-eliminar"><%=link_to 'Eliminar', member , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
+                <%=link_to '<i class="fa fa-times-circle btn-lg pull-right text-danger"style="padding-left:0;padding-right:0;" ></i>'.html_safe, member , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link link-eliminar"%>
+                <button class="btn btn-warning btn-sm pull-right button-eliminar" style="position:relative;"><%=link_to "Editar", [:edit,member], :class=>"button-link"%></button></b>
+                <%=link_to '<i class="fa fa-pencil btn-lg pull-right text-primary" style="padding-left:0;padding-right:0;" ></i>'.html_safe, [:edit,member], :class=>"button-link link-eliminar"%>
                 <b><%=member.name%> en <%=member.organization%>&emsp;
-                  <button class="btn btn-danger btn-sm  pull-right"><%=link_to 'Eliminar', member , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
-                  <button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,member], :class=>"button-link"%></button></b><br>
                 desde <%=member.date.year%>&emsp;<br>
               </p>
             </div>
@@ -212,10 +244,12 @@
       <li class="list-group-item">
         <div>
           <p>
+            <button class="btn btn-danger btn-sm  pull-right button-eliminar"><%=link_to 'Eliminar', known , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
+            <%=link_to '<i class="fa fa-times-circle btn-lg pull-right text-danger"style="padding-left:0;padding-right:0;" ></i>'.html_safe, known , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link link-eliminar"%>
+            <button class="btn btn-warning btn-sm pull-right button-eliminar" style="position:relative;"><%=link_to "Editar", [:edit,known], :class=>"button-link"%></button>
+            <%=link_to '<i class="fa fa-pencil btn-lg pull-right text-primary" style="padding-left:0;padding-right:0;" ></i>'.html_safe, [:edit,known], :class=>"button-link link-eliminar"%>
             <b><%=known.description%></b>&emsp;
             &emsp;
-            <button class="btn btn-danger btn-sm  pull-right"><%=link_to 'Eliminar', known , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
-            <button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,known], :class=>"button-link"%></button>
           </p>
         </div>
       </li>
@@ -239,10 +273,12 @@
           <li class="list-group-item">
             <div>
               <p>
+                <button class="btn btn-danger btn-sm  pull-right button-eliminar"><%=link_to 'Eliminar', skill , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
+                <%=link_to '<i class="fa fa-times-circle btn-lg pull-right text-danger"style="padding-left:0;padding-right:0;" ></i>'.html_safe, skill , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link link-eliminar"%>
+                <button class="btn btn-warning btn-sm pull-right button-eliminar" style="position:relative;"><%=link_to "Editar", [:edit,skill], :class=>"button-link"%></button>
+                <%=link_to '<i class="fa fa-pencil btn-lg pull-right text-primary" style="padding-left:0;padding-right:0;" ></i>'.html_safe, [:edit,skill], :class=>"button-link link-eliminar"%>
                 <b><%=skill.description%></b>&emsp;
                 &emsp;
-                <button class="btn btn-danger btn-sm  pull-right"><%=link_to 'Eliminar', skill , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
-                <button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,skill], :class=>"button-link"%></button>
               </p>
             </div>
           </li>
@@ -270,12 +306,14 @@
         <li class="list-group-item">
           <div>
               <p>
+                <button class="btn btn-danger btn-sm  pull-right button-eliminar"><%=link_to 'Eliminar', language , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
+                <%=link_to '<i class="fa fa-times-circle btn-lg pull-right text-danger"style="padding-left:0;padding-right:0;" ></i>'.html_safe, language , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link link-eliminar"%>
+                <button class="btn btn-warning btn-sm pull-right button-eliminar" style="position:relative;"><%=link_to "Editar", [:edit,language], :class=>"button-link"%></button>
+                <%=link_to '<i class="fa fa-pencil btn-lg pull-right text-primary" style="padding-left:0;padding-right:0;" ></i>'.html_safe, [:edit,language], :class=>"button-link link-eliminar"%>
                 <b><%=language.name%></b>&emsp;
                 <%=language.level%>&emsp;
                 <%=language.skill%>
                 &emsp;
-                <button class="btn btn-danger btn-sm  pull-right"><%=link_to 'Eliminar', language , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
-                <button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,language], :class=>"button-link"%></button>
               </p>
           </div>
         </li>
@@ -303,10 +341,12 @@
         <li class="list-group-item">
           <div>
             <p>
+              <button class="btn btn-danger btn-sm  pull-right button-eliminar"><%=link_to 'Eliminar', refer , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
+              <%=link_to '<i class="fa fa-times-circle btn-lg pull-right text-danger"style="padding-left:0;padding-right:0;" ></i>'.html_safe, refer , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link link-eliminar"%>
+              <button class="btn btn-warning btn-sm pull-right button-eliminar" style="position:relative;"><%=link_to "Editar", [:edit,refer], :class=>"button-link"%></button>
+              <%=link_to '<i class="fa fa-pencil btn-lg pull-right text-primary" style="padding-left:0;padding-right:0;" ></i>'.html_safe, [:edit,refer], :class=>"button-link link-eliminar"%>
               <b><%=refer.name%></b>
               &emsp;
-              <button class="btn btn-danger btn-sm  pull-right"><%=link_to 'Eliminar', refer , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta información?" }, :class=>"button-link"%></button>
-              <button class="btn btn-warning btn-sm pull-right" style="position:relative;"><%=link_to "Editar", [:edit,refer], :class=>"button-link"%></button><br>
               <%=refer.number%>&emsp;<%=refer.institution%>
             </p>
           </div>
