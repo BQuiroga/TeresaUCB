@@ -5,13 +5,17 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 }
+.panel-primary>.panel-heading {
+  background-color: #1a5a8f;
+  color: white;
+}
 </style>
       <div class="container" style="margin-top:25px;" id="body">
         <div class="col col-md-3">
         </div>
         <div class="col col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
+        <div class="panel panel-primary" >
+            <div class="panel-heading"id="sesion-heading" style="background-color: #1a5a8f;">
               <div class="container-fluid">
                 <div class="row">
                   <h3>Ingresa a nuestro sítio
@@ -41,7 +45,7 @@ body {
                 </div>
               <% end %>
               <div class="actions pull-right">
-                <%= f.submit "Iniciar Sesion",:class=>"btn btn-primary"%>
+                <%= f.submit "Iniciar Sesion",:class=>"btn btn-primary", :style=>"  background-color: #1a5a8f"%>
               </div>
               <%end%>
             </div>
@@ -55,7 +59,7 @@ jQuery(document).ready(function() {
     /*
         Fullscreen background
     */
-    $.backstretch("assets/images/ibackgrounds/1.jpg");
+  
 ]
 });
 </script>

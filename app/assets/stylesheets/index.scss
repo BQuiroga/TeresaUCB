@@ -37,7 +37,6 @@ a:hover, a:focus {
 .left-control:hover,
 .right-control:hover,
 .folio-overview a:hover {
-  background-color:#052845;
 }
 
 .twitter-left-control:hover,
@@ -800,9 +799,7 @@ a:hover, a:focus {
 }
 
 .form-control {
-  background-color: transparent;
-  border-color: rgba(255,255,255,.1);
-  height: 50px;
+  background-color: #fff;
   border-radius: 0;
   box-shadow: none;
 }

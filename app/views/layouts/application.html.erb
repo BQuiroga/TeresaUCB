@@ -46,7 +46,13 @@
       #btn-search{
         top:0;
       }
-
+      #buscar-inp {
+        margin-top: 0px;
+        width:20%;
+      }
+      #noti_number{
+        margin-right:-5px;
+      }
     }
     @media screen and (max-width: 1132px) {
       ul#icon-menu li{display: inline}
@@ -58,6 +64,10 @@
         right:0px;
         position:absolute;
       }
+      #buscar-inp {
+        margin-top: 0px;
+        width:12%;
+      }
     }
     @media screen and (max-width:760px){
       ul#icon-menu li{display: inline;margin-top:10px}
@@ -68,35 +78,42 @@
   </style>
 </head>
 <body >
-  <nav class="navbar navbar-inverse navbar-fixed-top navbar-collapse" style="background-color:#1a5a8f;top:0px;position:fixed;">
+  <% if user_signed_in? %>
+  <nav class="navbar-inverse navbar-fixed-top navbar-fixed-top" >
+      <p class="navbar-brand pull-right"style="color:#9d9d9d">Bienvenido de nuevo <%= current_user.name %></p>
+  </nav>
+  <nav class="navbar navbar-inverse navbar-fixed-top navbar-collapse" style="background-color:#1a5a8f;top:42px;position:fixed;">
+<%else%>
+<nav class="navbar navbar-inverse navbar-fixed-top navbar-collapse" style="background-color:#1a5a8f;top:0px;position:fixed;">
+<%end%>
       <ul id="menu">
         <!-- <li><img src="/logocato.gif" style="width:2%;height:2%"></li> -->
-        <li>  <%= link_to 'Bolsa de Trabajo', '/', :class=>'navbar-text pull-left'%></li>
+        <li>  <%= link_to '<span class="fa fa-home" style="margin-left:45%"></span><br>Bolsa de Trabajo'.html_safe, '/', :class=>'navbar-text pull-left'%></li>
         <% if user_signed_in? %>
-        <li>
-            <%= link_to 'Perfil', '/users/profile', :class => 'navbar-link navbar-text' %> &emsp;
+        <li >
+            <%= link_to '<span class="fa fa-user-circle" style="margin-left:30%" ></span><br>Perfil'.html_safe, '/users/profile', :class => 'navbar-link navbar-text' ,:style=>"left:40%"%> &emsp;
         </li>
-        <li><%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <li><%= link_to '<span class="fa fa-edit"style="margin-left:40%"></span><br>Editar perfil'.html_safe, edit_user_registration_path, :class => 'navbar-link navbar-text' %>&emsp;</li>
         <%if current_user.is_company?%>
-          <li><%= link_to 'Publicar oferta', '/oferta/nueva', :class => 'navbar-link navbar-text' %>&emsp;</li>
-          <li><%= link_to 'Ver información Externa', "/CompanyInformation/"+current_user.id.to_s, :class => 'navbar-link navbar-text' %>&emsp;</li>
+          <li><%= link_to '<span class="fa fa-external-link" style="margin-left:40%"></span><br>Publicar oferta'.html_safe, '/oferta/nueva', :class => 'navbar-link navbar-text' %>&emsp;</li>
+          <li><%= link_to '<span class="fa fa-id-card" style="margin-left:45%"></span><br>Ver información Externa'.html_safe, "/CompanyInformation/"+current_user.id.to_s, :class => 'navbar-link navbar-text' %>&emsp;</li>
         <%elsif !current_user.is_administrator%>
-          <li><%= link_to 'Curriculum', '/mycurriculum', :class => 'navbar-link navbar-text' %>&emsp;</li>
-          <li><%= link_to 'Editar CV', '/users/curriculum/edit', :class => 'navbar-link navbar-text' %>&emsp;</li>
+          <li><%= link_to '<span class="fa fa-graduation-cap" style="margin-left:40%"></span><br>Curriculum'.html_safe, '/mycurriculum', :class => 'navbar-link navbar-text' %>&emsp;</li>
+          <li><%= link_to '<span class="glyphicon glyphicon-pencil" style="margin-left:40%"></span><br>Editar CV'.html_safe, '/users/curriculum/edit', :class => 'navbar-link navbar-text' %>&emsp;</li>
         <%end%>
-        <li><%= link_to 'Ver grupos', '/grupos/todos', :class => 'navbar-link navbar-text' %>&emsp;</li>
-        <li><%= link_to 'Mis grupos', '/grupos/mis_grupos', :class => 'navbar-link navbar-text' %>&emsp;</li>
-        <li><%= link_to 'Notificaciones', '/mis_notificaciones', :class => 'navbar-link navbar-text',:style=>'padding-right:0px' %><span style="color:rgb(255, 255, 255);" class="navbar-text"><%=current_user.unreaded_notifications.size%>&emsp;</span></li>
+        <li><%= link_to '<span class="fa fa-user-plus" style="margin-left:40%"></span><br>Ver grupos'.html_safe, '/grupos/todos', :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <li><%= link_to '<span class="fa fa-group" style="margin-left:40%"></span><br>Mis grupos'.html_safe, '/grupos/mis_grupos', :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <li><%= link_to '<span class="fa fa-envelope" style="margin-left:40%"></span><br>Notificaciones'.html_safe, '/mis_notificaciones', :class => 'navbar-link navbar-text',:style=>'padding-right:0px' %><span id="noti_number" style="color:rgb(255, 255, 255);margin-left:-10px;margin-top:35px" class="navbar-text"><%=current_user.unreaded_notifications.size%>&emsp;</span></li>
         <%if current_user.is_administrator or current_user.is_secretary?%>
-          <li><%= link_to 'Gestion de usuarios', '/users', :class => 'navbar-link navbar-text' %>&emsp;</li>
-          <li><%= link_to 'Sugerencias!', '/suggestions', :class => 'navbar-link navbar-text' %>&emsp;</li>
+          <li><%= link_to '<span class="fa fa-user-secret" style="margin-left:45%"></span><br>Gestion de usuarios'.html_safe, '/users', :class => 'navbar-link navbar-text' %>&emsp;</li>
+          <li><%= link_to '<span class="fa fa-comment" style="margin-left:40%"></span><br>Sugerencias!'.html_safe, '/suggestions', :class => 'navbar-link navbar-text' %>&emsp;</li>
 
         <%end%>
         <%if current_user.is_director%>
-          <li><%= link_to 'Reportes','/reportes',:class=>'navbar-link navbar-text' %>&emsp;</li>
+          <li><%= link_to '<span class="fa fa-bar-chart" style="margin-left:40%"></span><br>Reportes'.html_safe,'/reportes',:class=>'navbar-link navbar-text' %>&emsp;</li>
         <%end%>
-        <li><%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link navbar-text'  %></li>
-        <li class="pull-right">
+        <li><%= link_to '<span class="fa fa-sign-out" style="margin-left:30%"></span><br>Salir'.html_safe, destroy_user_session_path, method: :delete, :class => 'navbar-link navbar-text'  %></li>
+        <li class="pull-right" style="margin-top:13px" id="buscar-inp">
           <%= form_for :user, url: '/busqueda/usuarios' do |f| %>
           <div class="row input-group" style="vertical-align:middle;margin-top:7px" >
             <div class="col col-md-10" style="align-left; padding-right:0px;">
@@ -109,37 +126,11 @@
           <% end %>
         </li>
         <% else %>
-        <li><%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link navbar-text'  %>  </li>
-        <li><%= link_to "Iniciar Sesion", new_user_session_path, :class => 'navbar-link navbar-text'  %></li>
+        <li><%= link_to  '<span class="fa fa-pencil-square" style="margin-left:45%"></span><br>Registrarse'.html_safe, new_user_registration_path, :class => 'navbar-link navbar-text'  %>  </li>
+        <li><%= link_to '<span class="fa fa-sign-in" style="margin-left:40%"></span><br>Iniciar Sesión'.html_safe, new_user_session_path, :class => 'navbar-link navbar-text'  %></li>
         <% end %>
       </ul>
-    <select>
-      <option value='/'>  <%= link_to 'Bolsa de Trabajo', '/', :class=>'navbar-text pull-left'%></option>
-      <% if user_signed_in? %>
-      <option value='/users/profile'>
-          <%= link_to 'Perfil', '/users/profile', :class => 'navbar-link' %>&emsp;
-      </option>
-      <%if !current_user.is_company?%>
-        <option value='/users/curriculum/edit'><%= link_to 'Editar CV', '/users/curriculum/edit', :class => 'navbar-link' %>&emsp;</option>
-        <option value='mycurriculum'><%= link_to 'Curriculum', '/mycurriculum', :class => 'navbar-link' %>&emsp;</option>
-        <option value="Ver informacion Externa"><%= link_to 'Ver información Externa', "/CompanyInformation/"+current_user.id.to_s, :class => 'navbar-link navbar-text' %>&emsp;</option>
-      <%else%>
-        <option value='/oferta/nueva'><%= link_to 'Publicar oferta', '/oferta/nueva', :class => 'navbar-link' %>&emsp;</option>
-      <%end%>
-      <option value='<%=edit_user_registration_path%>'><%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %>&emsp;</option>
-      <option value="/grupos/todos"><%= link_to 'Ver grupos', '/grupos/todos', :class => 'navbar-link' %>&emsp;</option>
-      <option value="/grupos/mis_grupos"><%= link_to 'Mis grupos', '/grupos/mis_grupos', :class => 'navbar-link' %>&emsp;</option>
-      <option value="/mis_notificaciones"><%= link_to 'Notificaciones', '/mis_notificaciones', :class => 'navbar-link' %><span style="color:rgb(255, 255, 255);"><%=current_user.unreaded_notifications.size%>&emsp;</span></option>
-      <%if current_user.is_administrator%>
-        <option value ="/users"><%= link_to 'Gestion de usuarios', '/users', :class => 'navbar-link' %>&emsp;</option>
-        <option value ="/sugerencias"><%= link_to 'Sugerencias', '/users', :class => 'navbar-link' %>&emsp;</option>
-      <%end%>
-      <option value"<%=destroy_user_session_path%>"><%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></option>
-      <% else %>
-      <option value="/users/sign_up"><%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link'  %>  </option>
-      <option value="/users_sign_in"><%= link_to "Iniciar Sesion", new_user_session_path, :class => 'navbar-link'  %></option>
-      <% end %>
-    </select>
+
     <ul id="icon-menu" style="background-color:#1a5a8f;top:0px;position:absolute;left:-5%">
       <li>  <%= link_to '<span class="fa fa-home"></span>'.html_safe, '/', :class=>'navbar-link navbar-text'%>&emsp;</li>
       <% if user_signed_in? %>
@@ -148,8 +139,8 @@
       </li>
       <li><%= link_to '<span class="fa fa-edit"></span>'.html_safe, edit_user_registration_path, :class => 'navbar-link navbar-text' %>&emsp;</li>
       <%if current_user.is_company?%>
-        <li><%= link_to '<span class="glyphicon glyphicon-share-alt"></span>'.html_safe, '/oferta/nueva', :class => 'navbar-link navbar-text' %>&emsp;</li>
-        <li><%= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, "/CompanyInformation/"+current_user.id.to_s, :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <li><%= link_to '<span class="fa fa-external-link"></span>'.html_safe, '/oferta/nueva', :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <li><%= link_to '<span class="fa fa-id-card"></span>'.html_safe, "/CompanyInformation/"+current_user.id.to_s, :class => 'navbar-link navbar-text' %>&emsp;</li>
       <%elsif !current_user.is_administrator%>
         <li><%= link_to '<span class="fa fa-graduation-cap"></span>'.html_safe, '/mycurriculum', :class => 'navbar-link navbar-text' %>&emsp;</li>
         <li><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, '/users/curriculum/edit', :class => 'navbar-link navbar-text ' %>&emsp;</li>
@@ -158,8 +149,8 @@
       <li><%= link_to '<span class="fa fa-group"></span>'.html_safe, '/grupos/mis_grupos', :class => 'navbar-link navbar-text' %>&emsp;</li>
       <li><%= link_to '<span class="fa fa-envelope"></span>'.html_safe, '/mis_notificaciones', :class => 'navbar-link navbar-text',:style=>'padding-right:0px' %><span style="color:rgb(255, 255, 255);" class="navbar-text"><%=current_user.unreaded_notifications.size%>&emsp;</span></li>
       <%if current_user.is_administrator or current_user.is_secretary?%>
-        <li><%= link_to '<span class="fa fa-users"></span>'.html_safe, '/users', :class => 'navbar-link navbar-text' %>&emsp;</li>
-        <li><%= link_to '<span class="glyphicon glyphicon-comment"></span>'.html_safe, '/suggestions', :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <li><%= link_to '<span class="fa fa-user-secret"></span>'.html_safe, '/users', :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <li><%= link_to '<span class="fa fa-comment"></span>'.html_safe, '/suggestions', :class => 'navbar-link navbar-text' %>&emsp;</li>
 
       <%end%>
       <%if current_user.is_director%>
@@ -168,8 +159,8 @@
       <li><%= link_to '<span class="fa fa-sign-out"></span>'.html_safe, destroy_user_session_path, method: :delete, :class => 'navbar-link navbar-text'  %>&emsp;</li>
 
       <% else %>
-      <li><%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link navbar-text'  %>  </li>
-      <li><%= link_to "Iniciar Sesion", new_user_session_path, :class => 'navbar-link navbar-text'  %></li>
+      <li><%= link_to '<span class="fa fa-pencil-square" style="margin-right:20px"></span>'.html_safe, new_user_registration_path, :class => 'navbar-link navbar-text'  %>  </li>
+      <li><%= link_to '<span class="fa fa-sign-in"></span>'.html_safe, new_user_session_path, :class => 'navbar-link navbar-text'  %></li>
       <% end %>
 
      </ul>
@@ -278,7 +269,9 @@
   font-size: 14px;
 }
 .navbar {
-  background:#1a5a8f;
+  background:#1a5a8f !important;
+  background-image: -webkit-linear-gradient(top,#1a5a8f 0,#1a5a8f 100%);
+  background-image: linear-gradient(to bottom,#1a5a8f 0,#1a5a8f 100%);
 }
 .navbar-inverse .navbar-link{
   color: #ffffff;

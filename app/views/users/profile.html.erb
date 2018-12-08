@@ -1,5 +1,5 @@
 
-<div class="container-fluid" style="padding:0px">
+<div class="container-fluid" style="padding:0px;margin-top:38px">
   <div id="container-cover">
     <div class="hovereffect"  >
 			<%= image_tag("Cochabamba2016.jpg") %>
@@ -94,7 +94,6 @@
   var btn= document.getElementById("container-avatar")
   var modal = document.getElementById("editProfileAvatar");
   var span =document.getElementById("close");
-  var span2 =document.getElementById("close2");
   // var btns=document.getElementById("aceptar");
   // span.onclick = function() {
   //     modal.style.display = "none";
@@ -116,7 +115,6 @@
   var btn= document.getElementById("container-avatar")
   var modal = document.getElementById("editProfileAvatar");
   var span =document.getElementById("close");
-  var span2 =document.getElementById("close2");
   // var btns=document.getElementById("aceptar");
   // span.onclick = function() {
   //     modal.style.display = "none";
@@ -128,9 +126,7 @@
     modal.style.display ="none";
   };
 
-  span2.onclick =function(){
-    modal.style.display ="none";
-  };
+
   // btn-s.onclick =function(){
   //   window.location.href="/users/profile"
   // };
@@ -192,7 +188,7 @@
 	      </div>
         <div class="row">
           <div class="cont-btn-publicar col-md-12">
-            <button type="submit" class="btn btn-primary pull-right" id="boton_estado">
+            <button type="submit" class="btn btn-primary pull-right" id="boton_estado" style="margin-top:5px;">
               Publicar <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
             </button>
           </div>
@@ -220,7 +216,7 @@
                 <%= form_for :follow, url: '/follows/new' do |f| %>
                   <%=f.hidden_field :follower, :value => current_user.id %>
                   <%=f.hidden_field :followed, :value => post.user.id %>
-          	     <button type="button submit" class="btn btn-default btn-sm pull-right" >Seguir</button>
+          	     <button type="button submit" class="btn btn-default btn-sm pull-right" style="margin-left:5px">Seguir</button>
                <%end %>
               <%else %>
                 <%if (Follow.where(follower:current_user.id,followed:post.user.id).size!=0) and post.user.is_company?%>

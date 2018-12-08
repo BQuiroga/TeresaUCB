@@ -50,7 +50,7 @@
 /*   */
 
 body{margin-top:20px;
-background:#eee;
+background:#fff;
 }
 
 .btn-compose-email {
@@ -696,7 +696,6 @@ opacity:0.9;
 
  }
  body{
-   background-color: rgb(216, 223, 234);
    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif  !important;
 
  }
@@ -3008,13 +3007,7 @@ a:hover, a:focus {
   padding-top: 95px;
 }
 
-.form-control {
-  background-color: transparent;
-  border-color: rgba(255,255,255,.1);
-  height: 50px;
-  border-radius: 0;
-  box-shadow: none;
-}
+
 
 textarea.form-control {
   min-height: 180px;
@@ -3147,7 +3140,9 @@ h3 {
     color: #555;
     line-height: 30px;
 }
-
+#sesion-heading h3 {
+  color: #fff;
+}
 img { max-width: 100%; }
 
 ::-moz-selection { background: #de615e; color: #fff; text-shadow: none; }
