@@ -1,22 +1,21 @@
-<div class="container">
-<div class="panel panel-default">
+<div class="container" style="margin-top:50px">
+<div class="panel panel-primary">
   <div class="panel-heading">
-    <div class="panel-title">
-      <h3><%=@notification.title%></h3>
+    <div class="panel-title" style="padding-top:1px;padding-bottom:1px">
+      <h4><%=@notification.title%></h4>
     </div>
       </div>
       <div class="panel-body">
        <div>
-        <h4>  <b><%=@sender.name%>&emsp;</b>
+         <a href="/curriculums/<%=@sender.id%>">
+           <button class="btn btn-default btn-sm pull-right">Ver Perfil</button>
+         </a>
+        <h4>  <b><%=@sender.name%>&emsp;</b></h4>
           &emsp;&emsp;
             <%if !@sender.is_company?%>
-            <a href="/curriculums/<%=@sender.id%>">
-              <button class="btn btn-default btn-sm pull-right">Ver Perfil</button>
-            </a>
             <%end%>
             <p > <%=@notification.description%>
             </p>
-        </h4>
       </div>
     </div>
   </div>

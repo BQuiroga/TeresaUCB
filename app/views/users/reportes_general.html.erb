@@ -34,23 +34,23 @@ appearance: none;
 </style>
 
 
-  <div class="container">
+  <div class="container" style="margin-top:50px">
   <h2>Lista de reportes</h2>
-    <div class="panel panel-default">
-      <div class="panel-heading"><div class="panel-title"><h3>Criterios de busqueda</h3></div></div>
+    <div class="panel panel-primary">
+      <div class="panel-heading"><div class="panel-title" style="padding-top:1px;padding-bottom:1px"><h3 style="margin-top:10px">Criterios de busqueda</h3></div></div>
         <div class="panel-body">
-          <div class="panel panel-default">
+          <div class="panel panel-info">
             <div class="panel-heading">
-              <div class="panel-title">
+              <div class="panel-title" style="padding-top:1px;padding-bottom:1px">
                 <span class="btn btn-default pull-right" id="estaticos_der" onclick="toggleEstaticos()" style="display:none;">Mostrar menos</span>
                 <span class="btn btn-default pull-right" id="estaticos_ab" onclick="toggleEstaticos()"  >Mostrar más</span>
                 <h4>Reportes estaticos  </h4>
               </div>
             </div>
             <div class="panel panel-body" id="estaticos" style="display:none;">
-              <div class="panel panel-default">
+              <div class="panel-info">
                 <div class="panel panel-heading">
-                  <div class="panel-title" tabindex="-1" href="#">
+                  <div class="panel-title" tabindex="-1" href="#" style="padding-top:1px;padding-bottom:1px">
                       <span class="btn btn-default pull-right" id="estaticos_registrados_der" onclick="toggleRegistrados()" style="display:none;">Mostrar menos</span>
                       <span class="btn btn-default pull-right" id="estaticos_registrados_ab" onclick="toggleRegistrados()">Mostrar más</span>
                       <h5>Estudiantes registrados </h5>
@@ -58,19 +58,19 @@ appearance: none;
                 </div>
                 <ul class="list-group" style="display:none;" id="registrados">
                   <li class="list-group-item">Por fecha
-                    <a href="/reportes/UsuariosPorFecha"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
+                    <a href="/reportes/UsuariosPorFecha"><button class="btn btn-info btn-sm float-xs-right btn-negro pull-right report-button">Ver</button></a>
                   </li>
                   <li class="list-group-item">Por Género
-                    <a href="/reportes/UsuariosPorGenero"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
+                    <a href="/reportes/UsuariosPorGenero"><button class="btn btn-info btn-sm float-xs-right btn-negro pull-right report-button">Ver</button></a>
                   </li>
                   <li class="list-group-item">Por Género y Universidad
-                    <a href="/reportes/UsuariosPorGeneroUniversidad"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
+                    <a href="/reportes/UsuariosPorGeneroUniversidad"><button class="btn btn-info btn-sm float-xs-right btn-negro pull-right report-button">Ver</button></a>
                   </li>
                 </ul>
               </div>
-                  <div class="panel panel-default">
+                  <div class="panel-info">
                     <div class="panel panel-heading">
-                      <div class="panel-title" tabindex="-1" href="#">
+                      <div class="panel-title" tabindex="-1" href="#" style="padding-top:1px;padding-bottom:1px">
                         <span class="btn btn-default pull-right" id="estaticos_titulados_der" onclick="toggleTitulados()" style="display:none;">Mostrar menos</span>
                         <span class="btn btn-default pull-right" id="estaticos_titulados_ab" onclick="toggleTitulados()" >Mostrar más</span>
                         <h5>Estudiantes titulados </h5>
@@ -78,35 +78,35 @@ appearance: none;
                     </div>
                     <ul class="list-group" style="display:none;" id="titulados">
                       <li class="list-group-item">Por Universidad
-                        <a href="/reportes/UsuariosPorUniversidad"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
+                        <a href="/reportes/UsuariosPorUniversidad"><button class="btn btn-info btn-sm float-xs-right btn-negro pull-right report-button">Ver</button></a>
                       </li>
                       <li class="list-group-item">Por Carrera
-                        <a href="/reportes/UsuariosPorCarrera"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
+                        <a href="/reportes/UsuariosPorCarrera"><button class="btn btn-info btn-sm float-xs-right btn-negro pull-right report-button">Ver</button></a>
                       </li>
                       <!-- <li class="list-group-item">Con Maestria
-                      <a href="/reportes/ConPostgrado"><button class="btn btn-primary btn-sm float-xs-right btn-negro">Ver Reporte Estadístico</button></a>
+                      <a href="/reportes/ConPostgrado"><button class="btn btn-info btn-sm float-xs-right btn-negro">Ver</button></a>
                     </li> -->
                   </ul>
                 </div>
-                <div class="panel panel-default">
+                <div class="panel-info">
                   <ul class="list-group">
                 <li class="list-group-item">Empresas clasificadas codigo CIUU
-                  <a href="/reportes/EmpresasPorcodigoCIUU"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
+                  <a href="/reportes/EmpresasPorcodigoCIUU"><button class="btn btn-info btn-sm float-xs-right btn-negro pull-right report-button">Ver</button></a>
                 </li>
                 <li class="list-group-item">Trabajos por rango salarial
-                  <a href="/reportes/TrabajosPorRangoSalarial"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
+                  <a href="/reportes/TrabajosPorRangoSalarial"><button class="btn btn-info btn-sm float-xs-right btn-negro pull-right report-button">Ver</button></a>
                 </li>
                 <li class="list-group-item">Tiempo transcurridos para conseguir un trabajo
-                  <a href="/reportes/TiempoParaTrabajar"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
+                  <a href="/reportes/TiempoParaTrabajar"><button class="btn btn-info btn-sm float-xs-right btn-negro pull-right report-button">Ver</button></a>
                 </li>
                 <li class="list-group-item">Tiempo de permanencia en un trabajo
-                  <a href="/reportes/DuracionDeTrabajo"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
+                  <a href="/reportes/DuracionDeTrabajo"><button class="btn btn-info btn-sm float-xs-right btn-negro pull-right report-button">Ver</button></a>
                 </li>
                 <li class="list-group-item">Tiempo y relacion de ingresos y titulados
-                  <a href="/reportes_estaticos"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
+                  <a href="/reportes_estaticos"><button class="btn btn-info btn-sm float-xs-right btn-negro pull-right report-button">Ver</button></a>
                 </li>
                 <li class="list-group-item">Impacto laboral de las distintas carreras
-                  <a href="/reportes_actividades"><button class="btn btn-primary btn-sm float-xs-right btn-negro pull-right report-button">Ver Reporte Estadístico</button></a>
+                  <a href="/reportes_actividades"><button class="btn btn-info btn-sm float-xs-right btn-negro pull-right report-button">Ver</button></a>
                 </li>
               </ul>
             </div>
@@ -116,9 +116,9 @@ appearance: none;
           </div>
 
         <!-- Reportes dinamicos -->
-          <div class="panel panel-default" style="left:5px;">
+          <div class="panel-info" style="left:5px;">
             <div class="panel-heading">
-              <div class="panel-title">
+              <div class="panel-title" style="padding-top:1px;padding-bottom:1px">
                 <h4>Filtros dinamicos</h4>
               </div>
             </div>
@@ -202,7 +202,7 @@ appearance: none;
                 </div>
                 <br>
                 <div class="actions col col-md-12">
-                  <%= f.submit "Generar" , :class =>"btn btn-primary pull-right"%>
+                  <%= f.submit "Generar" , :class =>"btn btn-info pull-right"%>
                 </div>
                 <div>
                 </div>

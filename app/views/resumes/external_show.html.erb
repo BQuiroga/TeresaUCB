@@ -1,44 +1,172 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<div class="container">
-  <div>
-    <h2 style="background-color: #f0f0f0; border-top-left-radius: 10px; border-top-right-radius: 10px;"><%=@user.name%> <%=@user.last_name%>
-      <%if @picture%>
-      <%=image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px;float: right!important;") %>
+<style>
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+.tabcontent {
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+
+.container-cv {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .container-cv {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container-cv {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container-cv {
+    width: 1170px;
+  }
+}
+
+.line-separator-blue{
+  height:3px;
+  width:93%;
+  background:#717171;
+  background-color: #000099;
+  border-bottom:1px solid #000099;
+}
+.line-separator-red{
+  height:3px;
+  width:93%;
+  background:#7d1c41;
+  background-color: #7d1c41;
+  border-bottom:1px solid #7d1c41;
+}
+.section-title-blue{
+  display:inline-block;
+  background-color: #000099;
+  padding: 1px;
+  color: #ffffff;
+  width:auto;
+  padding-rigth: 20px;
+}
+.section-title-red{
+  display:inline-block;
+  background-color: #7d1c41;
+  padding: 1px;
+  color: #ffffff;
+  width:auto;
+  padding-rigth: 20px;
+}
+.section-container-blue b{
+  color: #000099;
+}
+.section-container-blue p{
+  color: #000000;
+}
+.section-container-blue{
+  color: 	#00000;
+}
+.section-container-blue h3{
+  color: #1a1aff;
+}
+.section-container-red b{
+  color: #7d1c41;
+}
+.section-container-red p{
+  color: #000000;
+}
+.section-container-red{
+  color: 	#000000;
+}
+.section-container-red h3{
+  color: #bf0d19;
+}
+.cv-title-name{
+  left:5%;
+  position:  auto;
+}
+.vertical-title{
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+.vertical-section-blue{
+  right: auto;
+  border: 5px solid #000099;
+  padding-bottom: 21px;
+
+}
+.vertical-section-red{
+  right: auto;
+  border: 5px solid #7d1c41;
+  padding-bottom: 21px;
+
+}
+
+</style>
+
+<div class="container" style="margin-top:50px">
+  <div class="container">
+  <div class="row-fluid bg-primary" style="border-top-left-radius: 10px; border-top-right-radius: 10px;padding-top:1px;padding-bottom:1px">
+    <h2 style="margin-left:15px;margin-top:10px !important"><%=@user.name%> <%=@user.last_name%>
+      <%if @picture!=nil%>
+      <%=wicked_pdf_image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px;float: right;margin-right:4px") %>
       <%end%>
     </h2>
   </div>
   <div class="container-body ">
-  <%if !@user.is_company?%>
     <div class="container">
-      <h2>Informacion Personal</h2>
       <div class="container">
-        <b>Direccion: </b><%=@personal_info.address%><br>
-        <b>Fecha de Nacimiento: </b><%=@personal_info.translate_birthdate_to_string%> <br>
-        <b>Fijo: </b><%=@personal_info.phone%><br>
-        <b>Movil: </b><%=@personal_info.cellphone%><br>
-        <b>e-mail: </b><%=@user.email%><br>
-      </div>
-    </div>
-    <% if @educations.size >0%>
-    <div class="container">
-      <h2>Formacion Academica </h2>
-      <div class="container">
-        <h5><% @educations.each do |education| %></h5>
-        <div>
-          <p>
-            <h5><b><%=education.title%></b></h5>
-            <%if education.description.size>0%>
-              <%=education.description%>
-              <br>
-            <%end%>
-            <%=education.school_name%>&nbsp;
-            <%=education.start_date.year%>&emsp; - &emsp; <%=education.end_date.year%>
-          </p>
+        <div class="container">
         </div>
-        <%end%>
-      </div>
-    </div>
-    <%end%>
+        <div class="container">
+          <%if !@user.is_company?%>
+          <div class="container">
+            <h2>Informacion Personal</h2>
+            <div class="container">
+              <b>Género: </b><%=@personal_info.gender_to_string%><br>
+              <b>Direccion: </b><%=@personal_info.address%><br>
+              <b>Fecha de Nacimiento: </b><%=@personal_info.translate_birthdate_to_string%> <br>
+              <b>Fijo: </b><%=@personal_info.phone%><br>
+              <b>Móvil: </b><%=@personal_info.cellphone%><br>
+              <b>e-mail: </b><%=@user.email%><br>
+            </div>
+          </div>
+          </div>
+          <div class="container">
+              <% if @educations.size >0%>
+              <div class="container">
+                <h2>Formacion Academica </h2>
+                <div class="container">
+                  <h5><% @educations.each do |education| %></h5>
+                  <div>
+                    <p>
+                      <h5><b><%=education.title %></b></h5>
+                      <%if education.description.size>0%>
+                      <%=education.description%>
+                      <br>
+                      <% end%>
+                      <%=education.school_name %>&nbsp;
+                      <%=education.start_date.year %>&emsp; - &emsp; <%= education.end_date.year %>
+                  </p>
+                </div>
+                <%end%>
+              </div>
+            </div>
+            <%end%>
+          </div>
     <% if @experiences.size >0%>
     <div class="container">
       <h2>Experiencia Profesional </h2>
@@ -169,6 +297,11 @@
   </div>
   <%end%>
 </div>
+</div>
+</div>
+</div>
+</div>
+
 <script>
 function mostrar_todo(){
   var divs=document.getElementsByClassName("para-completo");
@@ -189,120 +322,3 @@ function ocultar_todo(){
   }
 }
 </script>
-
-
-<style>
-.tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
-}
-.tabcontent {
-    animation: fadeEffect 1s; /* Fading effect takes 1 second */
-}
-
-/* Go from zero to full opacity */
-@keyframes fadeEffect {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-.container-cv {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-@media (min-width: 768px) {
-  .container-cv {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  .container-cv {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  .container-cv {
-    width: 1170px;
-  }
-}
-
-.line-separator-blue{
-  height:3px;
-  width:93%;
-  background:#717171;
-  background-color: #000099;
-  border-bottom:1px solid #000099;
-}
-.line-separator-red{
-  height:3px;
-  width:93%;
-  background:#7d1c41;
-  background-color: #7d1c41;
-  border-bottom:1px solid #7d1c41;
-}
-.section-title-blue{
-  display:inline-block;
-  background-color: #000099;
-  padding: 1px;
-  color: #ffffff;
-  width:auto;
-  padding-rigth: 20px;
-}
-.section-title-red{
-  display:inline-block;
-  background-color: #7d1c41;
-  padding: 1px;
-  color: #ffffff;
-  width:auto;
-  padding-rigth: 20px;
-}
-.section-container-blue b{
-  color: #000099;
-}
-.section-container-blue p{
-  color: #000000;
-}
-.section-container-blue{
-  color: 	#00000;
-}
-.section-container-blue h3{
-  color: #1a1aff;
-}
-.section-container-red b{
-  color: #7d1c41;
-}
-.section-container-red p{
-  color: #000000;
-}
-.section-container-red{
-  color: 	#000000;
-}
-.section-container-red h3{
-  color: #bf0d19;
-}
-.cv-title-name{
-  left:5%;
-  position:  auto;
-}
-.vertical-title{
-  writing-mode: vertical-lr;
-  transform: rotate(180deg);
-}
-.vertical-section-blue{
-  right: auto;
-  border: 5px solid #000099;
-  padding-bottom: 21px;
-
-}
-.vertical-section-red{
-  right: auto;
-  border: 5px solid #7d1c41;
-  padding-bottom: 21px;
-
-}
-
-</style>

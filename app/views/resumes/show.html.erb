@@ -16,7 +16,7 @@
     }
   }
 </style>
-<div class="w3-sidebar w3-bar-block w3-card w3-black w3-animate-left" style="display:none" id="mySidebar">
+<div class="w3-sidebar w3-bar-block w3-card w3-black w3-animate-left" style="margin-top:50px;display:none" id="mySidebar">
   <button class="w3-bar-item w3-button  w3-tiny"style="right:0px;"
   onclick="w3_close()">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&emsp;&emsp;Cerrar &times;</button>
   <a onclick="original()" class="w3-bar-item w3-button">Original</a>
@@ -48,12 +48,12 @@
     <button id="ocultar_todo_a" onclick="ocultar_todo_a()" style="display:none"class="btn btn-primary">Mostrar resumido</button>
   </div>
 </div>
-<div class="container" id="main">
+<div class="container" id="main" style="margin-top:50px;">
 <div class="container">
-<div class="row-fluid" style="background-color: #f0f0f0; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-  <h2><%=@user.name %> <%=@user.last_name %>
+<div class="row-fluid bg-primary" style="border-top-left-radius: 10px; border-top-right-radius: 10px;padding-top:1px;padding-bottom:1px">
+  <h2 style="margin-left:15px"><%=@user.name %> <%=@user.last_name %>
     <%if @picture!=nil%>
-      <%=image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px")%>
+      <%=image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px;margin-right:4px")%>
     <% else %>
     <%=image_tag("missing.png", class: 'img-thumbnail pull-right',style:"width:150px;height:150px") %>
     <% end %>
@@ -72,7 +72,7 @@
       <b>Direccion: </b><%=@personal_info.address%><br>
       <b>Fecha de Nacimiento: </b><%=@personal_info.translate_birthdate_to_string%> <br>
       <b>Fijo: </b><%=@personal_info.phone%><br>
-      <b>Movil: </b><%=@personal_info.cellphone%><br>
+      <b>Móvil: </b><%=@personal_info.cellphone%><br>
       <b>e-mail: </b><%=@user.email%><br>
     </div>
   </div>
@@ -234,8 +234,8 @@
 </div>
 </div>
   <!-- TIPO DE CURRICULUM VERDE -->
-<div class="container">
-  <div class="container-body " id="cv-azul">
+<div class="container" style="margin-top:50px">
+  <div class="container-body-blue " id="cv-azul">
           <div class="section-container-blue">
             <%if @picture!=nil%>
             <%=image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px;right:30%;")%>
@@ -254,7 +254,7 @@
            </div>
           <div class="line-separator-blue">
           </div>
-            <div class="container section-container-blue">
+            <div class="container section-container-blue" style="padding-left:40px;">
               <br>
               <b>Género: </b><%=@personal_info.gender_to_string%><br>
               <b>Direccion: </b><%=@personal_info.address%><br>
@@ -269,7 +269,7 @@
   </div>
   <div class="line-separator-blue">
   </div>
-    <div class="container section-container-blue">
+    <div class="container section-container-blue" style="padding-left:40px;">
       <br>
     <% if @educations.size >0%>
     <h5><% @educations.each do |education| %></h5>
@@ -294,7 +294,7 @@
   </div>
   <div class="line-separator-blue">
   </div>
-  <div class="container section-container-blue">
+  <div class="container section-container-blue" style="padding-left:40px;">
     <br>
       <h5><% @experiences.each do |experience| %></h5>
       <div>
@@ -319,7 +319,7 @@
 </div>
 <div class="line-separator-blue">
 </div>
-<div class="container section-container-blue">
+<div class="container section-container-blue" style="padding-left:40px;">
   <br>
     <h5><% @courses.each do |course| %></h5>
             <div>
@@ -343,7 +343,7 @@
 
    <div class="line-separator-blue">
    </div>
-   <div class="container section-container-blue">
+   <div class="container section-container-blue" style="padding-left:40px;">
      <h5><% @memberships.each do |member| %></h5>
      <div>
        <p>
@@ -361,7 +361,7 @@
    </div>
    <div class="line-separator-blue">
    </div>
-     <div class="container section-container-blue">
+     <div class="container section-container-blue" style="padding-left:40px;">
        <h5><% @merits.each do |merit| %></h5>
        <div>
          <p>
@@ -380,7 +380,7 @@
        <h3> Conocimientos</h3>
      </div>
      <div class="col col-md-4 col-lg-4 vertical-section-blue">
-       <div class="container section-container-blue ">
+       <div class="container section-container-blue " style="padding-left:40px;">
          <br>
          <h5><% @knowledges.each do |know| %></h5>
           <div>
@@ -400,7 +400,7 @@
          <h3> Habilidades</h3>
        </div>
        <div class="col col-md-4 col-lg-4 vertical-section-blue">
-       <div class="container section-container-blue">
+       <div class="container section-container-blue" style="padding-left:40px;">
         <h5><% @skills.each do |skill| %></h5>
                 <div>
                     <p>
@@ -419,7 +419,7 @@
     <h3> Idiomas </h3>
   </div>
   <div class="col col-md-4 col-lg-4 vertical-section-blue">
-    <div class="container section-container-blue">
+    <div class="container section-container-blue" style="padding-left:40px;">
     <h5><% @languages.each do |language| %></h5>
      <div>
        <p>
@@ -516,7 +516,13 @@ function pintarAzul(){
     var titulosA=document.getElementsByClassName("section-title-red");
     var seccionesA=document.getElementsByClassName("section-container-red");
     var complementosA=document.getElementsByClassName("vertical-section-red");
+    var bodyA=document.getElementsByClassName("container-body-red");
     var i=0;
+    while(bodyA.length)
+    {
+      bodyA[i].classList.add('container-body-blue');
+      bodyA[i].classList.remove('container-body-red');
+    }
     while(lineasA.length)
     {
       lineasA[i].classList.add('line-separator-blue');
@@ -550,7 +556,13 @@ function pintarRojo(){
     var titulosA=document.getElementsByClassName("section-title-blue");
     var seccionesA=document.getElementsByClassName("section-container-blue");
     var complementosA=document.getElementsByClassName("vertical-section-blue");
+    var bodyA=document.getElementsByClassName("container-body-blue");
     var i=0;
+    while(bodyA.length)
+    {
+      bodyA[i].classList.add('container-body-red');
+      bodyA[i].classList.remove('container-body-blue');
+    }
     while(lineasA.length)
     {
       lineasA[i].classList.add('line-separator-red');
@@ -580,6 +592,13 @@ function original(){
   document.getElementById("original-link").style.display ="block";
   document.getElementById("botones_originales").style.display="block";
   document.getElementById("botones_azules").style.display="none";
+  var bodyA=document.getElementsByClassName("container-body-red");
+  var i=0;
+  while(bodyA.length)
+  {
+    bodyA[i].classList.add('container-body-blue');
+    bodyA[i].classList.remove('container-body-red');
+  }
 }
 </script>
 

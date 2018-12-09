@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div class="container">
   <div class="container-body " id="cv-azul">
-          <div class="section-container-red">
+          <div class="section-container-red" style="padding-left:35px">
             <%=wicked_pdf_image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px;float: right!important;") %>
             <div class="container">
               <div class="container">
@@ -15,7 +15,7 @@
            </div>
           <div class="line-separator-red">
           </div>
-            <div class="container section-container-red">
+            <div class="container section-container-red" style="padding-left:40px;">
               <br>
               <b>Género: </b><%=@personal_info.gender_to_string%><br>
               <b>Direccion: </b><%=@personal_info.address%><br>
@@ -30,7 +30,7 @@
   </div>
   <div class="line-separator-red">
   </div>
-    <div class="container section-container-red">
+    <div class="container section-container-red" style="padding-left:40px;">
       <br>
     <% if @educations.size >0%>
     <h5><% @educations.each do |education| %></h5>
@@ -55,7 +55,7 @@
   </div>
   <div class="line-separator-red">
   </div>
-  <div class="container section-container-red ">
+  <div class="container section-container-red " style="padding-left:40px;">
     <br>
       <h5><% @experiences.each do |experience| %></h5>
       <div>
@@ -76,7 +76,7 @@
 </div>
 <div class="line-separator-red">
 </div>
-<div class="container section-container-red">
+<div class="container section-container-red" style="padding-left:40px;">
   <br>
     <h5><% @courses.each do |course| %></h5>
             <div>
@@ -100,7 +100,7 @@
 
    <div class="line-separator-red">
    </div>
-   <div class="container section-container-red">
+   <div class="container section-container-red" style="padding-left:40px;">
      <h5><% @memberships.each do |member| %></h5>
      <div>
        <p>
@@ -116,7 +116,7 @@
    <div class="section-title-red">
      <h3> Meritos </h3>
    </div>
-     <div class="container section-container-red">
+     <div class="container section-container-red" style="padding-left:40px;">
        <h5><% @merits.each do |merit| %></h5>
        <div>
          <p>
@@ -134,7 +134,7 @@
        <h3> Conocimientos</h3>
     </div>
    <div class="col-md-4 col-lg-4 vertical-section-red">
-     <div class="container section-container-red ">
+     <div class="container section-container-red " style="padding-left:40px;">
        <br>
     <h5><% @knowledges.each do |know| %></h5>
             <div>
@@ -153,7 +153,7 @@
      <h3> Habilidades</h3>
    </div>
    <div class="col-md-4 col-lg-4 vertical-section-red">
-   <div class="container section-container-red">
+   <div class="container section-container-red" style="padding-left:40px;">
     <h5><% @skills.each do |skill| %></h5>
             <div>
                 <p>
@@ -170,7 +170,7 @@
     <h3> Idiomas </h3>
   </div>
   <div class="col-md-4 col-lg-4 vertical-section-red">
-    <div class="container section-container-red">
+    <div class="container section-container-red" style="padding-left:40px;">
     <h5><% @languages.each do |language| %></h5>
      <div>
        <p>
@@ -285,6 +285,8 @@ function original(){
   display:inline-block;
   background-color: #000099;
   padding: 1px;
+  padding-left:35px;
+  padding-right:35px;
   color: #ffffff;
   width:auto;
   padding-rigth: 20px;
@@ -293,6 +295,8 @@ function original(){
   display:inline-block;
   background-color: #7d1c41;
   padding: 1px;
+  padding-left:35px;
+  padding-right:35px;
   color: #ffffff;
   width:auto;
   padding-rigth: 20px;

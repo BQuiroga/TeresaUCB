@@ -28,15 +28,14 @@ navbar {
     display: inline; */
 }
 </style>
-<div class="container">
-  <div class="panel panel-default">
+<div class="container" style="margin-top:50px">
+  <div class="panel panel-primary">
     <div class="panel panel-heading">
-      <div class="panel-title">
-        <h1>Formulario de Oferta de Trabajo</h1>
+      <div class="panel-title" style="padding-top:1px;padding-bottom:1px">
+        <h3 style="margin-top:10px">Formulario de Oferta de Trabajo</h3>
       </div>
     </div>
-  </div>
-  <div class="panel panel-footer well">
+  <div class="panel panel-body">
     <div class="info"><p> Busca <i class="fa fa-search"></i> lo que necesites </p></div>
     <%= form_for :post, url: '/resultados/busqueda' do |f| %>
       <%= f.hidden_field :user_id,:value => current_user.id%>
@@ -125,7 +124,7 @@ navbar {
       <%end%>
       <br><br><br><br><br><br>
       <br><br><br><br><br><br>
-      <br><br><br><br><br><br>
-    </div>  
+    </div>
+  </div>
   </div>
   </div>

@@ -2,7 +2,7 @@
 <div class="container-fluid" style="padding:0px;margin-top:38px">
   <div id="container-cover">
     <div class="hovereffect"  >
-			<%= image_tag("Cochabamba2016.jpg") %>
+			<%= image_tag("portada2.PNG",:style=>"height:350px;") %>
     </div>
   </div>
 </div>
@@ -161,7 +161,7 @@
 
 
 	<div class="container-fluid">
-		<div class="row" style="padding-top:5%">
+		<div class="row" style="padding-top:15px">
 		 <div class="col-md-2 col-sm-3">
     		<div class="panel panel-default">
           <div class="panel-body">
@@ -198,7 +198,7 @@
     <%if (@posts)%>
     	<% @posts.each do |post| %>
         <div class="">
-          <div class="bs-callout bs-callout-primary" style="border-left-color: #1a5a8f;background-color:#fffde7">
+          <div class="bs-callout " style="border-right-color:#1a5a8f !important;border-bottom-color:#1a5a8f !important;border-top-color:#1a5a8f !important;border-color:#ffeb3b">
             <%if post.user_id==current_user.id%>
               <div class="btn-group pull-right" style="">
                 <%= link_to '<i class="fa fa-times-circle btn-lg pull-right text-danger" style="padding-left:0;padding-right:0;" ></i>'.html_safe, post , method: :delete , data: { confirm: "Estas seguro de que quieres eliminar esta publicación?" }%>
@@ -216,11 +216,11 @@
                 <%= form_for :follow, url: '/follows/new' do |f| %>
                   <%=f.hidden_field :follower, :value => current_user.id %>
                   <%=f.hidden_field :followed, :value => post.user.id %>
-          	     <button type="button submit" class="btn btn-default btn-sm pull-right" style="margin-left:5px">Seguir</button>
+          	     <button type="button submit" class="btn btn-primary btn-sm pull-right" style="margin-left:5px">Seguir</button>
                <%end %>
               <%else %>
                 <%if (Follow.where(follower:current_user.id,followed:post.user.id).size!=0) and post.user.is_company?%>
-                  <button type="button submit" class="btn btn-default btn-sm" >
+                  <button type="button submit" class="btn btn-primary btn-sm" >
                     <%=link_to "Dejar de seguir", {controller: "follows", action: "dejar", id: Follow.where(follower.current_user.id,followed:post.user.id).first.id}%>
                   </button>
                 <%end %>
@@ -229,13 +229,13 @@
             <div class="btn-group pull-right">
               <%if (!current_user.is_my_friend(post.user.id))%>
                 <%if current_user.not_me(post.user.id) and !post.user.is_company?%>
-                  <button type="button submit" class="btn btn-default btn-sm" aria-label="Left Align">
+                  <button type="button submit" class="btn btn-primary btn-sm" aria-label="Left Align">
                     <%=link_to "Agregar a mis amigos", {controller: "friendships", action: "friend", id: post.user.id}%>
                   </button>
                 <%end%>
               <%else %>
                 <%if current_user.not_me(post.user.id) and !post.user.is_company?%>
-                  <button type="button submit" class="btn btn-default" aria-label="Left Align">
+                  <button type="button submit" class="btn btn-primary" aria-label="Left Align">
                     <%=link_to "Dejar de ser amigos", {controller: "friendships", action: "notmine", id: post.user.id}%>
                   </button>
                 <%end%>
@@ -244,10 +244,10 @@
             <div class="btn-group pull-right">
               <%if current_user.not_me(post.user.id) and post.user.is_company?%>
                 <a href="/mis_notificaciones/new/<%=post.id %>">
-                  <button type="button" class="btn btn-default btn-sm" aria-label="Left Align">Postular</button>
+                  <button type="button" class="btn btn-success btn-sm" aria-label="Left Align">Postular</button>
                 </a>
                 <a href="/CompanyInformation/<%=post.user_id %>">
-                  <button type="button" class="btn btn-default btn-sm" aria-label="Left Align">Ver Informacion</button>
+                  <button type="button" class="btn btn-info btn-sm" aria-label="Left Align">Ver Informacion</button>
                 </a>
               <%end%>
             </div>
@@ -260,15 +260,19 @@
    </div>
 
 <div class="pull-right col-md-4 col-sm-3 right-group-menu" style="right:0px" id="group_menu">
-  <div class="panel panel-default">
-    <div class="panel-heading"><div class="panel-title"><h3>Mis Grupos </h3></div></div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <div class="panel-title" style="padding-top:1px;padding-bottom:1px">
+        <h4 >Mis Grupos </h4>
+      </div>
+    </div>
     <div class="panel-body">
     <% if @groups.size >0%>
     <ul class="list-group">
     <% @groups.each do |group| %>
       <li class="list-group-item">
         <div>
-          <h4>  <b><%=group.name%>&emsp;</b>
+          <h5>  <b><%=group.name%>&emsp;</b>
             <a href="/grupos/<%=group.id%>/miembros">
               <button class="btn btn-default btn-sm pull-right">Ver Miembros</button>
             </a>
@@ -284,7 +288,7 @@
                     <%end%>
                   <%end%>
             </button>
-          </h4>
+          </h5>
           <%=group.description%>&nbsp;
           <%=group.members%>
         </div>

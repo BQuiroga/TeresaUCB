@@ -16,8 +16,8 @@
 }
 }
 </style>
-<div class="container">
-  <div class= "panel panel-default panel-heading">
+<div class="container" style="margin-top:50px">
+  <div class= "panel panel-primary panel-heading">
     <h1  class="text-center">Currículum Vitae</h1>
     <ul class="nav nav-tabs">
       <li><a class="tablinks" onclick="openSector(event, 'Academico')" id="defaultOpen">Académico</a></li>
@@ -34,8 +34,8 @@
   </div>
   <!-- Sector Academico -->
   <div id='Academico' class="tabcontent">
-    <div class="panel panel-default">
-      <div class="panel-heading"><div class="panel-title"><h3>Formación Académica </h3></div></div>
+    <div class="panel panel-primary">
+      <div class="panel-heading"><div class="panel-title" style="padding-top:1px;padding-bottom:1px"><h4>Formación Académica </h4></div></div>
       <div class="panel-body">
         <ul class="list-group" id="educations_resume">
           <% if @educations.size >0%>
@@ -69,10 +69,10 @@
 
 <!-- Sector Laboral -->
 <div id='Laboral' class="tabcontent">
-  <div class="panel panel-default">
+  <div class="panel panel-primary">
     <div class="panel-heading">
-      <div class="panel-title">
-        <h3>Experiencia Profesional </h3>
+      <div class="panel-title" style="padding-top:1px;padding-bottom:1px">
+        <h4>Experiencia Profesional </h4>
       </div>
     </div>
     <div class="panel-body">
@@ -108,10 +108,10 @@
 
 <!-- sector Seminarios -->
 <div id='Seminarios' class="tabcontent">
-  <div class="panel panel-default">
+  <div class="panel panel-primary">
     <div class="panel-heading">
-      <div class="panel-title">
-        <h3>Cursos y Seminarios </h3>
+      <div class="panel-title" style="padding-top:1px;padding-bottom:1px">
+        <h4>Cursos y Seminarios </h4>
       </div>
     </div>
     <div class="panel-body">
@@ -146,9 +146,9 @@
 
 <!-- Sector Publicaciones -->
 <div id='Publicaciones' class="tabcontent">
-  <div class="panel panel-default">
+  <div class="panel panel-primary">
     <div class="panel-heading">
-      <div class="panel-title"><h3> Publicaciones </h3></div>
+      <div class="panel-title" style="padding-top:1px;padding-bottom:1px"><h4> Publicaciones </h4></div>
     </div>
     <div class="panel-body">
       <ul class="list-group" id="publicaciones">
@@ -178,8 +178,8 @@
 
 <!-- Sector Habilidades -->
 <div id='Meritos' class="tabcontent">
-  <div class="panel panel-default">
-    <div class="panel-heading"><div class="panel-title"><h3> Meritos </h3></div></div>
+  <div class="panel panel-primary">
+    <div class="panel-heading"><div class="panel-title" style="padding-top:1px;padding-bottom:1px"><h4> Meritos </h4></div></div>
     <div class="panel-body">
       <ul class="list-group" id="meritos">
       <% if @merits.size >0%>
@@ -206,8 +206,8 @@
 </div>
 <!-- Sector Membresias -->
 <div id='Membresias' class="tabcontent">
-  <div class="panel panel-default">
-    <div class="panel-heading"><div class="panel-title"><h3> Membresía </h3></div></div>
+  <div class="panel panel-primary">
+    <div class="panel-heading"><div class="panel-title" style="padding-top:1px;padding-bottom:1px"><h4> Membresía </h4></div></div>
     <div class="panel-body">
         <ul class="list-group" id="membresias">
           <% if @memberships.size >0%>
@@ -235,8 +235,8 @@
 </div>
 <!-- Sector Conocimientos -->
 <div id='Conocimientos' class="tabcontent">
-  <div class="panel panel-default">
-  <div class="panel-heading"><div class="panel-title"><h3> Conocimientos</h3></div></div>
+  <div class="panel panel-primary">
+  <div class="panel-heading"><div class="panel-title" style="padding-top:1px;padding-bottom:1px"><h4> Conocimientos</h4></div></div>
   <div class="panel-body">
     <ul class="list-group" id="conocimientos">
     <% if @knowledges.size >0%>
@@ -264,8 +264,8 @@
 </div>
 <!-- Sector Habilidades -->
 <div id='Habilidades' class="tabcontent">
-    <div class="panel panel-default">
-      <div class="panel-heading"><div class="panel-title"><h3> Habilidades</h3></div></div>
+    <div class="panel panel-primary">
+      <div class="panel-heading"><div class="panel-title" style="padding-top:1px;padding-bottom:1px"><h4> Habilidades</h4></div></div>
       <div class="panel-body">
         <ul class="list-group" id="habilidades">
         <% if @skills.size >0%>
@@ -294,9 +294,9 @@
 
 <!-- Sector Idiomas -->
 <div id='Idiomas' class="tabcontent">
-  <div class="panel panel-default">
+  <div class="panel panel-primary">
     <div class="panel-heading">
-      <div class="panel-title"><h3> Idiomas </h3></div>
+      <div class="panel-title" style="padding-top:1px;padding-bottom:1px"><h4> Idiomas </h4></div>
     </div>
 
     <div class="panel-body">
@@ -330,9 +330,9 @@
 
 <!-- Sector Referencia -->
 <div id='Referencias' class= "tabcontent">
-<div class="panel panel-default">
+<div class="panel panel-primary">
   <div class="panel-heading">
-    <div class="panel-title"><h3> Personas de referencia</h3></div>
+    <div class="panel-title" style="padding-top:1px;padding-bottom:1px"><h4> Personas de referencia</h4></div>
   </div>
   <div class="panel-body">
     <% if @referentials.size >0%>

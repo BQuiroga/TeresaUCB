@@ -1448,10 +1448,23 @@ opacity:0.9;
  }
  .container-body{
    //margin: 15px;
-   margin-top: 15px;
-   background-color: aliceblue;
+   margin-top: 0px;
    border-radius: 8px;
-   border: 1px solid blanchedalmond;
+   border: 3px solid #337ab7;
+ }
+
+ .container-body-blue{
+   //margin: 15px;
+   margin-top: 0px;
+   border-radius: 8px;
+   border: 3px solid #337ab7;
+ }
+ .container-body-red{
+   //margin: 15px;
+   margin-top: 0px;
+   border-radius: 8px;
+   border: 3px solid #7d1c41;
+
  }
  /*La fila de estadisticas*/
  .container-stat{
@@ -1980,7 +1993,7 @@ opacity:0.9;
   height:3px;
   width:93%;
   background:#717171;
-  background-color: #000099;
+  background-color: #01579b;
   border-bottom:1px solid #000099;
 }
 .line-separator-red{
@@ -1992,8 +2005,10 @@ opacity:0.9;
 }
 .section-title-blue{
   display:inline-block;
-  background-color: #000099;
+  background-color: #01579b;
   padding: 1px;
+  padding-left:35px;
+  padding-right: 35px;
   color: #ffffff;
   width:auto;
   padding-rigth: 20px;
@@ -2002,12 +2017,14 @@ opacity:0.9;
   display:inline-block;
   background-color: #7d1c41;
   padding: 1px;
+  padding-left:35px;
+  padding-right: 35px;
   color: #ffffff;
   width:auto;
   padding-rigth: 20px;
 }
 .section-container-blue b{
-  color: #000099;
+  color: #01579b;
 }
 .section-container-blue p{
   color: #000000;
@@ -2016,7 +2033,7 @@ opacity:0.9;
   color: 	#00000;
 }
 .section-container-blue h3{
-  color: #1a1aff;
+  color: #01579b;
 }
 .section-container-red b{
   color: #7d1c41;
@@ -2040,7 +2057,7 @@ opacity:0.9;
 }
 .vertical-section-blue{
   right: auto;
-  border: 5px solid #000099;
+  border: 5px solid #01579b;
   padding-bottom: 21px;
 
 }
@@ -2565,7 +2582,6 @@ a:hover, a:focus {
   border-radius: 50%;
   background-color: #fff;
   display: inline-block;
-  margin-top: 20px;
   margin-right: 5px;
 }
 

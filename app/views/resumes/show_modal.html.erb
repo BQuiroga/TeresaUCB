@@ -1,6 +1,6 @@
 <div class="container">
 
-  <div class="btn-group pull-right">
+  <div class="btn-group pull-right" style="margin-top:35px">
     <br><br>
     <%if current_user.is_company?%>
     <button id="publicar" class="btn btn-success">Publicar</button>
@@ -13,7 +13,7 @@
       <div class="modal-content" >
           <span class="close" id="closeSuggestion">&times;</span>
           <%= form_for :post, url:'/posts/personal' do |f| %>
-            <p><i>La oferta de trabajo enviada a esta persona se publicará en su muro, al igual que la información de contacto registrado de tu empresa</i></p>
+            <p style="margin-top:3px"><i>La oferta de trabajo enviada a esta persona se publicará en su muro, al igual que la información de contacto registrado de tu empresa</i></p>
 
             <div class="col col-md-6">
               <%= f.label :Agrega_tu_comentario_aqui %>:<br>
@@ -29,10 +29,10 @@
                 <i>De: <%= current_user.name%><br>
                   <p id="contexto"></p>
                 Si te interesa un puesto en nuestra empresa, porfavor contactate con nuestro personal<br>
-                <% if current_user.company_information.contact_name.size>0%>
+                <% if current_user.company_information.contact_name!=nil%>
                   Contactate con: <%= current_user.company_information.contact_name %><br>
                 <% end%>
-                <%if current_user.company_information.phone.size>0%>
+                <%if current_user.company_information.phone!=nil%>
                   a este número de referencia: <%= current_user.company_information.phone%><br>
                 <%end%>
                 </i>
@@ -42,8 +42,9 @@
               &nbsp;&nbsp;&nbsp;<p><i>&nbsp;&nbsp;&nbsp;(Tu información de contacto registrada ya se muestra automaticamente, no neecesitas ponerla de nuevo)</i></p>
             </div>
             <div class="actions">
-              <%= f.submit "Enviar", class: "btn btn-success pull-right",:id=>'boton_enviar',:disabled=>true%>
+              <%= f.submit "Enviar", class: "btn btn-primary pull-right",:id=>'boton_enviar',:disabled=>true%>
             </div>
+            <br><br>
           <% end %>
 
       </div>
@@ -82,7 +83,7 @@
   <div>
     <h2><%=@user.name%> <%=@user.last_name%></h2>
   </div>
-  <div class="container-body ">
+  <div class="container-body" style="margin-top:10px">
   <%if !@user.is_company?%>
     <div class="container">
       <h2>Informacion Personal</h2>
@@ -266,4 +267,4 @@ function ocultar_todo(){
 
 </script>
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'user', media: 'all', 'data-turbolinks-track' => true %>
