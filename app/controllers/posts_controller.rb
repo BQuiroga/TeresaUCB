@@ -55,48 +55,49 @@ class PostsController < ApplicationController
 		else
       @users=[]
       @count=0
+      @final=Array.new
       @post=Post.new
+      @edu_aux=Education.new
+      @exp_aux=Experience.new
+      @know_aux=Knowledge.new
+      @titulos=Array.new
+      @postgrados=Array.new
+      @cargos=Array.new
+      @experiencias=Array.new
+      @habilidades=Array.new
+      @languages=Array.new
       if search_params[:titulo]
         @titulos=search_params[:titulo].capitalize.split(',')
       end
       if search_params[:post_grado]
-        @postgrados=search_params[:post_grado].split(',')
+        @postgrados=search_params[:post_grado].capitalize.split(',')
       end
       if search_params[:cargo]
-        @cargos=search_params[:cargo].split(',')
+        @cargos=search_params[:cargo].capitalize.split(',')
       end
       if search_params[:experiencia]
-        @experiencias=search_params[:experiencia].split(',')
+        @experiencias=search_params[:experiencia].capitalize.split(',')
       end
       if search_params[:habilidades]
-        @habilidades=search_params[:habilidades].split(',')
+        @habilidades=search_params[:habilidades].capitalize.split(',')
       end
       if search_params[:idiomas]
-        @idiomas=search_params[:idiomas].split(',')
+        @idiomas=search_params[:idiomas].capitalize.split(',')
       end
-      @educations=Education.where("title ~* ?", @titulos)+Education.where("title ~* ?",@postgrados)
-      @experiences=Experience.where("job_title ~* ?", @cargos)+Experience.where("job_description ~* ? ",@experiencias)
-      @knowledges=Knowledge.where("description ~* ?",@habilidades)
+
+      @educations=@edu_aux.education_has(@titulos)+@edu_aux.education_has(@postgrados)
+      @experiences= @exp_aux.experience_has(@cargos,@experiencias)
+      @knowledges=@know_aux.knowledge_has(@habilidades)
       @languages=Language.where(name:@idiomas)
-      @educations.each do |education|
-        @user=User.find(education.user.id)
-        @users=@users+[@user]
-      end
-      @experiences.each do |experience|
-        @user=User.find(experience.user.id)
-        @users=@users+[@user]
-      end
-      @knowledges.each do |knowledge|
-        @user=User.find(knowledge.user.id)
-        @users=@users+[@user]
-      end
+      @u_educations= @educations.map {|edu| edu.user}.uniq
+      @u_experiences= @experiences.map {|exp| exp.user}.uniq
+      @u_knowledges=@knowledges.map {|know| know.user}.uniq
+      @u_languages=@languages.map {|lang| lang.user}.uniq
+      # @users=@u_educations&@u_experiences&@u_knowledges&@u_languages
+      @users=@u_educations+@u_experiences+@u_knowledges+@u_languages
       @count=@post.search_params_count(@postgrados,@educations,@experiences,@knowledges,@languages)
-      @languages.each do |language|
-        @user=User.find(language.user.id)
-        @users=@users+[@user]
-      end
       @users=@users.select{ |e| @users.count(e)>=@count}.uniq
-      @ids=[]
+      @ids=Array.new
       @users.each do |user|
         @ids=@ids+[user.id]
       end

@@ -1,6 +1,17 @@
-<style media="screen">
+<style>
+  .collapse {
+    display:block !important;
+  }
+  ul#iconos{
+    list-style:none;
+  }
+  #iconos li{
+    display:inline;
+  }
   .navbar-inverse{
     background-color:#45526e;
+    background-image: -webkit-linear-gradient(top,#45526e 0,#45526e 100%)
+    height:20%;
   }
   navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
     color: #fff;
@@ -9,28 +20,79 @@
 li a{
   color:white;
 }
+@media (min-width:785px)
+{
+  #menu{
+  display:block;
+}
+  #iconos{
+    display:none !important;
+  }
+  .navbar-inverse{
+    height:20%;
+  }
+}
+@media (min-width:400px) and (max-width:768px)
+{
+  .navbar-inverse{
+    height:10%;
+  }
+  #menu{
+    display:none !important;
+  }
+  #iconos{
+    display:block !important;
+    float: right !important;
+    margin-right: -15px;
+  }
+  #iconos li{
+    float: left;
+    position: relative;
+    display: block
+  }
+}
+.collapse .navbar-collapse{
+  display: block !important;
+}
 </style>
-<div class="collapse navbar-collapse navbar-fixed-top navbar-inverse" style="height:20%;vertical-align: middle;">
+<div class="collapse navbar-collapse navbar-fixed-top navbar-inverse" style="vertical-align: middle;" >
 
-  <img src="/logocato.gif" style="width:50px;height:60px;margin-top:10px;margin-bottom:10px;">
-  <ul class="nav navbar-nav navbar-right" style="margin-top:15px; ">
-    <li class="scroll" id="home-li" ><a href="#home" style="color:white;">Inicio</a></li>
-    <li class="scroll" id="services-li"><a href="#services" style="color:white;">Servicios</a></li>
-    <li class="scroll" id="about-us-li"><a href="#about-us" style="color:white;">Sobre Nosotros</a></li>
-    <li class="scroll" id="contact-us-li"><a href="#contact-us" style="color:white;">Contactanos</a></li>
+  <img src="/logocato.gif" style="width:50px;height:60px;margin-top:10px;margin-bottom:10px;" >
+  <ul id="menu" class="nav navbar-nav navbar-right" style="margin-top:15px; " >
+    <li class="scroll" id="home-li" ><a href="#home" style="color:white;"><span class="fa fa-home  fa-lg" style="margin-left:30%" ></span><br>Inicio</a></li>
+    <li class="scroll" id="services-li"><a href="#services" style="color:white;"><span class="fa fa-handshake-o fa-lg" style="margin-left:35%" ></span><br>Servicios</a></li>
+    <li class="scroll" id="about-us-li"><a href="#about-us" style="color:white;"><span class="fa fa-info-circle fa-lg" style="margin-left:40%" ></span><br>Sobre Nosotros</a></li>
+    <li class="scroll" id="contact-us-li"><a href="#contact-us" style="color:white;"><span class="fa fa-phone  fa-lg" style="margin-left:45%" ></span><br>Contactanos</a></li>
     <!-- <li class="scroll"><a href="" >Empresas Asociadas</a></li> -->
     <!-- <li class="scroll"><a href="">Detras</a></li> -->
     <!-- <li class="scroll"><a href="">Por que Bolsa de Trabajo?</a></li> -->
     <li class="scroll">
           <%if user_signed_in?%>
-            <%= link_to 'Perfil', users_profile_path,:style=>"color:white"%>
+            <%= link_to '<span class="fa fa-user-circle  fa-lg" style="margin-left:30%" ></span><br>Perfil'.html_safe, users_profile_path,:style=>"color:white"%>
           <%else %>
-            <%= link_to 'Ingresar', users_profile_path,:style=>"color:white"%>
+            <%= link_to '<span class="fa fa-sign-in  fa-lg" style="margin-left:40%" ></span><br>Ingresar'.html_safe, users_profile_path,:style=>"color:white"%>
           <%end %>
-        </a>
+      </li>
+  </ul>
+  <ul id="iconos" class="nav navbar-nav navbar-right"  >
+    <li class="scroll" id="home-li" style="display:inline "><a href="#home" style="color:white;"><span class="fa fa-home  fa-lg" style="margin-left:30%" ></span></a></li>
+    <li class="scroll" id="services-li" style="display:inline "><a href="#services" style="color:white;"><span class="fa fa-handshake-o fa-lg" style="margin-left:35%" ></span></a></li>
+    <li class="" id="about-us-li"><a href="#about-us" style="color:white;"><span class="fa fa-info-circle fa-lg" style="margin-left:40%" ></span></a></li>
+    <li class="" id="contact-us-li"><a href="#contact-us" style="color:white;"><span class="fa fa-phone  fa-lg" style="margin-left:45%" ></span></a></li>
+    <!-- <li class="scroll"><a href="" >Empresas Asociadas</a></li> -->
+    <!-- <li class="scroll"><a href="">Detras</a></li> -->
+    <!-- <li class="scroll"><a href="">Por que Bolsa de Trabajo?</a></li> -->
+    <li class="scroll">
+          <%if user_signed_in?%>
+            <%= link_to '<span class="fa fa-user-circle  fa-lg" style="margin-left:30%" ></span>'.html_safe, users_profile_path,:style=>"color:white"%>
+          <%else %>
+            <%= link_to '<span class="fa fa-sign-in  fa-lg" style="margin-left:40%" ></span>'.html_safe, users_profile_path,:style=>"color:white"%>
+          <%end %>
       </li>
   </ul>
 </div>
+
+
 <br><br>
 <section id="home">
 

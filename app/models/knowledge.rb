@@ -5,4 +5,11 @@ class Knowledge < ActiveRecord::Base
     resume=self.resume
     user=resume.user
   end
+  def knowledge_has(list)
+    r=Array.new
+    list.each do |education|
+      r=r+ Knowledge.where("description~*?",education)
+    end
+    r
+  end
 end

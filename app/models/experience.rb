@@ -117,4 +117,14 @@ class Experience < ActiveRecord::Base
 			all=Experience.group(:city).count
 			r=all.to_a
 		end
+		def experience_has(cargos,experiencias)
+			r=Array.new
+			cargos.each do |cargo|
+				r=r+Experience.where("job_title~*?",cargo)
+			end
+			experiencias.each do |exper|
+				r=r+Experience.where("job_description~*?",exper)
+			end
+			r
+		end
 end

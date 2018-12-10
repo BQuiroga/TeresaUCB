@@ -322,4 +322,11 @@ class Education < ActiveRecord::Base
     usuarios.uniq!
     usuarios.size
   end
+  def education_has(list)
+    r=Array.new
+    list.each do |education|
+      r=r+Education.where("title~*?",education)
+    end
+    r
+  end
 end

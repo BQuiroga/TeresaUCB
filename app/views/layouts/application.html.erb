@@ -88,7 +88,7 @@
 <%end%>
       <ul id="menu" >
         <!-- <li><img src="/logocato.gif" style="width:2%;height:2%"></li> -->
-        <li style="">  <%= link_to '<span class="fa fa-home fa-2x" style="margin-left:37%"></span><br>Bolsa de Trabajo'.html_safe, '/', :class=>'navbar-text pull-left'%></li>
+        <li>  <%= link_to '<span class="fa fa-home fa-2x" style="margin-left:37%"></span><br>Bolsa de Trabajo'.html_safe, '/', :class=>'navbar-text pull-left'%></li>
         <% if user_signed_in? %>
         <li >
             <%= link_to '<span class="fa fa-user-circle fa-2x" style="margin-left:25%" ></span><br>Mi Perfil'.html_safe, '/users/profile', :class => 'navbar-link navbar-text' ,:style=>"left:40%"%> &emsp;
@@ -206,15 +206,22 @@
 
 <div class="container" style="margin-top:25px">
 <% if notice %>
-  <div class="alert alert-success"><%= notice %></div>
+  <div class="alert alert-success">
+    <h4><%= notice %></h4>
+  </div>
 <% end %>
 <% if alert and alert.size>0%>
-  <div class="alert alert-danger"><%= alert %></div>
+  <div class="alert alert-danger">
+    <h4><%= alert %>
+    </h4>
+  </div>
 <% end %>
 <%if flash and !notice and !alert%>
 <div class="container">
    <% flash.each do |key, value| %>
-     <div class="alert alert-<%= key %>"><%= value %></div>
+     <div class="alert alert-<%= key %>">
+       <%= value %>
+     </div>
    <% end %>
    <% debug(params) if Rails.env.development? %>
  </div>

@@ -39,7 +39,9 @@ navbar {
     <div class="info"><p> Busca <i class="fa fa-search"></i> lo que necesites </p></div>
     <%= form_for :post, url: '/resultados/busqueda' do |f| %>
       <%= f.hidden_field :user_id,:value => current_user.id%>
-      <h2>Llena los siguientes campos, como requisito para el puesto laboral:</h2>
+      <h2>Llena los siguientes campos, como requisito para el puesto laboral</h2>
+      <i>Si desea poner mas de un requisito en cada campo, separar la información por comas. Ejemplo: Abogado,arquitecto</i>
+      <br><br>
       <div class="form-horizontal">
         <!-- <div id="sendmessage"> La oferta fue publicada exitosamente!. Gracias. </div> -->
         <div class="col col-md-6">
@@ -48,6 +50,8 @@ navbar {
             <span class="icon-case"><i class="fa fa-male"></i></span><br>
             <div class="col col-md-9">
               <%=f.text_field :titulo,:class=>'form-control'%>
+              <i></i>
+
             </div>
             <!-- <input type="text" name="nom" id="nom" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Nom' doit être renseigné."/> -->
             <div class="validation"></div>
@@ -75,6 +79,7 @@ navbar {
             <span class="icon-case"><i class="fa fa-comment-o"></i></span><br>
             <div class="col col-md-9">
               <%=f.text_field :experiencia,:class=>'form-control'%>
+              <i>Descripción de tareas en anteriores labores</i>
             </div>
             <!-- <input type="text" name="sujet" id="sujet" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Sujet' doit être renseigné."/> -->
             <div class="validation"></div>
@@ -94,7 +99,7 @@ navbar {
             <%= f.label :idiomas,:class=>'form-label'%>
             <span class="icon-case"><i class="fa fa-phone"></i></span><br>
             <div class="col col-md-9">
-              <%=f.text_field :idioma,:class=>'form-control'%>
+              <%=f.text_field :idiomas,:class=>'form-control'%>
             </div>
             <!-- <input type="text" name="phone" id="phone" data-rule="maxlen:10" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Téléphone' doit être renseigné. Minimum 10 chiffres"/> -->
             <div class="validation"></div>
@@ -104,6 +109,7 @@ navbar {
             <span class="icon-case"><i class="fa fa-info"></i></span><br>
             <div class="col col-md-9">
               <%=f.text_field :cargo,:class=>'form-control'%>
+              <i>Cargo ocupado anteriormente</i>
             </div>
             <!-- <input type="text" name="fonction" id="fonction" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Fonction' doit être renseigné."/> -->
             <div class="validation"></div>
@@ -113,6 +119,7 @@ navbar {
             <span class="icon-case"><i class="fa fa-comments-o"></i></span><br>
             <div class="col col-md-9">
               <%=f.text_field :habilidades,:class=>'form-control'%>
+              <i>Conocimientos en algun tema en específico</i>
             </div>
             <!-- <textarea name="message" rows="14" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Message' doit être renseigné."></textarea> -->
             <div class="validation"></div>

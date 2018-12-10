@@ -4,6 +4,7 @@
           <div class="section-container-red" style="padding-left:35px">
             <%=wicked_pdf_image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px;float: right!important;") %>
             <div class="container">
+              <h1 class="cv-title-name" align="center"><b style="border-bottom: thick solid"> CURRICULUM VITAE</b></h1>
               <div class="container">
                 <h1 class="cv-title-name"><b><%=current_user.name%> <%=current_user.last_name%></b> </h1>
                 <h3 class="cv-title-name"><%=@user.last_education.title %></h3>
