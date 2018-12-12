@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_one :company_information, :dependent => :destroy
   has_one :picture, :dependent => :destroy
   has_many :notifications
-  has_many :suggestions
+  has_many :suggestions, :dependent => :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,:lockable
 

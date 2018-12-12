@@ -1,13 +1,13 @@
 class Resume < ActiveRecord::Base
 	belongs_to :user
-	has_many :experiences
-	has_many :educations
-	has_many :courses
-	has_many :knowledges
-	has_many :publications
-	has_many :merits
-	has_many :memberships
-	has_many :languages
-	has_many :referentials
-	has_many :skills
+	has_many :experiences, :dependent => :destroy
+	has_many :educations, :dependent => :destroy
+	has_many :courses, :dependent => :destroy
+	has_many :knowledges, :dependent => :destroy
+	has_many :publications, :dependent => :destroy
+	has_many :merits, :dependent => :destroy
+	has_many :memberships, :dependent => :destroy
+	has_many :languages, :dependent => :destroy
+	has_many :referentials, :dependent => :destroy
+	has_many :skills, :dependent => :destroy
 end
