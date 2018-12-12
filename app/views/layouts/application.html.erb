@@ -46,13 +46,25 @@
       #btn-search{
         top:0;
       }
-      #buscar-inp {
-        margin-top: 0px;
-        width:20%;
-      }
+
       #noti_number{
         margin-right:-5px;
       }
+    }
+    @media  (min-width:1132px) and (max-width:1200px){
+      #buscar-inp {
+        width: 15% !important;
+        margin-top: -10px !important;
+        margin-right: 10px; 
+      }
+      #input-buscar{
+      width:15% !important;  }
+    }
+    @media (min-width:1201px){
+      #buscar-inp{
+      margin-top: 0px;
+      width:20%;
+    }
     }
     @media screen and (max-width: 1132px) {
       ul#icon-menu li{display: inline}
@@ -65,9 +77,9 @@
         position:absolute;
       }
       #buscar-inp {
-        margin-top: 0px;
-        width:12%;
+        display:none !important;
       }
+
     }
     @media screen and (max-width:760px){
       ul#icon-menu li{display: inline;margin-top:10px}
