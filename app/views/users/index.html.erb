@@ -1,3 +1,9 @@
+<style>
+  button{
+    margin-right:5px;
+  }
+  </style>
+
 <div class="container" style="margin-top:50px">
 <%if current_user.is_administrator or current_user.is_secretary?%>
 <div class="panel panel-primary">
@@ -14,9 +20,13 @@
         <div>
           <h4>  <b><%=usuario.name%>&nbsp;<%=usuario.last_name %></b>
             <%if current_user.not_me(usuario.id) and !usuario.is_administrator%>
-              <button class="btn btn-default btn-sm pull-right">
-                <%=link_to "Ver Curriculum", {controller: "resumes",action:"external_show",id:usuario.id}%>
-              </button>
+                <%if usuario.is_company?%>
+                  <a href="/CompanyInformation/<%=usuario.id %>">
+                    <button type="button" class="btn btn-info btn-sm pull-right" aria-label="Left Align">Ver Información</button>
+                  </a>
+                  <%else%>
+                  <%=link_to "Ver Curriculum", {controller: "resumes",action:"external_show",id:usuario.id},  :class=>"btn btn-default btn-sm pull-right"%>
+                <%end%>
             <%if current_user.is_administrator%>
             <button class="btn btn-warning btn-sm pull-right">
 

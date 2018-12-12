@@ -1,5 +1,5 @@
 class Group < ActiveRecord::Base
-  has_many :group_managers
+  has_many :group_managers,:dependent=>:destroy
   belongs_to :user
   def members
     self.group_managers.count
