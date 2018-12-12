@@ -50,12 +50,19 @@
       #noti_number{
         margin-right:-5px;
       }
+      #logo-cato{
+        width:40px;
+        height:50px;
+        margin-top:10px;
+        margin-bottom:10px;
+        background: transparent;
+      }
     }
     @media  (min-width:1132px) and (max-width:1200px){
       #buscar-inp {
         width: 15% !important;
         margin-top: -10px !important;
-        margin-right: 10px; 
+        margin-right: 10px;
       }
       #input-buscar{
       width:15% !important;  }
@@ -99,6 +106,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top navbar-collapse" style="background-color:#45526e ;top:0px;position:fixed;font-size:6px;margin-bottom:5px">
 <%end%>
       <ul id="menu" >
+        <img src="/logocato.gif" style="" id="logo-cato">
         <!-- <li><img src="/logocato.gif" style="width:2%;height:2%"></li> -->
         <li>  <%= link_to '<span class="fa fa-home fa-2x" style="margin-left:37%"></span><br>Bolsa de Trabajo'.html_safe, '/', :class=>'navbar-text pull-left'%></li>
         <% if user_signed_in? %>

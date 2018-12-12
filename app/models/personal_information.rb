@@ -15,6 +15,16 @@ class PersonalInformation < ActiveRecord::Base
   end
   def schools_total
   end
+  def civil_options
+    ["Soltero","Casado","Divorciado","Concubinato"]
+  end
+  def self_option
+    if civil==nil
+      "Soltero"
+    else
+      civil
+    end
+  end
   def validate_date
     birthdate<Time.now
   end
