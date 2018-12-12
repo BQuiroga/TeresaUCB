@@ -31,8 +31,14 @@ li a{
   .navbar-inverse{
     height:20%;
   }
+  #logo-cato{
+    width:50px;
+    height:60px;
+    margin-top:10px;
+    margin-bottom:10px;
+  }
 }
-@media (min-width:400px) and (max-width:768px)
+@media (min-width:300px) and (max-width:768px)
 {
   .navbar-inverse{
     height:10%;
@@ -50,6 +56,11 @@ li a{
     position: relative;
     display: block
   }
+  #logo-cato{
+    width:50px;
+    height:60px;
+    margin-top:0px;
+  }
 }
 .collapse .navbar-collapse{
   display: block !important;
@@ -57,7 +68,7 @@ li a{
 </style>
 <div class="collapse navbar-collapse navbar-fixed-top navbar-inverse" style="vertical-align: middle;" >
 
-  <img src="/logocato.gif" style="width:50px;height:60px;margin-top:10px;margin-bottom:10px;" >
+  <img src="/logocato.gif" style="" id="logo-cato">
   <ul id="menu" class="nav navbar-nav navbar-right" style="margin-top:15px; " >
     <li class="scroll" id="home-li" ><a href="#home" style="color:white;"><span class="fa fa-home  fa-lg" style="margin-left:30%" ></span><br>Inicio</a></li>
     <li class="scroll" id="services-li"><a href="#services" style="color:white;"><span class="fa fa-handshake-o fa-lg" style="margin-left:35%" ></span><br>Servicios</a></li>
