@@ -1,7 +1,16 @@
+
+<style>
+#texto{
+  word-wrap: break-word;
+  word-break: normal;
+  overflow: hidden;
+  max-width:500px;
+}
+</style>
 <br><br><br>
 <div class="container">
-  <div class="container">
-    <div class="container">
+  <div class="">
+    <div class="">
     <div >
     </div>
     <div class="panel panel-primary">
@@ -23,7 +32,7 @@
       <div class="col col-md-3">
       </div>
     </div>
-        <div class="container">
+        <div class="">
             <div class="col-md-4">
             </div>
             <div class="col col-md-4">
@@ -44,7 +53,7 @@
                 <b>NIT: </b><%=@company_info.nit%><br>
 
                 <b>Sobre nosotros:</b>
-                <div class="container">
+                <div class="col col-md-12 col-lg-12" style="text-align: justify">
                 <p id='texto'><%=@company_info.description%></p>
               </div>
               </div>
@@ -55,7 +64,7 @@
 
       </div>
     </div>
-    <%if current_user!=@user%>
+    <%if current_user.id!=@user.id%>
     <br>
       <b>Declaración de limitaciones de responsabilidad</b><br>
     <i> Toda la información presentada en la Bolsa de Trabajo, es completamente registrada por el postulante o empresa en cuestión. Usted debería consultar con las referencias aqui enlistadas, para confirmar la fiabilidad de los datos.<br>
@@ -64,11 +73,3 @@
   </div>
   </div>
 </div>
-
-
-<style>
-#texto{
-  word-wrap: break-word;
-  word-break: normal;
-}
-</style>

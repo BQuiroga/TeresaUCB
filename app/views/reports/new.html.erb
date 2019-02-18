@@ -1,8 +1,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
-<a href="/reportes"><button class="btn btn-primary">Volver Atras</button></a>
 <div class="container">
+  <br><br>
+  <a href="/reportes"><button class="btn btn-primary">Volver Atras</button></a>
   <h2>Lista de reportes
     <%= link_to "Descargar Excel", reporte_nuevo_path(format: "xls") ,:class=>"btn btn-default pull-right"%>
   </h2>
@@ -76,7 +77,7 @@
           <%@total =@data_graphic_to_chart.sum{|x,y| @data_graphic_to_chart[x]}%>
           <%@data_graphic_to_chart=@data_graphic_to_chart.each{|x,y| @data_graphic_to_chart[x]=y.to_f/@total*100}%>
           <%@data_graphic_to_chart=@data_graphic_to_chart.each{|x,y| @data_graphic_to_chart[x]=y.to_s.first(5)+"%"}%>
-            <%= bar_chart @data_graphic_to_chart, stacked: true, donwload: true%>
+            <%= bar_chart @data_graphic_to_chart, stacked: true, donwload: "grafica",height:"800px",download:"grafica"%>
             <p style="text-align: center;">Los datos mostrados en la grafica se encuentran en %</p>
           </div>
         </li>

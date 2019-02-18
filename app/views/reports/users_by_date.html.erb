@@ -27,11 +27,14 @@
                   <th style="text-align: center;">&nbsp;Fecha&nbsp;</th>
                   <th style="text-align: center;">&nbsp;Numero de personas registradas&nbsp;</th>
                 </tr>
+                <% @data_for_graph=@date_users%>
                 <% @date_users.each do |date|%>
+                <%if date[1]!=0%>
                 <tr>
                   <td>&nbsp;<%=date[0]%>&nbsp;</td>
                   <td ><%= date[1]%></td>
                 </tr>
+                <%end%>
                 <%end%>
               </table>
             </div>
@@ -55,10 +58,12 @@
               %>
               <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
               <% @date_users.each do |date|%>
+              <%if date[1]!=0%>
               <tr>
                 <td>&nbsp;<%=date[0]%>&nbsp;</td>
                 <td ><%= date[1]%></td>
               </tr>
+              <%end%>
               <%end%>
 
             </table>
@@ -83,10 +88,12 @@
               %>
               <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
               <% @date_users.each do |date|%>
+                  <%if date[1]!=0%>
               <tr>
                 <td>&nbsp;<%=date[0]%>&nbsp;</td>
                 <td ><%= date[1]%></td>
               </tr>
+              <%end%>
               <%end%>
             </table>
           </div>
@@ -110,10 +117,12 @@
             %>
             <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
             <% @date_users.each do |date|%>
+            <%if date[1]!=0%>
             <tr>
               <td>&nbsp;<%=date[0]%>&nbsp;</td>
               <td ><%= date[1]%></td>
             </tr>
+            <%end%>
             <%end%>
 
           </table>
@@ -138,10 +147,12 @@
           %>
           <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
           <% @date_users.each do |date|%>
+          <%if date[1]!=0%>
           <tr>
             <td>&nbsp;<%=date[0]%>&nbsp;</td>
             <td ><%= date[1]%></td>
           </tr>
+          <%end%>
           <%end%>
 
         </table>
@@ -165,10 +176,12 @@
           %>
           <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
           <% @date_users.each do |date|%>
+          <%if date[1]!=0%>
           <tr>
             <td>&nbsp;<%=date[0]%>&nbsp;</td>
             <td ><%= date[1]%></td>
           </tr>
+          <%end%>
           <%end%>
 
         </table>
@@ -192,10 +205,12 @@
           %>
           <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
           <% @date_users.each do |date|%>
+          <%if date[1]!=0%>
           <tr>
             <td>&nbsp;<%=date[0]%>&nbsp;</td>
             <td ><%= date[1]%></td>
           </tr>
+          <%end%>
           <%end%>
 
         </table>
@@ -220,10 +235,12 @@
           %>
           <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
           <% @date_users.each do |date|%>
+          <%if date[1]!=0%>
           <tr>
             <td>&nbsp;<%=date[0]%>&nbsp;</td>
             <td ><%= date[1]%></td>
           </tr>
+          <%end%>
           <%end%>
 
         </table>
@@ -247,10 +264,12 @@
           %>
           <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
           <% @date_users.each do |date|%>
+          <%if date[1]!=0%>
           <tr>
             <td>&nbsp;<%=date[0]%>&nbsp;</td>
             <td ><%= date[1]%></td>
           </tr>
+          <%end%>
           <%end%>
 
         </table>
@@ -274,10 +293,12 @@
           %>
           <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
           <% @date_users.each do |date|%>
+          <%if date[1]!=0%>
           <tr>
             <td>&nbsp;<%=date[0]%>&nbsp;</td>
             <td ><%= date[1]%></td>
           </tr>
+          <%end%>
           <%end%>
 
         </table>
@@ -301,10 +322,12 @@
           %>
           <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
           <% @date_users.each do |date|%>
+          <%if date[1]!=0%>
           <tr>
             <td>&nbsp;<%=date[0]%>&nbsp;</td>
             <td ><%= date[1]%></td>
           </tr>
+          <%end%>
           <%end%>
 
         </table>
@@ -328,10 +351,12 @@
           %>
           <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
           <% @date_users.each do |date|%>
+          <%if date[1]!=0%>
           <tr>
             <td>&nbsp;<%=date[0]%>&nbsp;</td>
             <td ><%= date[1]%></td>
           </tr>
+          <%end%>
           <%end%>
 
         </table>
@@ -355,10 +380,12 @@
           %>
           <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
           <% @date_users.each do |date|%>
+          <%if date[1]!=0%>
           <tr>
             <td>&nbsp;<%=date[0]%>&nbsp;</td>
             <td ><%= date[1]%></td>
           </tr>
+          <%end%>
           <%end%>
 
         </table>
@@ -382,10 +409,12 @@
           %>
           <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
           <% @date_users.each do |date|%>
+          <%if date[1]!=0%>
           <tr>
             <td>&nbsp;<%=date[0]%>&nbsp;</td>
             <td ><%= date[1]%></td>
           </tr>
+          <%end%>
           <%end%>
 
         </table>
@@ -409,10 +438,12 @@
           %>
           <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
           <% @date_users.each do |date|%>
+          <%if date[1]!=0%>
           <tr>
             <td>&nbsp;<%=date[0]%>&nbsp;</td>
             <td ><%= date[1]%></td>
           </tr>
+          <%end%>
           <%end%>
 
         </table>
@@ -436,10 +467,12 @@
           %>
           <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
           <% @date_users.each do |date|%>
+          <%if date[1]!=0%>
           <tr>
             <td>&nbsp;<%=date[0]%>&nbsp;</td>
             <td ><%= date[1]%></td>
           </tr>
+          <%end%>
           <%end%>
 
         </table>
@@ -463,10 +496,12 @@
           %>
           <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
           <% @date_users.each do |date|%>
+          <%if date[1]!=0%>
           <tr>
             <td>&nbsp;<%=date[0]%>&nbsp;</td>
             <td ><%= date[1]%></td>
           </tr>
+          <%end%>
           <%end%>
 
         </table>
@@ -490,10 +525,12 @@
           %>
           <%@date_users=User.where(id:@users).group_by_month(:created_at).count%>
           <% @date_users.each do |date|%>
+          <%if date[1]!=0%>
           <tr>
             <td>&nbsp;<%=date[0]%>&nbsp;</td>
             <td ><%= date[1]%></td>
           </tr>
+          <%end%>
           <%end%>
 
         </table>
@@ -507,11 +544,7 @@
         </li>
         <li class="list-group-item">
           <div id="by_date">
-
-
-            <%= bar_chart @date_users, stacked: true, donwload: true%>
-
-
+            <%= line_chart @data_for_graph, stacked: true, donwload: "grafica"%>
           </div>
         </li>
       </ul>

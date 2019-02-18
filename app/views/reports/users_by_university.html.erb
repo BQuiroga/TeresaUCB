@@ -6,10 +6,7 @@
         <div class="panel-body">
           <ul class="list-group">
             <li class="list-group-item">
-              <button class="btn btn-warning btn-sm pull-right" id="mostrarUniversidad" onclick="showUniversidad()" style="display:none;">Mostrar Gráfica Estadística</button>
-              <button class="btn btn-warning btn-sm pull-right" id="ocultarUniversidad" onclick="showUniversidad()">Ocultar Gráfica Estadística</button>
               <div >
-                <div class="container">
                   <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover" style="text-align: center;">
                       <tr>
@@ -24,14 +21,16 @@
                       <%end%>
                     </table>
                   </div>
-                </div>
               </div>
+              <button class="btn btn-default btn-sm pull-right" id="mostrarUniversidad" onclick="showUniversidad()" style="display:none;">Mostrar Gráfica Estadística</button>
+              <button class="btn btn-default btn-sm pull-right" id="ocultarUniversidad" onclick="showUniversidad()">Ocultar Gráfica Estadística</button>
+              <br><br>
+            </li>
               <li class="list-group-item">
                 <div id="by_university" style="display:none">
-                  <%= bar_chart @university_users, stacked: true%>
+                  <%= pie_chart @university_users, stacked: true,download:"grafica"%>
                 </div>
               </li>
-            </li>
           </ul>
         </div>
       </div>
