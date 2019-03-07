@@ -150,7 +150,7 @@ class Education < ActiveRecord::Base
       when "Postgrado"
         results=Education.where(title:postgrado)
       when "Doctorado"
-        results=Education.where(title:doctoradoo)
+        results=Education.where(title:doctorado)
       # end
       # edu=[licen,maestria,postgrado,doctorado].join
       # if edu=="Todos"
