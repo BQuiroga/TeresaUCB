@@ -66,10 +66,10 @@
       </div>
     <div class="container">
     <div class="container">
-    <h2>Informacion Personal</h2>
+    <h2>Información Personal</h2>
     <div class="container">
       <b>Género: </b><%=@personal_info.gender_to_string%><br>
-      <b>Direccion: </b><%=@personal_info.address%><br>
+      <b>Dirección: </b><%=@personal_info.address%><br>
       <b>Fecha de Nacimiento: </b><%=@personal_info.translate_birthdate_to_string%> <br>
       <b>Estado Civil: </b><%=@personal_info.civil%> <br>
       <b>Fijo: </b><%=@personal_info.phone%><br>
@@ -78,7 +78,7 @@
     </div>
   </div>
   <div class="container">
-    <h2>Formacion Academica </h2>
+    <h2>Formación Académica </h2>
     <div class="container">
     <% if @educations.size >0%>
     <h5><% @educations.each do |education| %></h5>
@@ -185,7 +185,7 @@
  <%end%>
  <% if @merits.size >0%>
  <div class="container">
-     <h2> Meritos </h2>
+     <h2> Méritos </h2>
      <div class="container">
     <h5><% @merits.each do |merit| %></h5>
             <div>
@@ -199,7 +199,7 @@
  <%end%>
  <% if @memberships.size >0%>
  <div class="container">
-<h2> Membresia </h2>
+<h2> Membresía </h2>
 <div class="container">
     <h5><% @memberships.each do |member| %></h5>
             <div>
@@ -251,14 +251,14 @@
             </div>
           </div>
             <div class="section-title-blue">
-            <h2>Informacion Personal</h2>
+            <h2>Información Personal</h2>
            </div>
           <div class="line-separator-blue">
           </div>
             <div class="container section-container-blue" style="padding-left:40px;">
               <br>
               <b>Género: </b><%=@personal_info.gender_to_string%><br>
-              <b>Direccion: </b><%=@personal_info.address%><br>
+              <b>Dirección: </b><%=@personal_info.address%><br>
               <b>Fecha de Nacimiento: </b><%=@personal_info.translate_birthdate_to_string%> <br>
               <b>Estado Civil: </b><%=@personal_info.civil%> <br>
               <b>Fijo: </b><%=@personal_info.phone%><br>
@@ -267,7 +267,7 @@
             </div>
             <br>
   <div class="section-title-blue">
-    <h2>Formacion Academica </h2>
+    <h2>Formación Académica </h2>
   </div>
   <div class="line-separator-blue">
   </div>
@@ -340,7 +340,7 @@
 
    <% if @memberships.size >0%>
    <div class="section-title-blue">
-     <h2> Membresia </h2>
+     <h2> Membresía </h2>
    </div>
 
    <div class="line-separator-blue">
@@ -359,7 +359,7 @@
    <%end%>
    <% if @merits.size >0%>
    <div class="section-title-blue">
-     <h3> Meritos </h3>
+     <h3> Méritos </h3>
    </div>
    <div class="line-separator-blue">
    </div>

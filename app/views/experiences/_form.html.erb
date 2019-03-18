@@ -6,7 +6,7 @@
     </div>
     <div class="field col col-md-4">
       <%@exp=Experience.new%>
-      <%= f.label :Pais_o_region %>:<br />
+      <%= f.label :Pais_o_región %>:<br />
       <%=f.select :city, @exp.countries,{},:class=>"selector"%>
     </div>
   </div>
@@ -54,7 +54,7 @@
   <br>
 <div class="row">
   <div class="col col-md-6">
-    <input type="checkbox" id="checkbox" name="checkbox"> Desea agregar una persona de referencia 
+    <input type="checkbox" id="checkbox" name="checkbox"> Desea agregar una persona de referencia
   </div>
   <div class="col col-md-6">
   </div>
@@ -66,7 +66,7 @@
       <%= f.text_field :referential,:class=>"form-control"%>
     </div>
     <div class="col col-md-6">
-      <%= f.label :numero_de_referencia %>:
+      <%= f.label :número_de_referencia %>:
       <%= f.number_field :referential_number,:class=>"form-control"%>
     </div>
   </div>

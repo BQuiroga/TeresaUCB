@@ -28,4 +28,4 @@ en:
           attributes:
             email:
               blank: "El campo de Correo no debe estar vacio"
-              taken: "El correo electronico ya esta registrado"
+              taken: "El correo electrónico ya esta registrado"

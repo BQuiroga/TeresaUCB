@@ -137,7 +137,7 @@ class Education < ActiveRecord::Base
 
   def registro_academico(grado,licen,maestria,postgrado,doctorado)
     if grado=="Todos"
-      edu ="Todos los grados academicos"
+      edu ="Todos los grados académicos"
       results=Education.all
     else
       case grado

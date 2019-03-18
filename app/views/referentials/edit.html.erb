@@ -10,11 +10,11 @@
           <%= f.text_field :name,:id=>'referencia',:class=>"form-control"%>
         </div>
           <div class="field col col-sm-4 col-md-4 col-xs-4">
-          <%= f.label :institucion %>:<br />
+          <%= f.label :institución %>:<br />
           <%= f.text_field :institution,:class=>"form-control"%>
         </div>
           <div class="field col col-sm-4 col-md-4 col-xs-4">
-          <%= f.label :numero_de_referencia %>:<br />
+          <%= f.label :número_de_referencia %>:<br />
           <%= f.number_field :number,:class=>"form-control"%>
         </div>
         <%= f.hidden_field :resume_id, :value => current_user.resume.id%>

@@ -28,6 +28,6 @@ class UserMailer < ApplicationMailer
     @languages=@resume.languages
     @referentials=@resume.referentials
     @post=Post.find(notification.post_id)
-    mail(to: @user.email, subject: "Alguien ha respondido a tu publicacion")
+    mail(to: @user.email, subject: "Alguien ha respondido a tu publicación")
   end
 end

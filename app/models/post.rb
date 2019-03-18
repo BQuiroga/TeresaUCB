@@ -50,7 +50,7 @@ class Post < ActiveRecord::Base
   def job_offer(titulo,postgrado,horas,ciudad,idiomas,cargo,experiencia,habilidades,fijo,contact)
     resp="Estamos buscando personal, con las siguientes caracteristicas: \n"
     if titulo.size>0
-      resp+="  Titulo Academico: "+titulo+"\n"
+      resp+="  Título Académico: "+titulo+"\n"
     end
     if postgrado.size>0
       resp+="  Post Grado: "+postgrado+"\n"
@@ -68,7 +68,7 @@ class Post < ActiveRecord::Base
       resp+="  Con las siguientes habilidades: "+habilidades+"\n"
     end
     if experiencia.size>0
-      resp+="  Con experiencia en areas de: "+experiencia+"\n"
+      resp+="  Con experiencia en áreas de: "+experiencia+"\n"
     end
     if !contact
       contact=""
@@ -76,7 +76,7 @@ class Post < ActiveRecord::Base
     if !fijo
       fijo=""
     end
-    resp+= "  Si tu curriculum cumple con los anteriores requisitos, comunicate con nosotros\n"+ "Contactacte con: "+contact+"\n a este numero de referencia: " +fijo+"\n"
+    resp+= "  Si tu currículum cumple con los anteriores requisitos, comunícate con nosotros\n"+ "Contáctacte con: "+contact+"\n a este número de referencia: " +fijo+"\n"
     resp
   end
   def personal_offer(name,comment,contact,fijo)

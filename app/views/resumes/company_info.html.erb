@@ -41,15 +41,15 @@
                 <b>Dirección:</b><%=@company_info.address%><br>
                 <b>Nombre de persona de contacto: </b><%=@company_info.contact_name%><br>
                 <b>Correo de contacto: </b><%=@company_info.contact_email%><br>
-                <b>Codigo CIUU: </b>
+                <b>Código CIUU: </b>
                 <%if @company_info.ciu_code%>
                   <%=@company_info.ciu_code.ciu%><br>
                   <%end%>
-                <b>Area de trabajo: </b>
+                <b>Área de trabajo: </b>
                 <%if @company_info.ciu_code%>
                 <%=@company_info.ciu_code.description%><br>
                 <%end%>
-                <b>Telefono fijo: </b><%=@company_info.phone%><br>
+                <b>Teléfono fijo: </b><%=@company_info.phone%><br>
                 <b>NIT: </b><%=@company_info.nit%><br>
 
                 <b>Sobre nosotros:</b>

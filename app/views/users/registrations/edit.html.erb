@@ -60,7 +60,7 @@
                 <% end %>
             </div>
             <div class="form-group">
-              <%= f.label :confirmacion_contraseña,:class=>'form-label' %><br />
+              <%= f.label :confirmación_contraseña,:class=>'form-label' %><br />
               <%= f.password_field :password_confirmation, autocomplete: "off" ,:class=>'form-control'%>
             </div>
             <div class="form-group">
@@ -80,7 +80,7 @@
     <div class="panel panel-primary">
       <%if (current_user.is_company?)%>
         <div class="panel-heading">
-          <h4 style="margin-left:10px">Informacion Empresarial</h4>
+          <h4 style="margin-left:10px">Información Empresarial</h4>
         </div>
         <%@p=current_user.company_information%>
         <%= form_for :company_information, url: '/company/update' do |f| %>
@@ -99,7 +99,7 @@
           <br>
           <div class="row">
             <div class="col col-md-6">
-              <%= f.label :Telefono_Fijo,:class=>'form-label' %><br/>
+              <%= f.label :Teléfono_Fijo,:class=>'form-label' %><br/>
               <%= f.number_field :phone,:class=>'form-control',:max=>'99999999999',:min=>'1000000',:value=>@p.phone %>
             </div>
             <div class="col col-md-6">
@@ -109,16 +109,16 @@
           </div>
           <br>
           <div class="form-group">
-            <%= f.label :Direccion,:class=>'form-label' ,:maxlength=>'100'%><br />
+            <%= f.label :Dirección,:class=>'form-label' ,:maxlength=>'100'%><br />
             <%= f.text_field :address,:class=>'form-control',:value=>@p.address%>
           </div>
           <div class="form-group">
-            <%= f.label :codigo_ciuu,:class=>'form-label' %><br />
+            <%= f.label :código_ciuu,:class=>'form-label' %><br />
             <%= collection_select(:company_information,:ciu_code_id,CiuCode.all,:id,:description,{:class=>'form-control'},{:multiple => false}) %>
           </div>
           <br>
           <div class="form-group">
-            <%= f.label :descripcion ,:class=>'form-label'%></br>
+            <%= f.label :descripción ,:class=>'form-label'%></br>
             <%= f.text_area  :description,:class=>'form-control' ,:maxlength=>'300',:value=>@p.description%><br>
           </div>
           <%= f.hidden_field :user_id, :value => current_user.id%>
@@ -130,14 +130,14 @@
         </div>
       <%else%>
         <div class="panel-heading">
-          <h4 style="margin-left:10px">Informacion Personal</h4>
+          <h4 style="margin-left:10px">Información Personal</h4>
         </div>
         <div class="panel-body">
           <%@u=current_user.personal_information%>
           <%= form_for :personal_information, url: '/personal/update' do |f| %>
           <div class="row">
             <div class="col col-md-6">
-              <%= f.label :Telefono_Fijo,:class=>'form-label' %><br/>
+              <%= f.label :Teléfono_Fijo,:class=>'form-label' %><br/>
               <%= f.number_field :phone,:class=>'form-control',:max=>'999999999999',:min=>'1000000',:value=>@u.phone %>
             </div>
             <div class="col col-md-6">
@@ -147,7 +147,7 @@
           </div>
           <br>
           <div class="form-group">
-            <%= f.label :Direccion,:class=>'form-label' %><br />
+            <%= f.label :Dirección,:class=>'form-label' %><br />
             <%= f.text_field :address,:class=>'form-control',:maxlength=>'100',:value=>@u.address%>
           </div>
           <br>

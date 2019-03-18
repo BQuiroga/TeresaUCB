@@ -228,7 +228,7 @@ se tiene que descargar wkhtmltopdf para poder utilizarlo en windows (conversion 
  </div>
 </div>
 <div class="container">
-   <h2> Meritos </h2>
+   <h2> Méritos </h2>
    <div class="container">
       <% if @merits.size >0%>
   <h5><% @merits.each do |merit| %></h5>
@@ -242,7 +242,7 @@ se tiene que descargar wkhtmltopdf para poder utilizarlo en windows (conversion 
  </div>
 </div>
 <div class="container">
-<h2> Membresia </h2>
+<h2> Membresía </h2>
 <div class="container">
       <% if @memberships.size >0%>
   <h5><% @memberships.each do |member| %></h5>

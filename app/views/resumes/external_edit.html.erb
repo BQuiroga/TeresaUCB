@@ -1,13 +1,13 @@
 <div class="container">
   <div class= "panel panel-default panel-heading">
-    <h1  class="text-center">Curriculum Vitae</h1>
+    <h1  class="text-center">Currículum Vitae</h1>
     <ul class="nav nav-tabs">
-      <li><a class="tablinks" onclick="openSector(event, 'Academico')" id="defaultOpen">Academico</a></li>
+      <li><a class="tablinks" onclick="openSector(event, 'Academico')" id="defaultOpen">Académico</a></li>
       <li><a class="tablinks" onclick="openSector(event, 'Laboral')">Laboral</a></li>
       <li><a class="tablinks" onclick="openSector(event, 'Seminarios')">Seminarios</a></li>
       <li><a class="tablinks" onclick="openSector(event, 'Publicaciones')">Publicaciones</a></li>
-      <li><a class="tablinks" onclick="openSector(event, 'Meritos')">Meritos</a></li>
-      <li><a class="tablinks" onclick="openSector(event, 'Membresias')">Membresias</a></li>
+      <li><a class="tablinks" onclick="openSector(event, 'Meritos')">Méritos</a></li>
+      <li><a class="tablinks" onclick="openSector(event, 'Membresias')">Membresías</a></li>
       <li><a class="tablinks" onclick="openSector(event, 'Conocimientos')">Conocimientos</a></li>
       <li><a class="tablinks" onclick="openSector(event, 'Habilidades')">Habilidades</a></li>
       <li><a class="tablinks" onclick="openSector(event, 'Idiomas')">Idiomas</a></li>
@@ -17,7 +17,7 @@
   <!-- Sector Academico -->
   <div id='Academico' class="tabcontent">
     <div class="panel panel-default">
-      <div class="panel-heading"><div class="panel-title"><h3>Formacion Academica </h3></div></div>
+      <div class="panel-heading"><div class="panel-title"><h3>Formacion Académica </h3></div></div>
         <div class="panel-body">
           <% if @educations.size >0%>
           <ul class="list-group">
@@ -37,18 +37,18 @@
     <div class="panel-footer well">
       <%= form_for :education, url: '/education/new' do |f| %>
         <div  class="field col col-md-3 col-xs-3">
-          <%= f.label :Grado_academico %>:
+          <%= f.label :Grado_académico %>:
           <!-- <%= f.select(:title,["Licenci>atura", "Maestria", "Doctorado", "Post Grado"])%> -->
           <div>
             <%= f.select :title,@title_list,{},class:"form-control  col-12 col-md-9 col-xs-12"%>
           </div>
         </div>
         <div class="field col col-md-3 col-xs-3">
-          <%= f.label :institucion %>:
+          <%= f.label :institución %>:
           <%= f.text_field :school_name%>
         </div>
         <div class="field col col-md-3 col-xs-3">
-          <%= f.label :descripcion %>:
+          <%= f.label :descripción %>:
           <%= f.text_area :description%>
         </div><br><br>
         <div class="field col col-md-3 col-xs-3">
@@ -120,12 +120,12 @@
         <%= f.text_field :referential%>
       </div>
       <div class="field">
-        <%= f.label :numero_de_referencia %>
+        <%= f.label :número_de_referencia %>
         <%= f.number_field :referential_number%>
       </div>
     </div>
     <div class="field pull-right" style="position:relative;">
-      ESTA INFORMACION NO ES PUBLICA
+      ESTA INFORMACIÓN NO ES PUBLICA
       <%= f.label :rango_salarial %>
       <%= f.select(:salary_range, options_for_select(Experience.salary_range)) %>
     </div>
@@ -189,7 +189,7 @@
         <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
       </div>
       <div class="field col col-md-4 col-xs-4">
-        <%=f.label :participe_como%>
+        <%=f.label :participé_como%>
         <%= f.select(:given, options_for_select(Course.participations)) %>
       </div>
       <div class="field col col-md-4 col-xs-4">
@@ -197,7 +197,7 @@
         <%= f.number_field :workload%> Hrs.
       </div>
       <div class="field col col-md-4 col-xs-4">
-        <%= f.label :institucion %><br />
+        <%= f.label :institución %><br />
         <%= f.text_field :institution%>
       </div>
         <%= f.hidden_field :resume_id, :value => @user.resume.id%>
@@ -260,7 +260,7 @@
 <!-- Sector Habilidades -->
 <div id='Meritos' class="tabcontent">
   <div class="panel panel-default">
-    <div class="panel-heading"><div class="panel-title"><h3> Meritos </h3></div></div>
+    <div class="panel-heading"><div class="panel-title"><h3> Méritos </h3></div></div>
     <div class="panel-body">
       <% if @merits.size >0%>
         <ul class="list-group">
@@ -280,7 +280,7 @@
   <div class="panel-footer well">
     <%= form_for :merit, url: '/merit/new' do |f| %>
     <div class="field col col-md-4 col-xs-4">
-      <%= f.label :Merito %>:
+      <%= f.label :Mérito %>:
       <%= f.text_field :name%>
     </div>
     <div class="field col col-md-4 col-xs-4">
@@ -297,7 +297,7 @@
 <!-- Sector Membresias -->
 <div id='Membresias' class="tabcontent">
   <div class="panel panel-default">
-    <div class="panel-heading"><div class="panel-title"><h3> Membresia </h3></div></div>
+    <div class="panel-heading"><div class="panel-title"><h3> Membresía </h3></div></div>
     <div class="panel-body">
       <% if @memberships.size >0%>
         <ul class="list-group">
@@ -318,7 +318,7 @@
   <div class="panel-footer well">
     <%= form_for :membership, url: '/member/new' do |f| %>
     <div class="field col col-md-4 col-xs-4">
-      <%= f.label :titulo %>:<br />
+      <%= f.label :título %>:<br />
       <%= f.text_field :name%>
     </div>
     <div class="field col col-md-4 col-xs-4">
@@ -488,11 +488,11 @@
       <%= f.text_field :name %>
     </div>
       <div class="field">
-      <%= f.label :institucion %><br />
+      <%= f.label :institución %><br />
       <%= f.text_field :institution%>
     </div>
       <div class="field">
-      <%= f.label :numero_de_referencia %><br />
+      <%= f.label :número_de_referencia %><br />
       <%= f.number_field :number%>
     </div>
     <%= f.hidden_field :resume_id, :value => @user.resume.id%>

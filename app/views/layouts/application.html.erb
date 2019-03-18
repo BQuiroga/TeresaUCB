@@ -118,7 +118,7 @@
           <li><%= link_to '<span class="fa fa-external-link fa-2x" style="margin-left:30%"></span><br>Publicar oferta'.html_safe, '/oferta/nueva', :class => 'navbar-link navbar-text' %>&emsp;</li>
           <li><%= link_to '<span class="fa fa-id-card fa-2x" style="margin-left:45%"></span><br>Ver información Externa'.html_safe, "/CompanyInformation/"+current_user.id.to_s, :class => 'navbar-link navbar-text' %>&emsp;</li>
         <%elsif !current_user.is_administrator%>
-          <li><%= link_to '<span class="fa fa-graduation-cap fa-2x" style="margin-left:30%"></span><br>Curriculum'.html_safe, '/mycurriculum', :class => 'navbar-link navbar-text' %>&emsp;</li>
+          <li><%= link_to '<span class="fa fa-graduation-cap fa-2x" style="margin-left:30%"></span><br>Currículum'.html_safe, '/mycurriculum', :class => 'navbar-link navbar-text' %>&emsp;</li>
           <li><%= link_to '<span class="fa fa-pencil fa-2x" style="margin-left:35%"></span><br>Editar CV'.html_safe, '/users/curriculum/edit', :class => 'navbar-link navbar-text' %>&emsp;</li>
         <%end%>
         <li><%= link_to '<span class="fa fa-user-plus fa-2x" style="margin-left:35%"></span><br>Ver grupos'.html_safe, '/grupos/todos', :class => 'navbar-link navbar-text' %>&emsp;</li>
@@ -193,7 +193,7 @@
   <%= link_to 'Perfil', '/users/profile', :class => 'navbar-link' %>&emsp;
   <%if !current_user.is_company?%>
   <%= link_to 'Editar CV', '/users/curriculum/edit', :class => 'navbar-link' %>&emsp;
-  <%= link_to 'Curriculum', '/mycurriculum', :class => 'navbar-link' %>&emsp;
+  <%= link_to 'Currículum', '/mycurriculum', :class => 'navbar-link' %>&emsp;
 
   <%else%>
   <%= link_to 'Publicar oferta', '/oferta/nueva', :class => 'navbar-link' %>&emsp;
@@ -217,7 +217,7 @@
   </span>
 <% else %>
   <%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link'  %> |
-  <%= link_to "Iniciar Sesion", new_user_session_path, :class => 'navbar-link'  %>
+  <%= link_to "Iniciar Sesión", new_user_session_path, :class => 'navbar-link'  %>
 <% end %>
 </p>
 </div> -->

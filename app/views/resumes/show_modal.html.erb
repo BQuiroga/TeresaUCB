@@ -86,9 +86,9 @@
   <div class="container-body" style="margin-top:10px">
   <%if !@user.is_company?%>
     <div class="container">
-      <h2>Informacion Personal</h2>
+      <h2>Información Personal</h2>
       <div class="container">
-        <b>Direccion: </b><%=@personal_info.address%><br>
+        <b>Dirección: </b><%=@personal_info.address%><br>
         <b>Fecha de Nacimiento: </b><%=@personal_info.translate_birthdate_to_string%> <br>
         <b>Estado Civil: </b><%=@personal_info.civil%> <br>
         <b>Fijo: </b><%=@personal_info.phone%><br>
@@ -98,7 +98,7 @@
     </div>
     <% if @educations.size >0%>
     <div class="container">
-      <h2>Formacion Academica </h2>
+      <h2>Formación Académica </h2>
       <div class="container">
         <h5><% @educations.each do |education| %></h5>
         <div>
@@ -202,7 +202,7 @@
     <%end%>
     <% if @merits.size >0%>
     <div class="container">
-     <h2> Meritos </h2>
+     <h2> Méritos </h2>
      <div class="container">
        <h5><% @merits.each do |merit| %></h5>
        <div>
@@ -216,7 +216,7 @@
     <%end%>
     <% if @memberships.size >0%>
     <div class="container">
-      <h2> Membresia </h2>
+      <h2> Membresía </h2>
       <div class="container">
         <h5><% @memberships.each do |member| %></h5>
           <div>

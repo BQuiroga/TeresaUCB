@@ -25,7 +25,7 @@
                     <button type="button" class="btn btn-info btn-sm pull-right" aria-label="Left Align">Ver Información</button>
                   </a>
                   <%else%>
-                  <%=link_to "Ver Curriculum", {controller: "resumes",action:"external_show",id:usuario.id},  :class=>"btn btn-default btn-sm pull-right"%>
+                  <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:usuario.id},  :class=>"btn btn-default btn-sm pull-right"%>
                 <%end%>
             <%if current_user.is_administrator%>
             <button class="btn btn-warning btn-sm pull-right">
@@ -82,7 +82,7 @@ $(document).ready(function () {
 </script>
 <%else%>
   <script>
-    alert('No tienes permiso para acceder a esta informacion');
+    alert('No tienes permiso para acceder a esta información');
     // window.location="/users/profile");
   </script>
 <%end%>
