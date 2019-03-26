@@ -1,7 +1,7 @@
 class PublicationsController < ApplicationController
 	def create
 		@new=Publication.new(publications_params)
-		if current_user.id!=@new.user.id
+		if current_user.id!=@new.user.id or current_user.is_director
 			throwUnauthorized
 			return
 		else
@@ -23,7 +23,7 @@ class PublicationsController < ApplicationController
 	end
 	def edit
 		@publication=Publication.find(params[:id])
-		if current_user.id!=@publication.user.id
+		if current_user.id!=@publication.user.id or current_user.is_director
 			throwUnauthorized
 			return
 		else
@@ -32,7 +32,7 @@ class PublicationsController < ApplicationController
 	end
 	def update
 		@publication=Publication.find(publications_params_for_edit[:id])
-		if current_user.id!=@publication.user.id
+		if current_user.id!=@publication.user.id or current_user.is_director
 			throwUnauthorized
 			return
 		else

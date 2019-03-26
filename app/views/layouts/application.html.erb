@@ -117,12 +117,14 @@
         <%if current_user.is_company?%>
           <li><%= link_to '<span class="fa fa-external-link fa-2x" style="margin-left:30%"></span><br>Publicar oferta'.html_safe, '/oferta/nueva', :class => 'navbar-link navbar-text' %>&emsp;</li>
           <li><%= link_to '<span class="fa fa-id-card fa-2x" style="margin-left:45%"></span><br>Ver información Externa'.html_safe, "/CompanyInformation/"+current_user.id.to_s, :class => 'navbar-link navbar-text' %>&emsp;</li>
-        <%elsif !current_user.is_administrator%>
+        <%elsif !current_user.is_administrator and !current_user.is_director%>
           <li><%= link_to '<span class="fa fa-graduation-cap fa-2x" style="margin-left:30%"></span><br>Currículum'.html_safe, '/mycurriculum', :class => 'navbar-link navbar-text' %>&emsp;</li>
           <li><%= link_to '<span class="fa fa-pencil fa-2x" style="margin-left:35%"></span><br>Editar CV'.html_safe, '/users/curriculum/edit', :class => 'navbar-link navbar-text' %>&emsp;</li>
         <%end%>
-        <li><%= link_to '<span class="fa fa-user-plus fa-2x" style="margin-left:35%"></span><br>Ver grupos'.html_safe, '/grupos/todos', :class => 'navbar-link navbar-text' %>&emsp;</li>
-        <li><%= link_to '<span class="fa fa-group fa-2x" style="margin-left:35%"></span><br>Mis grupos'.html_safe, '/grupos/mis_grupos', :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <%if !current_user.is_director%>
+          <li><%= link_to '<span class="fa fa-user-plus fa-2x" style="margin-left:35%"></span><br>Ver grupos'.html_safe, '/grupos/todos', :class => 'navbar-link navbar-text' %>&emsp;</li>
+          <li><%= link_to '<span class="fa fa-group fa-2x" style="margin-left:35%"></span><br>Mis grupos'.html_safe, '/grupos/mis_grupos', :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <%end%>
         <li><%= link_to '<span class="fa fa-envelope fa-2x" style="margin-left:35%"></span><br>Notificaciones'.html_safe, '/mis_notificaciones', :class => 'navbar-link navbar-text',:style=>'padding-right:0px' %><span id="noti_number" style="color:rgb(255, 255, 255);margin-left:-10px;margin-top:39px" class="navbar-text"><%=current_user.unreaded_notifications.size%>&emsp;</span></li>
         <%if current_user.is_administrator or current_user.is_secretary?%>
           <li><%= link_to '<span class="fa fa-user-secret fa-2x" style="margin-left:45%"></span><br>Gestion de usuarios'.html_safe, '/users', :class => 'navbar-link navbar-text' %>&emsp;</li>
@@ -161,12 +163,14 @@
       <%if current_user.is_company?%>
         <li><%= link_to '<span class="fa fa-external-link fa-lg"></span>'.html_safe, '/oferta/nueva', :class => 'navbar-link navbar-text' %>&emsp;</li>
         <li><%= link_to '<span class="fa fa-id-card fa-lg"></span>'.html_safe, "/CompanyInformation/"+current_user.id.to_s, :class => 'navbar-link navbar-text' %>&emsp;</li>
-      <%elsif !current_user.is_administrator%>
+      <%elsif !current_user.is_administrator and !current_user.is_director%>
         <li><%= link_to '<span class="fa fa-graduation-cap fa-lg"></span>'.html_safe, '/mycurriculum', :class => 'navbar-link navbar-text' %>&emsp;</li>
         <li><%= link_to '<span class="glyphicon glyphicon-pencil fa-lg"></span>'.html_safe, '/users/curriculum/edit', :class => 'navbar-link navbar-text ' %>&emsp;</li>
       <%end%>
-      <li><%= link_to '<span class="fa fa-user-plus fa-lg"></span>'.html_safe, '/grupos/todos', :class => 'navbar-link navbar-text' %>&emsp;</li>
-      <li><%= link_to '<span class="fa fa-group fa-lg"></span>'.html_safe, '/grupos/mis_grupos', :class => 'navbar-link navbar-text' %>&emsp;</li>
+      <%if !current_user.is_director%>
+        <li><%= link_to '<span class="fa fa-user-plus fa-lg"></span>'.html_safe, '/grupos/todos', :class => 'navbar-link navbar-text' %>&emsp;</li>
+        <li><%= link_to '<span class="fa fa-group fa-lg"></span>'.html_safe, '/grupos/mis_grupos', :class => 'navbar-link navbar-text' %>&emsp;</li>
+      <%end%>
       <li><%= link_to '<span class="fa fa-envelope fa-lg"></span>'.html_safe, '/mis_notificaciones', :class => 'navbar-link navbar-text',:style=>'padding-right:0px' %><span style="color:rgb(255, 255, 255);" class="navbar-text"><%=current_user.unreaded_notifications.size%>&emsp;</span></li>
       <%if current_user.is_administrator or current_user.is_secretary?%>
         <li><%= link_to '<span class="fa fa-user-secret fa-lg"></span>'.html_safe, '/users', :class => 'navbar-link navbar-text' %>&emsp;</li>

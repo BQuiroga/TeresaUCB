@@ -2,7 +2,7 @@ class KnowledgesController < ApplicationController
 	def create
 		@new=Knowledge.new(knowledges_params)
 
-		if current_user.id!=@new.user.id
+		if current_user.id!=@new.user.id or current_user.is_director
 			throwUnauthorized
 			return
 		else
@@ -23,7 +23,7 @@ class KnowledgesController < ApplicationController
 	end
 	def edit
 		@knowledge=Knowledge.find(params[:id])
-		if current_user.id!=@knowledge.user.id
+		if current_user.id!=@knowledge.user.id or current_user.is_director
 			throwUnauthorized
 			return
 		else
@@ -31,7 +31,7 @@ class KnowledgesController < ApplicationController
 	end
 	def update
 		@knowledge=Knowledge.find(knowledges_params_for_edit[:id])
-		if current_user.id!=@knowledge.user.id
+		if current_user.id!=@knowledge.user.id or current_user.is_director
 			throwUnauthorized
 			return
 		else

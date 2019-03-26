@@ -1,7 +1,7 @@
 class MembershipsController < ApplicationController
 	def create
 		@new=Membership.new(memberships_params)
-		if current_user.id!=@new.user.id
+		if current_user.id!=@new.user.id or current_user.is_director
 			throwUnauthorized
 			return
 		else
@@ -22,7 +22,7 @@ class MembershipsController < ApplicationController
 	end
 	def edit
 		@membership=Membership.find(params[:id])
-		if current_user.id!=@membership.user.id
+		if current_user.id!=@membership.user.id or current_user.is_director
 			throwUnauthorized
 			return
 		else
@@ -30,7 +30,7 @@ class MembershipsController < ApplicationController
 	end
 	def update
 		@membership=Membership.find(memberships_params_for_edit[:id])
-		if current_user.id!=@membership.user.id
+		if current_user.id!=@membership.user.id or current_user.is_director
 			throwUnauthorized
 			return
 		else

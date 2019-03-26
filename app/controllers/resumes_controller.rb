@@ -5,6 +5,11 @@ class ResumesController < ApplicationController
   end
   @@e=Education.new
   def edit
+    if current_user.is_director
+      throwUnauthorized
+      return
+    else
+    end
   	@resume=current_user.resume
   	@personal_info=current_user.personal_information
   	@educations=@resume.educations
@@ -63,6 +68,11 @@ class ResumesController < ApplicationController
   def update
   end
   def show
+    if current_user.is_director
+      throwUnauthorized
+      return
+    else
+    end
     @picture=current_user.picture
     @resume=current_user.resume
     @merits=@resume.merits
@@ -91,6 +101,11 @@ class ResumesController < ApplicationController
     @company_info=@user.company_information
   end
   def show_pdf
+    if current_user.is_director
+      throwUnauthorized
+      return
+    else
+    end
     @picture=current_user.picture
     @resume=current_user.resume
     @merits=@resume.merits
@@ -115,6 +130,11 @@ class ResumesController < ApplicationController
   end
 
   def show_pdf_red
+    if current_user.is_director
+      throwUnauthorized
+      return
+    else
+    end
     @picture=current_user.picture
     @resume=current_user.resume
     @merits=@resume.merits
@@ -139,6 +159,11 @@ class ResumesController < ApplicationController
   end
   def external_show
     @user=User.find(params[:id])
+    if @user.is_director
+      throwUnauthorized
+      return
+    else
+    end
     @picture=@user.picture
     @resume=@user.resume
     @merits=@resume.merits

@@ -1,5 +1,11 @@
 class GroupsController < ApplicationController
   def index
+    @user=User.find(params[:id])
+    if current_user.is_director
+      throwUnauthorized
+      return
+    else
+    end
     @user=current_user
     @belongs=@user.group_managers
     @groups=[]
@@ -9,11 +15,23 @@ class GroupsController < ApplicationController
     end
   end
   def show
+    @user=User.find(params[:id])
+    if current_user.is_director
+      throwUnauthorized
+      return
+    else
+    end
     @group=Group.find(params[:id])
     @creator=User.find(@group.user)
     @members=@group.my_members
   end
   def create
+    @user=User.find(params[:id])
+    if current_user.is_director
+      throwUnauthorized
+      return
+    else
+    end
     if Group.create(group_params)
       @grupo=Group.last
       GroupManager.create(group_id:@grupo.id,user_id:current_user.id)
@@ -26,6 +44,12 @@ class GroupsController < ApplicationController
     redirect_to '/grupos/mis_grupos'
   end
   def all
+    @user=User.find(params[:id])
+    if current_user.is_director
+      throwUnauthorized
+      return
+    else
+    end
     @grupos=Group.all
   end
   def botar

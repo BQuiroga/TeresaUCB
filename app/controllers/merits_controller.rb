@@ -1,7 +1,7 @@
 class MeritsController < ApplicationController
 	def create
 		@new=Merit.new(merits_params)
-		if current_user.id!=@new.user.id
+		if current_user.id!=@new.user.id or current_user.is_director
 			throwUnauthorized
 			return
 		else
@@ -22,7 +22,7 @@ class MeritsController < ApplicationController
 	end
 	def edit
 		@merit=Merit.find(params[:id])
-		if current_user.id!=@merit.user.id
+		if current_user.id!=@merit.user.id or current_user.is_director
 			throwUnauthorized
 			return
 		else
@@ -30,7 +30,7 @@ class MeritsController < ApplicationController
 	end
 	def update
 		@merits=Merit.find(merits_params_for_edit[:id])
-		if current_user.id!=@merits.user.id
+		if current_user.id!=@merits.user.id or current_user.is_director
 			throwUnauthorized
 			return
 		else

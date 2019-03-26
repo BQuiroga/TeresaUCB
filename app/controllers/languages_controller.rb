@@ -1,7 +1,7 @@
 class LanguagesController < ApplicationController
   def create
     @new=Language.new(languages_params)
-    if current_user.id!=@new.user.id
+    if current_user.id!=@new.user.id or current_user.is_director
       throwUnauthorized
       return
     else
@@ -22,7 +22,7 @@ class LanguagesController < ApplicationController
   end
   def edit
     @language=Language.find(params[:id])
-    if current_user.id!=@language.user.id
+    if current_user.id!=@language.user.id or current_user.is_director
       throwUnauthorized
       return
     else
@@ -30,7 +30,7 @@ class LanguagesController < ApplicationController
   end
   def update
     @language=Language.find(languages_params_for_edit[:id])
-    if current_user.id!=@language.user.id
+    if current_user.id!=@language.user.id or current_user.is_director
       throwUnauthorized
       return
     else

@@ -4,13 +4,13 @@
       <%= f.label :Grado_académico %>
       <div>
         <%=f.text_field :title, :id=>'filtrar',:class=>"form-control"%>
-        <%= f.select :lista,@title_list,{},class:"form-control col-12 col-md-12 col-xs-12",:id=>'titulos',:style=>"margin-top: 10px;height: 170px;",:size=>'10',:name=>'type[]'%>
+        <%= f.select :lista,@title_list,{},class:"form-control col-12 col-md-12 col-xs-12",:id=>'titulos',:style=>"margin-top: 10px;height: 170px;display:none",:size=>'10',:name=>'type[]'%>
       </div>
     </div>
     <div class="col col-md-6">
       <%= f.label :institución %>
       <%= f.text_field :school_name,:id=>'filtrar_u',:class=>"form-control"%>
-      <%= f.select :school_name,@schools,{},class:"form-control col-12 col-md-12 col-xs-12",:id=>'universidades',:style=>"margin-top: 10px;;height: 170px;",:size=>'10',:name=>'type[]'%>
+      <%= f.select :school_name,@schools,{},class:"form-control col-12 col-md-12 col-xs-12",:id=>'universidades',:style=>"margin-top: 10px;;height: 170px;display:none",:size=>'10',:name=>'type[]'%>
     </div>
   </div>
   <br>
@@ -42,6 +42,12 @@
 $(document).ready(function () {
   (function ($) {
       $('#filtrar_u').keyup(function () {
+          var input_value = document.getElementById('universidades');
+          if($(this).val() == "") {
+          input_value.style.display = 'none';
+          } else {
+           input_value.style.display = 'block';
+          }
           var rex = new RegExp($(this).val(), 'i');
           $('#universidades option').hide();
           $('#universidades option').filter(function () {

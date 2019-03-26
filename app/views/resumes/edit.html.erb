@@ -450,6 +450,12 @@ $(document).ready(function(){
 $(document).ready(function () {
             (function ($) {
                 $('#filtrar').keyup(function () {
+                  var input_value = document.getElementById('titulos');
+                  if($(this).val() == "") {
+                  input_value.style.display = 'none';
+                  } else {
+                   input_value.style.display = 'block';
+                  }
                     var rex = new RegExp($(this).val(), 'i');
                     $('#titulos option').hide();
                     $('#titulos option').filter(function () {

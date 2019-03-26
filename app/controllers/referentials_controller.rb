@@ -1,7 +1,7 @@
 class ReferentialsController < ApplicationController
   def create
     @new=Referential.new(referentials_params)
-    if current_user.id!=@new.user.id
+    if current_user.id!=@new.user.id or current_user.is_director
       throwUnauthorized
       return
     else
@@ -22,7 +22,7 @@ class ReferentialsController < ApplicationController
   end
   def edit
     @referential=Referential.find(params[:id])
-    if current_user.id!=@referential.user.id
+    if current_user.id!=@referential.user.id or current_user.is_director
       throwUnauthorized
       return
     else
@@ -30,7 +30,7 @@ class ReferentialsController < ApplicationController
   end
   def update
     @referential=Referential.find(referentials_params_for_edit[:id])
-    if current_user.id!=@referential.user.id
+    if current_user.id!=@referential.user.id or current_user.is_director
       throwUnauthorized
       return
     else

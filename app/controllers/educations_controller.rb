@@ -1,7 +1,7 @@
 class EducationsController < ApplicationController
 	def create
 		@new=Education.new(educations_params)
-		if current_user.id!=@new.user.id
+		if current_user.id!=@new.user.id or current_user.is_director
 			throwUnauthorized
 			return
 		else
@@ -39,7 +39,7 @@ class EducationsController < ApplicationController
 
 	def edit
 		@education=Education.find(params[:id])
-		if current_user.id!=@education.user.id
+		if current_user.id!=@education.user.id or current_user.is_director
 			throwUnauthorized
 			return
 		else
@@ -59,7 +59,7 @@ class EducationsController < ApplicationController
 	end
 	def update
 		@education=Education.find(educations_params_for_edit[:id])
-		if !current_user.id==@education.user.id
+		if !current_user.id==@education.user.id or current_user.is_director
 			throwUnauthorized
 			return
 		else

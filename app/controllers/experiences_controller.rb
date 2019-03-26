@@ -1,7 +1,7 @@
 class ExperiencesController < ApplicationController
 	def create
 		@new=Experience.new(experiences_params)
-		if current_user.id!=@new.user.id
+		if current_user.id!=@new.user.id or current_user.is_director
 			throwUnauthorized
 			return
 		else
@@ -25,7 +25,7 @@ class ExperiencesController < ApplicationController
 	def edit
 		@experience=Experience.find(params[:id])
 		@cities=@experience.countries
-		if current_user.id!=@experience.user.id
+		if current_user.id!=@experience.user.id or current_user.is_director
 			throwUnauthorized
 			return
 		else
@@ -33,7 +33,7 @@ class ExperiencesController < ApplicationController
 	end
 	def update
 		@experience=Experience.find(experiences_params_for_edit[:id])
-		if current_user.id!=@experience.user.id
+		if current_user.id!=@experience.user.id or current_user.is_director
 			throwUnauthorized
 			return
 		else

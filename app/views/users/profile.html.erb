@@ -165,15 +165,19 @@
 		 <div class="col-md-2 col-sm-3">
     		<div class="panel panel-default">
           <div class="panel-body">
-      		<%if current_user.is_company?%>
-      	   <%= link_to '<span class="glyphicon glyphicon-pencil"></span> Crear oferta'.html_safe,'/oferta/nueva' ,class: 'btn btn-primary btn-block'%><br>
-           <%= link_to '<span class="glyphicon glyphicon-envelope"></span> Notificaciones'.html_safe,'/mis_notificaciones' ,class: 'btn btn-primary btn-block'%><br>
-           <%= link_to '<span class="glyphicon glyphicon-user"></span> Información Externa'.html_safe, "/CompanyInformation/"+current_user.id.to_s, :class => 'btn btn-primary btn-block' %><br>
+          <%if !current_user.is_director%>
+        		<%if current_user.is_company?%>
+        	   <%= link_to '<span class="glyphicon glyphicon-pencil"></span> Crear oferta'.html_safe,'/oferta/nueva' ,class: 'btn btn-primary btn-block'%><br>
+             <%= link_to '<span class="glyphicon glyphicon-envelope"></span> Notificaciones'.html_safe,'/mis_notificaciones' ,class: 'btn btn-primary btn-block'%><br>
+             <%= link_to '<span class="glyphicon glyphicon-user"></span> Información Externa'.html_safe, "/CompanyInformation/"+current_user.id.to_s, :class => 'btn btn-primary btn-block' %><br>
+            <%else%>
+              <%= link_to '<span class="glyphicon glyphicon-user"></span> Ver Currículum    '.html_safe,  '/mycurriculum',class: 'btn btn-primary btn-block'%> <br>
+              <%= link_to '<span class="glyphicon glyphicon-pencil"></span> Editar Currículum'.html_safe,'/users/curriculum/edit' ,class: 'btn btn-primary btn-block'%><br>
+      	    <%end%>
+            <%= link_to '<span class="glyphicon glyphicon-th-list"></span> Mis Grupos'.html_safe, '/grupos/mis_grupos', class: 'btn btn-primary btn-block'%>
           <%else%>
-            <%= link_to '<span class="glyphicon glyphicon-user"></span> Ver Currículum    '.html_safe,  '/mycurriculum',class: 'btn btn-primary btn-block'%> <br>
-            <%= link_to '<span class="glyphicon glyphicon-pencil"></span> Editar Currículum'.html_safe,'/users/curriculum/edit' ,class: 'btn btn-primary btn-block'%><br>
-    	    <%end%>
-          <%= link_to '<span class="glyphicon glyphicon-th-list"></span> Mis Grupos'.html_safe, '/grupos/mis_grupos', class: 'btn btn-primary btn-block'%>
+            <%= link_to '<span class="fa fa-bar-chart"></span> Reportes'.html_safe, '/reportes', class: 'btn btn-primary btn-block'%>
+          <%end%>
         </div>
     	 </div>
   	 </div>
@@ -212,7 +216,7 @@
               <%end %>
             </p>
             <div class="btn-group pull-right">
-              <%if current_user.not_me(post.user.id) and (Follow.where(follower:current_user.id,followed:post.user.id).size==0) and !current_user.is_my_friend(post.user.id)and post.user.is_company?%>
+              <%if current_user.not_me(post.user.id) and (Follow.where(follower:current_user.id,followed:post.user.id).size==0) and !current_user.is_my_friend(post.user.id)and post.user.is_company? %>
                 <%= form_for :follow, url: '/follows/new' do |f| %>
                   <%=f.hidden_field :follower, :value => current_user.id %>
                   <%=f.hidden_field :followed, :value => post.user.id %>
@@ -228,7 +232,7 @@
             </div>
             <div class="btn-group pull-right">
               <%if (!current_user.is_my_friend(post.user.id))%>
-                <%if current_user.not_me(post.user.id) and !post.user.is_company?%>
+                <%if current_user.not_me(post.user.id) and !post.user.is_company? and !current_user.is_director%>
                   <button type="button submit" class="btn btn-primary btn-sm" aria-label="Left Align">
                     <%=link_to "Agregar a mis amigos", {controller: "friendships", action: "friend", id: post.user.id}%>
                   </button>
@@ -243,9 +247,11 @@
             </div>
             <div class="btn-group pull-right">
               <%if current_user.not_me(post.user.id) and post.user.is_company?%>
+              <%if !current_user.is_director%>
                 <a href="/mis_notificaciones/new/<%=post.id %>">
                   <button type="button" class="btn btn-success btn-sm" aria-label="Left Align">Postular</button>
                 </a>
+                <%end%>
                 <a href="/CompanyInformation/<%=post.user_id %>">
                   <button type="button" class="btn btn-info btn-sm" aria-label="Left Align">Ver Información</button>
                 </a>
@@ -258,7 +264,7 @@
 	   <%end%>
    <%end%>
    </div>
-
+   <%if !current_user.is_director%>
 <div class="pull-right col-md-4 col-sm-3 right-group-menu" style="right:0px" id="group_menu">
   <div class="panel panel-primary">
     <div class="panel-heading">
@@ -299,6 +305,7 @@
    </div>
    </div>
   </div>
+  <%end%>
 
 <br>
 

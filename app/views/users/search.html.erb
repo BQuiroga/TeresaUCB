@@ -18,18 +18,20 @@
             <div>
               <h4><%= user.name%>   <%=user.last_name%></h4>
               <strong>Email: </strong><%= user.email %><br>
-              <a href="/curriculums/<%=user.id%>"><button class="btn btn-info">Ver Perfil</button></a>
-              <% if !current_user.is_company? %>
-                <%if (!current_user.is_my_friend(user.id))%>
-                <a href="/users/Amigo/<%=user.id%>">
-                  <button type="button submit" class="btn btn-primary" aria-label="Right Align"> Agregar a mis amigos</button>
-                </a>
-                <%else%>
-                <button type="button submit" class="btn btn-primary" aria-label="Left Align">
-                  <%=link_to "Dejar de ser amigos", {controller: "friendships", action: "notmine", id:user.id}%>
-                </button>
-                <%end%>
-              <% end %>
+              <%if !user.is_director%>
+                <a href="/curriculums/<%=user.id%>"><button class="btn btn-info">Ver Perfil</button></a>
+                <% if !current_user.is_company? %>
+                  <%if (!current_user.is_my_friend(user.id))%>
+                  <a href="/users/Amigo/<%=user.id%>">
+                    <button type="button submit" class="btn btn-primary" aria-label="Right Align"> Agregar a mis amigos</button>
+                  </a>
+                  <%else%>
+                  <button type="button submit" class="btn btn-primary" aria-label="Left Align">
+                    <%=link_to "Dejar de ser amigos", {controller: "friendships", action: "notmine", id:user.id}%>
+                  </button>
+                  <%end%>
+                <% end %>
+              <%end%>
             </div>
           </li>
         <% end %>

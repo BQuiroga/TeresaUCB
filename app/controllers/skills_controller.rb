@@ -1,7 +1,7 @@
 class SkillsController < ApplicationController
   def create
     @new=Skill.new(skills_params)
-    if current_user.id!=@new.user.id
+    if current_user.id!=@new.user.id or current_user.is_director
       throwUnauthorized
       return
     else
@@ -22,7 +22,7 @@ class SkillsController < ApplicationController
   end
   def edit
     @skill=Skill.find(params[:id])
-    if current_user.id!=@skill.user.id
+    if current_user.id!=@skill.user.id or current_user.is_director
       throwUnauthorized
       return
     else
@@ -30,7 +30,7 @@ class SkillsController < ApplicationController
   end
   def update
     @skill=Skill.find(skills_params_for_edit[:id])
-    if current_user.id!=@skill.user.id
+    if current_user.id!=@skill.user.id or current_user.is_director
       throwUnauthorized
       return
     else
