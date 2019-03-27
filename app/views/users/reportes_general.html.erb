@@ -148,23 +148,31 @@ appearance: none;
                     <br>
                   <%@e=Education.new%>
                     <div id="grado_licenciatura" style="display:none;">
-                      <%= f.select(:grado_licenciatura,@e.licenciaturas,{},:class=>"grado-select",:include_blank => true)%>
+                      <%= f.text_field :grado_licenciatura,:id=>'filtrar_l',:class=>"form-control grado-select"%>
+                      <%= f.select(:grado_licenciatura,@e.licenciaturas,{},:class=>"grado-select",:id=>'licenciaturas',:style=>"margin-top: 10px;;height: 170px;display:none",:size=>'5',:name=>'type[]',:include_blank => true)%>
                     </div>
                     <div id="grado_especialidad" style="display:none;">
-                      <%= f.select(:grado_postgrado,@e.especialidades,{},:class=>"selectpicker grado-select",:include_blank => true)%>
+                      <%= f.text_field :grado_postgrado,:id=>'filtrar_e',:class=>"form-control grado-select"%>
+                      <%= f.select(:grado_postgrado,@e.especialidades,{},:class=>"selectpicker grado-select",:id=>'especialidades',:style=>"margin-top: 10px;;height: 170px;display:none",:size=>'5',:name=>'type[]',:include_blank => true)%>
                     </div>
                     <div id="grado_maestria" style="display:none;">
-                      <%= f.select(:grado_maestria,@e.maestrias,{},:class=>"selectpicker grado-select",:include_blank => true)%>
+                      <%= f.text_field :grado_maestria,:id=>'filtrar_m',:class=>"form-control grado-select"%>
+                      <%= f.select(:grado_maestria,@e.maestrias,{},:class=>"selectpicker grado-select",:id=>'maestrias',:style=>"margin-top: 10px;;height: 170px;display:none",:size=>'5',:name=>'type[]',:include_blank => true)%>
                     </div>
                     <div id="grado_doctorado" style="display:none;">
-                      <%= f.select(:grado_doctorado,@e.doctorados,{},:class=>"selectpicker grado-select",:include_blank => true)%>
+                      <%= f.text_field :grado_doctorado,:id=>'filtrar_d',:class=>"form-control grado-select"%>
+                      <%= f.select(:grado_doctorado,@e.doctorados,{},:class=>"selectpicker grado-select",:id=>'doctorados',:style=>"margin-top: 10px;;height: 170px;display:none",:size=>'5',:name=>'type[]',:include_blank => true)%>
                     </div>
                     <div id="grado_diplomado" style="display:none;">
-                      <%= f.select(:grado_doctorado,@e.diplomados,{},:class=>"selectpicker grado-select",:include_blank => true)%>
+                      <%= f.text_field :grado_postgrado,:id=>'filtrar_di',:class=>"form-control grado-select"%>
+                      <%= f.select(:grado_postgrado,@e.diplomados,{},:class=>"selectpicker grado-select",:id=>'postgrados',:style=>"margin-top: 10px;;height: 170px;display:none",:size=>'5',:name=>'type[]',:include_blank => true)%>
                     </div>
                     <div id="grado_postdoctorado" style="display:none;">
-                      <%= f.select(:grado_doctorado,@e.postdoctorados,{},:class=>"selectpicker grado-select",:include_blank => true)%>
+                      <%= f.text_field :grado_doctorado,:id=>'filtrar_po',:class=>"form-control grado-select"%>
+                      <%= f.select(:grado_doctorado,@e.postdoctorados,{},:class=>"selectpicker grado-select",:id=>'postdoctorados',:style=>"margin-top: 10px;;height: 170px;display:none",:size=>'5',:name=>'type[]', :include_blank => true)%>
                     </div>
+
+
                     <br>
                   </div>
                   <div class="col col-md-4   col-sm-3">
@@ -212,6 +220,134 @@ appearance: none;
       </div>
 </div>
 
+<script>
+$(document).ready(function () {
+  (function ($) {
+      $('#filtrar_l').keyup(function () {
+          var input_value = document.getElementById('licenciaturas');
+          if($(this).val() == "") {
+          input_value.style.display = 'none';
+          } else {
+           input_value.style.display = 'block';
+          }
+          var rex = new RegExp($(this).val(), 'i');
+          $('#licenciaturas option').hide();
+          $('#licenciaturas option').filter(function () {
+              return rex.test($(this).text());
+          }).show();
+      })
+  }(jQuery));
+});
+$("#licenciaturas").change(function(){
+$("#filtrar_l").val(this.value);
+}).change();
+
+$(document).ready(function () {
+  (function ($) {
+      $('#filtrar_e').keyup(function () {
+          var input_value = document.getElementById('especialidades');
+          if($(this).val() == "") {
+          input_value.style.display = 'none';
+          } else {
+           input_value.style.display = 'block';
+          }
+          var rex = new RegExp($(this).val(), 'i');
+          $('#especialidades option').hide();
+          $('#especialidades option').filter(function () {
+              return rex.test($(this).text());
+          }).show();
+      })
+  }(jQuery));
+});
+$("#especialidades").change(function(){
+$("#filtrar_e").val(this.value);
+}).change();
+
+$(document).ready(function () {
+  (function ($) {
+      $('#filtrar_m').keyup(function () {
+          var input_value = document.getElementById('maestrias');
+          if($(this).val() == "") {
+          input_value.style.display = 'none';
+          } else {
+           input_value.style.display = 'block';
+          }
+          var rex = new RegExp($(this).val(), 'i');
+          $('#maestrias option').hide();
+          $('#maestrias option').filter(function () {
+              return rex.test($(this).text());
+          }).show();
+      })
+  }(jQuery));
+});
+$("#maestrias").change(function(){
+$("#filtrar_m").val(this.value);
+}).change();
+
+$(document).ready(function () {
+  (function ($) {
+      $('#filtrar_d').keyup(function () {
+          var input_value = document.getElementById('doctorados');
+          if($(this).val() == "") {
+          input_value.style.display = 'none';
+          } else {
+           input_value.style.display = 'block';
+          }
+          var rex = new RegExp($(this).val(), 'i');
+          $('#doctorados option').hide();
+          $('#doctorados option').filter(function () {
+              return rex.test($(this).text());
+          }).show();
+      })
+  }(jQuery));
+});
+$("#doctorados").change(function(){
+$("#filtrar_d").val(this.value);
+}).change();
+
+$(document).ready(function () {
+  (function ($) {
+      $('#filtrar_di').keyup(function () {
+          var input_value = document.getElementById('postgrados');
+          if($(this).val() == "") {
+          input_value.style.display = 'none';
+          } else {
+           input_value.style.display = 'block';
+          }
+          var rex = new RegExp($(this).val(), 'i');
+          $('#postgrados option').hide();
+          $('#postgrados option').filter(function () {
+              return rex.test($(this).text());
+          }).show();
+      })
+  }(jQuery));
+});
+$("#postgrados").change(function(){
+$("#filtrar_di").val(this.value);
+}).change();
+
+$(document).ready(function () {
+  (function ($) {
+      $('#filtrar_po').keyup(function () {
+          var input_value = document.getElementById('postdoctorados');
+          if($(this).val() == "") {
+          input_value.style.display = 'none';
+          } else {
+           input_value.style.display = 'block';
+          }
+          var rex = new RegExp($(this).val(), 'i');
+          $('#postdoctorados option').hide();
+          $('#postdoctorados option').filter(function () {
+              return rex.test($(this).text());
+          }).show();
+      })
+  }(jQuery));
+});
+$("#postdoctorados").change(function(){
+$("#filtrar_po").val(this.value);
+}).change();
+
+</script>
 
 
   <script>
@@ -365,7 +501,6 @@ function closeNav() {
     {
       document.getElementById("grado_licenciatura").style.display="none";
       document.getElementById("grado_maestria").style.display="none";
-      document.getElementById("grado_postgrado").style.display="none";
       document.getElementById("grado_doctorado").style.display="none";
       document.getElementById("grado_especialidad").style.display="none";
       document.getElementById("grado_diplomado").style.display="none";

@@ -88,15 +88,15 @@ class Education < ActiveRecord::Base
     end
   end
   def licenciaturas
-    result=title_list-postdoctorados-maestrias-doctorados-especialidades
+    result=title_list-postdoctorados-maestrias-doctorados-especialidades-diplomados
     result=result+["Todos"]
   end
   def especialidades
-    result=title_list.select{|x| x.include?("Especialidad")}
+    result=title_list.select{|x| x.include?("Especialidad")}+title_list.select{|x| x.include?("Especialización")}+title_list.select{|x| x.include?("Especializacion")}+title_list.select{|x| x.include?("Especialista")}
     result=result+["Todos"]
   end
   def maestrias
-    result=title_list.select{|x| x.include?("Maestria")}+title_list.select{|x| x.include?("Master")}
+    result=title_list.select{|x| x.include?("Maestria")}+title_list.select{|x| x.include?("Master")}+title_list.select{|x| x.include?("Maestría")}
     result=result+["Todos"]
   end
   def doctorados
@@ -108,7 +108,7 @@ class Education < ActiveRecord::Base
     result=result+["Todos"]
   end
   def diplomados
-    result=title_list.select{|x| x.include?("Diplomados")}
+    result=title_list.select{|x| x.include?("Diplomado")}
     result=result+["Todos"]
   end
 
