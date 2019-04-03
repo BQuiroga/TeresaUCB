@@ -131,6 +131,7 @@ class ReportsController < ApplicationController
     else
       @title_list=@@r.cato_titles
       @salaries=Experience.all.group(:salary_range).count
+      @e =Experience.new
     end
   end
   def by_time_to_work
@@ -151,10 +152,10 @@ class ReportsController < ApplicationController
     end
   end
     def time_in_job
+      @e=Experience.new
       @experiences=Experience.all
       @jobs_time=Hash.new(0)
       @title_list=@@r.cato_titles
-
       @experiences.each do |e|
         if e.time_in_job==-1
           @jobs_time["Continua trabajando"]+=1

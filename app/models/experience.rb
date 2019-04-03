@@ -78,6 +78,17 @@ class Experience < ActiveRecord::Base
 			end
 	    resp
 	  end
+		def jobs_users(time)
+				experiences=Experience.all
+				users=Array.new
+				experiences.each do |exp|
+					if (exp.time_in_job==time)
+						users=users+[exp.user]
+					end
+				end
+				users=users.uniq
+				users
+		end
 	  def days_into_years(some_date)
 	    y=some_date/365
 	    m=(some_date%365)/30
@@ -126,5 +137,14 @@ class Experience < ActiveRecord::Base
 				r=r+Experience.where("job_description~*?",exper)
 			end
 			r
+		end
+		def salary_users(salary)
+			experiences=Experience.where(salary_range:salary)
+			users=Array.new
+			experiences.each do |exp|
+				users=users+[exp.user]
+			end
+			users=users.uniq
+			users
 		end
 end
