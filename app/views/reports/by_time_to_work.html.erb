@@ -1327,6 +1327,22 @@ function showEmpresasC() {
       }
     }
   });
+
+    $('#tablaFi td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="filo_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
   $('#tablaTe td').click(function () {
       var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
       var listas=document.getElementsByClassName("lista-persona");

@@ -78,19 +78,30 @@ class Experience < ActiveRecord::Base
 			end
 	    resp
 	  end
-		def jobs_users(time)
-				experiences=Experience.all
-				users=Array.new
-				experiences.each do |exp|
-					if (exp.time_in_job==time)
-						users=users+[exp.user]
-					end
-					if (time=="Continua trabajando" and exp.time_in_job==-1)
-						users=users+[exp.user]
+		def jobs_users(time,area)
+			users=Array.new
+			resp=Array.new
+			if area.size>0
+				educations=Education.where("title~*?",area)
+			else
+				educations=Education.all
+			end
+			experiences=Experience.all
+			users=educations.map{ |x| x.user}
+			experiences.each do |exp|
+				if (exp.time_in_job==time )
+					if users.include?(exp.user)
+						resp=resp+[exp.user]
 					end
 				end
-				users=users.uniq
-				users
+				if (time=="Continua trabajando" and exp.time_in_job==-1)
+					if users.include?(exp.user)
+						resp=resp+[exp.user]
+					end
+				end
+			end
+			resp=resp.uniq
+			resp
 		end
 		def country_users(carrera,country)
 			resumes=carrera.map{|education| education.resume_id}.uniq
@@ -153,13 +164,22 @@ class Experience < ActiveRecord::Base
 			end
 			r
 		end
-		def salary_users(salary)
-			experiences=Experience.where(salary_range:salary)
+		def salary_users(salary,area)
 			users=Array.new
-			experiences.each do |exp|
-				users=users+[exp.user]
+			resp=Array.new
+			if area.size>0
+				educations=Education.where("title~*?",area)
+			else
+				educations=Education.all
 			end
-			users=users.uniq
-			users
+			users=educations.map{ |x| x.user}
+			experiences=Experience.where(salary_range:salary)
+			experiences.each do |exp|
+				if users.include?(exp.user)
+					resp=resp+[exp.user]
+				end
+			end
+			resp=resp.uniq
+			resp
 		end
 end
