@@ -139,18 +139,14 @@ class ReportsController < ApplicationController
       throwUnauthorized
       return
     else
-      @users=User.all
-      @years=Hash.new(0)
-      @users.where(company:false).each do |u|
-        if (u.years_to_first_job==-1)
-          @years["Aun no ha egresado"]+=1
-        else
-          @years[u.years_to_first_job] +=1
-        end
-      end
+      @title_list=@@r.cato_titles
+      @edu=Education.new
+      @users=User.all.where(company:false).select{|x| !x.is_director}
+      @years=@@r.time_to_work(@users)
       @years=@@r.time_range_hash(@years)
     end
   end
+
     def time_in_job
       @e=Experience.new
       @experiences=Experience.all
@@ -226,6 +222,17 @@ class ReportsController < ApplicationController
     @new_exp=Experience.new
     render json: @ew_exp.all_cities_for_map
   end
+
+  def activities_country_all
+    @experiences=Experience.all
+    @all_in_world=@experiences.group(:city).count
+    render json: @all_in_world
+  end
+  def activities_antro_all
+    @new_edu=Education.new
+    render json: @new_edu.region_de(@new_edu.antropologos)
+  end
+
   def report_params
     params.require(:report).permit(:grado_licenciatura,:grado_postgrado,:grado_maestria,:grado_doctorado,:grado,:fecha_inicio,:fecha_fin,:genero)
   end

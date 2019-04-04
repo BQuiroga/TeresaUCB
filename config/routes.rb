@@ -10,6 +10,13 @@ Rails.application.routes.draw do
 
   root to: 'index#inicio'
 
+  #reportes
+  resources :reports do
+    get 'activities_country_all'
+    get 'activities_antro_all'
+  end
+
+
   #usuarios
   post 'posts/new'=> 'posts#create'
   match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user

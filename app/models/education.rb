@@ -243,6 +243,7 @@ class Education < ActiveRecord::Base
       end
     end
     nueva["Aun no ha egresado"]=hash["Aun no ha egresado"]
+    nueva["Aún no trabaja"]=hash["Aún no trabaja"]
     nueva.sort_by {|key,value| key}
   end
   def cato_titles
@@ -360,5 +361,27 @@ class Education < ActiveRecord::Base
       r=r+Education.where("title~*?",education)
     end
     r
+  end
+  def users_of(carrera)
+    users=Array.new
+    carrera.each do |education|
+      users=users+[education.user]
+    end
+    users=users.uniq
+    users
+  end
+  def time_to_work(list)
+    years=Hash.new(0)
+    list.each do |user|
+      if (user.years_to_first_job==-1 or user.years_to_first_job==-2)
+        years["Aun no ha egresado"]+=1
+      else
+        years[user.years_to_first_job] +=1
+      end
+      if (user.years_to_first_job==-2)
+        years["Aún no trabaja"]+=1
+      end
+    end
+    years
   end
 end

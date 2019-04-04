@@ -211,18 +211,24 @@ class User < ActiveRecord::Base
       res= (first_job_date - last_education_date).to_i
       resp=days_into_months(res)
     else
-      return -1
+      if first_job_date==Date.today
+        return -2
+      else
+        return -1
+      end
     end
     resp
   end
-  def time_work_users(time)
-    users=User.all
+  def time_work_users(list,time)
     resp=Array.new
     if time=="Aun no ha egresado"
       time=-1
     end
-    users.each do |user|
-      if (user.is_student? and user.years_to_first_job==time)
+    if time=="Aún no trabaja"
+      time=-2
+    end
+    list.each do |user|
+      if (user.is_student? and !user.is_director and user.years_to_first_job==time)
         resp=resp+[user]
       end
     end

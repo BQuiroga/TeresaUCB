@@ -97,7 +97,7 @@
             <li class="list-group-item">
             </li>
             <li class="list-group-item">
-              <%=column_chart @all_in_world,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"País o región",title:"Ubicación laboral de los titulados de todas las carreras", download: "resumen titulados"%>
+              <%=column_chart report_activities_country_all_path(1),label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"País o región",title:"Ubicación laboral de los titulados de todas las carreras", download: "resumen titulados"%>
             </li>
             <li class="list-group-item">
               <table class="table table-striped table-bordered table-hover" id="tablaT">
@@ -179,7 +179,7 @@
                 <button class="btn btn-primary btn-lg" id="detallado_antropoloogia">Detallado</button>
               </div>
               <div class="col-md-5">
-                <%=column_chart @new_edu.region_de(@new_edu.antropologos),label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los titulados",ytitle:"titulados en las distintas áreas", download: "resumen Impacto"%>
+                <%=column_chart report_activities_antro_all_path(1),label: "Cantidad",xtitle:"Ubicación",title:"Resumen del impacto de los titulados",ytitle:"titulados en las distintas áreas", download: "resumen Impacto"%>
               </div>
             </div>
           </li>
