@@ -215,6 +215,19 @@ class User < ActiveRecord::Base
     end
     resp
   end
+  def time_work_users(time)
+    users=User.all
+    resp=Array.new
+    if time=="Aun no ha egresado"
+      time=-1
+    end
+    users.each do |user|
+      if (user.is_student? and user.years_to_first_job==time)
+        resp=resp+[user]
+      end
+    end
+    resp.uniq
+  end
   def days_into_months(some_date)
     some_date/30
   end

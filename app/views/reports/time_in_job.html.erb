@@ -26,23 +26,12 @@
               </select>
             </div>
           </li>
-          <li class="list-group-item" >
-            <div id="by_ciu">
-              <%=column_chart @jobs_time,stacked:true,download:"grafica",:xtitle=>"Años",:ytitle=>"Estudiantes o titulados"%>
-            </div>
-
-            <button class="btn btn-default btn-sm pull-right" id="mostrarEmpresasC" onclick="showEmpresasC()" style="display:none;">Mostrar Reporte Estadístico</button>
-            <button class="btn btn-default btn-sm pull-right" id="ocultarEmpresasC" onclick="showEmpresasC()">Ocultar Reporte Estadístico</button>
-            <br><br>
-          </li>
+          <div id="Todas las carreras" class="filtro">
           <li class="list-group-item">
-            <div>
-              <div class="table-responsive">
-                <div id="Todas las carreras" class="filtro">
                   <table class="table table-striped table-bordered table-hover" style="text-align: center;" id="tablaT">
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Trabajos en dicho rango&nbsp;</th>
                     </tr>
                     <% @jobs_time.each do |date|%>
                       <tr>
@@ -51,8 +40,9 @@
                       </tr>
                       <%end%>
                     </table>
-                    <li class="list-group-item">
+                    <li class="list-group-item" >
                       <div id="by_ciu">
+                        <%=column_chart @jobs_time,stacked:true,download:"grafica",:xtitle=>"Años",:ytitle=>"Estudiantes o titulados",:id=>'todas_graph'%>
                       </div>
                     </li>
                     <%@jobs_time.each do |row|%>
@@ -83,12 +73,15 @@
                     </div>
                     </li>
                     <%end%>
+                </li>
+
                 </div>
                   <div id="Bachiller" style="display:none;" class="filtro">
-                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <li class="list-group-item" >
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;" id="tablaB">
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Trabajos en dicho rango&nbsp;</th>
                     </tr>
                     <%
                       @educations=Education.where("title ~* ?", "Bachiller")
@@ -122,12 +115,47 @@
                       </tr>
                       <%end%>
                     </table>
+                  </li>
+                    <li class="list-group-item" >
+                      <div id="by_ciu">
+                        <%=column_chart @jobs_time,stacked:true,download:"grafica",:xtitle=>"Años",:ytitle=>"Estudiantes o titulados",:id=>'bachiller_graph'%>
+                      </div>
+                    </li>
+                    <%@jobs_time.each do |row|%>
+                    <li id="bachiller_<%=row[0]%>" class="list-group-item lista-persona">
+                      <div class="table table-responsive">
+                        <table  class="table table-striped table-bordered" style="text-align: center;">
+                          <tr>
+                            <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                            <th></th>
+                          </tr>
+                        <%@e.jobs_users(row[0]).each do |user|%>
+                        <tr>
+                          <td><%=user.name%></td>
+                          <td><%=user.email%></td>
+                          <td><%=user.phone%></td>
+                          <td>
+                            <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                              Ver Currículum
+                              <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                            </button>
+                          </td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                    </li>
+                    <%end%>
                   </div>
                   <div id="Derecho" style="display:none;" class="filtro">
-                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <li class="list-group-item" >
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;" id="tabladD"
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Trabajos en dicho rango&nbsp;</th>
                     </tr>
                     <%
                       @educations=Education.where("title ~* ?", "Derecho") +Education.where("title ~* ?", "Abogad")
@@ -161,12 +189,48 @@
                       </tr>
                       <%end%>
                     </table>
+                    </li>
+                    <li class="list-group-item" >
+                      <div id="by_ciu">
+                        <%=column_chart @jobs_time,stacked:true,download:"grafica",:xtitle=>"Años",:ytitle=>"Estudiantes o titulados"%>
+                      </div>
+                    </li>
+                    <%@jobs_time.each do |row|%>
+                    <li id="derecho_<%=row[0]%>" class="list-group-item lista-persona">
+                      <div class="table table-responsive">
+                        <table  class="table table-striped table-bordered" style="text-align: center;">
+                          <tr>
+                            <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                            <th></th>
+                          </tr>
+                        <%@e.jobs_users(row[0]).each do |user|%>
+                        <tr>
+                          <td><%=user.name%></td>
+                          <td><%=user.email%></td>
+                          <td><%=user.phone%></td>
+                          <td>
+                            <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                              Ver Currículum
+                              <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                            </button>
+                          </td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                    </li>
+                    <%end%>
                   </div>
                   <div id="Antroplogía" style="display:none;" class="filtro">
-                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+
+                    <li class="list-group-item" >
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;" id="tablaA">
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Trabajos en dicho rango&nbsp;</th>
                     </tr>
                     <%
                     @educations=Education.where("title ~* ?", "Antropolog")
@@ -200,12 +264,47 @@
                       </tr>
                       <%end%>
                     </table>
+                    </li>
+                    <li class="list-group-item" >
+                      <div id="by_ciu">
+                        <%=column_chart @jobs_time,stacked:true,download:"grafica",:xtitle=>"Años",:ytitle=>"Estudiantes o titulados"%>
+                      </div>
+                    </li>
+                    <%@jobs_time.each do |row|%>
+                    <li id="antropo_<%=row[0]%>" class="list-group-item lista-persona">
+                      <div class="table table-responsive">
+                        <table  class="table table-striped table-bordered" style="text-align: center;">
+                          <tr>
+                            <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                            <th></th>
+                          </tr>
+                        <%@e.jobs_users(row[0]).each do |user|%>
+                        <tr>
+                          <td><%=user.name%></td>
+                          <td><%=user.email%></td>
+                          <td><%=user.phone%></td>
+                          <td>
+                            <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                              Ver Currículum
+                              <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                            </button>
+                          </td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                    </li>
+                    <%end%>
                   </div>
                   <div id="Filosofía y Letras" style="display:none;" class="filtro">
-                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <li class="list-group-item" >
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;" id="tablaF">
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Trabajos en dicho rango&nbsp;</th>
                     </tr>
                     <%
                     @educations=Education.where("title ~* ?", "Filosofía")
@@ -239,12 +338,48 @@
                       </tr>
                       <%end%>
                     </table>
+                    </li>
+                    <li class="list-group-item" >
+                      <div id="by_ciu">
+                        <%=column_chart @jobs_time,stacked:true,download:"grafica",:xtitle=>"Años",:ytitle=>"Estudiantes o titulados"%>
+                      </div>
+                    </li>
+                    <%@jobs_time.each do |row|%>
+                    <li id="filo_<%=row[0]%>" class="list-group-item lista-persona" >
+                      <div class="table table-responsive">
+                        <table  class="table table-striped table-bordered" style="text-align: center;">
+                          <tr>
+                            <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                            <th></th>
+                          </tr>
+                        <%@e.jobs_users(row[0]).each do |user|%>
+                        <tr>
+                          <td><%=user.name%></td>
+                          <td><%=user.email%></td>
+                          <td><%=user.phone%></td>
+                          <td>
+                            <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                              Ver Currículum
+                              <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                            </button>
+                          </td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                    </li>
+                    <%end%>
                   </div>
                   <div id="Psicología" style="display:none;" class="filtro">
-                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+
+                    <li class="list-group-item" >
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;" id="tablaP">
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Trabajos en dicho rango&nbsp;</th>
                     </tr>
                     <%
                     @educations=Education.where("title ~* ?", "Psicolog")
@@ -278,12 +413,48 @@
                       </tr>
                       <%end%>
                     </table>
+                    </li>
+                    <li class="list-group-item" >
+                      <div id="by_ciu">
+                        <%=column_chart @jobs_time,stacked:true,download:"grafica",:xtitle=>"Años",:ytitle=>"Estudiantes o titulados"%>
+                      </div>
+                    </li>
+                    <%@jobs_time.each do |row|%>
+                    <li id="psico_<%=row[0]%>" class="list-group-item lista-persona">
+                      <div class="table table-responsive">
+                        <table  class="table table-striped table-bordered" style="text-align: center;">
+                          <tr>
+                            <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                            <th></th>
+                          </tr>
+                        <%@e.jobs_users(row[0]).each do |user|%>
+                        <tr>
+                          <td><%=user.name%></td>
+                          <td><%=user.email%></td>
+                          <td><%=user.phone%></td>
+                          <td>
+                            <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                              Ver Currículum
+                              <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                            </button>
+                          </td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                    </li>
+                    <%end%>
                   </div>
                   <div id="Ingeniería Ambiental" style="display:none;" class="filtro">
-                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+
+                    <li class="list-group-item" >
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;" id="tablaAm">
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Trabajos en dicho rango&nbsp;</th>
                     </tr>
                     <%
                     @educations=Education.where("title ~* ?", "Ambiental")+Education.where("title ~* ?", "Ambiente")
@@ -317,12 +488,48 @@
                       </tr>
                       <%end%>
                     </table>
+                    </li>
+                    <li class="list-group-item" >
+                      <div id="by_ciu">
+                        <%=column_chart @jobs_time,stacked:true,download:"grafica",:xtitle=>"Años",:ytitle=>"Estudiantes o titulados"%>
+                      </div>
+                    </li>
+                    <%@jobs_time.each do |row|%>
+                    <li id="ambiental_<%=row[0]%>" class="list-group-item lista-persona">
+                      <div class="table table-responsive">
+                        <table  class="table table-striped table-bordered" style="text-align: center;">
+                          <tr>
+                            <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                            <th></th>
+                          </tr>
+                        <%@e.jobs_users(row[0]).each do |user|%>
+                        <tr>
+                          <td><%=user.name%></td>
+                          <td><%=user.email%></td>
+                          <td><%=user.phone%></td>
+                          <td>
+                            <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                              Ver Currículum
+                              <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                            </button>
+                          </td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                    </li>
+                    <%end%>
                   </div>
                   <div id="Ingeniería Civil" style="display:none;" class="filtro">
-                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+
+                    <li class="list-group-item" >
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;" id="tablaC">
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Trabajos en dicho rango&nbsp;</th>
                     </tr>
                     <%
                     @educations=Education.where("title ~* ?", "Civil")
@@ -356,12 +563,47 @@
                       </tr>
                       <%end%>
                     </table>
+                    </li>
+                    <li class="list-group-item" >
+                      <div id="by_ciu">
+                        <%=column_chart @jobs_time,stacked:true,download:"grafica",:xtitle=>"Años",:ytitle=>"Estudiantes o titulados"%>
+                      </div>
+                    </li>
+                    <%@jobs_time.each do |row|%>
+                    <li id="civil_<%=row[0]%>" class="list-group-item lista-persona">
+                      <div class="table table-responsive">
+                        <table  class="table table-striped table-bordered" style="text-align: center;">
+                          <tr>
+                            <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                            <th></th>
+                          </tr>
+                        <%@e.jobs_users(row[0]).each do |user|%>
+                        <tr>
+                          <td><%=user.name%></td>
+                          <td><%=user.email%></td>
+                          <td><%=user.phone%></td>
+                          <td>
+                            <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                              Ver Currículum
+                              <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                            </button>
+                          </td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                    </li>
+                    <%end%>
                   </div>
-                  <div id="Ingeniería Industrial" style="display:none;" class="filtro">
+                  <div id="Ingeniería Industrial" style="display:none;" class="filtro" id="tablaI">
+                    <li class="list-group-item" >
                   <table class="table table-striped table-bordered table-hover" style="text-align: center;">
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Trabajos en dicho rango&nbsp;</th>
                     </tr>
                     <%
                     @educations=Education.where("title ~* ?", "Industria")
@@ -395,12 +637,48 @@
                       </tr>
                       <%end%>
                     </table>
+                    </li>
+                    <li class="list-group-item" >
+                      <div id="by_ciu">
+                        <%=column_chart @jobs_time,stacked:true,download:"grafica",:xtitle=>"Años",:ytitle=>"Estudiantes o titulados"%>
+                      </div>
+                    </li>
+                    <%@jobs_time.each do |row|%>
+                    <li id="industrial_<%=row[0]%>" class="list-group-item lista-persona">
+                      <div class="table table-responsive">
+                        <table  class="table table-striped table-bordered" style="text-align: center;">
+                          <tr>
+                            <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                            <th></th>
+                          </tr>
+                        <%@e.jobs_users(row[0]).each do |user|%>
+                        <tr>
+                          <td><%=user.name%></td>
+                          <td><%=user.email%></td>
+                          <td><%=user.phone%></td>
+                          <td>
+                            <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                              Ver Currículum
+                              <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                            </button>
+                          </td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                    </li>
+                    <%end%>
                   </div>
-                  <div id="Ingeniería Química" style="display:none;" class="filtro">
+                  <div id="Ingeniería Química" style="display:none;" class="filtro" id="tablaQ">
+
+                    <li class="list-group-item" >
                   <table class="table table-striped table-bordered table-hover" style="text-align: center;">
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Trabajos en dicho rango&nbsp;</th>
                     </tr>
                     <%
                     @educations=Education.where("title ~* ?", "Químic")+ Education.where("title ~* ?", "Quimic")
@@ -434,12 +712,48 @@
                       </tr>
                       <%end%>
                     </table>
+                    </li>
+                    <li class="list-group-item" >
+                      <div id="by_ciu">
+                        <%=column_chart @jobs_time,stacked:true,download:"grafica",:xtitle=>"Años",:ytitle=>"Estudiantes o titulados"%>
+                      </div>
+                    </li>
+                    <%@jobs_time.each do |row|%>
+                    <li id="quimica_<%=row[0]%>" class="list-group-item lista-persona">
+                      <div class="table table-responsive">
+                        <table  class="table table-striped table-bordered" style="text-align: center;">
+                          <tr>
+                            <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                            <th></th>
+                          </tr>
+                        <%@e.jobs_users(row[0]).each do |user|%>
+                        <tr>
+                          <td><%=user.name%></td>
+                          <td><%=user.email%></td>
+                          <td><%=user.phone%></td>
+                          <td>
+                            <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                              Ver Currículum
+                              <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                            </button>
+                          </td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                    </li>
+                    <%end%>
                   </div>
                   <div id="Ingeniería Mecatrónica" style="display:none;" class="filtro">
-                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+
+                    <li class="list-group-item" >
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;" id="tablaM">
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Trabajos en dicho rango&nbsp;</th>
                     </tr>
                     <%
                     @educations=Education.where("title ~* ?", "Mecatrónic")
@@ -473,12 +787,48 @@
                       </tr>
                       <%end%>
                     </table>
+                    </li>
+                    <li class="list-group-item" >
+                      <div id="by_ciu">
+                        <%=column_chart @jobs_time,stacked:true,download:"grafica",:xtitle=>"Años",:ytitle=>"Estudiantes o titulados"%>
+                      </div>
+                    </li>
+                    <%@jobs_time.each do |row|%>
+                    <li id="meca_<%=row[0]%>" class="list-group-item lista-persona">
+                      <div class="table table-responsive">
+                        <table  class="table table-striped table-bordered" style="text-align: center;">
+                          <tr>
+                            <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                            <th></th>
+                          </tr>
+                        <%@e.jobs_users(row[0]).each do |user|%>
+                        <tr>
+                          <td><%=user.name%></td>
+                          <td><%=user.email%></td>
+                          <td><%=user.phone%></td>
+                          <td>
+                            <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                              Ver Currículum
+                              <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                            </button>
+                          </td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                    </li>
+                    <%end%>
                   </div>
                   <div id="Ingeniería de Sistemas" style="display:none;" class="filtro">
-                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+
+                    <li class="list-group-item" >
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;" id="tablaS">
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Trabajos en dicho rango&nbsp;</th>
                     </tr>
                     <%
                     @educations=Education.where("title ~* ?", "Sistemas")+Education.where("title ~* ?", "Informatica")
@@ -512,12 +862,48 @@
                       </tr>
                       <%end%>
                     </table>
+                    </li>
+                    <li class="list-group-item" >
+                      <div id="by_ciu">
+                        <%=column_chart @jobs_time,stacked:true,download:"grafica",:xtitle=>"Años",:ytitle=>"Estudiantes o titulados"%>
+                      </div>
+                    </li>
+                    <%@jobs_time.each do |row|%>
+                    <li id="sistemas_<%=row[0]%>" class="list-group-item lista-persona">
+                      <div class="table table-responsive">
+                        <table  class="table table-striped table-bordered" style="text-align: center;">
+                          <tr>
+                            <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                            <th></th>
+                          </tr>
+                        <%@e.jobs_users(row[0]).each do |user|%>
+                        <tr>
+                          <td><%=user.name%></td>
+                          <td><%=user.email%></td>
+                          <td><%=user.phone%></td>
+                          <td>
+                            <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                              Ver Currículum
+                              <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                            </button>
+                          </td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                    </li>
+                    <%end%>
                   </div>
                   <div id="Ingeniería de Telecomunicaciones" style="display:none;" class="filtro">
-                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+
+                    <li class="list-group-item" >
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;" id="tablaTe">
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Trabajos en dicho rango&nbsp;</th>
                     </tr>
                     <%
                     @educations=Education.where("title ~* ?", "Telecomunicaciones")
@@ -551,12 +937,48 @@
                       </tr>
                       <%end%>
                     </table>
+                    </li>
+                    <li class="list-group-item" >
+                      <div id="by_ciu">
+                        <%=column_chart @jobs_time,stacked:true,download:"grafica",:xtitle=>"Años",:ytitle=>"Estudiantes o titulados"%>
+                      </div>
+                    </li>
+                    <%@jobs_time.each do |row|%>
+                    <li id="teleco_<%=row[0]%>" class="list-group-item lista-persona">
+                      <div class="table table-responsive">
+                        <table  class="table table-striped table-bordered" style="text-align: center;">
+                          <tr>
+                            <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                            <th></th>
+                          </tr>
+                        <%@e.jobs_users(row[0]).each do |user|%>
+                        <tr>
+                          <td><%=user.name%></td>
+                          <td><%=user.email%></td>
+                          <td><%=user.phone%></td>
+                          <td>
+                            <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                              Ver Currículum
+                              <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                            </button>
+                          </td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                    </li>
+                    <%end%>
                   </div>
                   <div id="Administración de Empresas" style="display:none;" class="filtro">
-                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+
+                    <li class="list-group-item" >
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;" id="tablaAd">
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Trabajos en dicho rango&nbsp;</th>
                     </tr>
                     <%
                     @educations=Education.where("title ~* ?", "Administración de Empresas")
@@ -590,12 +1012,47 @@
                       </tr>
                       <%end%>
                     </table>
+                    </li>
+                    <li class="list-group-item" >
+                      <div id="by_ciu">
+                        <%=column_chart @jobs_time,stacked:true,download:"grafica",:xtitle=>"Años",:ytitle=>"Estudiantes o titulados"%>
+                      </div>
+                    </li>
+                    <%@jobs_time.each do |row|%>
+                    <li id="admin_<%=row[0]%>" class="list-group-item lista-persona">
+                      <div class="table table-responsive">
+                        <table  class="table table-striped table-bordered" style="text-align: center;">
+                          <tr>
+                            <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                            <th></th>
+                          </tr>
+                        <%@e.jobs_users(row[0]).each do |user|%>
+                        <tr>
+                          <td><%=user.name%></td>
+                          <td><%=user.email%></td>
+                          <td><%=user.phone%></td>
+                          <td>
+                            <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                              Ver Currículum
+                              <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                            </button>
+                          </td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                    </li>
+                    <%end%>
                   </div>
                   <div id="Contaduría Pública" style="display:none;" class="filtro">
-                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                    <li class="list-group-item" >
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;" id="tablaConta">
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Trabajos en dicho rango&nbsp;</th>
                     </tr>
                     <%
                     @educations=Education.where("title ~* ?", "Contaduría")+Education.where("title ~* ?", "Contador")+ Education.where("title ~* ?", "Auditor")
@@ -629,12 +1086,48 @@
                       </tr>
                       <%end%>
                     </table>
+                    </li>
+                    <li class="list-group-item" >
+                      <div id="by_ciu">
+                        <%=column_chart @jobs_time,stacked:true,download:"grafica",:xtitle=>"Años",:ytitle=>"Estudiantes o titulados"%>
+                      </div>
+                    </li>
+                    <%@jobs_time.each do |row|%>
+                    <li id="conta_<%=row[0]%>" class="list-group-item lista-persona">
+                      <div class="table table-responsive">
+                        <table  class="table table-striped table-bordered" style="text-align: center;">
+                          <tr>
+                            <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                            <th></th>
+                          </tr>
+                        <%@e.jobs_users(row[0]).each do |user|%>
+                        <tr>
+                          <td><%=user.name%></td>
+                          <td><%=user.email%></td>
+                          <td><%=user.phone%></td>
+                          <td>
+                            <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                              Ver Currículum
+                              <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                            </button>
+                          </td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                    </li>
+                    <%end%>
                   </div>
                   <div id="Ingeniería Comercial" style="display:none;" class="filtro">
-                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+
+                    <li class="list-group-item" >
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;" id="tablaCo">
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Trabajos en dicho rango&nbsp;</th>
                     </tr>
                     <%
                     @educations=Education.where("title ~* ?", "Comercial")
@@ -668,12 +1161,48 @@
                       </tr>
                       <%end%>
                     </table>
+                    </li>
+                    <li class="list-group-item" >
+                      <div id="by_ciu">
+                        <%=column_chart @jobs_time,stacked:true,download:"grafica",:xtitle=>"Años",:ytitle=>"Estudiantes o titulados"%>
+                      </div>
+                    </li>
+                    <%@jobs_time.each do |row|%>
+                    <li id="comer_<%=row[0]%>" class="list-group-item lista-persona">
+                      <div class="table table-responsive">
+                        <table  class="table table-striped table-bordered" style="text-align: center;">
+                          <tr>
+                            <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                            <th></th>
+                          </tr>
+                        <%@e.jobs_users(row[0]).each do |user|%>
+                        <tr>
+                          <td><%=user.name%></td>
+                          <td><%=user.email%></td>
+                          <td><%=user.phone%></td>
+                          <td>
+                            <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                              Ver Currículum
+                              <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                            </button>
+                          </td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                    </li>
+                    <%end%>
                   </div>
                   <div id="Ingeniería Financiera" style="display:none;" class="filtro">
-                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+
+                    <li class="list-group-item" >
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;" id="tablaF">
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Trabajos en dicho rango&nbsp;</th>
                     </tr>
                     <%
                     @educations=Education.where("title ~* ?", "Financier") +Education.where("title ~* ?", "Finanzas")
@@ -707,12 +1236,48 @@
                       </tr>
                       <%end%>
                     </table>
+                    </li>
+                    <li class="list-group-item" >
+                      <div id="by_ciu">
+                        <%=column_chart @jobs_time,stacked:true,download:"grafica",:xtitle=>"Años",:ytitle=>"Estudiantes o titulados"%>
+                      </div>
+                    </li>
+                    <%@jobs_time.each do |row|%>
+                    <li id="finan_<%=row[0]%>" class="list-group-item lista-persona">
+                      <div class="table table-responsive">
+                        <table  class="table table-striped table-bordered" style="text-align: center;">
+                          <tr>
+                            <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                            <th></th>
+                          </tr>
+                        <%@e.jobs_users(row[0]).each do |user|%>
+                        <tr>
+                          <td><%=user.name%></td>
+                          <td><%=user.email%></td>
+                          <td><%=user.phone%></td>
+                          <td>
+                            <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                              Ver Currículum
+                              <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                            </button>
+                          </td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                    </li>
+                    <%end%>
                   </div>
                   <div id="Comunicación Social" style="display:none;" class="filtro">
-                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+
+                    <li class="list-group-item" >
+                  <table class="table table-striped table-bordered table-hover" style="text-align: center;" id="tablaCom">
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango temporal(años) &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Personas con trabajos en dicho rango&nbsp;</th>
+                      <th style="text-align: center;">&nbsp;Trabajos en dicho rango&nbsp;</th>
                     </tr>
                     <%
                     @educations=Education.where("title ~* ?", "Comunica")
@@ -746,11 +1311,42 @@
                       </tr>
                       <%end%>
                     </table>
+                    </li>
+                    <li class="list-group-item" >
+                      <div id="by_ciu">
+                        <%=column_chart @jobs_time,stacked:true,download:"grafica",:xtitle=>"Años",:ytitle=>"Estudiantes o titulados"%>
+                      </div>
+                    </li>
+                    <%@jobs_time.each do |row|%>
+                    <li id="com_<%=row[0]%>" class="list-group-item lista-persona">
+                      <div class="table table-responsive">
+                        <table  class="table table-striped table-bordered" style="text-align: center;">
+                          <tr>
+                            <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                            <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                            <th></th>
+                          </tr>
+                        <%@e.jobs_users(row[0]).each do |user|%>
+                        <tr>
+                          <td><%=user.name%></td>
+                          <td><%=user.email%></td>
+                          <td><%=user.phone%></td>
+                          <td>
+                            <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                              Ver Currículum
+                              <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                            </button>
+                          </td>
+                        </tr>
+                        <%end%>
+                      </table>
+                    </div>
+                    </li>
+                    <%end%>
                   </div>
-
             </div>
-          </li>
-
         </ul>
       </div>
     </div>
@@ -810,21 +1406,279 @@ $(".botonCV").on("click",function(e) {
   $('#myModal2').load(value);
 });
 
-$('#tablaT td').click(function () {
-  var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
-  var listas=document.getElementsByClassName("lista-persona");
-  for (var i=0; i<listas.length;i++)
-  {
-    if (listas[i].id=="todos_"+opcion)
+</script>
+<script type="text/javascript">
+  $('#tablaT td').click(function () {
+    var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+    var listas=document.getElementsByClassName("lista-persona");
+    for (var i=0; i<listas.length;i++)
     {
-      listas[i].style="display:block";
+      if (listas[i].id=="todos_"+opcion)
+      {
+        listas[i].style="display:block";
+      }
+      else
+      {
+        listas[i].style="display:none;"
+      }
     }
-    else
+  });
+  $('#tablaB td').click(function () {
+    var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+    var listas=document.getElementsByClassName("lista-persona");
+    for (var i=0; i<listas.length;i++)
     {
-      listas[i].style="display:none;"
+      if (listas[i].id=="bachiller_"+opcion)
+      {
+        listas[i].style="display:block";
+      }
+      else
+      {
+        listas[i].style="display:none;"
+      }
     }
-  }
-});
+  });
+  $('#tablaA td').click(function () {
+    var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+    var listas=document.getElementsByClassName("lista-persona");
+    for (var i=0; i<listas.length;i++)
+    {
+      if (listas[i].id=="antropo_"+opcion)
+      {
+        listas[i].style="display:block";
+      }
+      else
+      {
+        listas[i].style="display:none;"
+      }
+    }
+  });
+  $('#tablaC td').click(function () {
+    var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+    var listas=document.getElementsByClassName("lista-persona");
+    for (var i=0; i<listas.length;i++)
+    {
+      if (listas[i].id=="civil_"+opcion)
+      {
+        listas[i].style="display:block";
+      }
+      else
+      {
+        listas[i].style="display:none;"
+      }
+    }
+  });
+  $('#tablaD td').click(function () {
+    var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+    var listas=document.getElementsByClassName("lista-persona");
+    for (var i=0; i<listas.length;i++)
+    {
+      if (listas[i].id=="derecho_"+opcion)
+      {
+        listas[i].style="display:block";
+      }
+      else
+      {
+        listas[i].style="display:none;"
+      }
+    }
+  });
+  $('#tablaF td').click(function () {
+    var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+    var listas=document.getElementsByClassName("lista-persona");
+    for (var i=0; i<listas.length;i++)
+    {
+      if (listas[i].id=="finan_"+opcion)
+      {
+        listas[i].style="display:block";
+      }
+      else
+      {
+        listas[i].style="display:none;"
+      }
+    }
+  });
+  $('#tablaS td').click(function () {
+    var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+    var listas=document.getElementsByClassName("lista-persona");
+    for (var i=0; i<listas.length;i++)
+    {
+      if (listas[i].id=="sistemas_"+opcion)
+      {
+        listas[i].style="display:block";
+      }
+      else
+      {
+        listas[i].style="display:none;"
+      }
+    }
+  });
+  $('#tablaCo td').click(function () {
+    var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+    var listas=document.getElementsByClassName("lista-persona");
+    for (var i=0; i<listas.length;i++)
+    {
+      if (listas[i].id=="comer_"+opcion)
+      {
+        listas[i].style="display:block";
+      }
+      else
+      {
+        listas[i].style="display:none;"
+      }
+    }
+  });
+  $('#tablaConta td').click(function () {
+    var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+    var listas=document.getElementsByClassName("lista-persona");
+    for (var i=0; i<listas.length;i++)
+    {
+      if (listas[i].id=="conta_"+opcion)
+      {
+        listas[i].style="display:block";
+      }
+      else
+      {
+        listas[i].style="display:none;"
+      }
+    }
+  });
+  $('#tablaCom td').click(function () {
+    var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+    var listas=document.getElementsByClassName("lista-persona");
+    for (var i=0; i<listas.length;i++)
+    {
+      if (listas[i].id=="com_"+opcion)
+      {
+        listas[i].style="display:block";
+      }
+      else
+      {
+        listas[i].style="display:none;"
+      }
+    }
+  });
+  $('#tablaQ td').click(function () {
+    var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+    var listas=document.getElementsByClassName("lista-persona");
+    for (var i=0; i<listas.length;i++)
+    {
+      if (listas[i].id=="quimica_"+opcion)
+      {
+        listas[i].style="display:block";
+      }
+      else
+      {
+        listas[i].style="display:none;"
+      }
+    }
+  });
+  $('#tablaAm td').click(function () {
+    var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+    var listas=document.getElementsByClassName("lista-persona");
+    for (var i=0; i<listas.length;i++)
+    {
+      if (listas[i].id=="ambiental_"+opcion)
+      {
+        listas[i].style="display:block";
+      }
+      else
+      {
+        listas[i].style="display:none;"
+      }
+    }
+  });
+  $('#tablaP td').click(function () {
+    var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+    var listas=document.getElementsByClassName("lista-persona");
+    for (var i=0; i<listas.length;i++)
+    {
+      if (listas[i].id=="todos_"+opcion)
+      {
+        listas[i].style="display:block";
+      }
+      else
+      {
+        listas[i].style="display:none;"
+      }
+    }
+  });
+  $('#tablaM td').click(function () {
+    var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+    var listas=document.getElementsByClassName("lista-persona");
+    for (var i=0; i<listas.length;i++)
+    {
+      if (listas[i].id=="meca_"+opcion)
+      {
+        listas[i].style="display:block";
+      }
+      else
+      {
+        listas[i].style="display:none;"
+      }
+    }
+  });
+  $('#tablaP td').click(function () {
+    var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+    var listas=document.getElementsByClassName("lista-persona");
+    for (var i=0; i<listas.length;i++)
+    {
+      if (listas[i].id=="psico_"+opcion)
+      {
+        listas[i].style="display:block";
+      }
+      else
+      {
+        listas[i].style="display:none;"
+      }
+    }
+  });
+  $('#tablaAd td').click(function () {
+    var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+    var listas=document.getElementsByClassName("lista-persona");
+    for (var i=0; i<listas.length;i++)
+    {
+      if (listas[i].id=="admin_"+opcion)
+      {
+        listas[i].style="display:block";
+      }
+      else
+      {
+        listas[i].style="display:none;"
+      }
+    }
+  });
+  $('#tablaI td').click(function () {
+    var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+    var listas=document.getElementsByClassName("lista-persona");
+    for (var i=0; i<listas.length;i++)
+    {
+      if (listas[i].id=="industrial_"+opcion)
+      {
+        listas[i].style="display:block";
+      }
+      else
+      {
+        listas[i].style="display:none;"
+      }
+    }
+  });
+  $('#tablaTe td').click(function () {
+    var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+    var listas=document.getElementsByClassName("lista-persona");
+    for (var i=0; i<listas.length;i++)
+    {
+      if (listas[i].id=="teleco_"+opcion)
+      {
+        listas[i].style="display:block";
+      }
+      else
+      {
+        listas[i].style="display:none;"
+      }
+    }
+  });
+
 </script>
 
 <style>

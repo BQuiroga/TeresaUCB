@@ -126,6 +126,10 @@ class Education < ActiveRecord::Base
     educations=Education.where(school_name:school).where("title ~* ?",career)
     educations.map {|education| education.user}
   end
+  def users_career(career)
+    educations=ingresos.where("title ~* ?",career)
+    educations.map {|education| education.user}.uniq
+  end
   def genders(school)
     educations=users(school)
     educations.select {|user| (user.personal_information!=nil)}.map {|user| user.personal_information.gender}
@@ -144,13 +148,41 @@ class Education < ActiveRecord::Base
       when "Todos"
         results=Education.all
       when "Licenciatura"
-        results=Education.where(title:licen)
+        if licen =="Todos"
+          results = Education.where(title:licenciaturas)
+        else
+          results=Education.where(title:licen)
+        end
       when "Maestria"
-        results=Education.where(title:maestria)
+        if licen =="Todos"
+          results = Education.where(title:maestrias)
+        else
+          results=Education.where(title:maestria)
+        end
       when "Postgrado"
-        results=Education.where(title:postgrado)
+        if licen =="Todos"
+          results = Education.where(title:postgrados)
+        else
+          results=Education.where(title:postgrado)
+        end
       when "Doctorado"
-        results=Education.where(title:doctorado)
+        if licen =="Todos"
+          results = Education.where(title:doctorados)
+        else
+          results=Education.where(title:doctorado)
+        end
+      when "Postdoctorado"
+        if licen =="Todos"
+          results = Education.where(title:postdoctorados)
+        else
+          results=Education.where(title:doctorado)
+        end
+      when "Especialidad"
+        if licen =="Todos"
+          results = Education.where(title:especialidades)
+        else
+          results=Education.where(title:postgrado)
+        end
       # end
       # edu=[licen,maestria,postgrado,doctorado].join
       # if edu=="Todos"

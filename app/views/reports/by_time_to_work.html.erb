@@ -5,32 +5,58 @@
     <div class="panel-heading"><div class="panel-title" style="padding-top:1px;padding-bottom:1px"><h3 style="margin-top:10px">Tiempo transcurrido para conseguir un trabajo despues de egresar</h3></div></div>
       <div class="panel-body">
         <ul class="list-group">
+          <div id="Todas las carreras" class="filtro">
           <li class="list-group-item">
-            <div>
-                <div class="table-responsive">
-                  <table class="table table-striped table-bordered table-hover" style="text-align: center;">
-                    <tr>
-                      <th style="text-align: center;">&nbsp;Rango temporal &nbsp;</th>
-                      <th style="text-align: center;">&nbsp;Usuarios con trabajos en dicho rango&nbsp;</th>
-                    </tr>
-                    <% @years.each do |date|%>
-                      <tr>
-                        <td>&nbsp;<%=date[0]%>&nbsp;</td>
-                        <td ><%= date[1]%></td>
-                      </tr>
-                      <%end%>
-                    </table>
-                  </div>
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Rango temporal &nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Usuarios con trabajos en dicho rango&nbsp;</th>
+                </tr>
+                <% @years.each do |date| %>
+                  <tr>
+                    <td>&nbsp;<%=date[0]%>&nbsp;</td>
+                    <td ><%= date[1]%></td>
+                  </tr>
+                <%end%>
+              </table>
             </div>
-            <button class="btn btn-default btn-sm pull-right" id="mostrarEmpresasC" onclick="showEmpresasC()" style="display:none;">Mostrar Reporte Estadístico</button>
-            <button class="btn btn-default btn-sm pull-right" id="ocultarEmpresasC" onclick="showEmpresasC()">Ocultar Reporte Estadístico</button>
-            <br><br>
           </li>
           <li class="list-group-item">
             <div id="by_ciu">
               <%=column_chart @years,stacked:true,download:"grafica"%>
             </div>
           </li>
+          <% @years.each do |row| %>
+          <li id="todos_<%=row[0]%>" class="list-group-item lista-persona">
+            <div class="table table-responsive">
+              <table  class="table table-striped table-bordered" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                  <th></th>
+                </tr>
+                <%=row[0]%>
+              <%current_user.time_work_users(row[0]).each do |user|%>
+              <tr>
+                <td><%=user.name%></td>
+                <td><%=user.email%></td>
+                <td><%=user.phone%></td>
+                <td>
+                  <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                    Ver Currículum
+                    <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                  </button>
+                </td>
+              </tr>
+              <%end%>
+            </table>
+          </div>
+          </li>
+          <%end%>
+        </div>
         </ul>
       </div>
     </div>

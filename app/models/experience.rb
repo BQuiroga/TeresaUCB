@@ -85,9 +85,24 @@ class Experience < ActiveRecord::Base
 					if (exp.time_in_job==time)
 						users=users+[exp.user]
 					end
+					if (time=="Continua trabajando" and exp.time_in_job==-1)
+						users=users+[exp.user]
+					end
 				end
 				users=users.uniq
 				users
+		end
+		def country_users(carrera,country)
+			resumes=carrera.map{|education| education.resume_id}.uniq
+			experiences=Experience.where(resume_id:resumes)
+			users=Array.new
+			experiences.each do |exp|
+				if (exp.city==country)
+					users=users+[exp.user]
+				end
+			end
+			users=users.uniq
+			users
 		end
 	  def days_into_years(some_date)
 	    y=some_date/365

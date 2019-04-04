@@ -1045,7 +1045,7 @@
                 <div id="Contaduría Pública" style="display:none;" class="filtro">
                   <li class="list-group-item">
                     <div class="table-responsive">
-                  <table class="table table-striped table-bordered table-hover" id="tablaC">
+                  <table class="table table-striped table-bordered table-hover" id="tablaConta">
                     <tr>
                       <th style="text-align: center;">&nbsp;Rango salarial &nbsp;</th>
                       <th style="text-align: center;">&nbsp;Usuarios con trabajos en dicho rango&nbsp;</th>
@@ -1088,7 +1088,7 @@
                 </div>
               </li>
               <%@salaries.each do |row|%>
-              <li id="admin_<%=row[0]%>" class="list-group-item lista-persona">
+              <li id="conta_<%=row[0]%>" class="list-group-item lista-persona">
                 <div class="table table-responsive">
                   <table  class="table table-striped table-bordered" style="text-align: center;">
                     <tr>
@@ -1519,6 +1519,21 @@ $(".botonCV").on("click",function(e) {
       for (var i=0; i<listas.length;i++)
       {
         if (listas[i].id=="comer_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+    $('#tablaConta td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="conta_"+opcion)
         {
           listas[i].style="display:block";
         }

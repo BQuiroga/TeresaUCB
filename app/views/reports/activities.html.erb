@@ -1,5 +1,15 @@
-<a href="/reportes"><button class="btn btn-primary">Volver Atras</button></a>
 <div class="container table-responsive">
+  <button id="myBtn" style="display:none">Open Modal</button>
+
+  <div id="myModal" class="modal" >
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="myModal2" class="full reveal" data-reveal>
+      </div>
+    </div>
+  </div>
+  <a href="/reportes"><button class="btn btn-primary" style="margin-top:50px;">Volver Atras</button></a>
 <h1>Lista de reportes</h1>
   <div class="panel panel-primary">
     <div class="panel-heading"><div class="panel-title" style="padding-top:1px;padding-bottom:1px"><h3 style="margin-top:10px">Impacto de titulados</h3></div></div>
@@ -90,7 +100,7 @@
               <%=column_chart @all_in_world,label: "Cantidad",ytitle:"Estudiantes Titulados",xtitle:"País o región",title:"Ubicación laboral de los titulados de todas las carreras", download: "resumen titulados"%>
             </li>
             <li class="list-group-item">
-              <table class="table table-striped table-bordered table-hover" >
+              <table class="table table-striped table-bordered table-hover" id="tablaT">
                 <tr>
                   <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                   <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
@@ -105,8 +115,37 @@
               <%end%>
             </table>
             </li>
+            <%@all_in_world.keys.each do |row|%>
+            <li id="todos_<%=row%>" class="list-group-item lista-persona">
+              <div class="table table-responsive">
+                <table  class="table table-striped table-bordered" style="text-align: center;">
+                  <tr>
+                    <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                    <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                    <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                    <th></th>
+                  </tr>
+                  <%@new_exp.country_users(Education.all,row).each do |user|%>
+                  <tr>
+                    <td><%=user.name%></td>
+                    <td><%=user.email%></td>
+                    <td><%=user.phone%></td>
+                    <td>
+                      <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                        Ver Currículum
+                        <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                      </button>
+                    </td>
+                  </tr>
+                  <%end%>
+                </table>
+              </div>
+            </li>
+            <%end%>
+
         </div>
-        <div id="Bachiller" class="filtro" style="display:none;">
+        <div id="Bachiller" class="filtro" style="display:none;" id="tablaB">
           <li class="list-group-item">
             <%=line_chart @ingresos,label: "Cantidad",xtitle:"País o región",title:"Estudiantes registrados",ytitle:"Titulados", download: "resumen Ingreso"%>
           </li>
@@ -115,6 +154,7 @@
           <li class="list-group-item">
             <%=area_chart @egresos,label: "Cantidad",ytitle:"Bachilleres registrados",xtitle:"País o región",title:"Estudiantes titulados por gestión", download: "resumen titulados"%>
           </li>
+
         </div>
         <div id="Antroplogía" class="filtro" style="display:none;">
           <li class="list-group-item">
@@ -149,7 +189,7 @@
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover" id="tablaA">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
@@ -164,6 +204,34 @@
             <%end%>
           </table>
           </li>
+          <%@new_edu.impacto_de(@new_edu.antropologos).keys.each do |row|%>
+          <li id="antropo_<%=row%>" class="list-group-item lista-persona">
+            <div class="table table-responsive">
+              <table  class="table table-striped table-bordered" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                  <th></th>
+                </tr>
+                <%@new_exp.country_users(@new_edu.antropologos,row).each do |user|%>
+                <tr>
+                  <td><%=user.name%></td>
+                  <td><%=user.email%></td>
+                  <td><%=user.phone%></td>
+                  <td>
+                    <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                      Ver Currículum
+                      <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                    </button>
+                  </td>
+                </tr>
+                <%end%>
+              </table>
+            </div>
+          </li>
+          <%end%>
         </div>
         <div id="Comunicación Social" class="filtro" style="display:none;">
           <li class="list-group-item">
@@ -198,7 +266,7 @@
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover" id="tablaCom">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
@@ -213,6 +281,34 @@
             <%end%>
           </table>
           </li>
+          <%@new_edu.impacto_de(@new_edu.comunicadores).keys.each do |row|%>
+          <li id="com_<%=row%>" class="list-group-item lista-persona">
+            <div class="table table-responsive">
+              <table  class="table table-striped table-bordered" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                  <th></th>
+                </tr>
+                <%@new_exp.country_users(@new_edu.comunicadores,row).each do |user|%>
+                <tr>
+                  <td><%=user.name%></td>
+                  <td><%=user.email%></td>
+                  <td><%=user.phone%></td>
+                  <td>
+                    <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                      Ver Currículum
+                      <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                    </button>
+                  </td>
+                </tr>
+                <%end%>
+              </table>
+            </div>
+          </li>
+          <%end%>
         </div>
         <div id="Filosofía y Letras" class="filtro" style="display:none;">
           <li class="list-group-item">
@@ -247,7 +343,7 @@
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover" id="tablaFil">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
@@ -262,6 +358,34 @@
             <%end%>
           </table>
           </li>
+          <%@new_edu.impacto_de(@new_edu.filosofos).keys.each do |row|%>
+          <li id="filo_<%=row%>" class="list-group-item lista-persona">
+            <div class="table table-responsive">
+              <table  class="table table-striped table-bordered" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                  <th></th>
+                </tr>
+                <%@new_exp.country_users(@new_edu.filosofos,row).each do |user|%>
+                <tr>
+                  <td><%=user.name%></td>
+                  <td><%=user.email%></td>
+                  <td><%=user.phone%></td>
+                  <td>
+                    <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                      Ver Currículum
+                      <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                    </button>
+                  </td>
+                </tr>
+                <%end%>
+              </table>
+            </div>
+          </li>
+          <%end%>
         </div>
         <div id="Psicología" class="filtro" style="display:none;">
           <li class="list-group-item">
@@ -296,7 +420,7 @@
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover" id="tablaP">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
@@ -311,6 +435,34 @@
             <%end%>
           </table>
           </li>
+          <%@new_edu.impacto_de(@new_edu.psicologos).keys.each do |row|%>
+          <li id="psico_<%=row%>" class="list-group-item lista-persona">
+            <div class="table table-responsive">
+              <table  class="table table-striped table-bordered" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                  <th></th>
+                </tr>
+                <%@new_exp.country_users(@new_edu.psicologos,row).each do |user|%>
+                <tr>
+                  <td><%=user.name%></td>
+                  <td><%=user.email%></td>
+                  <td><%=user.phone%></td>
+                  <td>
+                    <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                      Ver Currículum
+                      <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                    </button>
+                  </td>
+                </tr>
+                <%end%>
+              </table>
+            </div>
+          </li>
+          <%end%>
         </div>
         <div id="Ingeniería Ambiental" class="filtro" style="display:none;">
           <li class="list-group-item">
@@ -345,7 +497,7 @@
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover" id="tablaAm">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
@@ -360,6 +512,34 @@
             <%end%>
           </table>
           </li>
+          <%@new_edu.impacto_de(@new_edu.ambientales).keys.each do |row|%>
+          <li id="ambiental_<%=row%>" class="list-group-item lista-persona">
+            <div class="table table-responsive">
+              <table  class="table table-striped table-bordered" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                  <th></th>
+                </tr>
+                <%@new_exp.country_users(@new_edu.ambientales,row).each do |user|%>
+                <tr>
+                  <td><%=user.name%></td>
+                  <td><%=user.email%></td>
+                  <td><%=user.phone%></td>
+                  <td>
+                    <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                      Ver Currículum
+                      <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                    </button>
+                  </td>
+                </tr>
+                <%end%>
+              </table>
+            </div>
+          </li>
+          <%end%>
         </div>
         <div id="Ingeniería Civil" class="filtro" style="display:none;">
           <li class="list-group-item">
@@ -394,7 +574,7 @@
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover" id="tablaC">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
@@ -409,6 +589,34 @@
             <%end%>
           </table>
           </li>
+          <%@new_edu.impacto_de(@new_edu.civiles).keys.each do |row|%>
+          <li id="civil_<%=row%>" class="list-group-item lista-persona">
+            <div class="table table-responsive">
+              <table  class="table table-striped table-bordered" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                  <th></th>
+                </tr>
+                <%@new_exp.country_users(@new_edu.civiles,row).each do |user|%>
+                <tr>
+                  <td><%=user.name%></td>
+                  <td><%=user.email%></td>
+                  <td><%=user.phone%></td>
+                  <td>
+                    <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                      Ver Currículum
+                      <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                    </button>
+                  </td>
+                </tr>
+                <%end%>
+              </table>
+            </div>
+          </li>
+          <%end%>
         </div>
         <div id="Ingeniería Industrial" class="filtro" style="display:none;">
           <li class="list-group-item">
@@ -443,7 +651,7 @@
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover" id="tablaI">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
@@ -458,6 +666,34 @@
             <%end%>
           </table>
           </li>
+          <%@new_edu.impacto_de(@new_edu.industriales).keys.each do |row|%>
+          <li id="industrial_<%=row%>" class="list-group-item lista-persona">
+            <div class="table table-responsive">
+              <table  class="table table-striped table-bordered" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                  <th></th>
+                </tr>
+                <%@new_exp.country_users(@new_edu.industriales,row).each do |user|%>
+                <tr>
+                  <td><%=user.name%></td>
+                  <td><%=user.email%></td>
+                  <td><%=user.phone%></td>
+                  <td>
+                    <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                      Ver Currículum
+                      <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                    </button>
+                  </td>
+                </tr>
+                <%end%>
+              </table>
+            </div>
+          </li>
+          <%end%>
         </div>
         <div id="Ingeniería Química" class="filtro" style="display:none;">
           <li class="list-group-item">
@@ -493,7 +729,7 @@
           </li>
 
           <li class="list-group-item">
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover" id="tablaQ">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
@@ -508,6 +744,34 @@
             <%end%>
           </table>
           </li>
+          <%@new_edu.impacto_de(@new_edu.quimicos).keys.each do |row|%>
+          <li id="quimica_<%=row%>" class="list-group-item lista-persona">
+            <div class="table table-responsive">
+              <table  class="table table-striped table-bordered" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                  <th></th>
+                </tr>
+                <%@new_exp.country_users(@new_edu.quimicos,row).each do |user|%>
+                <tr>
+                  <td><%=user.name%></td>
+                  <td><%=user.email%></td>
+                  <td><%=user.phone%></td>
+                  <td>
+                    <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                      Ver Currículum
+                      <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                    </button>
+                  </td>
+                </tr>
+                <%end%>
+              </table>
+            </div>
+          </li>
+          <%end%>
         </div>
         <div id="Ingeniería Mecatrónica" class="filtro" style="display:none;">
           <li class="list-group-item">
@@ -542,7 +806,7 @@
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover" id="tablaM">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
@@ -557,6 +821,34 @@
             <%end%>
           </table>
           </li>
+          <%@new_edu.impacto_de(@new_edu.mecatronicos).keys.each do |row|%>
+          <li id="meca_<%=row%>" class="list-group-item lista-persona">
+            <div class="table table-responsive">
+              <table  class="table table-striped table-bordered" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                  <th></th>
+                </tr>
+                <%@new_exp.country_users(@new_edu.mecatronicos,row).each do |user|%>
+                <tr>
+                  <td><%=user.name%></td>
+                  <td><%=user.email%></td>
+                  <td><%=user.phone%></td>
+                  <td>
+                    <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                      Ver Currículum
+                      <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                    </button>
+                  </td>
+                </tr>
+                <%end%>
+              </table>
+            </div>
+          </li>
+          <%end%>
         </div>
         <div id="Ingeniería de Sistemas" class="filtro" style="display:none;">
           <li class="list-group-item">
@@ -591,7 +883,7 @@
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover" id="tablaS">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
@@ -606,6 +898,34 @@
             <%end%>
           </table>
           </li>
+          <%@new_edu.impacto_de(@new_edu.sistemas).keys.each do |row|%>
+          <li id="sistemas_<%=row%>" class="list-group-item lista-persona">
+            <div class="table table-responsive">
+              <table  class="table table-striped table-bordered" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                  <th></th>
+                </tr>
+                <%@new_exp.country_users(@new_edu.sistemas,row).each do |user|%>
+                <tr>
+                  <td><%=user.name%></td>
+                  <td><%=user.email%></td>
+                  <td><%=user.phone%></td>
+                  <td>
+                    <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                      Ver Currículum
+                      <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                    </button>
+                  </td>
+                </tr>
+                <%end%>
+              </table>
+            </div>
+          </li>
+          <%end%>
         </div>
         <div id="Ingeniería de Telecomunicaciones" class="filtro" style="display:none;">
           <li class="list-group-item">
@@ -640,7 +960,7 @@
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover" id="tablaTe">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
@@ -655,6 +975,34 @@
             <%end%>
           </table>
           </li>
+          <%@new_edu.impacto_de(@new_edu.telecomunicadores).keys.each do |row|%>
+          <li id="teleco_<%=row%>" class="list-group-item lista-persona">
+            <div class="table table-responsive">
+              <table  class="table table-striped table-bordered" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                  <th></th>
+                </tr>
+                <%@new_exp.country_users(@new_edu.telecomunicadores,row).each do |user|%>
+                <tr>
+                  <td><%=user.name%></td>
+                  <td><%=user.email%></td>
+                  <td><%=user.phone%></td>
+                  <td>
+                    <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                      Ver Currículum
+                      <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                    </button>
+                  </td>
+                </tr>
+                <%end%>
+              </table>
+            </div>
+          </li>
+          <%end%>
         </div>
         <div id="Administración de Empresas" class="filtro" style="display:none;">
           <li class="list-group-item">
@@ -690,7 +1038,7 @@
           </li>
 
           <li class="list-group-item">
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover" id="tablaAd">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
@@ -705,6 +1053,34 @@
             <%end%>
           </table>
           </li>
+          <%@new_edu.impacto_de(@new_edu.administradores).keys.each do |row|%>
+          <li id="admin_<%=row%>" class="list-group-item lista-persona">
+            <div class="table table-responsive">
+              <table  class="table table-striped table-bordered" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                  <th></th>
+                </tr>
+                <%@new_exp.country_users(@new_edu.administradores,row).each do |user|%>
+                <tr>
+                  <td><%=user.name%></td>
+                  <td><%=user.email%></td>
+                  <td><%=user.phone%></td>
+                  <td>
+                    <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                      Ver Currículum
+                      <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                    </button>
+                  </td>
+                </tr>
+                <%end%>
+              </table>
+            </div>
+          </li>
+          <%end%>
         </div>
         <div id="Ingeniería Financiera" class="filtro" style="display:none;">
           <li class="list-group-item">
@@ -739,7 +1115,7 @@
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover" id="tablaF">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
@@ -754,6 +1130,34 @@
             <%end%>
           </table>
           </li>
+          <%@new_edu.impacto_de(@new_edu.financieros).keys.each do |row|%>
+          <li id="finan_<%=row%>" class="list-group-item lista-persona">
+            <div class="table table-responsive">
+              <table  class="table table-striped table-bordered" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                  <th></th>
+                </tr>
+                <%@new_exp.country_users(@new_edu.financieros,row).each do |user|%>
+                <tr>
+                  <td><%=user.name%></td>
+                  <td><%=user.email%></td>
+                  <td><%=user.phone%></td>
+                  <td>
+                    <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                      Ver Currículum
+                      <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                    </button>
+                  </td>
+                </tr>
+                <%end%>
+              </table>
+            </div>
+          </li>
+          <%end%>
         </div>
         <div id="Derecho" class="filtro" style="display:none;">
           <li class="list-group-item">
@@ -788,7 +1192,7 @@
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover" id="tablaD">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
@@ -803,6 +1207,34 @@
             <%end%>
           </table>
           </li>
+          <%@new_edu.impacto_de(@new_edu.abogados).keys.each do |row|%>
+          <li id="derecho_<%=row%>" class="list-group-item lista-persona">
+            <div class="table table-responsive">
+              <table  class="table table-striped table-bordered" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                  <th></th>
+                </tr>
+                <%@new_exp.country_users(@new_edu.abogados,row).each do |user|%>
+                <tr>
+                  <td><%=user.name%></td>
+                  <td><%=user.email%></td>
+                  <td><%=user.phone%></td>
+                  <td>
+                    <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                      Ver Currículum
+                      <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                    </button>
+                  </td>
+                </tr>
+                <%end%>
+              </table>
+            </div>
+          </li>
+          <%end%>
         </div>
         <div id="Contaduría Pública" class="filtro" style="display:none;">
           <li class="list-group-item">
@@ -837,7 +1269,7 @@
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover" id="tablaConta">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
@@ -852,6 +1284,34 @@
             <%end%>
           </table>
           </li>
+          <%@new_edu.impacto_de(@new_edu.contadores).keys.each do |row|%>
+          <li id="conta_<%=row%>" class="list-group-item lista-persona">
+            <div class="table table-responsive">
+              <table  class="table table-striped table-bordered" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                  <th></th>
+                </tr>
+                <%@new_exp.country_users(@new_edu.contadores,row).each do |user|%>
+                <tr>
+                  <td><%=user.name%></td>
+                  <td><%=user.email%></td>
+                  <td><%=user.phone%></td>
+                  <td>
+                    <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                      Ver Currículum
+                      <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                    </button>
+                  </td>
+                </tr>
+                <%end%>
+              </table>
+            </div>
+          </li>
+          <%end%>
         </div>
         <div id="Ingeniería Comercial" class="filtro" style="display:none;">
           <li class="list-group-item">
@@ -886,7 +1346,7 @@
           <li class="list-group-item">
           </li>
           <li class="list-group-item">
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover" id="tablaCo">
               <tr>
                 <th style="text-align: center;">&nbsp;País o región&nbsp;</th>
                 <th style="text-align: center;">&nbsp;Titulados&nbsp;</th>
@@ -901,6 +1361,35 @@
             <%end%>
           </table>
           </li>
+
+          <% @new_edu.impacto_de(@new_edu.comerciales).keys.each do |row| %>
+          <li id="comer_<%=row%>" class="list-group-item lista-persona">
+            <div class="table table-responsive">
+              <table  class="table table-striped table-bordered" style="text-align: center;">
+                <tr>
+                  <th style="text-align: center;">&nbsp;Nombre&nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Correo electrónico &nbsp;</th>
+                  <th style="text-align: center;">&nbsp;Teléfono &nbsp;</th>
+                  <th></th>
+                </tr>
+                <%@new_exp.country_users(@new_edu.comerciales,row).each do |user|%>
+                <tr>
+                  <td><%=user.name%></td>
+                  <td><%=user.email%></td>
+                  <td><%=user.phone%></td>
+                  <td>
+                    <button class="btn btn-default btn-sm pull-right botonCV" value="<%=user.id%>">
+                      Ver Currículum
+                      <!-- <%=link_to "Ver Currículum", {controller: "resumes",action:"external_show",id:user.id},:popup => ['']%> -->
+
+                    </button>
+                  </td>
+                </tr>
+                <%end%>
+              </table>
+            </div>
+          </li>
+          <%end%>
         </div>
 
         </ul>
@@ -922,6 +1411,317 @@
 
   }
 
+  var modal = document.getElementById('myModal');
+  var btn = document.getElementById("myBtn");
+  var span = document.getElementsByClassName("close")[0];
+  btn.onclick = function() {
+      modal.style.display = "block";
+  }
+  span.onclick = function() {
+      modal.style.display = "none";
+  }
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+  $(".botonCV").on("click",function(e) {
+    // e.preventDefault();
+      var value= "http://localhost:3000/usuarios/curriculums/" +$(this).val();
+    $('#myModal').show();
+    $('#myModal2').load(value);
+  });
+
+  </script>
+  <script type="text/javascript">
+
+    $('#tablaT td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="todos_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+    $('#tablaB td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="bachiller_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+    $('#tablaA td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="antropo_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+    $('#tablaC td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="civil_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+    $('#tablaD td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="derecho_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+    $('#tablaF td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="finan_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+
+    $('#tablaFil td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="filo_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+    $('#tablaS td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="sistemas_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+    $('#tablaCo td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="comer_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+    $('#tablaConta td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="conta_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+    $('#tablaCom td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="com_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+    $('#tablaQ td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="quimica_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+    $('#tablaAm td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="ambiental_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+    $('#tablaP td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="todos_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+    $('#tablaM td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="meca_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+    $('#tablaP td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="psico_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+    $('#tablaAd td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="admin_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+    $('#tablaI td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="industrial_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+    $('#tablaTe td').click(function () {
+      var opcion=$(this).parent("tr").find("td:first").text().substr(1).slice(0, -1);
+      var listas=document.getElementsByClassName("lista-persona");
+      for (var i=0; i<listas.length;i++)
+      {
+        if (listas[i].id=="teleco_"+opcion)
+        {
+          listas[i].style="display:block";
+        }
+        else
+        {
+          listas[i].style="display:none;"
+        }
+      }
+    });
+
   </script>
   <style>
   .center-select > select  {
@@ -939,4 +1739,24 @@
       padding-left:25%;
     left:30%;
     }
+
+  .lista-persona{
+    display:none;
+  }
+  table.table-hover  td{
+      cursor: pointer;
+    }
+
+  .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: -160px;
+      width: 100%; /* Full width */
+      height: 120; /* Full hei ght */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
   </style>
