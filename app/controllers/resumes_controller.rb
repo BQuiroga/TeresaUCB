@@ -181,6 +181,9 @@ class ResumesController < ApplicationController
   def show_modal
     @picture=current_user.picture
     @user=User.find(params[:id])
+    if @user.company
+      @company_info=@user.company_information
+    end
     @resume=@user.resume
     @merits=@resume.merits
     @personal_info=@user.personal_information

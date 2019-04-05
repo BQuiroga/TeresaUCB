@@ -10,7 +10,7 @@ class Education < ActiveRecord::Base
 
   end
   def cato_names
-    ["Universidad Catolica Boliviana San Pablo","UCB","UCBSP","Universidad Católica Boliviana 'San Pablo'","Universidad Catolica San Pablo"]
+    ["Universidad Catolica Boliviana San Pablo","UCB","UCBSP","Universidad Católica Boliviana 'San Pablo'","Universidad Catolica San Pablo","Univ Catolica"]
   end
   def ingresos
     Education.where(school_name:cato_names)

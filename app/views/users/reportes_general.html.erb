@@ -31,6 +31,32 @@ appearance: none;
    position:relative;
    top:-5px;
  }
+
+
+.center-select label {position:relative}
+.center-select label:after {
+    content:'<>';
+    font:11px "Consolas", monospace;
+    color:#aaa;
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    transform:rotate(90deg);
+    right:8px; top:2px;
+    padding:0 0 2px;
+    border-bottom:1px solid #ddd;
+    position:absolute;
+    pointer-events:none;
+}
+.center-select label:before {
+    content:'';
+    right:6px; top:0px;
+    width:20px; height:20px;
+    background:#000;
+    position:absolute;
+    pointer-events:none;
+    display:block;
+}
 </style>
 
 
@@ -56,7 +82,7 @@ appearance: none;
               <li class="list-group-item">Trabajos por rango salarial
                 <a href="/reportes/TrabajosPorRangoSalarial"><button class="btn btn-info btn-sm float-xs-right btn-negro pull-right report-button">Ver</button></a>
               </li>
-              <li class="list-group-item">Tiempo transcurridos para conseguir un trabajo
+              <li class="list-group-item">Tiempo transcurrido para conseguir un trabajo
                 <a href="/reportes/TiempoParaTrabajar"><button class="btn btn-info btn-sm float-xs-right btn-negro pull-right report-button">Ver</button></a>
               </li>
               <li class="list-group-item">Tiempo de permanencia en un trabajo
@@ -95,7 +121,7 @@ appearance: none;
                       <div class="panel-title" tabindex="-1" href="#" style="padding-top:1px;padding-bottom:1px">
                         <span class="btn btn-default pull-right" id="estaticos_titulados_der" onclick="toggleTitulados()" style="display:none;">Mostrar menos</span>
                         <span class="btn btn-default pull-right" id="estaticos_titulados_ab" onclick="toggleTitulados()" >Mostrar más</span>
-                        <h5>Estudiantes titulados </h5>
+                        <h5>Titulados registrados</h5>
                       </div>
                     </div>
                     <ul class="list-group" style="display:none;" id="titulados">
@@ -148,28 +174,35 @@ appearance: none;
                     <br>
                   <%@e=Education.new%>
                     <div id="grado_licenciatura" style="display:none;">
-                      <%= f.text_field :grado_licenciatura,:id=>'filtrar_l',:class=>"form-control grado-select"%>
+                      <%= f.label :elija_la_licenciatura_de_la_cual_desea_ver_el_reporte,:style=>"margin-left:15px"%>
+                      <%= f.text_field :grado_licenciatura,:value=>"Todos",:id=>'filtrar_l',:class=>"form-control grado-select"%>
                       <%= f.select(:grado_licenciatura,@e.licenciaturas,{},:class=>"grado-select",:id=>'licenciaturas',:style=>"margin-top: 10px;;height: 170px;display:none",:size=>'5',:name=>'type[]',:include_blank => true)%>
+                      <p style="margin-left:15px;margin-right:25px;"><i>*Debe llenar la Información de la licenciatura de la cual desea ver el reporte. Si quiere ver todas las licenciaturas escriba o elija la opción "Todos" </i></p>
                     </div>
                     <div id="grado_especialidad" style="display:none;">
-                      <%= f.text_field :grado_postgrado,:id=>'filtrar_e',:class=>"form-control grado-select"%>
+                      <%= f.text_field :grado_postgrado,:id=>'filtrar_e',:class=>"form-control grado-select",:value=>"Todos"%>
                       <%= f.select(:grado_postgrado,@e.especialidades,{},:class=>"selectpicker grado-select",:id=>'especialidades',:style=>"margin-top: 10px;;height: 170px;display:none",:size=>'5',:name=>'type[]',:include_blank => true)%>
+                      <p style="margin-left:15px;margin-right:25px;"><i>*Debe llenar la Información de la especialidad de la cual desea ver el reporte. Si quiere ver todas las especialidades escriba o elija la opción "Todos" </i></p>
                     </div>
                     <div id="grado_maestria" style="display:none;">
-                      <%= f.text_field :grado_maestria,:id=>'filtrar_m',:class=>"form-control grado-select"%>
+                      <%= f.text_field :grado_maestria,:id=>'filtrar_m',:class=>"form-control grado-select",:value=>"Todos"%>
                       <%= f.select(:grado_maestria,@e.maestrias,{},:class=>"selectpicker grado-select",:id=>'maestrias',:style=>"margin-top: 10px;;height: 170px;display:none",:size=>'5',:name=>'type[]',:include_blank => true)%>
+                      <p style="margin-left:15px;margin-right:25px;"><i>*Debe llenar la Información de la maestría de la cual desea ver el reporte. Si quiere ver todas las maestrias escriba o elija la opción "Todos" </i></p>
                     </div>
                     <div id="grado_doctorado" style="display:none;">
-                      <%= f.text_field :grado_doctorado,:id=>'filtrar_d',:class=>"form-control grado-select"%>
+                      <%= f.text_field :grado_doctorado,:id=>'filtrar_d',:class=>"form-control grado-select",:value=>"Todos"%>
                       <%= f.select(:grado_doctorado,@e.doctorados,{},:class=>"selectpicker grado-select",:id=>'doctorados',:style=>"margin-top: 10px;;height: 170px;display:none",:size=>'5',:name=>'type[]',:include_blank => true)%>
+                      <p style="margin-left:15px;margin-right:25px;"><i>*Debe llenar la Información del doctorado del cual desea ver el reporte. Si quiere ver todos los doctorados escriba o elija la opción "Todos" </i></p>
                     </div>
                     <div id="grado_diplomado" style="display:none;">
-                      <%= f.text_field :grado_postgrado,:id=>'filtrar_di',:class=>"form-control grado-select"%>
+                      <%= f.text_field :grado_postgrado,:id=>'filtrar_di',:class=>"form-control grado-select",:value=>"Todos"%>
                       <%= f.select(:grado_postgrado,@e.diplomados,{},:class=>"selectpicker grado-select",:id=>'postgrados',:style=>"margin-top: 10px;;height: 170px;display:none",:size=>'5',:name=>'type[]',:include_blank => true)%>
+                      <p style="margin-left:15px;margin-right:25px;"><i>*Debe llenar la Información del diplomado del cual desea ver el reporte. Si quiere ver todos los diplomados escriba o elija la opción "Todos" </i></p>
                     </div>
                     <div id="grado_postdoctorado" style="display:none;">
-                      <%= f.text_field :grado_doctorado,:id=>'filtrar_po',:class=>"form-control grado-select"%>
+                      <%= f.text_field :grado_doctorado,:id=>'filtrar_po',:class=>"form-control grado-select",:value=>"Todos"%>
                       <%= f.select(:grado_doctorado,@e.postdoctorados,{},:class=>"selectpicker grado-select",:id=>'postdoctorados',:style=>"margin-top: 10px;;height: 170px;display:none",:size=>'5',:name=>'type[]', :include_blank => true)%>
+                      <p style="margin-left:15px;margin-right:25px;"><i>*Debe llenar la Información del postdoctorado del cual desea ver el reporte. Si quiere ver todos los postdoctorados escriba o elija la opción "Todos" </i></p>
                     </div>
 
 
@@ -181,11 +214,11 @@ appearance: none;
                       <%=f.label :por_fecha %>
                       <div id="fecha_inicio" style="display:none; margin-left:10px;">
                         Fecha inicio:
-                        <%= f.date_select :fecha_inicio,:start_year  =>1990, :end_year=>Time.now.year,:include_blank => true%>
+                        <%= f.date_select :fecha_inicio,{:use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre']} ,:start_year  =>1990, :end_year=>Time.now.year,:include_blank => true%>
                       </div>
                       <div id="fecha_fin" style="display:none; margin-left:10px;">
                         Fecha fin:
-                        &nbsp;&nbsp;&nbsp;&nbsp;<%= f.date_select :fecha_fin,:start_year  =>1990,:end_year=>Time.now.year,:include_blank => true%>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<%= f.date_select :fecha_fin,{:use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre']} ,:start_year  =>1990,:end_year=>Time.now.year,:include_blank => true,:style=>'margin-left:1px'%>
                       </div>
                     </div>
                   </div>

@@ -5,8 +5,10 @@
     <%if current_user.is_company?%>
     <button id="publicar" class="btn btn-success">Publicar</button>
     <%end%>
+    <%if !@user.company%>
     <button id="mostrar_todo" onclick="mostrar_todo()" class="btn btn-primary button-cv">Mostrar CV completo</button>
     <button id="ocultar_todo" onclick="ocultar_todo()" style="display:none" class="btn btn-primary button-cv">Mostrar CV resumido</button>
+    <%end%>
   </div>
 <%if current_user.is_company?%>
   <div id="addSuggestion" class="modal" >
@@ -48,7 +50,6 @@
           <% end %>
 
       </div>
-
   </div>
   <script>
   var botonComentario= document.getElementById("publicar")
@@ -81,6 +82,83 @@
   <%end%>
 
   <div>
+  <%if current_user.is_director and @user.company%>
+
+  <style>
+  #texto{
+    word-wrap: break-word;
+    word-break: normal;
+    overflow: hidden;
+    max-width:500px;
+  }
+  </style>
+  <div class="container">
+    <div class="">
+      <div class="">
+        <div >
+        </div>
+        <div class="panel panel-primary">
+          <%if current_user.id==@user.id %>
+          <div class="panel panel-heading">
+            <div class="panel-title" style="padding-top:1px;padding-bottom:1px">
+              <h3 style="margin-top:10px">Información Externa</h3>
+              <i>(Así es como te ven los demas en nuestra red)</i>
+            </div>
+          </div>
+          <%end%>
+          <div class="panel panel-body">
+            <div class="row">
+              <div class="col col-md-5">
+              </div>
+              <div class="col col-md-4">
+                <%=image_tag(@picture.image.url, class: 'img-thumbnail ',style:"width:150px;height:150px")%>
+              </div>
+              <div class="col col-md-3">
+              </div>
+            </div>
+            <div class="">
+              <div class="col-md-4">
+              </div>
+              <div class="col col-md-4">
+                <h3><%=@user.name%></h3>
+                <div class="container">
+                  <b>Dirección:</b><%=@company_info.address%><br>
+                  <b>Nombre de persona de contacto: </b><%=@company_info.contact_name%><br>
+                  <b>Correo de contacto: </b><%=@company_info.contact_email%><br>
+                  <b>Código CIUU: </b>
+                  <%if @company_info.ciu_code%>
+                  <%=@company_info.ciu_code.ciu%><br>
+                  <%end%>
+                  <b>Área de trabajo: </b>
+                  <%if @company_info.ciu_code%>
+                  <%=@company_info.ciu_code.description%><br>
+                  <%end%>
+                  <b>Teléfono fijo: </b><%=@company_info.phone%><br>
+                  <b>NIT: </b><%=@company_info.nit%><br>
+
+                  <b>Sobre nosotros:</b>
+                  <div class="col col-md-12 col-lg-12" style="text-align: justify">
+                    <p id='texto'><%=@company_info.description%></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col col-md-3">
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <%if current_user.id!=@user.id%>
+        <br>
+        <b>Declaración de limitaciones de responsabilidad</b><br>
+        <i> Toda la información presentada en la Bolsa de Trabajo, es completamente registrada por el postulante o empresa en cuestión. Usted debería consultar con las referencias aqui enlistadas, para confirmar la fiabilidad de los datos.<br>
+          Es por eso que la Universidad Católica Boliviana "San Pablo" no se responsabiliza por la veracidad de la información publicada por los postulantes o las empresas registradas en el sistema.</i>
+          <% end%>
+        </div>
+      </div>
+    </div>
+  <%end%>
+  <%if !@user.company%>
     <h2><%=@user.name%> <%=@user.last_name%></h2>
   </div>
   <div class="container-body" style="margin-top:10px">
@@ -245,6 +323,7 @@
     </div>
     <%end%>
   </div>
+  <%end%>
   <%end%>
 </div>
 <script>

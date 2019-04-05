@@ -3,12 +3,18 @@ class RegistrationsController < Devise::RegistrationsController
     @user= current_user
     if @user.update(account_update_params)
       # Sign in the user by passing validation in case their password changed
+      flash[:success] = "Información actualizada satisfactoriamente"
       bypass_sign_in(@user)
     end
     redirect_to '/users/edit'
   end
   protected
   def after_sign_up_path_for(resource)
+    if current_user.is_company?
+      flash[:success] = "Gracias por registrarte al sistema! Por favor completa tu información empresarial para poder empezar con la realización de ofertas"
+    else
+      flash[:success] = "Gracias por registrarte al sistema! Por favor completa tu información personal para poder empezar con el registro de tu Currículum"
+    end
    '/users/edit'
  end
 
@@ -17,6 +23,8 @@ class RegistrationsController < Devise::RegistrationsController
     if @user.update(password_update_params)
       # Sign in the user by passing validation in case their password changed
       bypass_sign_in(@user)
+      flash[:success] = "Contraseña modificada"
+
     end
     redirect_to 'users/edit'
  end

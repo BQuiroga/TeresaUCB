@@ -75,7 +75,7 @@ class ReportsController < ApplicationController
       throwUnauthorized
       return
     else
-      @catolica_users=Education.where("end_date < ?", Date.today).where(school_name:"Universidad Catolica San Pablo")
+      @catolica_users=@@r.ingresos.where("end_date < ?", Date.today)
 		  @career_users=@catolica_users.group(:title).count
     end
   end
@@ -121,6 +121,10 @@ class ReportsController < ApplicationController
         if c[0]!=nil
           @companies_names[CiuCode.find(c[0]).description]=c[1]
         end
+      end
+      @users=Array.new
+      @companies_by_code.keys.each do |ciu|
+      @company_info=CompanyInformation.new
       end
     end
   end

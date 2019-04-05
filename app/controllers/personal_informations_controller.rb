@@ -12,6 +12,7 @@ class PersonalInformationsController < ApplicationController
 			return
 		else
 			@personal.update(personal_info_params_for_edit)
+			flash[:success] = "Información modifcada con exito"
 			redirect_to '/users/edit'
 		end
 	end
