@@ -123,8 +123,14 @@
     <br>
   <div class="row-fluid bg-primary" style="border-top-left-radius: 10px; border-top-right-radius: 10px;padding-top:1px;padding-bottom:1px">
     <h2 style="margin-left:15px;margin-top:10px !important"><%=@user.name%> <%=@user.last_name%>
-      <%if @picture!=nil%>
-      <%=wicked_pdf_image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px;float: right;margin-right:4px") %>
+      <%if current_user!=@user%>
+        <%if @picture!=nil%>
+          <%=image_tag(@picture.image.url, class: 'media-object',style:"width:150px;height:150px;float: right;margin-right:4px") %>
+        <%end%>
+      <%else%>
+        <%if @picture!=nil%>
+          <%=wicked_pdf_image_tag(@picture.image.url, class: 'img-thumbnail pull-right',style:"width:150px;height:150px;float: right;margin-right:4px") %>
+        <%end%>
       <%end%>
     </h2>
   </div>

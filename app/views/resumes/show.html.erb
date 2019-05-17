@@ -91,6 +91,22 @@
                   <%end%>
                 <%=education.school_name%>&nbsp;
                   <%=education.start_date.year%>&emsp; - &emsp; <%=education.end_date.year%>
+                  <div class="para-completo" style="display:none">
+                    <%if education.modality%>
+                      <%=education.modality%>
+                    <%end%>
+                    &nbsp;&nbsp;&nbsp;
+                    <%if education.thesis%>
+                      <%=education.thesis%>
+                    <%end%>
+                    <br>
+                    <%if education.grade%>
+                      Nota del proyecto: <%= education.grade%><br>
+                    <%end%>
+                    <%if education.average%>
+                      Promedio de la carrera: <%=education.average%>
+                    <%end%>
+                  </div>
                 </p>
             </div>
         <%end%>
@@ -284,6 +300,22 @@
                   <%end%>
                 <%=education.school_name%>&nbsp;
                   <%=education.start_date.year%>&emsp; - &emsp; <%=education.end_date.year%>
+                  <div class="para-completo-a" style="display:none">
+                    <%if education.modality%>
+                      <%=education.modality%>
+                    <%end%>
+                    &nbsp;&nbsp;&nbsp;
+                    <%if education.thesis%>
+                      <%=education.thesis%>
+                    <%end%>
+                    <br>
+                    <%if education.grade%>
+                      Nota del proyecto: <%= education.grade%><br>
+                    <%end%>
+                    <%if education.average%>
+                      Promedio de la carrera: <%=education.average%>
+                    <%end%>
+                  </div>
                 </p>
             </div>
         <%end%>
