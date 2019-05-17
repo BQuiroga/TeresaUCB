@@ -75,9 +75,9 @@ class EducationsController < ApplicationController
 		end
 	end
 	def educations_params
-  		params.require(:education).permit(:start_date,:resume_id,:end_date,:school_name,:title,:description)
+  		params.require(:education).permit(:start_date,:resume_id,:end_date,:school_name,:title,:description,:thesis,:grade,:average,:modality)
   	end
   	def educations_params_for_edit
-  		params.require(:education).permit(:id,:school_name,:title,:description,:end_date,:start_date)
+  		params.require(:education).permit(:id,:school_name,:title,:description,:end_date,:start_date,:thesis,:grade,:average,:modality)
   	end
 end

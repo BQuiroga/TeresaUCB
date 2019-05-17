@@ -17,17 +17,40 @@
   <div class="row">
     <div class="field col col-md-6 col-xs-6">
       <%= f.label :Fecha_ingreso %>:
-      <%= f.date_select :start_date,:start_year  =>1990, :end_year=>Time.now.year + 5%>
+      <%= f.date_select :start_date,:start_year  =>1990, :end_year=>Time.now.year + 5,:use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre']%>
     </div>
     <div class="field col col-md-6 col-xs-6" >
-      <%= f.label :fecha_egreso %>:
-      <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year + 5,:class=>'form-control',:id=>'date'%>
+      <%= f.label :fecha_titulación %>:
+      <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year + 5,:class=>'form-control',:id=>'date',:use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre']%>
     </div>
   </div>
   <br>
-  <div class="">
-    <%= f.label :descripción %>:
-    <%= f.text_area :description,:class=>"form-control",:rows=>1%>
+  <div class="pull-left">
+    <a id="link-mas">Mostrar más</a>
+    <a id="link-menos" style="display:none">Mostrar menos</a>
+  </div>
+  <br>
+  <div id="mas" style="display:none">
+    <div class="row">
+      <div class="col col-md-6">
+        <%= f.label :titulo_del_trabajo_académico %>
+        <%= f.text_field :thesis,:class=>"form-control"%>
+      </div>
+      <div class="col col-md-6">
+        <%= f.label :modalidad_de_titulación %>
+        <%= f.text_field :modality,:class=>"form-control"%>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-md-6">
+        <%= f.label :nota_del_proyecto %><br />
+        <%= f.number_field :grade,:class=>"form-control",min:1,max:100%>
+      </div>
+      <div class="col col-md-6">
+        <%= f.label :promedio_académico %><br />
+        <%= f.number_field :average,:class=>"form-control",min:1,max:100%>
+      </div>
+    </div>
   </div>
   <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
   <div class="actions" style="">
@@ -37,7 +60,18 @@
 
 <% end %>
 
-
+<script>
+  $("#link-mas").click(function(){
+    document.getElementById('link-mas').style.display='none';
+    document.getElementById('link-menos').style.display='block';
+    document.getElementById('mas').style.display="block";
+  });
+  $("#link-menos").click(function(){
+    document.getElementById('link-menos').style.display='none';
+    document.getElementById('link-mas').style.display='block';
+    document.getElementById('mas').style.display="none";
+  });
+</script>
 <script>
 $(document).ready(function () {
   (function ($) {
@@ -63,4 +97,5 @@ $("#filtrar_u").val(this.value);
 $(".date-picker").datepicker( {
    dateFormat: 'd/m/yy'
   });
+
 </script>

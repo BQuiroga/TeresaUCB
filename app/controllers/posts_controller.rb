@@ -29,6 +29,7 @@ class PostsController < ApplicationController
         new_post.send_notice_mail(suggested_user)
       end
       new_post.save
+      flash[:success] = "Se ha enviado tu oferta a todas las personas de la busqueda! En el apartado 'Notificaciones' podras ver si alguien postuló a la misma."
       redirect_to '/users/profile'
     end
   end

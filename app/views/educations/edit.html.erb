@@ -31,10 +31,34 @@
             <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year+5%>
           </div>
         </div>
-          <div class="">
-            <%= f.label :descripción %>
-            <%= f.text_area :description,:class=>"form-control"%>
+        <br>
+        <div class="pull-left">
+          <a id="link-mas">Mostrar más</a>
+          <a id="link-menos" style="display:none">Mostrar menos</a>
+        </div>
+        <br>
+        <div id="mas" style="display:none">
+          <div class="row">
+            <div class="col col-md-6">
+              <%= f.label :titulo_del_trabajo_académico %>
+              <%= f.text_field :thesis,:class=>"form-control"%>
+            </div>
+            <div class="col col-md-6">
+              <%= f.label :modalidad_de_titulación %>
+              <%= f.text_field :modality,:class=>"form-control"%>
+            </div>
           </div>
+          <div class="row">
+            <div class="col col-md-6">
+              <%= f.label :nota_del_proyecto %>
+              <%= f.number_field :grade,:class=>"form-control",:min=>1,:max=>100%>
+            </div>
+            <div class="col col-md-6">
+              <%= f.label :promedio_académico %>
+              <%= f.number_field :average,:class=>"form-control",min:1,max:100%>
+            </div>
+          </div>
+        </div>
           <br>
         <%=f.hidden_field :id, :value => @education.id%>
           <div class="actions">
@@ -86,4 +110,17 @@ $(document).ready(function(){
   $("#titulos").change(function(){
     $("#filtrar").val(this.value);
   }).change();
+</script>
+
+<script>
+  $("#link-mas").click(function(){
+    document.getElementById('link-mas').style.display='none';
+    document.getElementById('link-menos').style.display='block';
+    document.getElementById('mas').style.display="block";
+  });
+  $("#link-menos").click(function(){
+    document.getElementById('link-menos').style.display='none';
+    document.getElementById('link-mas').style.display='block';
+    document.getElementById('mas').style.display="none";
+  });
 </script>

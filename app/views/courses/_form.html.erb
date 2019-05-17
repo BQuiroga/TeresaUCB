@@ -24,7 +24,7 @@
   <div class="row">
     <div class="col col-md-4">
       <%= f.label :fecha %>
-      <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+      <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year,:use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre']%>
     </div>
     <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
   </div>

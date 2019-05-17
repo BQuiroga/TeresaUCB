@@ -154,7 +154,7 @@
           <div class="row">
             <div class="col col-md-4">
               <%= f.label :Fecha_Nacimiento,:class=>'form-label' %><br />
-              <%= f.date_select :birthdate,:start_year=> 1970,:end_year=>Time.now.year-10,:default=>@u.translate_birthday_to_edit%>
+              <%= f.date_select :birthdate,:start_year=> 1970,:end_year=>Time.now.year-10,:default=>@u.translate_birthday_to_edit,:use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre']%>
             </div>
             <div class="col col-md-4">
               <div class="checkbox">

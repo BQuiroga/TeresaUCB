@@ -183,6 +183,7 @@ class ResumesController < ApplicationController
     @user=User.find(params[:id])
     if @user.company
       @company_info=@user.company_information
+      @picture=@user.picture
     end
     @resume=@user.resume
     @merits=@resume.merits

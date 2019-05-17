@@ -23,26 +23,26 @@
 <div class="row">
   <div class="col col-md-6">
     <%= f.label :nombres,:class=>"control-label persona" %>
-    <%= f.label :nombre_de_la_empresa,:class=>"control-label empresa",:style=>"display:none" %>
-    <%= f.text_field :name,:class=>"form-control"%>
+    <%= f.label :nombre_de_la_empresa,:class=>"control-label empresa",:style=>"display:none"%>
+    <%= f.text_field :name,:class=>"form-control",:id=>'nombre', :maxlength=>50%>
   </div>
   <div class="col col-md-6" id="apellidos">
     <%= f.label :apellidos,:class=>"control-label col-sm-2" %><br />
-    <%= f.text_field :last_name,:class=>"form-control" %>
+    <%= f.text_field :last_name,:class=>"form-control" , :maxlength=>50%>
   </div>
 </div>
 <br>
   <div class="">
     <div clss="">
       <%= f.label :correo_electrónico,:class=>"control-label" %><br />
-      <%= f.email_field :email, autofocus: true,:class=>"form-control " %>
+      <%= f.email_field :email, autofocus: true,:class=>"form-control " ,:maxlength=>50%>
     </div>
   </div>
   <br>
 <div class="row">
   <div class="col col-md-6">
     <%= f.label :contraseña,:class=>"control-label" %>
-    <%= f.password_field :password, autocomplete: "off",:class=>"form-control" %>
+    <%= f.password_field :password, autocomplete: "off",:class=>"form-control",:maxlength=>50 %>
   </div>
 
   <div class="col col-md-6">
@@ -59,7 +59,7 @@
     <%=f.label :quiero_registrarme_como_empresa%>
   </div>
   <div class="actions">
-    <%= f.submit "Registrarse",:class=>'btn btn-primary pull-right' %>
+    <%= f.submit "Registrarse",:class=>'btn btn-primary pull-right',:id=>'boton_registro' %>
   </div>
 <% end %>
 </div>
@@ -86,4 +86,12 @@ $('#check_company').click(function() {
 // $(function(){
 // $('body').tooltip({ selector: '[data-toggle="tooltip2"]' });
 // });
+
+$('#boton_registro').attr('disabled',true);
+$('#nombre').keyup(function(){
+    if($(this).val().length !=0)
+      $('#boton_registro').attr('disabled', false);
+    else
+        $('#boton_registro').attr('disabled',true);
+})
 </script>

@@ -1,0 +1,37 @@
+Fecha: 09/05/2019
+
+- registro personal fecha en ingles    X
+- registro de titulo de tema academico
+
+
+Fecha: 13/05/2019
+
+- cambiar nombre...seguimiento a titulados
+- registro con email y contraseña, y verificacion con C.I. y extraccion de informacion desde api con siaa
+- incluyen pre y postgrado
+- si no es titulado, cuenta bloqueada.
+
+
+- Academico!!!
+  + modalidad
+  + Nota
+  + tiutlo de trabajo de grado
+  + promedio de la carrera
+
+
+- API
+  + carrera
+  + año de ingreso
+  + fecha de defensa  = fecha de titulacion
+  + modalidad
+  + Nota
+  + titulo
+  + promedio de la carrera
+  +  (Postrgrados igual)
+
+
+- registro completo con la confirmación del correo electronico??
+- nombre de persona o empresa no debe estar vacio!    X
+------ control de correo elecrtonico!?!?!
+- fechas en ingles!!!!   X
+------ modal con C.I. para recuperar acceso de API SIAA

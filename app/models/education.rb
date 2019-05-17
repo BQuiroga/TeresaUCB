@@ -73,7 +73,7 @@ class Education < ActiveRecord::Base
     end
     list
   end
-  def grade(grade)
+  def grades(grade)
     if grade[1]!=""
       return "Maestria"
     end
